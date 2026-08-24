@@ -253,6 +253,7 @@ table.ledger-table td:first-child, table.ledger-table th:first-child{ text-align
 .criteria-table th{ color:var(--ink-soft); font-weight:700; font-size:0.76rem; }
 .criteria-table td:last-child, .criteria-table th:last-child{ text-align:right; font-family:'IBM Plex Mono', monospace; }
 .criteria-table tr:last-child td{ border-bottom:none; }
+.criteria-table.text-table td:last-child, .criteria-table.text-table th:last-child{ text-align:left; font-family:'Noto Sans KR', sans-serif; font-weight:400; }
 .criteria-dot{ display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:7px; }
 
 .faq-item{ border-bottom:1px solid #eef0f2; padding:11px 2px; }
