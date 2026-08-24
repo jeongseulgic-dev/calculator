@@ -28,6 +28,17 @@ function progressiveTax(base){
   return base * 0.45 - 65940000;
 }
 
+function taxBracketRate(base){
+  if (base <= 14000000) return 6;
+  if (base <= 50000000) return 15;
+  if (base <= 88000000) return 24;
+  if (base <= 150000000) return 35;
+  if (base <= 300000000) return 38;
+  if (base <= 500000000) return 40;
+  if (base <= 1000000000) return 42;
+  return 45;
+}
+
 function earnedIncomeTaxCreditLimit(annual){
   if (annual <= 33000000) return 740000;
   if (annual <= 70000000) return Math.max(740000 - (annual - 33000000) * 0.008, 660000);
@@ -71,7 +82,7 @@ function calcSalary(annual, dependents){
   return {
     monthlyGross, nationalPension, healthInsurance, longTermCare, employment,
     monthlyInsurance, monthlyIncomeTax, monthlyLocalTax, monthlyDeductionTotal,
-    monthlyNet, annualNet: monthlyNet * 12
+    monthlyNet, annualNet: monthlyNet * 12, bracketRate: taxBracketRate(taxBase)
   };
 }
 
@@ -101,7 +112,7 @@ function recalc(){
     <tr><th>건강보험(3.595%)</th><td>-${fmt0(r.healthInsurance)}원</td></tr>
     <tr><th>장기요양보험(13.14%)</th><td>-${fmt0(r.longTermCare)}원</td></tr>
     <tr><th>고용보험(0.9%)</th><td>-${fmt0(r.employment)}원</td></tr>
-    <tr><th>소득세</th><td>-${fmt0(r.monthlyIncomeTax)}원</td></tr>
+    <tr><th>소득세(${r.bracketRate}% 구간)</th><td>-${fmt0(r.monthlyIncomeTax)}원</td></tr>
     <tr><th>지방소득세(10%)</th><td>-${fmt0(r.monthlyLocalTax)}원</td></tr>
     <tr><th>공제액 합계</th><td>-${fmt0(r.monthlyDeductionTotal)}원</td></tr>
     <tr class="stat-highlight"><th>월 실수령액</th><td>${fmt0(r.monthlyNet)}원</td></tr>
