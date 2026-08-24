@@ -238,7 +238,6 @@ table.ledger-table td:first-child, table.ledger-table th:first-child{ text-align
 .info-block p:last-child{ margin-bottom:0; }
 
 .formula-box{ background:#f4f6f8; border-radius:4px; font-family:'IBM Plex Mono', monospace; font-size:0.9rem; font-weight:700; color:var(--header-bg); padding:11px 14px; margin:12px 0; letter-spacing:0.3px; }
-.formula-example{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--ink-soft); }
 
 .formula-box.formula-frac{ display:flex; align-items:center; flex-wrap:wrap; gap:14px; padding:13px 16px; }
 .formula-frac .frac-lhs{ flex-shrink:0; }
