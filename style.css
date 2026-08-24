@@ -292,6 +292,9 @@ table.ledger-table td:first-child, table.ledger-table th:first-child{ text-align
 @media (min-width:761px){ .ad-slot{ min-height:120px; } }
 
 footer{ text-align:center; padding:1.3rem; background:var(--header-bg); color:var(--header-text); font-size:0.82rem; margin-top:auto; }
+footer .footer-links{ margin-top:7px; font-size:0.76rem; }
+footer .footer-links a{ color:rgba(226,228,232,0.72); text-decoration:none; }
+footer .footer-links a:hover{ color:#fff; text-decoration:underline; }
 
 @media (max-width:760px){
   .mobile-menu-toggle{ display:block; }
