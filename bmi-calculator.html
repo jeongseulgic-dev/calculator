@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BMI 계산기 | 키와 몸무게로 체질량지수와 표준체중 범위를 바로 계산하는 무료 계산기">
+<title>BMI 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">BMI CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html" class="active">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>BMI 계산기</h2>
+      <p>키와 몸무게를 입력하면 체질량지수(BMI)와 체중 상태, 정상 체중 범위가 실시간으로 계산됩니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>BMI 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">BMI 지수</div>
+              <div class="value" id="miniScreen">0.0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>키 (cm)</label>
+            <input type="number" id="b-height" placeholder="예: 170" value="170">
+          </div>
+
+          <div class="field">
+            <label>몸무게 (kg)</label>
+            <input type="number" id="b-weight" placeholder="예: 65" value="65">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading"><h2>BMI 결과</h2></div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>BMI 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>BMI란?</h3>
+        <p>체질량지수(BMI, Body Mass Index)는 키와 몸무게만으로 체지방 수준을 간접적으로 추정하는 지표입니다. 체지방을 직접 측정하지 않고도 저체중·정상·과체중·비만 여부를 빠르게 가늠할 수 있어 세계보건기구(WHO)를 비롯한 여러 보건 기관이 표준 선별 도구로 사용합니다.</p>
+        <p>다만 근육량이 많은 사람, 성장기 어린이·청소년, 노인의 경우 실제 체지방 수준과 차이가 날 수 있어 절대적인 진단 기준이 아닌 참고 지표로 활용하는 것이 좋습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 공식</h3>
+        <div class="formula-box formula-frac">
+          <span class="frac-lhs">BMI =</span>
+          <span class="frac">
+            <span class="num">몸무게(kg)</span>
+            <span class="den">키(m)²</span>
+          </span>
+        </div>
+        <p class="formula-example">예) 키 170cm(1.7m), 몸무게 65kg → 65 ÷ (1.7 × 1.7) = 65 ÷ 2.89 ≈ 22.5</p>
+        <p>정상 체중 범위는 입력한 키를 고정한 상태에서 BMI 18.5와 22.9에 해당하는 몸무게를 각각 역산해 보여드립니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>체중 상태 기준표 (성인, WHO 아시아-태평양 기준)</h3>
+        <table class="criteria-table">
+          <tbody>
+            <tr><td><span class="criteria-dot" style="background:#3b82c4;"></span>저체중</td><td>BMI 18.5 미만</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#3f6b4f;"></span>정상</td><td>18.5 ~ 22.9</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#c99a2c;"></span>과체중</td><td>23.0 ~ 24.9</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#c23662;"></span>비만</td><td>25.0 ~ 29.9</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#8a1f3f;"></span>고도비만</td><td>30.0 이상</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>BMI가 정상이면 건강한 건가요?</summary>
+          <p class="faq-a">BMI는 키와 몸무게만으로 계산되어 체지방률, 근육량, 체형은 구분하지 못합니다. 정상 체중이라도 체지방률이 높은 이른바 '마른 비만'일 수 있으니 체성분 검사 등을 함께 참고하는 것이 좋습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>근육량이 많으면 BMI가 부정확한가요?</summary>
+          <p class="faq-a">네, 그럴 수 있습니다. 근육은 지방보다 밀도가 높아 같은 부피라도 무게가 더 나갑니다. 따라서 운동선수처럼 근육량이 많은 사람은 체지방이 낮아도 BMI가 과체중이나 비만으로 계산될 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>성인과 어린이·청소년의 기준이 같나요?</summary>
+          <p class="faq-a">아닙니다. 이 계산기의 기준표는 성인 기준입니다. 만 18세 미만은 성장 단계에 따라 또래 평균과 비교하는 '연령별 BMI 백분위수' 기준을 별도로 사용해야 합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>이 계산기는 어떤 BMI 기준을 사용하나요?</summary>
+          <p class="faq-a">한국인 등 아시아인 체형에 맞춰 WHO 아시아-태평양 기준(정상 상한 22.9)을 사용합니다. 국제 표준 WHO 기준(정상 상한 24.9)과는 구간이 다를 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>정상 체중 범위는 어떻게 계산되나요?</summary>
+          <p class="faq-a">입력하신 키를 고정한 상태에서 BMI 18.5와 22.9에 해당하는 몸무게를 각각 계산해 그 사이 구간을 정상 체중 범위로 안내합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/bmi-calc.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="퍼센트 계산기 | %값 구하기, 비율(%) 구하기, 증감률 구하기를 한 번에 계산하는 무료 계산기">
+<title>퍼센트 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">PERCENT CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html" class="active">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>퍼센트 계산기</h2>
+      <p>%값 구하기, 비율(%) 구하기, 증감률 구하기 3가지 계산을 한 화면에서 바로 확인할 수 있습니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">결과</div>
+              <div class="value" id="miniScreen">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>계산 유형</label>
+            <div class="seg-toggle" data-target="mode" style="width:100%; flex-wrap:wrap;">
+              <button type="button" class="seg-btn active" data-value="of" style="flex:1;">%값 구하기</button>
+              <button type="button" class="seg-btn" data-value="ratio" style="flex:1;">비율(%) 구하기</button>
+              <button type="button" class="seg-btn" data-value="change" style="flex:1;">증감률 구하기</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="of">
+            <label>기준값</label>
+            <input type="number" id="p-base" value="50000">
+          </div>
+          <div class="field mode-field" data-mode="of">
+            <label>퍼센트 (%)</label>
+            <input type="number" id="p-percent" value="20">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="ratio">
+            <label>전체값 (B)</label>
+            <input type="number" id="p-whole" value="60">
+          </div>
+          <div class="field mode-field hidden" data-mode="ratio">
+            <label>부분값 (A)</label>
+            <input type="number" id="p-part" value="15">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="change">
+            <label>기존값</label>
+            <input type="number" id="p-old" value="80000">
+          </div>
+          <div class="field mode-field hidden" data-mode="change">
+            <label>변경값</label>
+            <input type="number" id="p-new" value="92000">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading"><h2>계산 결과</h2></div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>퍼센트 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>퍼센트(백분율)란?</h3>
+        <p>퍼센트(%)는 전체를 100으로 놓았을 때 어떤 값이 차지하는 비율을 나타내는 단위입니다. 할인율, 이자율, 시험 점수, 통계 증감률 등 숫자를 비교하기 쉽게 표현할 때 널리 쓰입니다.</p>
+        <p>퍼센트 계산은 목적에 따라 크게 세 가지로 나뉩니다 — 어떤 값의 특정 퍼센트를 구하는 것, 한 값이 다른 값의 몇 퍼센트인지 구하는 것, 그리고 값이 얼마나 늘거나 줄었는지(증감률)를 구하는 것입니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>%값 구하기</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">결과값 = 기준값 × (퍼센트 ÷ 100)</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>비율(%) 구하기</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">비율 =</span>
+              <span class="frac"><span class="num">부분값(A)</span><span class="den">전체값(B)</span></span>
+            </span>
+            <span class="frac-part"><span class="frac-lhs">× 100</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>증감률 구하기</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">증감률 =</span>
+              <span class="frac"><span class="num">변경값 − 기존값</span><span class="den">기존값</span></span>
+            </span>
+            <span class="frac-part"><span class="frac-lhs">× 100</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>어떤 계산을 언제 쓰나</h3>
+        <div class="method-compare-grid">
+          <div class="method-compare-card">
+            <span class="mc-badge best">가장 흔함</span>
+            <h4>%값 구하기</h4>
+            <ul>
+              <li><span>예시</span><span>정가의 20% 할인액</span></li>
+              <li><span>입력</span><span>퍼센트, 기준값</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">비율 확인</span>
+            <h4>비율(%) 구하기</h4>
+            <ul>
+              <li><span>예시</span><span>60문제 중 15문제 비율</span></li>
+              <li><span>입력</span><span>부분값, 전체값</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">변화 추적</span>
+            <h4>증감률 구하기</h4>
+            <ul>
+              <li><span>예시</span><span>매출 8만→9만2천 변화율</span></li>
+              <li><span>입력</span><span>기존값, 변경값</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>퍼센트(%)와 퍼센트포인트(%p)는 어떻게 다른가요?</summary>
+          <p class="faq-a">%는 어떤 값에 대한 비율 자체를 나타내고, %p는 두 퍼센트 값의 단순 차이를 나타냅니다. 예를 들어 이자율이 3%에서 5%로 오르면 '2%p 상승'이지만, 증감률로는 (5-3)/3×100 ≈ '66.7% 상승'입니다. 이 계산기의 '증감률 구하기'는 %p가 아니라 %(상대적 변화율) 기준입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>증감률 결과가 음수로 나오면 어떻게 해석하나요?</summary>
+          <p class="faq-a">음수는 값이 줄었다는 뜻입니다. 예를 들어 -15%는 기존값보다 15% 감소했다는 의미이며, 결과 화면에도 '감소'라고 함께 표시됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>할인율을 계산하려면 어떤 유형을 써야 하나요?</summary>
+          <p class="faq-a">정가에서 할인 금액을 구하려면 '%값 구하기'(정가 × 할인율)를, 할인 전후 가격으로 실제 할인율이 몇 %였는지 거꾸로 확인하려면 '증감률 구하기'를 사용하면 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>전체값(B)이 0이면 왜 계산이 안 되나요?</summary>
+          <p class="faq-a">비율이나 증감률은 전체값(또는 기존값)으로 나누는 계산이라, 그 값이 0이면 수학적으로 정의되지 않기 때문입니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/percent-calc.js"></script>
+</body>
+</html>

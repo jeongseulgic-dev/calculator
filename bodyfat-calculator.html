@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="체지방률 계산기 | 미해군(US Navy) 둘레 측정법으로 체지방률과 체지방량, 제지방량을 계산하는 무료 계산기">
+<title>체지방률 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">BODY FAT CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html" class="active">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>체지방률 계산기</h2>
+      <p>목·허리(·엉덩이) 둘레와 키를 입력하면 미해군(US Navy) 측정법으로 체지방률과 체지방량, 제지방량을 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>측정값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">체지방률</div>
+              <div class="value" id="miniScreen">0.0%</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>성별</label>
+            <div class="seg-toggle" data-target="gender" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="male" style="flex:1;">남성</button>
+              <button type="button" class="seg-btn" data-value="female" style="flex:1;">여성</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>키 (cm)</label>
+            <input type="number" id="f-height" placeholder="예: 170" value="170">
+          </div>
+
+          <div class="field">
+            <label>몸무게 (kg)</label>
+            <input type="number" id="f-weight" placeholder="예: 65" value="65">
+          </div>
+
+          <div class="field">
+            <label>목 둘레 (cm)</label>
+            <input type="number" id="f-neck" placeholder="예: 37" value="37">
+          </div>
+
+          <div class="field">
+            <label>허리 둘레 (cm)</label>
+            <input type="number" id="f-waist" placeholder="예: 82" value="82">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="female">
+            <label>엉덩이 둘레 (cm)</label>
+            <input type="number" id="f-hip" placeholder="예: 95" value="95">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading"><h2>체지방 결과</h2></div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>체지방률 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>체지방률이란?</h3>
+        <p>체지방률은 전체 몸무게 중 지방이 차지하는 비율입니다. BMI가 키와 몸무게만으로 비만 여부를 간접 추정하는 것과 달리, 체지방률은 실제 지방량을 더 직접적으로 반영해 근육량이 많은 사람과 체지방이 많은 사람을 구분할 수 있습니다.</p>
+        <p>이 계산기는 특수 장비 없이 줄자만으로 측정할 수 있는 미해군(US Navy) 둘레 측정법을 사용합니다. 체성분 검사기(인바디 등)나 DEXA 스캔에 비해 오차가 있을 수 있어 참고용으로 활용하는 것이 좋습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>남성</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">체지방률 = 86.010×log(허리−목) − 70.041×log(키) + 36.76</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>여성</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">체지방률 = 163.205×log(허리+엉덩이−목) − 97.684×log(키) − 78.387</span></span>
+          </div>
+        </div>
+        <p class="formula-example">모든 둘레·키 값은 인치로 환산해 계산합니다 (cm × 0.3937). 체지방량 = 몸무게 × 체지방률 ÷ 100, 제지방량 = 몸무게 − 체지방량</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>체지방률 분류표 (ACE 기준)</h3>
+        <table class="criteria-table">
+          <thead><tr><th>분류</th><th>남성</th><th>여성</th></tr></thead>
+          <tbody>
+            <tr><td><span class="criteria-dot" style="background:#3b82c4;"></span>필수지방</td><td>2~5%</td><td>10~13%</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#3f6b4f;"></span>운동선수</td><td>6~13%</td><td>14~20%</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#5a8c6a;"></span>피트니스</td><td>14~17%</td><td>21~24%</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#c99a2c;"></span>평균</td><td>18~24%</td><td>25~31%</td></tr>
+            <tr><td><span class="criteria-dot" style="background:#c23662;"></span>비만</td><td>25% 이상</td><td>32% 이상</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>미해군 측정법은 얼마나 정확한가요?</summary>
+          <p class="faq-a">체지방률 15~30% 범위의 일반적인 체형에서는 DEXA(정밀 체성분 스캔) 대비 오차가 ±3~4%p 정도로 알려져 있습니다. 측정 부위가 매우 마르거나 비만인 경우, 또는 줄자 위치가 부정확한 경우 오차가 더 커질 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>체지방률과 BMI는 어떻게 다른가요?</summary>
+          <p class="faq-a">BMI는 키와 몸무게 비율만으로 계산해 근육량을 반영하지 못합니다. 반면 체지방률은 실제 지방이 차지하는 비율을 추정하므로, 근육량이 많은 사람은 BMI는 높아도 체지방률은 낮게 나올 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>목·허리·엉덩이 둘레는 어떻게 측정하나요?</summary>
+          <p class="faq-a">목은 후두융기(목젖) 바로 아래 가장 얇은 부분을, 허리는 배꼽 위치(남성) 또는 가장 잘록한 부분(여성)을, 엉덩이는 엉덩이가 가장 넓은 지점을 줄자로 수평하게 감아 측정합니다. 숨을 편하게 내쉰 상태에서 측정하는 것이 정확합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>남녀 기준(공식·분류표)이 왜 다른가요?</summary>
+          <p class="faq-a">여성은 생식 기능 등을 위한 필수 체지방이 남성보다 높아, 같은 건강 상태라도 체지방률 자체가 남성보다 높게 나오는 것이 정상입니다. 그래서 측정 공식과 ACE 분류표 모두 성별에 따라 다른 기준을 사용합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/bodyfat-calc.js"></script>
+</body>
+</html>

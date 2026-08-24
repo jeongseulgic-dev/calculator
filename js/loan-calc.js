@@ -1,0 +1,219 @@
+let compareChart = null;
+let scheduleCache = {};
+let visibleRows = 12;
+let activeType = 'equal-principal-interest';
+let debounceTimer = null;
+let periodType = 'year';
+let graceType = 'month';
+
+const METHODS = [
+  { key:'equal-principal-interest', label:'원리금균등상환', tag:'매달 동일' },
+  { key:'equal-principal',          label:'원금균등상환',   tag:'원금 우선' },
+  { key:'bullet',                   label:'원금만기일시상환', tag:'만기 일시' }
+];
+
+function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
+
+document.getElementById('p-amount').addEventListener('input', function(){ formatInputComma(this); scheduleRecalc(); });
+document.getElementById('p-amount').value = (300000000).toLocaleString('ko-KR');
+
+document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    addAmount('p-amount', Number(btn.dataset.add));
+    scheduleRecalc();
+  });
+});
+document.querySelector('.calc-key[data-reset]').addEventListener('click', ()=>{
+  resetAmount('p-amount');
+  scheduleRecalc();
+});
+
+document.querySelectorAll('.seg-toggle').forEach(group=>{
+  group.querySelectorAll('.seg-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      group.querySelectorAll('.seg-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      if (group.dataset.target === 'periodType') periodType = btn.dataset.value;
+      if (group.dataset.target === 'graceType') graceType = btn.dataset.value;
+      scheduleRecalc();
+    });
+  });
+});
+
+['p-period','p-rate','p-grace'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', scheduleRecalc);
+});
+
+function scheduleRecalc(){
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(recalcAll, 150);
+}
+
+function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type){
+  let balance = P;
+  let totalInterest = 0;
+  const repayMonths = totalMonths - graceMonths;
+  const schedule = [];
+
+  let monthlyConstant = 0;
+  if (type === 'equal-principal-interest' && repayMonths > 0) {
+    monthlyConstant = (P * monthlyRate * Math.pow(1 + monthlyRate, repayMonths)) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
+  }
+
+  for (let m = 1; m <= totalMonths; m++){
+    let interestPayment = balance * monthlyRate;
+    let principalPayment = 0;
+
+    if (m <= graceMonths){
+      principalPayment = 0;
+    } else if (type === 'equal-principal-interest'){
+      principalPayment = monthlyConstant - interestPayment;
+    } else if (type === 'equal-principal'){
+      principalPayment = P / repayMonths;
+    } else if (type === 'bullet'){
+      principalPayment = (m === totalMonths) ? P : 0;
+    }
+
+    if (principalPayment > balance) principalPayment = balance;
+    balance -= principalPayment;
+    if (balance < 0) balance = 0;
+
+    const total = principalPayment + interestPayment;
+    totalInterest += interestPayment;
+
+    schedule.push({ month:m, principal:Math.round(principalPayment), interest:Math.round(interestPayment), total:Math.round(total), balance:Math.round(balance) });
+  }
+  return { schedule, totalInterest };
+}
+
+function recalcAll(){
+  const P = parseFloat(document.getElementById('p-amount').value.replace(/,/g,''));
+  const periodVal = parseFloat(document.getElementById('p-period').value);
+  const totalMonths = periodType === 'year' ? periodVal * 12 : periodVal;
+
+  const rate = parseFloat(document.getElementById('p-rate').value) / 100;
+  const monthlyRate = rate / 12;
+
+  const graceVal = parseFloat(document.getElementById('p-grace').value) || 0;
+  const graceMonths = graceType === 'year' ? graceVal * 12 : graceVal;
+
+  const grid = document.getElementById('compareGrid');
+  const meta = document.getElementById('page-meta');
+  const miniScreen = document.getElementById('miniScreen');
+  const miniScreenSub = document.getElementById('miniScreenSub');
+
+  if (!P || !totalMonths || isNaN(rate) || graceMonths >= totalMonths){
+    grid.innerHTML = '<div style="grid-column:1/-1; padding:20px; text-align:center; color:var(--ink-soft); font-size:0.85rem;">금액·기간·이자율을 확인해 주세요 (거치기간은 총 기간보다 짧아야 합니다)</div>';
+    meta.textContent = '--';
+    miniScreen.textContent = '0';
+    miniScreenSub.textContent = '';
+    if (compareChart) { compareChart.destroy(); compareChart = null; }
+    document.getElementById('ledgerBody').innerHTML = '';
+    document.getElementById('ledgerTabs').innerHTML = '';
+    return;
+  }
+
+  meta.textContent = `원금 ${fmt(P)}원 · ${totalMonths}개월 · 연 ${document.getElementById('p-rate').value}%`;
+
+  scheduleCache = {};
+  METHODS.forEach(m=>{
+    scheduleCache[m.key] = computeSchedule(P, totalMonths, monthlyRate, graceMonths, m.key);
+  });
+
+  const bestKey = METHODS.reduce((best, m)=>
+    scheduleCache[m.key].totalInterest < scheduleCache[best].totalInterest ? m.key : best
+  , METHODS[0].key);
+  const bestLabel = METHODS.find(m=>m.key===bestKey).label;
+
+  miniScreen.textContent = fmt(scheduleCache[bestKey].totalInterest) + '원';
+  miniScreenSub.textContent = `${bestLabel} 기준`;
+
+  grid.innerHTML = METHODS.map(m=>{
+    const data = scheduleCache[m.key];
+    const firstPayment = data.schedule[0].total;
+    const totalRepay = P + data.totalInterest;
+    const isBest = m.key === bestKey;
+    return `
+      <div class="method-card">
+        ${isBest ? '<div class="stamp">이자<br>최적</div>' : ''}
+        <h3>${m.label}</h3>
+        <div class="sub">${m.tag}</div>
+        <div class="method-row"><span>첫 달 상환금</span><span class="val">${fmt(firstPayment)}원</span></div>
+        <div class="method-row total"><span>총 납입 이자</span><span class="val">${fmt(data.totalInterest)}원</span></div>
+        <div class="method-row"><span>총 상환 금액</span><span class="val">${fmt(totalRepay)}원</span></div>
+      </div>
+    `;
+  }).join('');
+
+  renderChart();
+  renderTabs(bestKey);
+  visibleRows = 12;
+  if (!scheduleCache[activeType]) activeType = bestKey;
+  renderLedger();
+}
+
+function renderChart(){
+  const ctx = document.getElementById('compareChart').getContext('2d');
+  if (compareChart) compareChart.destroy();
+  compareChart = new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels: METHODS.map(m=>m.label),
+      datasets:[{
+        data: METHODS.map(m=>scheduleCache[m.key].totalInterest),
+        backgroundColor: ['#373b40', '#9ca0a6', '#c23662'],
+        borderRadius:3,
+        maxBarThickness:44
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:false } },
+      scales:{
+        y:{ ticks:{ callback:(v)=>fmt(v)+'원', font:{size:10} }, grid:{ color:'#eee' } },
+        x:{ ticks:{ font:{size:11} }, grid:{ display:false } }
+      }
+    }
+  });
+}
+
+function renderTabs(bestKey){
+  const wrap = document.getElementById('ledgerTabs');
+  wrap.innerHTML = METHODS.map(m=>`
+    <button class="ledger-tab ${m.key === activeType ? 'active' : ''}" data-key="${m.key}">
+      ${m.label}${m.key === bestKey ? ' ✓' : ''}
+    </button>
+  `).join('');
+  wrap.querySelectorAll('.ledger-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeType = btn.dataset.key;
+      visibleRows = 12;
+      renderTabs(bestKey);
+      renderLedger();
+    });
+  });
+}
+
+function renderLedger(){
+  const data = scheduleCache[activeType];
+  if (!data) return;
+  const body = document.getElementById('ledgerBody');
+  const rows = data.schedule.slice(0, visibleRows);
+  body.innerHTML = rows.map(r=>`
+    <tr>
+      <td>${r.month}회차</td>
+      <td>${fmt(r.principal)}원</td>
+      <td>${fmt(r.interest)}원</td>
+      <td>${fmt(r.total)}원</td>
+      <td>${fmt(r.balance)}원</td>
+    </tr>
+  `).join('');
+  document.getElementById('loadMoreBtn').style.display = (visibleRows < data.schedule.length) ? 'inline-block' : 'none';
+}
+
+document.getElementById('loadMoreBtn').addEventListener('click', ()=>{
+  visibleRows += 12;
+  renderLedger();
+});
+
+recalcAll();

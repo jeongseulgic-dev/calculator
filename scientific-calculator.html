@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="공학용 계산기 | 삼각함수, 로그, 거듭제곱, 괄호 연산을 지원하는 무료 온라인 공학용 계산기">
+<title>공학용 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">SCIENTIFIC CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html" class="active">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="page-content">
+    <div class="page-title">
+      <h2>공학용 계산기</h2>
+      <p>삼각함수(sin·cos·tan), 로그(log·ln), 거듭제곱, 괄호 연산을 지원하는 무료 계산기입니다.</p>
+    </div>
+
+    <button id="mobileHistoryBtn" class="mobile-history-toggle">📜 계산 기록 보기</button>
+
+    <section class="workspace">
+      <div class="casio calc-panel">
+        <div class="casio-top">
+          <div class="mode-toggle">
+            <span>일반</span>
+            <label class="switch"><input type="checkbox" id="modeToggle" checked><span class="slider"></span></label>
+            <span>공학</span>
+          </div>
+        </div>
+
+        <div class="screen-shell">
+          <div class="screen-main-outer min-h">
+            <div class="screen-history" id="screenHistory"></div>
+            <div class="screen-main" id="screenMain">0</div>
+          </div>
+        </div>
+
+        <div class="pad-wrap">
+          <div class="pad hidden" id="pad-standard">
+            <button class="key fn" data-key="%">%</button>
+            <button class="key fn" data-key="√">√</button>
+            <button class="key fn" data-key="(">(</button>
+            <button class="key fn" data-key=")">)</button>
+            <button class="key fn" data-key="Backspace">◀</button>
+
+            <button class="key mem" data-key="MC">MC</button>
+            <button class="key mem" data-key="MR">MR</button>
+            <button class="key mem" data-key="M-">M-</button>
+            <button class="key mem" data-key="M+">M+</button>
+            <button class="key op" data-key="÷">÷</button>
+
+            <button class="key fn" data-key="+/-">+/-</button>
+            <button class="key num" data-key="7">7</button>
+            <button class="key num" data-key="8">8</button>
+            <button class="key num" data-key="9">9</button>
+            <button class="key op" data-key="×">×</button>
+
+            <button class="key pink" data-key="Backspace">C</button>
+            <button class="key num" data-key="4">4</button>
+            <button class="key num" data-key="5">5</button>
+            <button class="key num" data-key="6">6</button>
+            <button class="key op" data-key="-">-</button>
+
+            <button class="key pink" data-key="Escape">AC</button>
+            <button class="key num" data-key="1">1</button>
+            <button class="key num" data-key="2">2</button>
+            <button class="key num" data-key="3">3</button>
+            <button class="key op tall" data-key="+">+</button>
+
+            <button class="key num" data-key="0">0</button>
+            <button class="key num" data-key="00">00</button>
+            <button class="key num" data-key=".">.</button>
+            <button class="key op" data-key="Enter">=</button>
+          </div>
+
+          <div class="pad scientific" id="pad-scientific">
+            <button class="key fn" data-key="sin">sin</button>
+            <button class="key fn" data-key="cos">cos</button>
+            <button class="key fn" data-key="tan">tan</button>
+            <button class="key fn" data-key="(">(</button>
+            <button class="key fn" data-key=")">)</button>
+            <button class="key pink" data-key="Escape">AC</button>
+
+            <button class="key fn" data-key="log">log</button>
+            <button class="key fn" data-key="ln">ln</button>
+            <button class="key fn" data-key="√">√</button>
+            <button class="key fn" data-key="x^y">xʸ</button>
+            <button class="key fn" data-key="%">%</button>
+            <button class="key pink" data-key="Backspace">C</button>
+
+            <button class="key fn" data-key="π">π</button>
+            <button class="key fn" data-key="e">e</button>
+            <button class="key num" data-key="7">7</button>
+            <button class="key num" data-key="8">8</button>
+            <button class="key num" data-key="9">9</button>
+            <button class="key op" data-key="÷">÷</button>
+
+            <button class="key mem" data-key="MC">MC</button>
+            <button class="key mem" data-key="MR">MR</button>
+            <button class="key num" data-key="4">4</button>
+            <button class="key num" data-key="5">5</button>
+            <button class="key num" data-key="6">6</button>
+            <button class="key op" data-key="×">×</button>
+
+            <button class="key mem" data-key="M-">M-</button>
+            <button class="key mem" data-key="M+">M+</button>
+            <button class="key num" data-key="1">1</button>
+            <button class="key num" data-key="2">2</button>
+            <button class="key num" data-key="3">3</button>
+            <button class="key op" data-key="-">-</button>
+
+            <button class="key fn" data-key="+/-">+/-</button>
+            <button class="key fn" data-key="+/-">&nbsp;</button>
+            <button class="key num" data-key="0">0</button>
+            <button class="key num" data-key=".">.</button>
+            <button class="key op" data-key="Enter">=</button>
+            <button class="key op" data-key="+">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-header">
+          <span>계산 기록</span>
+          <button class="clear-btn" id="clearHistory">지우기</button>
+        </div>
+        <div class="receipt-body" id="historyBody">
+          <div class="h-empty">아직 계산 기록이 없습니다</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>공학용 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>공학용 계산기란?</h3>
+        <p>일반 계산기가 사칙연산 위주라면, 공학용 계산기는 삼각함수·로그·거듭제곱·제곱근 같은 고급 함수와 괄호를 활용한 복잡한 수식 계산을 지원합니다. 화면 우측 상단의 '일반/공학' 스위치로 두 모드를 언제든 전환할 수 있습니다.</p>
+        <p>계산 기록은 우측(모바일에서는 '계산 기록 보기' 버튼)에서 확인할 수 있으며, 기록의 식이나 결과값을 클릭하면 다시 불러와 이어서 계산할 수 있습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>주요 함수 사용법</h3>
+        <p>삼각함수(sin, cos, tan)는 각도 단위를 도(degree) 기준으로 계산합니다. 예를 들어 sin(30)을 입력하면 30도의 사인값 0.5가 나옵니다.</p>
+        <div class="method-def">
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">log(x) = 상용로그(밑이 10)</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">ln(x) = 자연로그(밑이 e)</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">xʸ = x의 y제곱</span></span>
+          </div>
+        </div>
+        <p>키보드로도 숫자·연산자·Enter·Backspace 입력이 그대로 지원됩니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>버튼 기능표</h3>
+        <div class="method-compare-grid">
+          <div class="method-compare-card">
+            <span class="mc-badge">각도 기준</span>
+            <h4>삼각함수</h4>
+            <ul>
+              <li><span>sin · cos · tan</span><span>degree 단위</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">로그</span>
+            <h4>log · ln</h4>
+            <ul>
+              <li><span>log(x)</span><span>상용로그, 밑 10</span></li>
+              <li><span>ln(x)</span><span>자연로그, 밑 e</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">거듭제곱</span>
+            <h4>√ · xʸ</h4>
+            <ul>
+              <li><span>√</span><span>제곱근</span></li>
+              <li><span>xʸ</span><span>거듭제곱</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">상수</span>
+            <h4>π · e</h4>
+            <ul>
+              <li><span>π</span><span>원주율 ≈ 3.14159</span></li>
+              <li><span>e</span><span>자연상수 ≈ 2.71828</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">메모리</span>
+            <h4>M+ · M- · MR · MC</h4>
+            <ul>
+              <li><span>M+ / M-</span><span>메모리에 더하기 / 빼기</span></li>
+              <li><span>MR / MC</span><span>불러오기 / 지우기</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>log와 ln의 차이는 무엇인가요?</summary>
+          <p class="faq-a">log는 밑이 10인 상용로그, ln은 밑이 자연상수 e(약 2.71828)인 자연로그입니다. 이 계산기에서 log(100)은 2, ln(e)는 1이 나옵니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>삼각함수 결과가 라디안이 아니라 각도(도) 기준인가요?</summary>
+          <p class="faq-a">네, 이 계산기의 sin·cos·tan은 모두 도(degree) 단위를 기준으로 계산됩니다. 예를 들어 sin(90)을 입력하면 1이 나옵니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>M+, M-, MR, MC는 어떻게 쓰나요?</summary>
+          <p class="faq-a">M+는 현재 화면 값을 메모리에 더하고, M-는 메모리에서 뺍니다. MR은 저장된 메모리 값을 불러오고, MC는 메모리를 0으로 초기화합니다. 여러 단계로 이어지는 계산에서 중간값을 잠시 보관할 때 유용합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>키보드로도 입력할 수 있나요?</summary>
+          <p class="faq-a">네, 숫자키·사칙연산 기호·Enter(= 계산)·Backspace(◀ 지우기)를 키보드로 그대로 입력할 수 있습니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </main>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/main-calc.js"></script>
+</body>
+</html>

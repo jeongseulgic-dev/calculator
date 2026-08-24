@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="만 나이 계산기 | 생년월일로 만 나이, 연 나이, 세는나이를 한번에 계산하는 무료 계산기">
+<title>만 나이 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">AGE CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html" class="active">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>만 나이 계산기</h2>
+      <p>2023년 시행된 만 나이 통일법 기준으로 만 나이·연 나이·세는나이를 한번에 확인할 수 있습니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>생년월일 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">만 나이</div>
+              <div class="value" id="miniScreen">0세</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>생년월일</label>
+            <input type="text" id="a-birth" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading"><h2>나이 계산 결과</h2></div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>나이 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>나이 셈법 3가지</h3>
+        <div class="method-def">
+          <h4>① 만 나이</h4>
+          <p>태어난 해를 0살로 시작해 생일이 지나야 한 살을 더하는 국제 기준 나이입니다. 2023년 6월 28일 시행된 '만 나이 통일법'에 따라 법령·행정·의료 등 대부분의 공식 문서에서 기본 원칙으로 사용합니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>② 연 나이</h4>
+          <p>태어난 해를 0살로 시작하되, 생일과 상관없이 매년 1월 1일에 한 살을 더하는 방식입니다. 병역법, 청소년보호법 등 행정 편의가 필요한 일부 법령에서 여전히 기준으로 삼습니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>③ 세는 나이</h4>
+          <p>태어난 순간 1살로 치고 매년 1월 1일마다 한 살씩 더하는, 우리나라에서 오랫동안 일상적으로 쓰여온 관습적 나이입니다. 공식 문서에는 쓰이지 않지만 일상 대화에서는 여전히 남아 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>만 나이</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">만 나이 = 올해 연도 − 출생 연도 (생일 전이면 −1)</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>연 나이</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">연 나이 = 올해 연도 − 출생 연도</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>세는 나이</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">세는 나이 = 올해 연도 − 출생 연도 + 1</span></span>
+          </div>
+        </div>
+        <p class="formula-example">예) 2000년 3월 10일 출생, 오늘이 2026년 1월 5일이면 → 만 25세(생일 전) · 연 26세 · 세는 27세</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>나이 셈법 비교</h3>
+        <div class="method-compare-grid">
+          <div class="method-compare-card">
+            <span class="mc-badge best">공식 기준</span>
+            <h4>만 나이</h4>
+            <ul>
+              <li><span>증가 시점</span><span>생일 지날 때</span></li>
+              <li><span>쓰이는 곳</span><span>법령·행정·의료</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">일부 법령</span>
+            <h4>연 나이</h4>
+            <ul>
+              <li><span>증가 시점</span><span>매년 1월 1일</span></li>
+              <li><span>쓰이는 곳</span><span>병역법·청소년보호법</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">일상 관습</span>
+            <h4>세는 나이</h4>
+            <ul>
+              <li><span>증가 시점</span><span>매년 1월 1일</span></li>
+              <li><span>쓰이는 곳</span><span>일상 대화</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>만 나이 통일법이 시행되면 세는 나이는 아예 못 쓰나요?</summary>
+          <p class="faq-a">일상 대화에서 세는 나이를 쓰는 것 자체가 금지되는 것은 아닙니다. 다만 계약서, 행정 서류, 병원 진료 등 공식적인 상황에서는 만 나이가 기본 기준이 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>주민등록증이나 신분증에 나이가 안 나오는데 어떻게 확인하나요?</summary>
+          <p class="faq-a">생년월일을 기준으로 직접 계산해야 합니다. 이 계산기처럼 생년월일만 입력하면 오늘 날짜 기준 만 나이가 자동으로 계산됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>연 나이는 어디에 쓰이나요?</summary>
+          <p class="faq-a">병역법(병역판정검사 대상 연도 산정), 청소년보호법(청소년 여부 판단), 민방위기본법 등 일부 법령은 행정 편의를 위해 여전히 연 나이를 기준으로 사용합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/age-calc.js"></script>
+</body>
+</html>

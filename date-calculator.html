@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="날짜 계산기 | 두 날짜 사이 일수 계산, 특정 날짜에 일·개월·년 더하기/빼기를 지원하는 무료 계산기">
+<title>날짜 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">DATE CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html" class="active">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>날짜 계산기</h2>
+      <p>두 날짜 사이의 일수를 계산하거나, 특정 날짜에 일·개월·년을 더하고 빼서 새로운 날짜를 구할 수 있습니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>날짜 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">결과</div>
+              <div class="value" id="miniScreen">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>계산 유형</label>
+            <div class="seg-toggle" data-target="mode" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="between" style="flex:1;">두 날짜 사이</button>
+              <button type="button" class="seg-btn" data-value="add" style="flex:1;">날짜 계산</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="between">
+            <label>시작일</label>
+            <input type="text" id="d-start" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+          </div>
+          <div class="field mode-field" data-mode="between">
+            <label>종료일</label>
+            <input type="text" id="d-end" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="add">
+            <label>기준일</label>
+            <input type="text" id="d-base" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+          </div>
+          <div class="field mode-field hidden" data-mode="add">
+            <label>연산</label>
+            <div class="seg-toggle" data-target="addOp" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="+" style="flex:1;">더하기</button>
+              <button type="button" class="seg-btn" data-value="-" style="flex:1;">빼기</button>
+            </div>
+          </div>
+          <div class="field mode-field hidden" data-mode="add">
+            <label>값</label>
+            <input type="number" id="d-amount" value="30" min="0">
+          </div>
+          <div class="field mode-field hidden" data-mode="add">
+            <label>단위</label>
+            <div class="seg-toggle" data-target="addUnit" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="day" style="flex:1;">일</button>
+              <button type="button" class="seg-btn" data-value="month" style="flex:1;">개월</button>
+              <button type="button" class="seg-btn" data-value="year" style="flex:1;">년</button>
+            </div>
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading"><h2>계산 결과</h2></div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>날짜 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>날짜 계산이란?</h3>
+        <p>날짜 계산은 크게 두 가지로 쓰입니다 — 여행 기간, 근무 일수, D-day처럼 두 날짜 사이의 간격을 구하는 것과, 계약 만료일·마감일처럼 특정 날짜로부터 일정 기간이 지난(또는 이전) 날짜를 구하는 것입니다.</p>
+        <p>이 계산기는 그레고리력(양력)을 기준으로 하며, 윤년은 자동으로 반영됩니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>두 날짜 사이</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">총 일수 = 종료일 − 시작일</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>날짜 계산</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">결과 날짜 = 기준일 ± N (일/개월/년)</span></span>
+          </div>
+        </div>
+        <p class="formula-example">예) 2026-01-01 → 2026-04-11 = 총 100일 (포함 일수 101일)</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>어떤 계산을 언제 쓰나</h3>
+        <div class="method-compare-grid">
+          <div class="method-compare-card">
+            <span class="mc-badge best">기간 확인</span>
+            <h4>두 날짜 사이</h4>
+            <ul>
+              <li><span>예시</span><span>여행 일수, 근무 기간, D-day</span></li>
+              <li><span>입력</span><span>시작일, 종료일</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">미래·과거 날짜</span>
+            <h4>날짜 계산</h4>
+            <ul>
+              <li><span>예시</span><span>계약 만료일, N일 후 마감일</span></li>
+              <li><span>입력</span><span>기준일, 값, 단위</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>총 일수와 포함 일수는 왜 다른가요?</summary>
+          <p class="faq-a">총 일수는 두 날짜의 단순 차이(종료일 − 시작일)입니다. 반면 숙박·근무일처럼 시작일과 종료일을 모두 하루로 세야 하는 경우에는 포함 일수(총 일수 + 1)를 사용합니다. 예를 들어 1일부터 3일까지는 총 일수 2일, 포함 일수(3박이 아닌 3일)로는 3일입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>개월·년 단위로 더할 때 말일은 어떻게 처리되나요?</summary>
+          <p class="faq-a">더한 결과 달에 그 날짜가 없으면(예: 1월 31일 + 1개월) 자동으로 다음 달로 넘어가며 조정됩니다(예: 3월 3일). 정확한 말일 기준이 필요하다면 결과 날짜를 확인 후 직접 보정하는 것이 좋습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>윤년은 자동으로 반영되나요?</summary>
+          <p class="faq-a">네. 2월 29일이 있는 윤년도 자동으로 계산에 반영되므로 별도로 신경 쓰지 않아도 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>음력 날짜도 계산할 수 있나요?</summary>
+          <p class="faq-a">아니요, 이 계산기는 양력(그레고리력) 기준으로만 계산합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/date-calc.js"></script>
+</body>
+</html>

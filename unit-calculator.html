@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="단위 변환기 | 길이, 무게, 온도 단위를 서로 변환하는 무료 계산기">
+<title>단위 변환기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">UNIT CONVERTER</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html" class="active">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>단위 변환기</h2>
+      <p>길이, 무게, 온도 단위를 서로 변환합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">변환 결과</div>
+              <div class="value" id="miniScreen">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>변환 종류</label>
+            <div class="seg-toggle" data-target="category" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="length" style="flex:1;">길이</button>
+              <button type="button" class="seg-btn" data-value="weight" style="flex:1;">무게</button>
+              <button type="button" class="seg-btn" data-value="temperature" style="flex:1;">온도</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="length">
+            <label>값</label>
+            <input type="number" id="u-length-value" value="1">
+          </div>
+          <div class="field mode-field" data-mode="length">
+            <label>단위 변환</label>
+            <div class="field-row">
+              <select id="u-length-from"></select>
+              <select id="u-length-to"></select>
+            </div>
+            <button type="button" class="swap-btn" id="u-swap-length">⇄ 단위 바꾸기</button>
+          </div>
+
+          <div class="field mode-field hidden" data-mode="weight">
+            <label>값</label>
+            <input type="number" id="u-weight-value" value="1">
+          </div>
+          <div class="field mode-field hidden" data-mode="weight">
+            <label>단위 변환</label>
+            <div class="field-row">
+              <select id="u-weight-from"></select>
+              <select id="u-weight-to"></select>
+            </div>
+            <button type="button" class="swap-btn" id="u-swap-weight">⇄ 단위 바꾸기</button>
+          </div>
+
+          <div class="field mode-field hidden" data-mode="temperature">
+            <label>값</label>
+            <input type="number" id="u-temp-value" value="0">
+          </div>
+          <div class="field mode-field hidden" data-mode="temperature">
+            <label>단위 변환</label>
+            <div class="field-row">
+              <select id="u-temp-from">
+                <option value="C" selected>섭씨(℃)</option>
+                <option value="F">화씨(℉)</option>
+                <option value="K">켈빈(K)</option>
+              </select>
+              <select id="u-temp-to">
+                <option value="C">섭씨(℃)</option>
+                <option value="F" selected>화씨(℉)</option>
+                <option value="K">켈빈(K)</option>
+              </select>
+            </div>
+            <button type="button" class="swap-btn" id="u-swap-temp">⇄ 단위 바꾸기</button>
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading"><h2>변환 결과</h2></div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>단위 변환기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>단위 변환이란?</h3>
+        <p>같은 물리량이라도 나라나 상황에 따라 서로 다른 단위(예: cm와 인치, kg과 파운드, 섭씨와 화씨)를 쓰는 경우가 많습니다. 단위 변환은 한 단위로 표현된 값을 다른 단위의 값으로 정확히 바꿔주는 계산입니다.</p>
+        <p>이 계산기는 길이·무게·온도 세 가지 변환을 지원하며, 변환 종류를 선택한 뒤 단위와 값을 입력하면 즉시 결과가 나옵니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>길이·무게</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">결과값 = 입력값 × (기준단위 환산계수 A ÷ 기준단위 환산계수 B)</span></span>
+          </div>
+          <p class="formula-example">길이는 미터(m), 무게는 그램(g)을 기준 단위로 삼아 두 단계로 환산합니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>온도</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">°F = °C × 9/5 + 32</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">K = °C + 273.15</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>자주 쓰는 환산 비율</h3>
+        <table class="criteria-table">
+          <tbody>
+            <tr><td>1 인치(in)</td><td>2.54 cm</td></tr>
+            <tr><td>1 피트(ft)</td><td>30.48 cm</td></tr>
+            <tr><td>1 마일(mile)</td><td>1.609 km</td></tr>
+            <tr><td>1 파운드(lb)</td><td>453.6 g</td></tr>
+            <tr><td>1 온스(oz)</td><td>28.35 g</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>같은 단위로 변환하면 어떻게 되나요?</summary>
+          <p class="faq-a">입력값과 결과값이 그대로 같게 나옵니다. 환산 비율도 1:1로 표시됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>왜 무게 변환에 부피 단위(리터, mL)는 없나요?</summary>
+          <p class="faq-a">부피는 무게와 달리 물질의 밀도에 따라 무게로 환산되는 비율이 달라지기 때문에, 이 계산기에서는 무게(질량) 단위끼리만 변환하도록 범위를 제한했습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>온도 변환은 왜 길이·무게처럼 곱셈 한 번으로 안 되나요?</summary>
+          <p class="faq-a">길이·무게는 0을 공유하는 비례 관계라 곱셈만으로 변환되지만, 온도는 섭씨 0도가 화씨 32도이듯 눈금의 시작점(원점)이 단위마다 달라서 곱셈뿐 아니라 덧셈(오프셋) 보정이 함께 필요합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>⇄ 단위 바꾸기 버튼은 무엇을 하나요?</summary>
+          <p class="faq-a">선택한 변환 단위(왼쪽↔오른쪽)를 서로 맞바꿔 반대 방향으로 빠르게 변환할 수 있게 해줍니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/unit-calc.js"></script>
+</body>
+</html>

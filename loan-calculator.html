@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="대출 이자 계산기 | 원리금균등·원금균등·원금만기일시상환 3가지 방식을 실시간으로 비교하는 무료 계산기">
+<title>대출 이자 계산기 | 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">LOAN CALCULATOR</div>
+    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html" class="active">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>대출 이자 계산기</h2>
+      <p>원리금균등·원금균등·원금만기일시상환, 3가지 상환방식을 입력과 동시에 비교합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>대출 조건 입력</h2></div>
+        <aside class="calc-panel">
+        <div class="screen-shell">
+          <div class="screen">
+            <div class="label">3방식 중 최저 총이자</div>
+            <div class="value" id="miniScreen">0</div>
+            <div class="value-sub" id="miniScreenSub"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>대출 금액 (원)</label>
+          <input type="text" id="p-amount" placeholder="예: 300,000,000">
+          <div class="key-row">
+            <button type="button" class="calc-key" data-add="10000000">+1,000만</button>
+            <button type="button" class="calc-key" data-add="100000000">+1억</button>
+            <button type="button" class="calc-key pink" data-reset>C</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>대출 기간</label>
+          <div class="field-row">
+            <input type="number" id="p-period" value="20">
+            <div class="seg-toggle" data-target="periodType">
+              <button type="button" class="seg-btn active" data-value="year">년</button>
+              <button type="button" class="seg-btn" data-value="month">개월</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>연 이자율 (%)</label>
+          <input type="number" step="0.1" id="p-rate" value="4.2">
+        </div>
+
+        <div class="field">
+          <label>거치 기간 (이자만 납부)</label>
+          <div class="field-row">
+            <input type="number" id="p-grace" value="0">
+            <div class="seg-toggle" data-target="graceType">
+              <button type="button" class="seg-btn active" data-value="month">개월</button>
+              <button type="button" class="seg-btn" data-value="year">년</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>상환방식 3종 비교</h2>
+          <span id="page-meta">--</span>
+        </div>
+
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <div class="compare-grid" id="compareGrid"></div>
+          </div>
+
+          <div class="strip-divider"></div>
+
+          <div class="strip-block">
+            <h3 class="block-title">방식별 총 이자 비교</h3>
+            <div class="chart-box"><canvas id="compareChart"></canvas></div>
+          </div>
+
+          <div class="strip-divider"></div>
+
+          <div class="strip-block">
+            <div class="ledger-tabs" id="ledgerTabs"></div>
+            <div class="ledger-table-wrap">
+              <table class="ledger-table">
+                <thead><tr><th>회차</th><th>납입원금</th><th>납입이자</th><th>월 상환금</th><th>대출잔액</th></tr></thead>
+                <tbody id="ledgerBody"></tbody>
+              </table>
+            </div>
+            <div class="load-more-row"><button class="load-more-btn" id="loadMoreBtn">+12개월 더보기</button></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>대출 이자 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>상환방식 3가지</h3>
+        <div class="method-def">
+          <h4>① 원리금균등상환</h4>
+          <p>원금과 이자를 합친 총 상환액이 만기까지 매달 똑같이 유지되는 방식입니다. 초반에는 이자 비중이 크고 원금 비중이 작지만, 회차가 지날수록 원금 비중이 점점 커집니다. 매달 같은 금액이 빠져나가 예산을 관리하기 편해 가장 널리 쓰입니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>② 원금균등상환</h4>
+          <p>대출원금을 상환 개월 수로 똑같이 나눠 매달 동일한 원금을 갚고, 이자는 그때그때 남은 잔액에 비례해 계산합니다. 원금이 매달 일정하게 줄어들기 때문에 이자도 함께 줄어, 첫 달 상환액이 가장 크고 갈수록 상환액이 줄어드는 구조입니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>③ 원금만기일시상환</h4>
+          <p>만기 전까지는 매달 이자만 납부하다가, 마지막 회차에 원금 전액을 한 번에 갚는 방식입니다. 원금이 만기까지 전혀 줄지 않기 때문에 매달 내는 이자 금액이 계속 동일하고, 세 방식 중 총 이자 부담이 가장 큽니다.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>원리금균등상환</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-lhs">월 상환액 =</span>
+            <span class="frac">
+              <span class="num">대출원금 × 월이자율 × (1+월이자율)ⁿ</span>
+              <span class="den">(1+월이자율)ⁿ − 1</span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>원금균등상환</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">월 상환 원금 =</span>
+              <span class="frac">
+                <span class="num">대출원금</span>
+                <span class="den">상환개월수</span>
+              </span>
+            </span>
+            <span class="frac-sep"></span>
+            <span class="frac-part">
+              <span class="frac-lhs">월 이자 = 남은 잔액 × 월이자율</span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>원금만기일시상환</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">매월 이자 = 대출원금 × 월이자율</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">마지막 달 상환액 = 대출원금 + 이자</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>상환방식 비교</h3>
+        <div class="method-compare-grid">
+          <div class="method-compare-card">
+            <span class="mc-badge">가장 무난함</span>
+            <h4>원리금균등상환</h4>
+            <ul>
+              <li><span>월 상환액</span><span>만기까지 동일</span></li>
+              <li><span>총 이자</span><span>중간</span></li>
+              <li><span>초기 부담</span><span>보통</span></li>
+              <li><span>이런 분께</span><span>일정한 예산 관리</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge best">총 이자 최소</span>
+            <h4>원금균등상환</h4>
+            <ul>
+              <li><span>월 상환액</span><span>점점 감소</span></li>
+              <li><span>총 이자</span><span>가장 적음</span></li>
+              <li><span>초기 부담</span><span>가장 높음</span></li>
+              <li><span>이런 분께</span><span>초반 여력 충분</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">초기 부담 최소</span>
+            <h4>원금만기일시상환</h4>
+            <ul>
+              <li><span>월 상환액</span><span>이자만 · 만기 일시</span></li>
+              <li><span>총 이자</span><span>가장 많음</span></li>
+              <li><span>초기 부담</span><span>가장 낮음</span></li>
+              <li><span>이런 분께</span><span>초기 자금 절약</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>어떤 상환방식이 가장 유리한가요?</summary>
+          <p class="faq-a">총 이자만 놓고 보면 원금균등상환이 가장 적습니다. 다만 초반 상환 부담이 원리금균등상환보다 커서, 매달 일정한 금액을 내고 싶다면 원리금균등상환, 초기 부담을 줄이고 싶다면 원금만기일시상환이 더 맞을 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>거치 기간은 무엇이고 꼭 필요한가요?</summary>
+          <p class="faq-a">거치 기간은 원금 상환 없이 이자만 납부하는 기간입니다. 사회초년생이나 초기 자금 여력이 부족한 경우 유용하지만, 원금이 줄지 않는 기간만큼 총 이자 부담은 늘어나므로 꼭 필요한 경우가 아니면 짧게 설정하는 것이 유리합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>연 이자율과 월 이자율은 어떻게 다른가요?</summary>
+          <p class="faq-a">이 계산기는 입력한 연 이자율을 12로 나눈 값을 월 이자율로 사용해 매달 이자를 계산합니다. 실제 상품마다 이자 계산 방식(고정/변동금리, 이자 부과 주기)이 다를 수 있으니 정확한 조건은 금융기관 안내를 함께 확인하세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>이 계산 결과가 실제 대출 상환액과 정확히 같나요?</summary>
+          <p class="faq-a">일반적인 원리금 계산 공식을 기준으로 한 추정치입니다. 실제 상환액은 금융기관의 이자 계산 방식, 중도상환수수료, 우대금리 적용 여부 등에 따라 달라질 수 있어 참고용으로 활용하시길 권장합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/loan-calc.js"></script>
+</body>
+</html>
