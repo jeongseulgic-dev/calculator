@@ -117,7 +117,7 @@ function recalc(){
     <tr><th>월 급여 (세전)</th><td>${fmt0(r.monthlyGross)}원</td></tr>
     <tr><th>비과세 식대(4대보험·소득세 제외)</th><td>${fmt0(r.monthlyNontax)}원</td></tr>
     <tr><th>국민연금(4.75%)</th><td>-${fmt0(r.nationalPension)}원</td></tr>
-    <tr><th>건강보험(3.595%)</th><td>-${fmt0(r.healthInsurance)}원</td></tr>
+    <tr><th>건강보험(3.6%)</th><td>-${fmt0(r.healthInsurance)}원</td></tr>
     <tr><th>장기요양보험(건강보험료의 13.14%)</th><td>-${fmt0(r.longTermCare)}원</td></tr>
     <tr><th>고용보험(0.9%)</th><td>-${fmt0(r.employment)}원</td></tr>
     <tr><th>소득세(${r.bracketRate}% 구간)</th><td>-${fmt0(r.monthlyIncomeTax)}원</td></tr>
