@@ -9,6 +9,8 @@ const RATE = {
   npCeil: 6590000
 };
 
+const MEAL_NONTAX_CAP = 200000; // 식대 비과세 한도 (월, 2023년~)
+
 function earnedIncomeDeduction(annual){
   if (annual <= 5000000) return annual * 0.7;
   if (annual <= 15000000) return 3500000 + (annual - 5000000) * 0.4;
@@ -45,18 +47,21 @@ function earnedIncomeTaxCreditLimit(annual){
   return Math.max(660000 - (annual - 70000000) * 0.5, 500000);
 }
 
-function calcSalary(annual, dependents){
+function calcSalary(annual, dependents, monthlyNontaxInput){
   const monthlyGross = annual / 12;
+  const monthlyNontax = Math.min(Math.max(monthlyNontaxInput || 0, 0), MEAL_NONTAX_CAP, monthlyGross);
+  const monthlyTaxable = monthlyGross - monthlyNontax;
+  const annualTaxable = annual - monthlyNontax * 12;
 
-  const npBase = Math.min(Math.max(monthlyGross, RATE.npFloor), RATE.npCeil);
+  const npBase = Math.min(Math.max(monthlyTaxable, RATE.npFloor), RATE.npCeil);
   const nationalPension = Math.round(npBase * RATE.nationalPension);
-  const healthInsurance = Math.round(monthlyGross * RATE.healthInsurance);
+  const healthInsurance = Math.round(monthlyTaxable * RATE.healthInsurance);
   const longTermCare = Math.round(healthInsurance * RATE.longTermCare);
-  const employment = Math.round(monthlyGross * RATE.employment);
+  const employment = Math.round(monthlyTaxable * RATE.employment);
   const monthlyInsurance = nationalPension + healthInsurance + longTermCare + employment;
 
-  const earnedDeduction = earnedIncomeDeduction(annual);
-  const earnedIncome = Math.max(annual - earnedDeduction, 0);
+  const earnedDeduction = earnedIncomeDeduction(annualTaxable);
+  const earnedIncome = Math.max(annualTaxable - earnedDeduction, 0);
 
   const personalDeduction = dependents * 1500000;
   const pensionDeduction = nationalPension * 12;
@@ -80,7 +85,7 @@ function calcSalary(annual, dependents){
   const monthlyNet = monthlyGross - monthlyDeductionTotal;
 
   return {
-    monthlyGross, nationalPension, healthInsurance, longTermCare, employment,
+    monthlyGross, monthlyNontax, nationalPension, healthInsurance, longTermCare, employment,
     monthlyInsurance, monthlyIncomeTax, monthlyLocalTax, monthlyDeductionTotal,
     monthlyNet, annualNet: monthlyNet * 12, bracketRate: taxBracketRate(taxBase)
   };
@@ -88,6 +93,7 @@ function calcSalary(annual, dependents){
 
 function recalc(){
   const annual = Number(document.getElementById('sl-salary').value.replace(/,/g, ''));
+  const monthlyNontax = Number(document.getElementById('sl-nontax').value.replace(/,/g, '')) || 0;
   const dependents = Math.max(parseInt(document.getElementById('sl-dependents').value) || 1, 1);
 
   const miniScreen = document.getElementById('miniScreen');
@@ -101,16 +107,17 @@ function recalc(){
     return;
   }
 
-  const r = calcSalary(annual, dependents);
+  const r = calcSalary(annual, dependents, monthlyNontax);
 
   miniScreen.textContent = fmt0(r.monthlyNet) + '원';
   miniScreenSub.textContent = '월 실수령액';
 
   statBody.innerHTML = `
     <tr><th>월 급여 (세전)</th><td>${fmt0(r.monthlyGross)}원</td></tr>
+    <tr><th>비과세 식대(4대보험·소득세 제외)</th><td>${fmt0(r.monthlyNontax)}원</td></tr>
     <tr><th>국민연금(4.75%)</th><td>-${fmt0(r.nationalPension)}원</td></tr>
     <tr><th>건강보험(3.595%)</th><td>-${fmt0(r.healthInsurance)}원</td></tr>
-    <tr><th>장기요양보험(13.14%)</th><td>-${fmt0(r.longTermCare)}원</td></tr>
+    <tr><th>장기요양보험(건강보험료의 13.14%)</th><td>-${fmt0(r.longTermCare)}원</td></tr>
     <tr><th>고용보험(0.9%)</th><td>-${fmt0(r.employment)}원</td></tr>
     <tr><th>소득세(${r.bracketRate}% 구간)</th><td>-${fmt0(r.monthlyIncomeTax)}원</td></tr>
     <tr><th>지방소득세(10%)</th><td>-${fmt0(r.monthlyLocalTax)}원</td></tr>
@@ -126,6 +133,8 @@ document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
   btn.addEventListener('click', ()=>{ addAmount('sl-salary', Number(btn.dataset.add)); recalc(); });
 });
 document.querySelector('.calc-key[data-reset]').addEventListener('click', ()=>{ resetAmount('sl-salary'); recalc(); });
+document.getElementById('sl-nontax').addEventListener('input', function(){ formatInputComma(this); recalc(); });
+document.getElementById('sl-nontax').value = MEAL_NONTAX_CAP.toLocaleString('ko-KR');
 document.getElementById('sl-dependents').addEventListener('input', recalc);
 
 recalc();

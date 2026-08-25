@@ -98,6 +98,11 @@
           </div>
 
           <div class="field">
+            <label>식대 등 비과세액 (월, 원)</label>
+            <input type="text" id="sl-nontax" placeholder="예: 200,000">
+          </div>
+
+          <div class="field">
             <label>부양가족 수 (본인 포함)</label>
             <input type="number" id="sl-dependents" min="1" value="1">
           </div>
@@ -129,22 +134,22 @@
 
       <div class="info-block">
         <h3><span class="info-icon">🧮</span>계산 방식</h3>
-        <p>4대보험료는 월 급여(연봉÷12)에 요율을 곱해 계산합니다.</p>
+        <p>4대보험료와 소득세는 월 급여(연봉÷12)가 아니라 여기서 비과세 식대(월 최대 20만원)를 뺀 '과세 대상 급여'를 기준으로 계산합니다. 식대는 실제로 받는 돈이지만 4대보험료·소득세 산정에서는 빠지는 항목이라, 이를 반영하지 않으면 실수령액이 실제보다 적게 나옵니다.</p>
         <div class="method-def">
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">국민연금 = 월 급여 × 4.75%</span></span>
+            <span class="frac-part"><span class="frac-lhs">국민연금 = 과세 대상 급여 × 4.75%</span></span>
             <span class="frac-sep"></span>
-            <span class="frac-part"><span class="frac-lhs">건강보험 = 월 급여 × 3.595%</span></span>
+            <span class="frac-part"><span class="frac-lhs">건강보험 = 과세 대상 급여 × 3.595%</span></span>
           </div>
         </div>
         <div class="method-def">
           <div class="formula-box formula-frac">
             <span class="frac-part"><span class="frac-lhs">장기요양보험 = 건강보험료 × 13.14%</span></span>
             <span class="frac-sep"></span>
-            <span class="frac-part"><span class="frac-lhs">고용보험 = 월 급여 × 0.9%</span></span>
+            <span class="frac-part"><span class="frac-lhs">고용보험 = 과세 대상 급여 × 0.9%</span></span>
           </div>
         </div>
-        <p>소득세는 연봉에서 근로소득공제·인적공제 등을 뺀 과세표준에 소득세율(6~45%)을 적용한 뒤, 근로소득세액공제를 차감해 12개월로 나눈 근사값입니다. 지방소득세는 소득세의 10%입니다.</p>
+        <p>소득세는 (연봉 − 비과세 식대)에서 근로소득공제·인적공제 등을 뺀 과세표준에 소득세율(6~45%)을 적용한 뒤, 근로소득세액공제를 차감해 12개월로 나눈 근사값입니다. 지방소득세는 소득세의 10%입니다.</p>
       </div>
 
       <div class="info-block">
@@ -153,12 +158,12 @@
           <div class="method-compare-card">
             <span class="mc-badge">4.75%</span>
             <h4>국민연금</h4>
-            <ul><li><span>기준</span><span>월 급여(41만~659만원)</span></li></ul>
+            <ul><li><span>기준</span><span>과세 대상 급여(41만~659만원)</span></li></ul>
           </div>
           <div class="method-compare-card">
             <span class="mc-badge">3.595%</span>
             <h4>건강보험</h4>
-            <ul><li><span>기준</span><span>월 급여 전액</span></li></ul>
+            <ul><li><span>기준</span><span>과세 대상 급여 전액</span></li></ul>
           </div>
           <div class="method-compare-card">
             <span class="mc-badge">건보료×13.14%</span>
@@ -168,7 +173,7 @@
           <div class="method-compare-card">
             <span class="mc-badge">0.9%</span>
             <h4>고용보험</h4>
-            <ul><li><span>기준</span><span>월 급여 전액</span></li></ul>
+            <ul><li><span>기준</span><span>과세 대상 급여 전액</span></li></ul>
           </div>
           <div class="method-compare-card">
             <span class="mc-badge best">6~45%</span>
@@ -202,7 +207,11 @@
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>이 계산 결과가 실제 급여명세서와 정확히 같나요?</summary>
-          <p class="faq-a">아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 비과세 식대·수당, 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다.</p>
+          <p class="faq-a">아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>식대 등 비과세액은 왜 입력하나요?</summary>
+          <p class="faq-a">식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요.</p>
         </details>
         <details class="faq-item">
           <summary>부양가족 수는 왜 입력하나요?</summary>
