@@ -5,6 +5,7 @@ let activeType = 'equal-principal-interest';
 let debounceTimer = null;
 let periodType = 'year';
 let graceType = 'month';
+let extraType = 'shorten';
 
 const METHODS = [
   { key:'equal-principal-interest', label:'원리금균등상환', tag:'매달 동일' },
@@ -35,21 +36,23 @@ document.querySelectorAll('.seg-toggle').forEach(group=>{
       btn.classList.add('active');
       if (group.dataset.target === 'periodType') periodType = btn.dataset.value;
       if (group.dataset.target === 'graceType') graceType = btn.dataset.value;
+      if (group.dataset.target === 'extraType') extraType = btn.dataset.value;
       scheduleRecalc();
     });
   });
 });
 
-['p-period','p-rate','p-grace'].forEach(id=>{
+['p-period','p-rate','p-grace','p-extra-month'].forEach(id=>{
   document.getElementById(id).addEventListener('input', scheduleRecalc);
 });
+document.getElementById('p-extra-amount').addEventListener('input', function(){ formatInputComma(this); scheduleRecalc(); });
 
 function scheduleRecalc(){
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(recalcAll, 150);
 }
 
-function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type){
+function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type, extra){
   let balance = P;
   let totalInterest = 0;
   const repayMonths = totalMonths - graceMonths;
@@ -59,8 +62,14 @@ function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type){
   if (type === 'equal-principal-interest' && repayMonths > 0) {
     monthlyConstant = (P * monthlyRate * Math.pow(1 + monthlyRate, repayMonths)) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
   }
+  let fixedPrincipal = (type === 'equal-principal' && repayMonths > 0) ? P / repayMonths : 0;
+
+  const hasExtra = !!(extra && extra.month > 0 && extra.month < totalMonths && extra.amount > 0);
+  let extraDone = false;
 
   for (let m = 1; m <= totalMonths; m++){
+    if (balance <= 0) break;
+
     let interestPayment = balance * monthlyRate;
     let principalPayment = 0;
 
@@ -69,19 +78,39 @@ function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type){
     } else if (type === 'equal-principal-interest'){
       principalPayment = monthlyConstant - interestPayment;
     } else if (type === 'equal-principal'){
-      principalPayment = P / repayMonths;
+      principalPayment = fixedPrincipal;
     } else if (type === 'bullet'){
-      principalPayment = (m === totalMonths) ? P : 0;
+      principalPayment = (m === totalMonths) ? balance : 0;
     }
 
     if (principalPayment > balance) principalPayment = balance;
     balance -= principalPayment;
     if (balance < 0) balance = 0;
 
-    const total = principalPayment + interestPayment;
-    totalInterest += interestPayment;
+    let extraPayment = 0;
+    if (hasExtra && !extraDone && m === extra.month && balance > 0){
+      extraPayment = Math.min(extra.amount, balance);
+      balance -= extraPayment;
+      extraDone = true;
 
-    schedule.push({ month:m, principal:Math.round(principalPayment), interest:Math.round(interestPayment), total:Math.round(total), balance:Math.round(balance) });
+      const remainingMonths = totalMonths - m;
+      if (balance > 0 && remainingMonths > 0 && extra.type === 'reduce'){
+        if (type === 'equal-principal-interest'){
+          monthlyConstant = (balance * monthlyRate * Math.pow(1 + monthlyRate, remainingMonths)) / (Math.pow(1 + monthlyRate, remainingMonths) - 1);
+        } else if (type === 'equal-principal'){
+          fixedPrincipal = balance / remainingMonths;
+        }
+      }
+    }
+
+    totalInterest += interestPayment;
+    const totalPrincipal = principalPayment + extraPayment;
+
+    schedule.push({
+      month:m, principal:Math.round(totalPrincipal), interest:Math.round(interestPayment),
+      total:Math.round(totalPrincipal + interestPayment), balance:Math.round(balance),
+      hasExtra: extraPayment > 0
+    });
   }
   return { schedule, totalInterest };
 }
@@ -96,6 +125,11 @@ function recalcAll(){
 
   const graceVal = parseFloat(document.getElementById('p-grace').value) || 0;
   const graceMonths = graceType === 'year' ? graceVal * 12 : graceVal;
+
+  const extraMonth = parseInt(document.getElementById('p-extra-month').value) || 0;
+  const extraAmount = parseFloat(document.getElementById('p-extra-amount').value.replace(/,/g,'')) || 0;
+  const extra = { month: extraMonth, amount: extraAmount, type: extraType };
+  const hasExtra = extraMonth > 0 && extraMonth < totalMonths && extraAmount > 0;
 
   const grid = document.getElementById('compareGrid');
   const meta = document.getElementById('page-meta');
@@ -113,11 +147,12 @@ function recalcAll(){
     return;
   }
 
-  meta.textContent = `원금 ${fmt(P)}원 · ${totalMonths}개월 · 연 ${document.getElementById('p-rate').value}%`;
+  meta.textContent = `원금 ${fmt(P)}원 · ${totalMonths}개월 · 연 ${document.getElementById('p-rate').value}%`
+    + (hasExtra ? ` · 중도상환 ${extraMonth}회차 ${fmt(extraAmount)}원` : '');
 
   scheduleCache = {};
   METHODS.forEach(m=>{
-    scheduleCache[m.key] = computeSchedule(P, totalMonths, monthlyRate, graceMonths, m.key);
+    scheduleCache[m.key] = computeSchedule(P, totalMonths, monthlyRate, graceMonths, m.key, extra);
   });
 
   const bestKey = METHODS.reduce((best, m)=>
@@ -200,7 +235,7 @@ function renderLedger(){
   const body = document.getElementById('ledgerBody');
   const rows = data.schedule.slice(0, visibleRows);
   body.innerHTML = rows.map(r=>`
-    <tr>
+    <tr class="${r.hasExtra ? 'extra-row' : ''}">
       <td>${r.month}회차</td>
       <td>${fmt(r.principal)}원</td>
       <td>${fmt(r.interest)}원</td>
