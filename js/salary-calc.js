@@ -10,6 +10,7 @@ const RATE = {
 };
 
 const MEAL_NONTAX_CAP = 200000; // 식대 비과세 한도 (월, 2023년~)
+const URL_DEFAULTS = { salary: '40000000', meal: String(MEAL_NONTAX_CAP), deps: '1' };
 
 function earnedIncomeDeduction(annual){
   if (annual <= 5000000) return annual * 0.7;
@@ -125,16 +126,21 @@ function recalc(){
     <tr><th>연 실수령액</th><td>${fmt0(r.annualNet)}원</td></tr>
     <tr class="stat-highlight"><th>월 실수령액</th><td>${fmt0(r.monthlyNet)}원</td></tr>
   `;
+
+  UrlState.sync({ salary: annual, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
 }
 
 document.getElementById('sl-salary').addEventListener('input', function(){ formatInputComma(this); recalc(); });
-document.getElementById('sl-salary').value = (40000000).toLocaleString('ko-KR');
 document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
   btn.addEventListener('click', ()=>{ addAmount('sl-salary', Number(btn.dataset.add)); recalc(); });
 });
 document.querySelector('.calc-key[data-reset]').addEventListener('click', ()=>{ resetAmount('sl-salary'); recalc(); });
 document.getElementById('sl-nontax').addEventListener('input', function(){ formatInputComma(this); recalc(); });
-document.getElementById('sl-nontax').value = MEAL_NONTAX_CAP.toLocaleString('ko-KR');
 document.getElementById('sl-dependents').addEventListener('input', recalc);
+
+const urlParams = UrlState.read();
+document.getElementById('sl-salary').value = Number(urlParams.salary || URL_DEFAULTS.salary).toLocaleString('ko-KR');
+document.getElementById('sl-nontax').value = Number(urlParams.meal != null ? urlParams.meal : URL_DEFAULTS.meal).toLocaleString('ko-KR');
+if (urlParams.deps) document.getElementById('sl-dependents').value = urlParams.deps;
 
 recalc();
