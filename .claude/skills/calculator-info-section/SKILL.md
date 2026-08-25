@@ -129,6 +129,52 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
 생긴다 — 모바일처럼 처음부터 좁게 로드하면 안 보이고 PC에서 창을 좁힐 때만 나타나서
 발견하기 까다롭다.
 
+## URL 쿼리 상태 동기화 (북마크·공유)
+
+입력값이 있는 서브페이지(카시오 키패드형인 index/공학용 계산기 제외)는 전부 `js/url-state.js`로
+입력 상태를 주소창 쿼리에 반영하고, 그 URL로 다시 들어오면 복원한다. 정본은
+**salary-calculator.html**(단순, 세그토글 없음)과 **loan-calculator.html**(세그토글+콤마금액+
+멀티모드까지 다 있는 가장 복잡한 케이스).
+
+1. `<script src="js/site.js">` 다음, 페이지 자신의 `js/*-calc.js` 앞에 추가:
+   ```html
+   <script src="js/url-state.js"></script>
+   <script src="js/xxx-calc.js"></script>
+   ```
+2. `*-calc.js`에 `URL_DEFAULTS` 정의. 일반 입력창은 `el.defaultValue`(HTML `value=` 속성)를
+   그대로 쓰고, 세그토글은 `toggleDefault('target')`(현재 `.active` 버튼 값)을 쓴다. JS가
+   런타임에 강제로 채우는 필드(콤마 포맷 금액 등, HTML엔 `value=` 없음)만 문자열로 하드코딩.
+   ```js
+   const URL_DEFAULTS = {
+     age: document.getElementById('m-age').defaultValue,
+     gender: toggleDefault('gender'),
+     activity: toggleDefault('activity')
+   };
+   ```
+3. 페이지 초기화부 맨 아래, **기본값 세팅 다음 · 첫 `recalc()` 호출 전**에 URL 복원:
+   ```js
+   const urlParams = UrlState.read();
+   if (urlParams.age) document.getElementById('m-age').value = urlParams.age;
+   if (urlParams.gender) clickToggle('gender', urlParams.gender);   // 실제 클릭 → 기존 핸들러 재사용
+   recalc();
+   ```
+   세그토글은 버튼에 값만 대입하지 말고 반드시 `clickToggle()`로 **진짜 클릭**시킨다 —
+   그래야 그 토글의 기존 클릭 핸들러(JS 변수 갱신, active 클래스, recalc 호출)를 그대로 타서
+   복원 로직을 따로 안 짜도 된다.
+4. `recalc()`/`recalcAll()`의 **성공 경로 끝**(에러로 일찍 `return`하는 분기 말고)에 동기화:
+   ```js
+   UrlState.sync({ age, height, weight, gender, activity }, URL_DEFAULTS);
+   ```
+   입력마다 개별 리스너를 달지 않는다 — recalc()는 타이핑·퀵버튼(`+100만` 등)·세그토글 클릭이
+   전부 수렴하는 지점이라, 여기 한 줄이면 그 셋을 다 잡는다. 콤마 포맷 필드는 recalc() 안에서
+   이미 `.replace(/,/g,'')`로 벗긴 숫자 변수를 그대로 넘기면 URL도 자동으로 깨끗해진다
+   (`?salary=40000000`, 콤마 인코딩 없이).
+5. 모드가 여러 개인 페이지(퍼센트·날짜 계산기처럼 `mode` 세그토글로 필드 세트가 바뀌는 경우)는
+   현재 모드에 해당하는 필드만 `sync()`에 넣는다 — 안 쓰는 모드의 필드까지 얹지 않는다.
+
+새 계산기 페이지를 만들 때 이 5단계를 빼먹지 않는다. `clickToggle`/`toggleDefault` 헬퍼는
+`js/site.js`에 이미 있다.
+
 ## CSS
 
 모든 클래스는 `style.css`의 `서브페이지 설명 섹션` / `광고 슬롯` 블록에 이미 정의돼 있다.
