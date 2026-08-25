@@ -34,10 +34,10 @@ header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; colo
 .layout-wrapper{ display:flex; width:100%; max-width:1120px; margin:0 auto; padding:24px 16px 60px; gap:28px; align-items:flex-start; }
 .sidebar{ width:210px; flex-shrink:0; }
 .menu-group{ margin-bottom:20px; background:#caccce; padding:14px; border-radius:5px; border:1px solid #b8bac0; box-shadow:inset 1px 1px 3px rgba(255,255,255,0.7), 2px 2px 5px rgba(0,0,0,0.08); }
-.menu-group h3{ font-size:0.88rem; color:var(--pink); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #a3a6ac; font-weight:800; }
+.menu-group h3{ font-size:0.88rem; color:var(--pink); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #a3a6ac; font-weight:900; }
 .menu-group ul{ list-style:none; }
-.menu-group li a{ text-decoration:none; color:#4a4e53; font-size:0.85rem; display:block; padding:5px 0; font-weight:600; }
-.menu-group li a:hover, .menu-group li a.active{ color:var(--pink); font-weight:800; }
+.menu-group li a{ text-decoration:none; color:#4a4e53; font-size:0.85rem; display:block; padding:5px 0; font-weight:700; }
+.menu-group li a:hover, .menu-group li a.active{ color:var(--pink); font-weight:900; }
 .page-content{ flex:1; min-width:0; }
 
 /* ===== 계산 패널 (금속 바디 + LCD 화면) — 계산기 입력에 공통 사용 ===== */
@@ -186,7 +186,7 @@ input:checked + .slider::before{ transform:translateX(18px); }
 .stamp{
   position:absolute; top:9px; right:9px; width:52px; height:52px; border-radius:50%;
   border:2.5px solid var(--pink); color:var(--pink); display:flex; align-items:center; justify-content:center;
-  font-family:'IBM Plex Mono', monospace; font-weight:800; font-size:0.68rem; text-align:center; line-height:1.05;
+  font-family:'IBM Plex Mono', monospace; font-weight:900; font-size:0.68rem; text-align:center; line-height:1.05;
   transform:rotate(-12deg) scale(0); opacity:0.85; mix-blend-mode:multiply;
   animation:stampDown 0.35s cubic-bezier(.2,1.4,.4,1) forwards; animation-delay:0.15s;
 }
@@ -196,7 +196,7 @@ input:checked + .slider::before{ transform:translateX(18px); }
 /* 단일 결과용 stat 테이블 (BMI/BMR/나이) */
 .stat-table{ width:100%; border-collapse:collapse; font-size:0.88rem; }
 .stat-table th, .stat-table td{ padding:9px 6px; text-align:left; border-bottom:1px dotted #e5decb; }
-.stat-table th{ color:var(--ink-soft); font-weight:600; }
+.stat-table th{ color:var(--ink-soft); font-weight:700; }
 .stat-table td{ text-align:right; font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--ink); }
 .stat-table tr:last-child th, .stat-table tr:last-child td{ border-bottom:none; }
 .stat-highlight td{ color:var(--pink); font-size:1.05rem; }
@@ -236,7 +236,7 @@ table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight
 .info-section{ margin-top:32px; }
 .info-section > h2{ font-size:1.02rem; font-weight:900; color:var(--header-bg); margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--header-bg); }
 .info-block{ background:#fff; border:1px solid #dfe2e6; border-left:3px solid var(--pink); border-radius:6px; padding:18px 20px; margin-bottom:14px; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
-.info-block h3{ display:flex; align-items:center; gap:8px; font-size:0.95rem; font-weight:800; color:var(--header-bg); margin-bottom:10px; }
+.info-block h3{ display:flex; align-items:center; gap:8px; font-size:0.95rem; font-weight:900; color:var(--header-bg); margin-bottom:10px; }
 .info-block h3 .info-icon{ font-size:1rem; }
 .info-block p{ font-size:0.85rem; line-height:1.75; color:var(--ink); margin-bottom:10px; }
 .info-block p:last-child{ margin-bottom:0; }
@@ -275,7 +275,7 @@ table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight
 
 .method-def{ margin-bottom:16px; }
 .method-def:last-child{ margin-bottom:0; }
-.method-def h4{ font-size:0.87rem; font-weight:800; color:var(--header-bg); margin-bottom:5px; }
+.method-def h4{ font-size:0.87rem; font-weight:900; color:var(--header-bg); margin-bottom:5px; }
 .method-def p{ font-size:0.84rem; color:var(--ink); line-height:1.75; }
 .method-def .formula-box{ margin:8px 0 0; }
 
@@ -283,7 +283,7 @@ table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight
 .method-compare-card{ background:#f9fafb; border:1px solid #e2e4e8; border-radius:6px; padding:14px 15px; }
 .method-compare-card .mc-badge{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.64rem; font-weight:700; color:#fff; background:var(--header-bg); padding:2px 8px; border-radius:10px; margin-bottom:9px; }
 .method-compare-card .mc-badge.best{ background:var(--pink); }
-.method-compare-card h4{ font-size:0.85rem; font-weight:800; color:var(--header-bg); margin-bottom:8px; }
+.method-compare-card h4{ font-size:0.85rem; font-weight:900; color:var(--header-bg); margin-bottom:8px; }
 .method-compare-card ul{ list-style:none; }
 .method-compare-card li{ font-size:0.77rem; padding:5px 0; border-top:1px solid #eef0f2; display:flex; justify-content:space-between; gap:6px; }
 .method-compare-card li:first-child{ border-top:none; }
