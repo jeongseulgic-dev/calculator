@@ -88,6 +88,10 @@ function recalc(){
       <tr><th>주(週) 환산</th><td>${weeks}주 ${remDays}일</td></tr>
       <tr><th>기간 (년/개월/일)</th><td>${diff.y}년 ${diff.m}개월 ${diff.d}일</td></tr>
     `;
+
+    UrlState.sync({
+      mode, start: document.getElementById('d-start').value, end: document.getElementById('d-end').value
+    }, URL_DEFAULTS);
   }
 
   else if (mode === 'add'){
@@ -117,6 +121,10 @@ function recalc(){
       <tr class="stat-highlight"><th>결과 날짜</th><td>${fmtDate(result)}</td></tr>
       <tr><th>기준일과의 차이</th><td>${totalDaysDiff >= 0 ? '+' : ''}${totalDaysDiff.toLocaleString('ko-KR')}일</td></tr>
     `;
+
+    UrlState.sync({
+      mode, base: document.getElementById('d-base').value, amount, op: addOp, unit: addUnit
+    }, URL_DEFAULTS);
   }
 }
 
@@ -126,9 +134,28 @@ document.getElementById('d-start').value = toInputValue(today);
 document.getElementById('d-end').value = toInputValue(in100Days);
 document.getElementById('d-base').value = toInputValue(today);
 
+const URL_DEFAULTS = {
+  mode: toggleDefault('mode'),
+  start: toInputValue(today),
+  end: toInputValue(in100Days),
+  base: toInputValue(today),
+  amount: document.getElementById('d-amount').defaultValue,
+  op: toggleDefault('addOp'),
+  unit: toggleDefault('addUnit')
+};
+
 attachDateMask('d-start', recalc);
 attachDateMask('d-end', recalc);
 attachDateMask('d-base', recalc);
 document.getElementById('d-amount').addEventListener('input', recalc);
+
+const urlParams = UrlState.read();
+if (urlParams.start) document.getElementById('d-start').value = urlParams.start;
+if (urlParams.end) document.getElementById('d-end').value = urlParams.end;
+if (urlParams.base) document.getElementById('d-base').value = urlParams.base;
+if (urlParams.amount) document.getElementById('d-amount').value = urlParams.amount;
+if (urlParams.op) clickToggle('addOp', urlParams.op);
+if (urlParams.unit) clickToggle('addUnit', urlParams.unit);
+if (urlParams.mode) clickToggle('mode', urlParams.mode);
 
 recalc();

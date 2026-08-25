@@ -33,6 +33,12 @@ function fromCelsius(celsius, unit){
 }
 const TEMP_NAMES = { C:'섭씨(℃)', F:'화씨(℉)', K:'켈빈(K)' };
 
+const CATEGORY_DEFAULTS = {
+  length: { value:'1', from:'cm', to:'in' },
+  weight: { value:'1', from:'kg', to:'lb' },
+  temperature: { value:'0', from:'C', to:'F' }
+};
+
 function buildUnitOptions(selectEl, unitDef, selected){
   selectEl.innerHTML = Object.keys(unitDef.base).map(u =>
     `<option value="${u}" ${u===selected?'selected':''}>${unitDef.names[u]}</option>`
@@ -92,6 +98,9 @@ function recalc(){
       <tr><th>입력값</th><td>${fmt(value)} ${TEMP_NAMES[fromUnit]}</td></tr>
       <tr class="stat-highlight"><th>변환 결과</th><td>${fmt(result)} ${TEMP_NAMES[toUnit]}</td></tr>
     `;
+
+    UrlState.sync({ category, value, from: fromUnit, to: toUnit },
+      { category: 'length', ...CATEGORY_DEFAULTS.temperature });
     return;
   }
 
@@ -118,6 +127,9 @@ function recalc(){
     <tr class="stat-highlight"><th>변환 결과</th><td>${fmt(result)} ${def.names[toUnit]}</td></tr>
     <tr><th>환산 비율</th><td>1 ${fromUnit} = ${fmt(factor)} ${toUnit}</td></tr>
   `;
+
+  UrlState.sync({ category, value, from: fromUnit, to: toUnit },
+    { category: 'length', ...CATEGORY_DEFAULTS[category] });
 }
 
 buildUnitOptions(document.getElementById('u-length-from'), UNITS.length, 'cm');
@@ -131,5 +143,12 @@ buildUnitOptions(document.getElementById('u-weight-to'), UNITS.weight, 'lb');
   document.getElementById(id).addEventListener('input', recalc);
   document.getElementById(id).addEventListener('change', recalc);
 });
+
+const urlParams = UrlState.read();
+const restoreCategory = urlParams.category || 'length';
+if (urlParams.value != null) document.getElementById(`u-${restoreCategory}-value`).value = urlParams.value;
+if (urlParams.from) document.getElementById(`u-${restoreCategory}-from`).value = urlParams.from;
+if (urlParams.to) document.getElementById(`u-${restoreCategory}-to`).value = urlParams.to;
+if (urlParams.category) clickToggle('category', urlParams.category);
 
 recalc();

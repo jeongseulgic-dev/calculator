@@ -125,6 +125,11 @@ function recalcAll(){
   renderChart(totalPrincipal, Math.round(afterTaxInterest), Math.round(taxAmount));
   visibleRows = 12;
   renderLedger();
+
+  UrlState.sync({
+    amount: P, period: periodVal, periodUnit: periodType, rate: document.getElementById('s-rate').value,
+    savType, method, taxRate
+  }, URL_DEFAULTS);
 }
 
 function renderChart(principal, interest, tax){
@@ -162,5 +167,24 @@ document.getElementById('loadMoreBtn').addEventListener('click', ()=>{
   visibleRows += 12;
   renderLedger();
 });
+
+const URL_DEFAULTS = {
+  amount: '1000000',
+  period: document.getElementById('s-period').defaultValue,
+  periodUnit: toggleDefault('periodType'),
+  rate: document.getElementById('s-rate').defaultValue,
+  savType: toggleDefault('savType'),
+  method: toggleDefault('method'),
+  taxRate: toggleDefault('taxRate')
+};
+
+const urlParams = UrlState.read();
+if (urlParams.amount) document.getElementById('s-amount').value = Number(urlParams.amount).toLocaleString('ko-KR');
+if (urlParams.period) document.getElementById('s-period').value = urlParams.period;
+if (urlParams.rate) document.getElementById('s-rate').value = urlParams.rate;
+if (urlParams.periodUnit) clickToggle('periodType', urlParams.periodUnit);
+if (urlParams.savType) clickToggle('savType', urlParams.savType);
+if (urlParams.method) clickToggle('method', urlParams.method);
+if (urlParams.taxRate) clickToggle('taxRate', urlParams.taxRate);
 
 recalcAll();

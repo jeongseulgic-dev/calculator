@@ -44,10 +44,27 @@ function recalc(){
     <tr><th>체중 유지 권장 섭취량</th><td>약 ${fmt0(tdee)} kcal</td></tr>
     <tr><th>체중 감량 권장 섭취량 (−15%)</th><td>약 ${fmt0(tdee*0.85)} kcal</td></tr>
   `;
+
+  UrlState.sync({ age, height, weight, gender, activity }, URL_DEFAULTS);
 }
+
+const URL_DEFAULTS = {
+  age: document.getElementById('m-age').defaultValue,
+  height: document.getElementById('m-height').defaultValue,
+  weight: document.getElementById('m-weight').defaultValue,
+  gender: toggleDefault('gender'),
+  activity: toggleDefault('activity')
+};
 
 ['m-age','m-height','m-weight'].forEach(id=>{
   document.getElementById(id).addEventListener('input', recalc);
 });
+
+const urlParams = UrlState.read();
+if (urlParams.age) document.getElementById('m-age').value = urlParams.age;
+if (urlParams.height) document.getElementById('m-height').value = urlParams.height;
+if (urlParams.weight) document.getElementById('m-weight').value = urlParams.weight;
+if (urlParams.gender) clickToggle('gender', urlParams.gender);
+if (urlParams.activity) clickToggle('activity', urlParams.activity);
 
 recalc();

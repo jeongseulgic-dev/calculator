@@ -36,6 +36,8 @@ function recalc(){
       <tr><th>기준값</th><td>${fmt(base)}</td></tr>
       <tr class="stat-highlight"><th>결과값</th><td>${fmt(result)}</td></tr>
     `;
+
+    UrlState.sync({ mode, percent, base }, URL_DEFAULTS);
   }
 
   else if (mode === 'ratio'){
@@ -55,6 +57,8 @@ function recalc(){
       <tr><th>전체값 (B)</th><td>${fmt(whole)}</td></tr>
       <tr class="stat-highlight"><th>비율 (A/B)</th><td>${fmt(result)}%</td></tr>
     `;
+
+    UrlState.sync({ mode, part, whole }, URL_DEFAULTS);
   }
 
   else if (mode === 'change'){
@@ -78,11 +82,30 @@ function recalc(){
       <tr><th>증감액</th><td>${sign}${fmt(diff)}</td></tr>
       <tr class="stat-highlight"><th>증감률</th><td>${sign}${fmt(rate)}% (${label})</td></tr>
     `;
+
+    UrlState.sync({ mode, old: oldVal, new: newVal }, URL_DEFAULTS);
   }
 }
 
 document.querySelectorAll('#p-percent, #p-base, #p-part, #p-whole, #p-old, #p-new').forEach(el=>{
   el.addEventListener('input', recalc);
 });
+
+const URL_DEFAULTS = {
+  mode: toggleDefault('mode'),
+  percent: document.getElementById('p-percent').defaultValue,
+  base: document.getElementById('p-base').defaultValue,
+  part: document.getElementById('p-part').defaultValue,
+  whole: document.getElementById('p-whole').defaultValue,
+  old: document.getElementById('p-old').defaultValue,
+  new: document.getElementById('p-new').defaultValue
+};
+
+const urlParams = UrlState.read();
+['percent','base','part','whole','old','new'].forEach(k=>{
+  const el = document.getElementById('p-' + k);
+  if (urlParams[k] && el) el.value = urlParams[k];
+});
+if (urlParams.mode) clickToggle('mode', urlParams.mode);
 
 recalc();

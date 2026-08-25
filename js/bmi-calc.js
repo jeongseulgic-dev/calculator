@@ -38,10 +38,21 @@ function recalc(){
     <tr class="stat-highlight"><th>BMI 지수</th><td style="color:${cat.color};">${fmt1(bmi)} (${cat.label})</td></tr>
     <tr><th>정상 체중 범위</th><td>${fmt1(normalMin)} ~ ${fmt1(normalMax)} kg</td></tr>
   `;
+
+  UrlState.sync({ height, weight }, URL_DEFAULTS);
 }
+
+const URL_DEFAULTS = {
+  height: document.getElementById('b-height').defaultValue,
+  weight: document.getElementById('b-weight').defaultValue
+};
 
 ['b-height','b-weight'].forEach(id=>{
   document.getElementById(id).addEventListener('input', recalc);
 });
+
+const urlParams = UrlState.read();
+if (urlParams.height) document.getElementById('b-height').value = urlParams.height;
+if (urlParams.weight) document.getElementById('b-weight').value = urlParams.weight;
 
 recalc();

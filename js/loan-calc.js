@@ -185,6 +185,12 @@ function recalcAll(){
   visibleRows = 12;
   if (!scheduleCache[activeType]) activeType = bestKey;
   renderLedger();
+
+  UrlState.sync({
+    amount: P, period: periodVal, periodUnit: periodType, rate: document.getElementById('p-rate').value,
+    grace: graceVal, graceUnit: graceType,
+    extraMonth: extraMonth || '', extraAmount: extraAmount || '', extraType
+  }, URL_DEFAULTS);
 }
 
 function renderChart(){
@@ -250,5 +256,27 @@ document.getElementById('loadMoreBtn').addEventListener('click', ()=>{
   visibleRows += 12;
   renderLedger();
 });
+
+const URL_DEFAULTS = {
+  amount: '300000000',
+  period: document.getElementById('p-period').defaultValue,
+  periodUnit: toggleDefault('periodType'),
+  rate: document.getElementById('p-rate').defaultValue,
+  grace: document.getElementById('p-grace').defaultValue,
+  graceUnit: toggleDefault('graceType'),
+  extraMonth: '', extraAmount: '',
+  extraType: toggleDefault('extraType')
+};
+
+const urlParams = UrlState.read();
+if (urlParams.amount) document.getElementById('p-amount').value = Number(urlParams.amount).toLocaleString('ko-KR');
+if (urlParams.period) document.getElementById('p-period').value = urlParams.period;
+if (urlParams.rate) document.getElementById('p-rate').value = urlParams.rate;
+if (urlParams.grace) document.getElementById('p-grace').value = urlParams.grace;
+if (urlParams.extraMonth) document.getElementById('p-extra-month').value = urlParams.extraMonth;
+if (urlParams.extraAmount) document.getElementById('p-extra-amount').value = Number(urlParams.extraAmount).toLocaleString('ko-KR');
+if (urlParams.periodUnit) clickToggle('periodType', urlParams.periodUnit);
+if (urlParams.graceUnit) clickToggle('graceType', urlParams.graceUnit);
+if (urlParams.extraType) clickToggle('extraType', urlParams.extraType);
 
 recalcAll();

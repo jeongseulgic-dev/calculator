@@ -38,3 +38,13 @@ function parseIsoDate(val){
   const d = new Date(val + 'T00:00:00');
   return isNaN(d.getTime()) ? null : d;
 }
+
+function clickToggle(target, value){
+  const btn = document.querySelector('.seg-toggle[data-target="' + target + '"] .seg-btn[data-value="' + value + '"]');
+  if (btn) btn.click();
+}
+
+function toggleDefault(target){
+  const btn = document.querySelector('.seg-toggle[data-target="' + target + '"] .seg-btn.active');
+  return btn ? btn.dataset.value : '';
+}

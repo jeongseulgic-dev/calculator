@@ -74,10 +74,27 @@ function recalc(){
     <tr><th>체지방량</th><td>${fmt1(fatMass)} kg</td></tr>
     <tr><th>제지방량 (근육·뼈 등)</th><td>${fmt1(leanMass)} kg</td></tr>
   `;
+
+  UrlState.sync({ height, weight, neck, waist, hip, gender }, URL_DEFAULTS);
 }
+
+const URL_DEFAULTS = {
+  height: document.getElementById('f-height').defaultValue,
+  weight: document.getElementById('f-weight').defaultValue,
+  neck: document.getElementById('f-neck').defaultValue,
+  waist: document.getElementById('f-waist').defaultValue,
+  hip: document.getElementById('f-hip').defaultValue,
+  gender: toggleDefault('gender')
+};
 
 ['f-height','f-weight','f-neck','f-waist','f-hip'].forEach(id=>{
   document.getElementById(id).addEventListener('input', recalc);
 });
+
+const urlParams = UrlState.read();
+['height','weight','neck','waist','hip'].forEach(k=>{
+  if (urlParams[k]) document.getElementById('f-' + k).value = urlParams[k];
+});
+if (urlParams.gender) clickToggle('gender', urlParams.gender);
 
 recalc();

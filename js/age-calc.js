@@ -40,7 +40,13 @@ function recalc(){
     <tr><th>연 나이 (일부 법령 기준)</th><td>${yeonAge}세</td></tr>
     <tr><th>세는 나이 (전통적 나이)</th><td>${seNunAge}세</td></tr>
   `;
+
+  UrlState.sync({ birth: val });
 }
 
 attachDateMask('a-birth', recalc);
+
+const urlParams = UrlState.read();
+if (urlParams.birth) document.getElementById('a-birth').value = urlParams.birth;
+
 recalc();
