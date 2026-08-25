@@ -238,6 +238,12 @@ table.ledger-table td:first-child, table.ledger-table th:first-child{ text-align
 .info-block p{ font-size:0.85rem; line-height:1.75; color:var(--ink); margin-bottom:10px; }
 .info-block p:last-child{ margin-bottom:0; }
 
+.source-list{ list-style:none; }
+.source-list li{ font-size:0.85rem; line-height:1.6; margin-bottom:6px; }
+.source-list li:last-child{ margin-bottom:0; }
+.source-list a{ color:var(--pink); text-decoration:none; }
+.source-list a:hover{ text-decoration:underline; }
+
 .formula-box{ background:#f4f6f8; border-radius:4px; font-family:'IBM Plex Mono', monospace; font-size:0.9rem; font-weight:700; color:var(--header-bg); padding:11px 14px; margin:12px 0; letter-spacing:0.3px; }
 
 .formula-box.formula-frac{ display:flex; align-items:center; flex-wrap:wrap; gap:14px; padding:13px 16px; }
