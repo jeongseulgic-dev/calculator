@@ -26,21 +26,10 @@
 <header>
   <div class="header-inner">
     <div>
-      <h1><a href="index.html" data-i18n="nav.brand">계산기</a></h1>
+      <h1><a href="index.html">계산기</a></h1>
       <div class="eyebrow">SALARY CALCULATOR</div>
     </div>
-    <div class="header-actions">
-      <div class="lang-switch" id="langSwitch">
-        <button type="button" class="lang-switch-btn" id="langSwitchBtn" aria-haspopup="true" aria-expanded="false">
-          <span class="lang-switch-icon">🌐</span><span id="langSwitchLabel">한국어</span><span class="lang-switch-caret">▾</span>
-        </button>
-        <ul class="lang-switch-menu" id="langSwitchMenu">
-          <li><button type="button" data-value="ko">한국어</button></li>
-          <li><button type="button" data-value="en">English</button></li>
-        </ul>
-      </div>
-      <button id="sidebarToggle" class="mobile-menu-toggle" data-i18n="nav.menu_toggle">☰ 메뉴</button>
-    </div>
+    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
   </div>
 </header>
 
@@ -48,34 +37,34 @@
   <aside class="sidebar" id="sidebarMenu">
     <nav>
       <div class="menu-group">
-        <h3 data-i18n="nav.cat_finance">금융</h3>
+        <h3>금융</h3>
         <ul>
-          <li><a href="loan-calculator.html" data-i18n="nav.loan">대출 이자 계산기</a></li>
-          <li><a href="savings-calculator.html" data-i18n="nav.savings">예·적금 계산기</a></li>
-          <li><a href="salary-calculator.html" class="active" data-i18n="nav.salary">연봉 실수령액 계산기</a></li>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html" class="active">연봉 실수령액 계산기</a></li>
         </ul>
       </div>
       <div class="menu-group">
-        <h3 data-i18n="nav.cat_health">건강</h3>
+        <h3>건강</h3>
         <ul>
-          <li><a href="bmi-calculator.html" data-i18n="nav.bmi">BMI 계산기</a></li>
-          <li><a href="bmr-calculator.html" data-i18n="nav.bmr">기초대사량(BMR) 계산기</a></li>
-          <li><a href="bodyfat-calculator.html" data-i18n="nav.bodyfat">체지방률 계산기</a></li>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
         </ul>
       </div>
       <div class="menu-group">
-        <h3 data-i18n="nav.cat_math">수학</h3>
+        <h3>수학</h3>
         <ul>
-          <li><a href="scientific-calculator.html" data-i18n="nav.scientific">공학용 계산기</a></li>
-          <li><a href="percent-calculator.html" data-i18n="nav.percent">퍼센트 계산기</a></li>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
         </ul>
       </div>
       <div class="menu-group">
-        <h3 data-i18n="nav.cat_life">생활</h3>
+        <h3>생활</h3>
         <ul>
-          <li><a href="age-calculator.html" data-i18n="nav.age">만 나이 계산기</a></li>
-          <li><a href="date-calculator.html" data-i18n="nav.date">날짜 계산기</a></li>
-          <li><a href="unit-calculator.html" data-i18n="nav.unit">단위 변환기</a></li>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
         </ul>
       </div>
     </nav>
@@ -83,48 +72,48 @@
 
   <div class="page-content">
     <div class="page-title">
-      <h2 data-i18n="salary.page_title">연봉 실수령액 계산기</h2>
-      <p data-i18n="salary.page_desc">4대보험료와 근로소득세·지방소득세를 반영해 월 실수령액과 연 실수령액을 계산합니다.</p>
+      <h2>연봉 실수령액 계산기</h2>
+      <p>4대보험료와 근로소득세·지방소득세를 반영해 월 실수령액과 연 실수령액을 계산합니다.</p>
     </div>
 
     <div class="shell">
       <div>
-        <div class="pages-heading"><h2 data-i18n="salary.input_heading">연봉 입력</h2></div>
+        <div class="pages-heading"><h2>연봉 입력</h2></div>
         <aside class="calc-panel">
           <div class="screen-shell">
             <div class="screen">
-              <div class="label" data-i18n="salary.screen_label">월 실수령액</div>
+              <div class="label">월 실수령액</div>
               <div class="value" id="miniScreen">0</div>
               <div class="value-sub" id="miniScreenSub"></div>
             </div>
           </div>
 
           <div class="field">
-            <label data-i18n="salary.field_salary">연봉 (세전, 원)</label>
-            <input type="text" id="sl-salary" placeholder="예: 40,000,000" data-i18n-placeholder="salary.field_salary_placeholder">
+            <label>연봉 (세전, 원)</label>
+            <input type="text" id="sl-salary" placeholder="예: 40,000,000">
             <div class="key-row">
-              <button type="button" class="calc-key" data-add="1000000" data-i18n="salary.quick_add_1m">+100만</button>
-              <button type="button" class="calc-key" data-add="10000000" data-i18n="salary.quick_add_10m">+1,000만</button>
+              <button type="button" class="calc-key" data-add="1000000">+100만</button>
+              <button type="button" class="calc-key" data-add="10000000">+1,000만</button>
               <button type="button" class="calc-key pink" data-reset>C</button>
             </div>
           </div>
 
           <div class="field">
-            <label data-i18n="salary.field_nontax">식대 등 비과세액 (월, 원)</label>
-            <input type="text" id="sl-nontax" placeholder="예: 200,000" data-i18n-placeholder="salary.field_nontax_placeholder">
+            <label>식대 등 비과세액 (월, 원)</label>
+            <input type="text" id="sl-nontax" placeholder="예: 200,000">
           </div>
 
           <div class="field">
-            <label data-i18n="salary.field_dependents">부양가족 수 (본인 포함)</label>
+            <label>부양가족 수 (본인 포함)</label>
             <input type="number" id="sl-dependents" min="1" value="1">
           </div>
 
-          <div class="live-indicator"><span class="live-dot"></span> <span data-i18n="salary.live_indicator">입력 즉시 자동 계산</span></div>
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
         </aside>
       </div>
 
       <div>
-        <div class="pages-heading"><h2 data-i18n="salary.result_heading">실수령액 결과</h2></div>
+        <div class="pages-heading"><h2>실수령액 결과</h2></div>
         <section class="receipt-strip">
           <div class="strip-block">
             <table class="stat-table"><tbody id="statBody"></tbody></table>
@@ -136,118 +125,118 @@
     <div class="ad-slot"></div>
 
     <section class="info-section">
-      <h2 data-i18n="salary.info_heading">연봉 실수령액 계산기 안내</h2>
+      <h2>연봉 실수령액 계산기 안내</h2>
 
       <div class="info-block">
-        <h3><span class="info-icon">💡</span><span data-i18n="salary.block1_title">실수령액이란?</span></h3>
-        <p data-i18n="salary.block1_p1">연봉(세전 급여)에서 4대보험료와 근로소득세·지방소득세를 뺀, 실제로 통장에 들어오는 금액입니다. 연봉이 같아도 부양가족 수나 4대보험 가입 여부에 따라 실수령액은 달라집니다.</p>
-        <p data-i18n="salary.block1_p2">회사가 매달 급여에서 미리 떼어 국가에 납부하는 것을 원천징수라고 하며, 다음 해 초 연말정산을 통해 실제 낼 세금과 정산해 차액을 돌려받거나 더 내게 됩니다.</p>
+        <h3><span class="info-icon">💡</span>실수령액이란?</h3>
+        <p>연봉(세전 급여)에서 4대보험료와 근로소득세·지방소득세를 뺀, 실제로 통장에 들어오는 금액입니다. 연봉이 같아도 부양가족 수나 4대보험 가입 여부에 따라 실수령액은 달라집니다.</p>
+        <p>회사가 매달 급여에서 미리 떼어 국가에 납부하는 것을 원천징수라고 하며, 다음 해 초 연말정산을 통해 실제 낼 세금과 정산해 차액을 돌려받거나 더 내게 됩니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">🧮</span><span data-i18n="salary.block2_title">계산 방식</span></h3>
-        <p data-i18n="salary.block2_p1">4대보험료와 소득세는 월 급여(연봉÷12)가 아니라 여기서 비과세 식대(월 최대 20만원)를 뺀 '과세 대상 급여'를 기준으로 계산합니다. 식대는 실제로 받는 돈이지만 4대보험료·소득세 산정에서는 빠지는 항목이라, 이를 반영하지 않으면 실수령액이 실제보다 적게 나옵니다.</p>
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <p>4대보험료와 소득세는 월 급여(연봉÷12)가 아니라 여기서 비과세 식대(월 최대 20만원)를 뺀 '과세 대상 급여'를 기준으로 계산합니다. 식대는 실제로 받는 돈이지만 4대보험료·소득세 산정에서는 빠지는 항목이라, 이를 반영하지 않으면 실수령액이 실제보다 적게 나옵니다.</p>
         <div class="method-def">
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs" data-i18n="salary.formula_np">국민연금 = 과세 대상 급여 × 4.75%</span></span>
+            <span class="frac-part"><span class="frac-lhs">국민연금 = 과세 대상 급여 × 4.75%</span></span>
             <span class="frac-sep"></span>
-            <span class="frac-part"><span class="frac-lhs" data-i18n="salary.formula_hi">건강보험 = 과세 대상 급여 × 3.6%</span></span>
+            <span class="frac-part"><span class="frac-lhs">건강보험 = 과세 대상 급여 × 3.6%</span></span>
           </div>
         </div>
         <div class="method-def">
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs" data-i18n="salary.formula_ltc">장기요양보험 = 건강보험료 × 13.14%</span></span>
+            <span class="frac-part"><span class="frac-lhs">장기요양보험 = 건강보험료 × 13.14%</span></span>
             <span class="frac-sep"></span>
-            <span class="frac-part"><span class="frac-lhs" data-i18n="salary.formula_ei">고용보험 = 과세 대상 급여 × 0.9%</span></span>
+            <span class="frac-part"><span class="frac-lhs">고용보험 = 과세 대상 급여 × 0.9%</span></span>
           </div>
         </div>
-        <p data-i18n="salary.block2_p2">소득세는 (연봉 − 비과세 식대)에서 근로소득공제·인적공제 등을 뺀 과세표준에 소득세율(6~45%)을 적용한 뒤, 근로소득세액공제를 차감해 12개월로 나눈 근사값입니다. 지방소득세는 소득세의 10%입니다.</p>
+        <p>소득세는 (연봉 − 비과세 식대)에서 근로소득공제·인적공제 등을 뺀 과세표준에 소득세율(6~45%)을 적용한 뒤, 근로소득세액공제를 차감해 12개월로 나눈 근사값입니다. 지방소득세는 소득세의 10%입니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span><span data-i18n="salary.block3_title">공제 항목 정리</span></h3>
+        <h3><span class="info-icon">📊</span>공제 항목 정리</h3>
         <div class="method-compare-grid">
           <div class="method-compare-card">
             <span class="mc-badge">4.75%</span>
-            <h4 data-i18n="salary.card_np_title">국민연금</h4>
-            <ul><li><span data-i18n="common.criteria_label">기준</span><span data-i18n="salary.card_np_basis">과세 대상 급여(41만~659만원)</span></li></ul>
+            <h4>국민연금</h4>
+            <ul><li><span>기준</span><span>과세 대상 급여(41만~659만원)</span></li></ul>
           </div>
           <div class="method-compare-card">
             <span class="mc-badge">3.6%</span>
-            <h4 data-i18n="salary.card_hi_title">건강보험</h4>
-            <ul><li><span data-i18n="common.criteria_label">기준</span><span data-i18n="salary.card_hi_basis">과세 대상 급여 전액</span></li></ul>
+            <h4>건강보험</h4>
+            <ul><li><span>기준</span><span>과세 대상 급여 전액</span></li></ul>
           </div>
           <div class="method-compare-card">
-            <span class="mc-badge" data-i18n="salary.card_ltc_badge">건보료×13.14%</span>
-            <h4 data-i18n="salary.card_ltc_title">장기요양보험</h4>
-            <ul><li><span data-i18n="common.criteria_label">기준</span><span data-i18n="salary.card_ltc_basis">건강보험료</span></li></ul>
+            <span class="mc-badge">건보료×13.14%</span>
+            <h4>장기요양보험</h4>
+            <ul><li><span>기준</span><span>건강보험료</span></li></ul>
           </div>
           <div class="method-compare-card">
             <span class="mc-badge">0.9%</span>
-            <h4 data-i18n="salary.card_ei_title">고용보험</h4>
-            <ul><li><span data-i18n="common.criteria_label">기준</span><span data-i18n="salary.card_ei_basis">과세 대상 급여 전액</span></li></ul>
+            <h4>고용보험</h4>
+            <ul><li><span>기준</span><span>과세 대상 급여 전액</span></li></ul>
           </div>
           <div class="method-compare-card">
-            <span class="mc-badge best" data-i18n="salary.card_tax_badge">6~45%</span>
-            <h4 data-i18n="salary.card_tax_title">소득세·지방소득세</h4>
-            <ul><li><span data-i18n="common.criteria_label">기준</span><span data-i18n="salary.card_tax_basis">과세표준(누진세율)</span></li></ul>
+            <span class="mc-badge best">6~45%</span>
+            <h4>소득세·지방소득세</h4>
+            <ul><li><span>기준</span><span>과세표준(누진세율)</span></li></ul>
           </div>
         </div>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span><span data-i18n="salary.block4_title">소득세 구간표 (2026년 종합소득세율)</span></h3>
+        <h3><span class="info-icon">📊</span>소득세 구간표 (2026년 종합소득세율)</h3>
         <div class="formula-box formula-frac">
-          <span class="frac-part"><span class="frac-lhs" data-i18n="salary.formula_tax">산출세액 = 과세표준 × 세율 − 누진공제액</span></span>
+          <span class="frac-part"><span class="frac-lhs">산출세액 = 과세표준 × 세율 − 누진공제액</span></span>
         </div>
         <table class="criteria-table">
           <tbody>
-            <tr><td data-i18n="salary.bracket_1">1,400만원 이하</td><td data-i18n="salary.bracket_1_rate">6%</td></tr>
-            <tr><td data-i18n="salary.bracket_2">1,400만~5,000만원</td><td data-i18n="salary.bracket_2_rate">15% (누진공제 126만원)</td></tr>
-            <tr><td data-i18n="salary.bracket_3">5,000만~8,800만원</td><td data-i18n="salary.bracket_3_rate">24% (누진공제 576만원)</td></tr>
-            <tr><td data-i18n="salary.bracket_4">8,800만~1억 5,000만원</td><td data-i18n="salary.bracket_4_rate">35% (누진공제 1,544만원)</td></tr>
-            <tr><td data-i18n="salary.bracket_5">1억 5,000만~3억원</td><td data-i18n="salary.bracket_5_rate">38% (누진공제 1,994만원)</td></tr>
-            <tr><td data-i18n="salary.bracket_6">3억~5억원</td><td data-i18n="salary.bracket_6_rate">40% (누진공제 2,594만원)</td></tr>
-            <tr><td data-i18n="salary.bracket_7">5억~10억원</td><td data-i18n="salary.bracket_7_rate">42% (누진공제 3,594만원)</td></tr>
-            <tr><td data-i18n="salary.bracket_8">10억원 초과</td><td data-i18n="salary.bracket_8_rate">45% (누진공제 6,594만원)</td></tr>
+            <tr><td>1,400만원 이하</td><td>6%</td></tr>
+            <tr><td>1,400만~5,000만원</td><td>15% (누진공제 126만원)</td></tr>
+            <tr><td>5,000만~8,800만원</td><td>24% (누진공제 576만원)</td></tr>
+            <tr><td>8,800만~1억 5,000만원</td><td>35% (누진공제 1,544만원)</td></tr>
+            <tr><td>1억 5,000만~3억원</td><td>38% (누진공제 1,994만원)</td></tr>
+            <tr><td>3억~5억원</td><td>40% (누진공제 2,594만원)</td></tr>
+            <tr><td>5억~10억원</td><td>42% (누진공제 3,594만원)</td></tr>
+            <tr><td>10억원 초과</td><td>45% (누진공제 6,594만원)</td></tr>
           </tbody>
         </table>
-        <p data-i18n="salary.block4_note">위 구간은 연봉이 아니라 '과세표준'(연봉에서 근로소득공제·인적공제 등을 뺀 금액) 기준입니다.</p>
+        <p>위 구간은 연봉이 아니라 '과세표준'(연봉에서 근로소득공제·인적공제 등을 뺀 금액) 기준입니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">❓</span><span data-i18n="common.faq_title">자주 묻는 질문</span></h3>
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary data-i18n="salary.faq_q1">이 계산 결과가 실제 급여명세서와 정확히 같나요?</summary>
-          <p class="faq-a" data-i18n="salary.faq_a1">아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다.</p>
+          <summary>이 계산 결과가 실제 급여명세서와 정확히 같나요?</summary>
+          <p class="faq-a">아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다.</p>
         </details>
         <details class="faq-item">
-          <summary data-i18n="salary.faq_q2">식대 등 비과세액은 왜 입력하나요?</summary>
-          <p class="faq-a" data-i18n="salary.faq_a2">식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요.</p>
+          <summary>식대 등 비과세액은 왜 입력하나요?</summary>
+          <p class="faq-a">식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요.</p>
         </details>
         <details class="faq-item">
-          <summary data-i18n="salary.faq_q3">부양가족 수는 왜 입력하나요?</summary>
-          <p class="faq-a" data-i18n="salary.faq_a3">부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다.</p>
+          <summary>부양가족 수는 왜 입력하나요?</summary>
+          <p class="faq-a">부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다.</p>
         </details>
         <details class="faq-item">
-          <summary data-i18n="salary.faq_q4">국민연금은 왜 상한선이 있나요?</summary>
-          <p class="faq-a" data-i18n="salary.faq_a4">국민연금 보험료는 실제 월급이 아니라 '기준소득월액'이라는 상한(2026년 기준 659만원)과 하한(41만원) 안에서만 매겨집니다. 연봉이 아무리 높아도 국민연금 보험료는 상한선 이상으로 늘지 않습니다.</p>
+          <summary>국민연금은 왜 상한선이 있나요?</summary>
+          <p class="faq-a">국민연금 보험료는 실제 월급이 아니라 '기준소득월액'이라는 상한(2026년 기준 659만원)과 하한(41만원) 안에서만 매겨집니다. 연봉이 아무리 높아도 국민연금 보험료는 상한선 이상으로 늘지 않습니다.</p>
         </details>
         <details class="faq-item">
-          <summary data-i18n="salary.faq_q5">세전 연봉에 성과급이나 상여금도 포함해야 하나요?</summary>
-          <p class="faq-a" data-i18n="salary.faq_a5">포함하는 것이 정확합니다. 이 계산기는 연간 총급여를 기준으로 계산하므로, 매달 받는 급여 외에 정기 상여금·성과급까지 더한 세전 연봉을 입력하면 실제 월평균 실수령액에 더 가깝습니다.</p>
+          <summary>세전 연봉에 성과급이나 상여금도 포함해야 하나요?</summary>
+          <p class="faq-a">포함하는 것이 정확합니다. 이 계산기는 연간 총급여를 기준으로 계산하므로, 매달 받는 급여 외에 정기 상여금·성과급까지 더한 세전 연봉을 입력하면 실제 월평균 실수령액에 더 가깝습니다.</p>
         </details>
         <details class="faq-item">
-          <summary data-i18n="salary.faq_q6">결과의 "소득세(OO% 구간)"는 소득 전체에 그 세율이 붙는다는 뜻인가요?</summary>
-          <p class="faq-a" data-i18n="salary.faq_a6">아닙니다. 소득세는 누진세라 과세표준을 구간별로 나눠 각 구간에 해당 세율만 적용합니다. "OO% 구간"은 과세표준이 도달한 가장 높은 구간(한계세율)을 알려주는 것일 뿐, 소득 전체에 그 세율이 곱해지는 것이 아닙니다. 실제로는 낮은 구간에 낮은 세율이 먼저 적용되고, 초과분에만 높은 세율이 적용되는 방식이라 평균 세율은 표시된 구간 세율보다 항상 낮습니다.</p>
+          <summary>결과의 "소득세(OO% 구간)"는 소득 전체에 그 세율이 붙는다는 뜻인가요?</summary>
+          <p class="faq-a">아닙니다. 소득세는 누진세라 과세표준을 구간별로 나눠 각 구간에 해당 세율만 적용합니다. "OO% 구간"은 과세표준이 도달한 가장 높은 구간(한계세율)을 알려주는 것일 뿐, 소득 전체에 그 세율이 곱해지는 것이 아닙니다. 실제로는 낮은 구간에 낮은 세율이 먼저 적용되고, 초과분에만 높은 세율이 적용되는 방식이라 평균 세율은 표시된 구간 세율보다 항상 낮습니다.</p>
         </details>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">🔗</span><span data-i18n="common.sources_title">출처</span></h3>
+        <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
-          <li><a href="https://www.4insure.or.kr/pbiz/feii/inscIntroView.do" target="_blank" rel="noopener" data-i18n="salary.source_4insure">4대사회보험 정보연계센터 – 국민연금·건강보험·장기요양보험·고용보험 요율 안내 ↗</a></li>
-          <li><a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2227&amp;cntntsId=7667" target="_blank" rel="noopener" data-i18n="salary.source_nts">국세청 – 종합소득세 세율 ↗</a></li>
+          <li><a href="https://www.4insure.or.kr/pbiz/feii/inscIntroView.do" target="_blank" rel="noopener">4대사회보험 정보연계센터 – 국민연금·건강보험·장기요양보험·고용보험 요율 안내 ↗</a></li>
+          <li><a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2227&amp;cntntsId=7667" target="_blank" rel="noopener">국세청 – 종합소득세 세율 ↗</a></li>
         </ul>
       </div>
     </section>
@@ -257,12 +246,11 @@
 </div>
 
 <footer>
-  <p data-i18n="footer.copyright">&copy; 2026 계산기. All rights reserved.</p>
-  <p class="footer-links"><a href="about.html" data-i18n="footer.about">소개</a> · <a href="contact.html" data-i18n="footer.contact">문의</a> · <a href="privacy.html" data-i18n="footer.privacy">개인정보처리방침</a> · <a href="terms.html" data-i18n="footer.terms">이용약관</a></p>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
 </footer>
 
 <script src="js/site.js"></script>
-<script src="js/i18n.js"></script>
 <script src="js/url-state.js"></script>
 <script src="js/salary-calc.js"></script>
 </body>
