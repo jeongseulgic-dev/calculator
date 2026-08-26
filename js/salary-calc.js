@@ -100,11 +100,13 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   if (!annual){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">연봉을 입력해 주세요</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -112,6 +114,7 @@ function recalc(){
 
   miniScreen.textContent = fmt0(r.monthlyNet) + '원';
   miniScreenSub.textContent = '월 실수령액';
+  meta.textContent = `연봉 ${fmt0(annual)}원 · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명`;
 
   statBody.innerHTML = `
     <tr><th>월 급여 (세전)</th><td>${fmt0(r.monthlyGross)}원</td></tr>

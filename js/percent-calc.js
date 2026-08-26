@@ -18,6 +18,7 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   if (mode === 'of'){
     const percent = parseFloat(document.getElementById('p-percent').value);
@@ -26,11 +27,13 @@ function recalc(){
       miniScreen.textContent = '0';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">퍼센트와 기준값을 입력해 주세요</td></tr>';
+      meta.textContent = '--';
       return;
     }
     const result = base * percent / 100;
     miniScreen.textContent = fmt(result);
     miniScreenSub.textContent = `${fmt(base)}의 ${fmt(percent)}%`;
+    meta.textContent = `퍼센트 ${fmt(percent)}% · 기준값 ${fmt(base)}`;
     statBody.innerHTML = `
       <tr><th>퍼센트</th><td>${fmt(percent)}%</td></tr>
       <tr><th>기준값</th><td>${fmt(base)}</td></tr>
@@ -47,11 +50,13 @@ function recalc(){
       miniScreen.textContent = '0%';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">부분값과 전체값을 입력해 주세요</td></tr>';
+      meta.textContent = '--';
       return;
     }
     const result = part / whole * 100;
     miniScreen.textContent = fmt(result) + '%';
     miniScreenSub.textContent = `${fmt(part)}는 ${fmt(whole)}의 비율`;
+    meta.textContent = `부분값 ${fmt(part)} · 전체값 ${fmt(whole)}`;
     statBody.innerHTML = `
       <tr><th>부분값 (A)</th><td>${fmt(part)}</td></tr>
       <tr><th>전체값 (B)</th><td>${fmt(whole)}</td></tr>
@@ -68,6 +73,7 @@ function recalc(){
       miniScreen.textContent = '0%';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">기존값과 변경값을 입력해 주세요</td></tr>';
+      meta.textContent = '--';
       return;
     }
     const diff = newVal - oldVal;
@@ -76,6 +82,7 @@ function recalc(){
     const label = rate >= 0 ? '증가' : '감소';
     miniScreen.textContent = sign + fmt(rate) + '%';
     miniScreenSub.textContent = `${fmt(oldVal)} → ${fmt(newVal)} (${label})`;
+    meta.textContent = `기존값 ${fmt(oldVal)} · 변경값 ${fmt(newVal)}`;
     statBody.innerHTML = `
       <tr><th>기존값</th><td>${fmt(oldVal)}</td></tr>
       <tr><th>변경값</th><td>${fmt(newVal)}</td></tr>

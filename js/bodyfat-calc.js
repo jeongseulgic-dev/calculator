@@ -33,6 +33,7 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   const needHip = gender === 'female';
   const inputsOk = height && weight && neck && waist && (!needHip || hip);
@@ -41,6 +42,7 @@ function recalc(){
     miniScreen.textContent = '0.0%';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">키·몸무게·목둘레·허리둘레를 입력해 주세요</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -49,6 +51,7 @@ function recalc(){
   if (gender === 'male'){
     if (w - n <= 0){
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">허리둘레가 목둘레보다 커야 계산할 수 있습니다</td></tr>';
+      meta.textContent = '--';
       return;
     }
     bodyFat = 86.010 * Math.log10(w - n) - 70.041 * Math.log10(h) + 36.76;
@@ -56,6 +59,7 @@ function recalc(){
     const hp = toInches(hip);
     if (w + hp - n <= 0){
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">허리+엉덩이둘레 합이 목둘레보다 커야 계산할 수 있습니다</td></tr>';
+      meta.textContent = '--';
       return;
     }
     bodyFat = 163.205 * Math.log10(w + hp - n) - 97.684 * Math.log10(h) - 78.387;
@@ -68,6 +72,8 @@ function recalc(){
 
   miniScreen.textContent = fmt1(bodyFat) + '%';
   miniScreenSub.textContent = `분류: ${category}`;
+  meta.textContent = `키 ${height}cm · 몸무게 ${weight}kg · 목 ${neck}cm · 허리 ${waist}cm`
+    + (needHip ? ` · 엉덩이 ${hip}cm` : '') + ` · ${gender === 'male' ? '남성' : '여성'}`;
 
   statBody.innerHTML = `
     <tr class="stat-highlight"><th>체지방률</th><td>${fmt1(bodyFat)}% (${category})</td></tr>

@@ -80,6 +80,7 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   if (category === 'temperature'){
     const value = parseFloat(document.getElementById('u-temp-value').value);
@@ -89,11 +90,13 @@ function recalc(){
       miniScreen.textContent = '0';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">값을 입력해 주세요</td></tr>';
+      meta.textContent = '--';
       return;
     }
     const result = fromCelsius(toCelsius(value, fromUnit), toUnit);
     miniScreen.textContent = fmt(result);
     miniScreenSub.textContent = TEMP_NAMES[toUnit];
+    meta.textContent = `입력값 ${fmt(value)} ${TEMP_NAMES[fromUnit]} · 변환 단위 ${TEMP_NAMES[toUnit]}`;
     statBody.innerHTML = `
       <tr><th>입력값</th><td>${fmt(value)} ${TEMP_NAMES[fromUnit]}</td></tr>
       <tr class="stat-highlight"><th>변환 결과</th><td>${fmt(result)} ${TEMP_NAMES[toUnit]}</td></tr>
@@ -113,6 +116,7 @@ function recalc(){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">값을 입력해 주세요</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -122,6 +126,7 @@ function recalc(){
 
   miniScreen.textContent = fmt(result);
   miniScreenSub.textContent = def.names[toUnit];
+  meta.textContent = `입력값 ${fmt(value)} ${def.names[fromUnit]} · 변환 단위 ${def.names[toUnit]}`;
   statBody.innerHTML = `
     <tr><th>입력값</th><td>${fmt(value)} ${def.names[fromUnit]}</td></tr>
     <tr class="stat-highlight"><th>변환 결과</th><td>${fmt(result)} ${def.names[toUnit]}</td></tr>

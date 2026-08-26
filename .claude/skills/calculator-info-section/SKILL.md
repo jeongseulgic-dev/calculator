@@ -18,7 +18,13 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
     <aside class="calc-panel">...입력 필드...</aside>
   </div>
   <div>
-    <div class="pages-heading"><h2>{{결과 라벨}}</h2></div>
+    <div class="pages-heading">
+      <h2>{{결과 라벨}}</h2>
+      <div class="pages-heading-actions">
+        <span id="page-meta">--</span>
+        <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+      </div>
+    </div>
     <section class="receipt-strip">...결과...</section>
   </div>
 </div>
@@ -178,6 +184,27 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
 
 새 계산기 페이지를 만들 때 이 5단계를 빼먹지 않는다. `clickToggle`/`toggleDefault` 헬퍼는
 `js/site.js`에 이미 있다.
+
+## 공유하기 버튼 + page-meta (필수)
+
+결과 쪽 `pages-heading`에는 `#page-meta`(입력 요약 텍스트) + `#shareBtn`("공유하기" 버튼)을
+`.pages-heading-actions`로 묶어서 항상 넣는다 — 위 페이지 골격 예시가 정본.
+
+- `#shareBtn` 클릭 핸들러는 **따로 작성하지 않는다**. `js/export.js`가 `#shareBtn`을 보고
+  자동으로 연결한다(공유 대상 URL은 `url-state.js`가 이미 반영해둔 현재 주소 그대로,
+  모바일은 OS 공유시트, 미지원 환경은 링크 클립보드 복사로 자동 대체). `<script src="js/export.js">`
+  를 `url-state.js` 다음, 페이지 자신의 `*-calc.js` 앞에 추가하기만 하면 된다.
+- `#page-meta`는 `recalc()`/`recalcAll()`에서 직접 채운다 — "라벨 값 · 라벨 값" 형식으로,
+  화면에 이미 있는 입력값을 그대로 옮긴다(새로 계산하지 않는다):
+  ```js
+  meta.textContent = `키 ${height}cm · 몸무게 ${weight}kg`;
+  ```
+  성공 경로뿐 아니라 **입력 오류로 일찍 return하는 모든 분기**에도 `meta.textContent = '--';`를
+  넣는다 — 안 그러면 입력을 지웠을 때 이전 계산의 요약 텍스트가 그대로 남는다.
+- 이 요약 텍스트는 공유 시 문자열(`navigator.share`의 `text`)로도 그대로 쓰인다
+  (`export.js`가 `#page-meta`가 있으면 우선 사용, 없으면 결과 화면 `#miniScreen`/
+  `#miniScreenSub`로 대체) — 그래서 입력값이 있는 페이지는 빠짐없이 `#page-meta`를 채워야
+  공유 링크의 미리보기 텍스트도 의미가 있다.
 
 ## CSS
 

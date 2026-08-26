@@ -23,11 +23,13 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   if (!age || !height || !weight){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">나이·키·몸무게를 입력해 주세요</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -37,6 +39,7 @@ function recalc(){
 
   miniScreen.textContent = fmt0(tdee) + ' kcal';
   miniScreenSub.textContent = '하루 활동대사량 (TDEE)';
+  meta.textContent = `나이 ${age}세 · 키 ${height}cm · 몸무게 ${weight}kg · ${gender === 'male' ? '남성' : '여성'}`;
 
   statBody.innerHTML = `
     <tr><th>기초대사량 (BMR)</th><td>${fmt0(bmr)} kcal</td></tr>

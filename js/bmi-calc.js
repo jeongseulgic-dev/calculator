@@ -15,11 +15,13 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   if (!height || !weight){
     miniScreen.textContent = '0.0';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">키와 몸무게를 입력해 주세요</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -31,6 +33,7 @@ function recalc(){
 
   miniScreen.textContent = fmt1(bmi);
   miniScreenSub.textContent = `${cat.label} · BMI 지수`;
+  meta.textContent = `키 ${height}cm · 몸무게 ${weight}kg`;
 
   statBody.innerHTML = `
     <tr><th>키</th><td>${height} cm</td></tr>

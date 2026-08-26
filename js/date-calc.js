@@ -61,6 +61,7 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   if (mode === 'between'){
     const start = parseIsoDate(document.getElementById('d-start').value);
@@ -69,6 +70,7 @@ function recalc(){
       miniScreen.textContent = '0일';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">시작일과 종료일을 YYYY-MM-DD 형식으로 입력해 주세요</td></tr>';
+      meta.textContent = '--';
       return;
     }
     const [from, to] = start <= end ? [start, end] : [end, start];
@@ -79,6 +81,7 @@ function recalc(){
 
     miniScreen.textContent = totalDays.toLocaleString('ko-KR') + '일';
     miniScreenSub.textContent = `${diff.y}년 ${diff.m}개월 ${diff.d}일`;
+    meta.textContent = `시작일 ${document.getElementById('d-start').value} · 종료일 ${document.getElementById('d-end').value}`;
 
     statBody.innerHTML = `
       <tr><th>시작일</th><td>${fmtDate(from)}</td></tr>
@@ -101,6 +104,7 @@ function recalc(){
       miniScreen.textContent = '-';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">기준일(YYYY-MM-DD)과 값을 입력해 주세요</td></tr>';
+      meta.textContent = '--';
       return;
     }
     const signed = addOp === '+' ? amount : -amount;
@@ -114,6 +118,7 @@ function recalc(){
 
     miniScreen.textContent = `${result.getFullYear()}.${result.getMonth()+1}.${result.getDate()}`;
     miniScreenSub.textContent = `${WEEKDAY[result.getDay()]}요일`;
+    meta.textContent = `기준일 ${document.getElementById('d-base').value} · 연산 ${addOp === '+' ? '+' : '-'}${amount}${unitLabel}`;
 
     statBody.innerHTML = `
       <tr><th>기준일</th><td>${fmtDate(base)}</td></tr>

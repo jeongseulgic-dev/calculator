@@ -3,12 +3,14 @@ function recalc(){
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
+  const meta = document.getElementById('page-meta');
 
   const birth = parseIsoDate(val);
   if (!birth){
     miniScreen.textContent = '0세';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">생년월일을 YYYY-MM-DD 형식으로 입력해 주세요</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -19,6 +21,7 @@ function recalc(){
     miniScreen.textContent = '0세';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">생년월일이 오늘보다 미래입니다</td></tr>';
+    meta.textContent = '--';
     return;
   }
 
@@ -34,6 +37,7 @@ function recalc(){
 
   miniScreen.textContent = manAge + '세';
   miniScreenSub.textContent = '만 나이';
+  meta.textContent = `생년월일 ${val}`;
 
   statBody.innerHTML = `
     <tr class="stat-highlight"><th>만 나이</th><td>${manAge}세</td></tr>
