@@ -3,6 +3,7 @@ let scheduleCache = {};
 let visibleRows = 12;
 let activeType = 'equal-principal-interest';
 let debounceTimer = null;
+let lastInputs = {};
 let periodType = 'year';
 let graceType = 'month';
 let extraType = 'shorten';
@@ -144,11 +145,18 @@ function recalcAll(){
     if (compareChart) { compareChart.destroy(); compareChart = null; }
     document.getElementById('ledgerBody').innerHTML = '';
     document.getElementById('ledgerTabs').innerHTML = '';
+    document.getElementById('loadMoreBtn').style.display = 'none';
+    document.getElementById('csvDownloadBtn').style.display = 'none';
     return;
   }
 
   meta.textContent = `원금 ${fmt(P)}원 · ${totalMonths}개월 · 연 ${document.getElementById('p-rate').value}%`
     + (hasExtra ? ` · 중도상환 ${extraMonth}회차 ${fmt(extraAmount)}원` : '');
+
+  lastInputs = {
+    amount: P, totalMonths, rate: document.getElementById('p-rate').value,
+    graceMonths, extraMonth: hasExtra ? extraMonth : '', extraAmount: hasExtra ? extraAmount : ''
+  };
 
   scheduleCache = {};
   METHODS.forEach(m=>{
@@ -250,11 +258,50 @@ function renderLedger(){
     </tr>
   `).join('');
   document.getElementById('loadMoreBtn').style.display = (visibleRows < data.schedule.length) ? 'inline-block' : 'none';
+  document.getElementById('csvDownloadBtn').style.display = 'inline-block';
 }
 
 document.getElementById('loadMoreBtn').addEventListener('click', ()=>{
   visibleRows += 12;
   renderLedger();
+});
+
+document.getElementById('csvDownloadBtn').addEventListener('click', ()=>{
+  const data = scheduleCache[activeType];
+  if (!data) return;
+  const methodLabel = METHODS.find(m=>m.key===activeType).label;
+  const d = new Date();
+  const dateStr = d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  Export.downloadCsv(
+    `대출계산_${methodLabel}_${dateStr}.csv`,
+    ['회차','납입원금','납입이자','월 상환금','대출잔액'],
+    data.schedule.map(r=>[r.month, r.principal, r.interest, r.total, r.balance]),
+    '본 계산 결과는 참고용이며, 실제 상환 금액은 금융기관 상품 조건에 따라 달라질 수 있습니다.',
+    [
+      ['원금(원)','기간(개월)','연이자율(%)','거치기간(개월)','상환방식','중도상환 회차','중도상환 금액(원)'],
+      [lastInputs.amount, lastInputs.totalMonths, lastInputs.rate, lastInputs.graceMonths, methodLabel, lastInputs.extraMonth, lastInputs.extraAmount]
+    ]
+  );
+});
+
+document.getElementById('shareBtn').addEventListener('click', ()=>{
+  const btn = document.getElementById('shareBtn');
+  if (btn.disabled) return;
+  const original = btn.textContent;
+  Export.shareLink({
+    title: document.querySelector('.page-title h2').textContent,
+    text: document.getElementById('page-meta').textContent
+  }).then(status=>{
+    if (status === 'copied'){
+      btn.disabled = true;
+      btn.textContent = '링크 복사됨';
+      setTimeout(()=>{ btn.textContent = original; btn.disabled = false; }, 2000);
+    }
+  }).catch(err=>{
+    console.error('[share link]', err);
+    btn.textContent = '복사 실패';
+    setTimeout(()=>{ btn.textContent = original; }, 2000);
+  });
 });
 
 const URL_DEFAULTS = {

@@ -151,7 +151,10 @@
       <div>
         <div class="pages-heading">
           <h2>예·적금 결과 명세</h2>
-          <span id="page-meta">--</span>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="imageExportBtn" class="load-more-btn" data-target=".receipt-strip" data-filename="예적금계산">이미지로 저장</button>
+          </div>
         </div>
 
         <section class="receipt-strip">
@@ -178,7 +181,10 @@
                 <tbody id="ledgerBody"></tbody>
               </table>
             </div>
-            <div class="load-more-row"><button class="load-more-btn" id="loadMoreBtn">+12개월 더보기</button></div>
+            <div class="load-more-row">
+              <button type="button" class="load-more-btn" id="loadMoreBtn">+12개월 더보기</button>
+              <button type="button" class="load-more-btn" id="csvDownloadBtn">CSV 다운로드</button>
+            </div>
           </div>
         </section>
       </div>
@@ -303,6 +309,7 @@
 
 <script src="js/site.js"></script>
 <script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
 <script src="js/savings-calc.js"></script>
 </body>
 </html>

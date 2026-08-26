@@ -156,7 +156,10 @@
       <div>
         <div class="pages-heading">
           <h2>상환방식 3종 비교</h2>
-          <span id="page-meta">--</span>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
         </div>
 
         <section class="receipt-strip">
@@ -181,7 +184,10 @@
                 <tbody id="ledgerBody"></tbody>
               </table>
             </div>
-            <div class="load-more-row"><button class="load-more-btn" id="loadMoreBtn">+12개월 더보기</button></div>
+            <div class="load-more-row">
+              <button type="button" class="load-more-btn" id="loadMoreBtn">+12개월 더보기</button>
+              <button type="button" class="load-more-btn" id="csvDownloadBtn">CSV 다운로드</button>
+            </div>
           </div>
         </section>
       </div>
@@ -332,6 +338,7 @@
 
 <script src="js/site.js"></script>
 <script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
 <script src="js/loan-calc.js"></script>
 </body>
 </html>

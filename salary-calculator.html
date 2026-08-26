@@ -117,7 +117,10 @@
       </div>
 
       <div>
-        <div class="pages-heading"><h2>실수령액 결과</h2></div>
+        <div class="pages-heading">
+          <h2>실수령액 결과</h2>
+          <button type="button" id="imageExportBtn" class="load-more-btn" data-target=".receipt-strip" data-filename="연봉실수령액계산">이미지로 저장</button>
+        </div>
         <section class="receipt-strip">
           <div class="strip-block">
             <table class="stat-table"><tbody id="statBody"></tbody></table>
@@ -256,6 +259,7 @@
 
 <script src="js/site.js"></script>
 <script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
 <script src="js/salary-calc.js"></script>
 </body>
 </html>

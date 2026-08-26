@@ -60,6 +60,8 @@ function recalcAll(){
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">금액·기간·이자율을 확인해 주세요</td></tr>';
     document.getElementById('ledgerBody').innerHTML = '';
     if (savChart) { savChart.destroy(); savChart = null; }
+    document.getElementById('loadMoreBtn').style.display = 'none';
+    document.getElementById('csvDownloadBtn').style.display = 'none';
     return;
   }
 
@@ -161,11 +163,24 @@ function renderLedger(){
     </tr>
   `).join('');
   document.getElementById('loadMoreBtn').style.display = (visibleRows < scheduleData.length) ? 'inline-block' : 'none';
+  document.getElementById('csvDownloadBtn').style.display = 'inline-block';
 }
 
 document.getElementById('loadMoreBtn').addEventListener('click', ()=>{
   visibleRows += 12;
   renderLedger();
+});
+
+document.getElementById('csvDownloadBtn').addEventListener('click', ()=>{
+  if (!scheduleData.length) return;
+  const d = new Date();
+  const dateStr = d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  Export.downloadCsv(
+    `예적금계산_${dateStr}.csv`,
+    ['회차','납입원금','이자','세전 금액','세후 금액'],
+    scheduleData.map(r=>[r.month, r.principal, r.interest, r.preTax, r.afterTax]),
+    '본 계산 결과는 참고용이며, 실제 수령액은 금융기관 상품 조건 및 세금 적용 방식에 따라 달라질 수 있습니다.'
+  );
 });
 
 const URL_DEFAULTS = {
