@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="google-adsense-account" content="ca-pub-3568008951320473">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
@@ -30,7 +31,10 @@
       <h1><a href="index.html">계산기</a></h1>
       <div class="eyebrow">404</div>
     </div>
-    <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
   </div>
 </header>
 

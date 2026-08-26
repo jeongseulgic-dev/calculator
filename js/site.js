@@ -1,3 +1,9 @@
+function currentTheme(){
+  const attr = document.documentElement.getAttribute('data-theme');
+  if (attr) return attr;
+  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('sidebarToggle');
   const menu = document.getElementById('sidebarMenu');
@@ -9,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menu?.classList.contains('open') && !menu.contains(e.target) && e.target !== toggle) {
       menu.classList.remove('open');
     }
+  });
+
+  const themeBtn = document.getElementById('themeToggle');
+  const syncThemeIcon = () => { if (themeBtn) themeBtn.textContent = currentTheme() === 'dark' ? '☀️' : '🌙'; };
+  syncThemeIcon();
+  themeBtn?.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncThemeIcon();
   });
 });
 
