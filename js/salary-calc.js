@@ -1,4 +1,5 @@
 function fmt0(n){ return Math.round(n).toLocaleString('ko-KR'); }
+function won(n){ return fmt0(n) + I18n.t('common.currency_won', '원'); }
 
 const RATE = {
   nationalPension: 0.0475,
@@ -104,27 +105,28 @@ function recalc(){
   if (!annual){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">연봉을 입력해 주세요</td></tr>';
+    statBody.innerHTML = `<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">${I18n.t('salary.empty_state', '연봉을 입력해 주세요')}</td></tr>`;
     return;
   }
 
   const r = calcSalary(annual, dependents, monthlyNontax);
+  const taxLabel = I18n.t('salary.result_tax', `소득세(${r.bracketRate}% 구간)`).replace('{rate}', r.bracketRate);
 
-  miniScreen.textContent = fmt0(r.monthlyNet) + '원';
-  miniScreenSub.textContent = '월 실수령액';
+  miniScreen.textContent = won(r.monthlyNet);
+  miniScreenSub.textContent = I18n.t('salary.screen_label', '월 실수령액');
 
   statBody.innerHTML = `
-    <tr><th>월 급여 (세전)</th><td>${fmt0(r.monthlyGross)}원</td></tr>
-    <tr><th>비과세 식대(4대보험·소득세 제외)</th><td>${fmt0(r.monthlyNontax)}원</td></tr>
-    <tr><th>국민연금(4.75%)</th><td>-${fmt0(r.nationalPension)}원</td></tr>
-    <tr><th>건강보험(3.6%)</th><td>-${fmt0(r.healthInsurance)}원</td></tr>
-    <tr><th>장기요양보험(건강보험료의 13.14%)</th><td>-${fmt0(r.longTermCare)}원</td></tr>
-    <tr><th>고용보험(0.9%)</th><td>-${fmt0(r.employment)}원</td></tr>
-    <tr><th>소득세(${r.bracketRate}% 구간)</th><td>-${fmt0(r.monthlyIncomeTax)}원</td></tr>
-    <tr><th>지방소득세(10%)</th><td>-${fmt0(r.monthlyLocalTax)}원</td></tr>
-    <tr><th>공제액 합계</th><td>-${fmt0(r.monthlyDeductionTotal)}원</td></tr>
-    <tr><th>연 실수령액</th><td>${fmt0(r.annualNet)}원</td></tr>
-    <tr class="stat-highlight"><th>월 실수령액</th><td>${fmt0(r.monthlyNet)}원</td></tr>
+    <tr><th>${I18n.t('salary.result_gross', '월 급여 (세전)')}</th><td>${won(r.monthlyGross)}</td></tr>
+    <tr><th>${I18n.t('salary.result_nontax', '비과세 식대(4대보험·소득세 제외)')}</th><td>${won(r.monthlyNontax)}</td></tr>
+    <tr><th>${I18n.t('salary.result_np', '국민연금(4.75%)')}</th><td>-${won(r.nationalPension)}</td></tr>
+    <tr><th>${I18n.t('salary.result_hi', '건강보험(3.6%)')}</th><td>-${won(r.healthInsurance)}</td></tr>
+    <tr><th>${I18n.t('salary.result_ltc', '장기요양보험(건강보험료의 13.14%)')}</th><td>-${won(r.longTermCare)}</td></tr>
+    <tr><th>${I18n.t('salary.result_ei', '고용보험(0.9%)')}</th><td>-${won(r.employment)}</td></tr>
+    <tr><th>${taxLabel}</th><td>-${won(r.monthlyIncomeTax)}</td></tr>
+    <tr><th>${I18n.t('salary.result_local_tax', '지방소득세(10%)')}</th><td>-${won(r.monthlyLocalTax)}</td></tr>
+    <tr><th>${I18n.t('salary.result_total_deduction', '공제액 합계')}</th><td>-${won(r.monthlyDeductionTotal)}</td></tr>
+    <tr><th>${I18n.t('salary.result_annual_net', '연 실수령액')}</th><td>${won(r.annualNet)}</td></tr>
+    <tr class="stat-highlight"><th>${I18n.t('salary.result_monthly_net', '월 실수령액')}</th><td>${won(r.monthlyNet)}</td></tr>
   `;
 
   UrlState.sync({ salary: annual, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
@@ -143,4 +145,4 @@ document.getElementById('sl-salary').value = Number(urlParams.salary || URL_DEFA
 document.getElementById('sl-nontax').value = Number(urlParams.meal != null ? urlParams.meal : URL_DEFAULTS.meal).toLocaleString('ko-KR');
 if (urlParams.deps) document.getElementById('sl-dependents').value = urlParams.deps;
 
-recalc();
+I18n.ready.then(recalc);

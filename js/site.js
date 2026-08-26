@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('sidebarToggle');
   const menu = document.getElementById('sidebarMenu');
-  toggle?.addEventListener('click', () => menu.classList.toggle('open'));
+  toggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (menu?.classList.contains('open') && !menu.contains(e.target) && e.target !== toggle) {
+      menu.classList.remove('open');
+    }
+  });
 });
 
 function formatInputComma(el){
