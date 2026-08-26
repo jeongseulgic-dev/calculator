@@ -146,9 +146,11 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
 **salary-calculator.html**(단순, 세그토글 없음)과 **loan-calculator.html**(세그토글+콤마금액+
 멀티모드까지 다 있는 가장 복잡한 케이스).
 
-1. `<script src="js/site.js">` 다음, 페이지 자신의 `js/*-calc.js` 앞에 추가:
+1. `<script src="js/site.js">` 다음, 페이지 자신의 `js/*-calc.js` 앞에 추가 (`export.js`도
+   같은 순서로 항상 같이 넣는다 — 아래 "공유하기 버튼 + page-meta" 참고):
    ```html
    <script src="js/url-state.js"></script>
+   <script src="js/export.js"></script>
    <script src="js/xxx-calc.js"></script>
    ```
 2. `*-calc.js`에 `URL_DEFAULTS` 정의. 일반 입력창은 `el.defaultValue`(HTML `value=` 속성)를
@@ -184,6 +186,27 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
 
 새 계산기 페이지를 만들 때 이 5단계를 빼먹지 않는다. `clickToggle`/`toggleDefault` 헬퍼는
 `js/site.js`에 이미 있다.
+
+## CSV 다운로드 (표+그래프 있는 페이지만)
+
+전체 계산기가 아니라 **`.ledger-table`(회차별로 반복되는 다중 행 데이터) + Chart.js 그래프가
+둘 다 있는 페이지에만** 넣는다 — 지금은 대출·예적금 두 개뿐. 결과가 몇 줄짜리 `.stat-table`
+요약뿐인 페이지(BMI·BMR 등)는 뽑을 데이터 자체가 없으니 CSV 버튼을 넣지 않는다. 새 계산기가
+이 기준(다중 행 표 + 그래프)에 해당하면 그때 추가한다.
+
+- 버튼은 `.load-more-row` 안, `#loadMoreBtn`("+12개월 더보기") 옆에 같은 `.load-more-btn`
+  클래스로: `<button type="button" class="load-more-btn" id="csvDownloadBtn">CSV 다운로드</button>`
+- `Export.downloadCsv(filename, headers, rows, footnote, preamble)` 사용:
+  - `rows`는 화면에 렌더링된 `visibleRows`만큼이 아니라 **메모리에 있는 전체 데이터**(예:
+    `scheduleCache[activeType].schedule`)에서 뽑는다.
+  - `preamble`은 `[헤더행, 값행]` 형태로 입력 조건을 셀별로 나눠서 표 위에 얹는다(하나의
+    텍스트 셀에 다 몰아넣지 않는다) — CSV만 보고도 어떤 값으로 나온 결과인지 알 수 있어야
+    한다는 게 이 기능을 만든 이유였다.
+  - `footnote`엔 "참고용이며 실제 값은 달라질 수 있다"는 취지의 면책 문구를 넣는다.
+  - BOM·따옴표 이스케이프는 함수 내부에서 알아서 처리하니 신경 안 써도 된다.
+- `renderLedger()`가 `#loadMoreBtn`의 `display`를 토글하는 곳, 그리고 입력 오류로 일찍
+  `return`하는 분기 전부에서 `#csvDownloadBtn`도 같이 숨긴다 — 안 그러면 에러 화면에서
+  이전 계산의 stale 데이터를 내보낼 수 있다.
 
 ## 공유하기 버튼 + page-meta (필수)
 
