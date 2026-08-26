@@ -1,6 +1,7 @@
 /*!
- * export.js — CSV 다운로드(대출·예적금) + 결과 이미지 저장(전체 계산기 공용) 유틸.
- * html2canvas는 무겁기 때문에 버튼을 실제로 클릭한 시점에만 CDN에서 불러온다.
+ * export.js — CSV 다운로드(대출·예적금) + 결과 링크 공유(전체 계산기 공용) 유틸.
+ * 공유는 이미지가 아니라 URL을 공유한다 — url-state.js가 이미 입력값을 URL에 반영해두므로
+ * 링크를 타고 온 사람이 같은 계산 결과를 그대로 보게 된다.
  */
 (function (global) {
   'use strict';
@@ -72,86 +73,33 @@
     return copyLink(url).then(function(){ return 'copied'; });
   }
 
-  var H2C_URL = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-  var loadingPromise = null;
+  global.Export = { downloadCsv: downloadCsv, shareLink: shareLink };
 
-  function ensureHtml2Canvas(){
-    if (global.html2canvas) return Promise.resolve(global.html2canvas);
-    if (loadingPromise) return loadingPromise;
-    loadingPromise = new Promise(function(resolve, reject){
-      var script = document.createElement('script');
-      script.src = H2C_URL;
-      script.onload = function(){
-        if (global.html2canvas) resolve(global.html2canvas);
-        else reject(new Error('html2canvas load failed'));
-      };
-      script.onerror = function(){
-        loadingPromise = null;
-        reject(new Error('html2canvas script load error'));
-      };
-      document.body.appendChild(script);
-    });
-    return loadingPromise;
-  }
-
-  function drawWatermark(canvas, srcWidth){
-    var ctx = canvas.getContext('2d');
-    var scale = canvas.width / srcWidth;
-    ctx.save();
-    ctx.font = (12 * scale) + 'px "Noto Sans KR", sans-serif';
-    ctx.fillStyle = 'rgba(100,103,108,0.85)';
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('참고용 계산 결과 · 실제 값은 다를 수 있습니다', canvas.width - 12 * scale, canvas.height - 8 * scale);
-    ctx.restore();
-  }
-
-  function saveElementAsImage(el, filename){
-    var srcWidth = el.offsetWidth;
-    return ensureHtml2Canvas().then(function(html2canvas){
-      return html2canvas(el, {
-        backgroundColor: '#fffdf5',
-        scale: Math.min(2, global.devicePixelRatio || 1)
-      });
-    }).then(function(canvas){
-      drawWatermark(canvas, srcWidth);
-      return new Promise(function(resolve, reject){
-        canvas.toBlob(function(blob){
-          if (!blob) { reject(new Error('canvas.toBlob returned null')); return; }
-          triggerDownload(blob, filename);
-          resolve();
-        }, 'image/png');
-      });
-    });
-  }
-
-  global.Export = {
-    downloadCsv: downloadCsv,
-    ensureHtml2Canvas: ensureHtml2Canvas,
-    saveElementAsImage: saveElementAsImage,
-    shareLink: shareLink
-  };
-
-  var btn = document.getElementById('imageExportBtn');
+  var btn = document.getElementById('shareBtn');
   if (btn){
     var originalLabel = btn.textContent;
     btn.addEventListener('click', function(){
       if (btn.disabled) return;
-      var target = document.querySelector(btn.dataset.target || '.receipt-strip');
-      if (!target) return;
-      btn.disabled = true;
-      btn.textContent = '저장 중…';
-      var d = new Date();
-      var dateStr = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
-      var filename = (btn.dataset.filename || '계산결과') + '_' + dateStr + '.png';
-      saveElementAsImage(target, filename).then(function(){
-        btn.disabled = false;
-        btn.textContent = originalLabel;
+      var titleEl = document.querySelector('.page-title h2');
+      var metaEl = document.getElementById('page-meta');
+      var miniScreen = document.getElementById('miniScreen');
+      var miniScreenSub = document.getElementById('miniScreenSub');
+      var text = metaEl
+        ? metaEl.textContent
+        : [miniScreenSub && miniScreenSub.textContent, miniScreen && miniScreen.textContent].filter(Boolean).join(' ');
+      shareLink({
+        title: titleEl ? titleEl.textContent : document.title,
+        text: text
+      }).then(function(status){
+        if (status === 'copied'){
+          btn.disabled = true;
+          btn.textContent = '링크 복사됨';
+          setTimeout(function(){ btn.textContent = originalLabel; btn.disabled = false; }, 2000);
+        }
       }).catch(function(err){
-        console.error('[image export]', err);
-        btn.textContent = '저장 실패 (다시 시도)';
-        setTimeout(function(){ btn.textContent = originalLabel; }, 2500);
-        btn.disabled = false;
+        console.error('[share link]', err);
+        btn.textContent = '복사 실패';
+        setTimeout(function(){ btn.textContent = originalLabel; }, 2000);
       });
     });
   }

@@ -284,26 +284,6 @@ document.getElementById('csvDownloadBtn').addEventListener('click', ()=>{
   );
 });
 
-document.getElementById('shareBtn').addEventListener('click', ()=>{
-  const btn = document.getElementById('shareBtn');
-  if (btn.disabled) return;
-  const original = btn.textContent;
-  Export.shareLink({
-    title: document.querySelector('.page-title h2').textContent,
-    text: document.getElementById('page-meta').textContent
-  }).then(status=>{
-    if (status === 'copied'){
-      btn.disabled = true;
-      btn.textContent = '링크 복사됨';
-      setTimeout(()=>{ btn.textContent = original; btn.disabled = false; }, 2000);
-    }
-  }).catch(err=>{
-    console.error('[share link]', err);
-    btn.textContent = '복사 실패';
-    setTimeout(()=>{ btn.textContent = original; }, 2000);
-  });
-});
-
 const URL_DEFAULTS = {
   amount: '300000000',
   period: document.getElementById('p-period').defaultValue,
