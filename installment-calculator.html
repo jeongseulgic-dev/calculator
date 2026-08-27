@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="할부 수수료 계산기 | 카드 할부 개월수별 월 상환액과 총 수수료를 비교하는 무료 계산기">
+<title>할부 수수료 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/installment-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="할부 수수료 계산기 | 계산기">
+<meta property="og:description" content="할부 수수료 계산기 | 카드 할부 개월수별 월 상환액과 총 수수료를 비교하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/installment-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">INSTALLMENT FEE CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h3>금융</h3>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html" class="active">할부 수수료 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>건강</h3>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>수학</h3>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h3>생활</h3>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>할부 수수료 계산기</h2>
+      <p>구매금액과 할부 수수료율을 입력하면 할부 개월수별 월 상환액과 총 수수료를 한눈에 비교합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>할부 조건 입력</h2></div>
+        <aside class="calc-panel">
+        <div class="screen-shell">
+          <div class="screen">
+            <div class="label">비교 개월수 중 최저 총 수수료</div>
+            <div class="value" id="miniScreen">0</div>
+            <div class="value-sub" id="miniScreenSub"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>구매 금액 (원)</label>
+          <input type="text" id="c-amount" placeholder="예: 1,000,000">
+          <div class="key-row">
+            <button type="button" class="calc-key" data-add="100000">+10만</button>
+            <button type="button" class="calc-key" data-add="1000000">+100만</button>
+            <button type="button" class="calc-key pink" data-reset>C</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>할부 수수료율 (연 %)</label>
+          <input type="number" step="0.1" id="c-rate" value="15">
+          <p class="field-note">카드사·상품·이벤트(무이자 할부 등)에 따라 실제 수수료율은 다릅니다.</p>
+        </div>
+
+        <div class="field">
+          <label>비교할 할부 개월수 ①②③</label>
+          <div class="field-row">
+            <input type="number" id="c-m1" min="1" value="3">
+            <input type="number" id="c-m2" min="1" value="6">
+            <input type="number" id="c-m3" min="1" value="12">
+          </div>
+        </div>
+
+        <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>개월수별 비교</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <div class="compare-grid" id="compareGrid"></div>
+          </div>
+
+          <div class="strip-divider"></div>
+
+          <div class="strip-block">
+            <h3 class="block-title">개월수별 총 수수료 비교</h3>
+            <div class="chart-box"><canvas id="compareChart"></canvas></div>
+          </div>
+
+          <div class="strip-divider"></div>
+
+          <div class="strip-block">
+            <div class="ledger-tabs" id="ledgerTabs"></div>
+            <div class="ledger-table-wrap">
+              <table class="ledger-table">
+                <thead><tr><th>회차</th><th>할부원금</th><th>수수료</th><th>월 상환액</th><th>잔액</th></tr></thead>
+                <tbody id="ledgerBody"></tbody>
+              </table>
+            </div>
+            <div class="load-more-row">
+              <button type="button" class="load-more-btn" id="loadMoreBtn">+12개월 더보기</button>
+              <button type="button" class="load-more-btn" id="csvDownloadBtn">CSV 다운로드</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>할부 수수료 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>할부 수수료란?</h3>
+        <p>신용카드로 물건을 살 때 일시불이 아니라 할부를 선택하면, 카드사는 구매금액을 정해진 개월수로 나눠 받는 대신 수수료(할부수수료)를 붙입니다. 할부 개월수가 길어질수록 매달 내는 금액은 줄어들지만 총 수수료는 늘어나는 구조입니다.</p>
+        <p>이 계산기는 참고용 추정치이며, 실제 수수료율과 계산 방식은 카드사·카드 상품·무이자 할부 이벤트 여부에 따라 달라질 수 있습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="formula-box formula-frac">
+          <span class="frac-lhs">월 상환액 =</span>
+          <span class="frac">
+            <span class="num">구매금액 × 월수수료율 × (1+월수수료율)ⁿ</span>
+            <span class="den">(1+월수수료율)ⁿ − 1</span>
+          </span>
+        </div>
+        <p>대출 이자 계산기의 원리금균등상환과 같은 방식으로, 매달 내는 금액(원금+수수료)이 할부기간 내내 동일하도록 계산합니다. 수수료율이 0%(무이자 할부)인 경우에는 구매금액을 개월수로 균등하게 나눈 금액만 매달 상환합니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>할부 개월수가 길어지면</h3>
+        <table class="criteria-table text-table">
+          <tbody>
+            <tr><td>월 상환액</td><td>줄어듭니다</td></tr>
+            <tr><td>총 수수료</td><td>늘어납니다</td></tr>
+            <tr><td>매달 부담</td><td>가벼워집니다</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>무이자 할부는 어떻게 계산하나요?</summary>
+          <p class="faq-a">수수료율을 0으로 입력하면 총 수수료 없이 구매금액을 할부 개월수로 균등하게 나눈 금액만 매달 상환하는 것으로 계산합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>리볼빙(이월약정결제)도 계산할 수 있나요?</summary>
+          <p class="faq-a">아니요. 이 계산기는 구매 시점에 개월수를 정하는 일반 할부 결제를 기준으로 합니다. 리볼빙은 매달 결제 비율을 선택하는 별도 가입 서비스이고 카드사·상품마다 최소결제비율이 달라 하나의 계산식으로 일반화하기 어려워 포함하지 않았습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>3개 옵션의 개월수는 마음대로 바꿀 수 있나요?</summary>
+          <p class="faq-a">네. 기본값은 3/6/12개월이지만 입력란에 원하는 개월수를 직접 입력하면 그 기준으로 다시 비교합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>실제 카드 명세서 금액과 다를 수 있나요?</summary>
+          <p class="faq-a">네. 카드사마다 수수료 계산 방식(정액법/정률법 등), 이벤트 할인, 부가세 처리 방식이 달라 실제 청구 금액과 차이가 날 수 있습니다. 정확한 금액은 카드사 안내를 확인하세요.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/installment-calc.js"></script>
+</body>
+</html>
