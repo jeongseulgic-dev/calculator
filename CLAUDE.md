@@ -62,6 +62,10 @@ calculator.net을 UX(기능 구성)만 참고하고 UI는 독자적으로 만들
 - **모든 새 페이지 공통**: footer에 소개(`about.html`)·문의(`contact.html`)·
   개인정보처리방침(`privacy.html`)·이용약관(`terms.html`) 링크 4개를 그대로 포함한다
   (기존 페이지의 footer 마크업을 복사).
+- **모든 새 페이지 공통**: `<title>` 바로 아래에 canonical + OG 태그를 넣는다(다른 페이지
+  그대로 참고 — `og:type`/`og:site_name`/`og:locale`/`og:title`/`og:description`/`og:url`,
+  `og:title`·`og:description`은 이미 있는 `<title>`/`<meta description>` 텍스트 재사용).
+  `sitemap.xml`에도 새 URL을 추가한다.
 - `index.html`에는 광고 슬롯(`.ad-slot`)을 넣지 않는다.
 - 광고는 항상 계산 결과 아래에만 둔다. 계산기 UI 위쪽에는 넣지 않고, 자동광고·앵커·
   전면(인터스티셜) 광고는 쓰지 않는다.
