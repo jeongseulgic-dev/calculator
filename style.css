@@ -91,7 +91,7 @@ header{ background:var(--header-bg); color:var(--header-text); padding:14px 20px
 .header-inner{ max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
 header h1{ font-size:1.25rem; font-weight:900; letter-spacing:0.5px; }
 header h1 a{ color:inherit; text-decoration:none; }
-header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:rgba(226,228,232,0.55); letter-spacing:1.5px; margin-top:2px; }
+header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:#c7c9cc; letter-spacing:1.5px; margin-top:2px; }
 .mobile-menu-toggle{ display:none; background:var(--btn-fn); color:#fff; border:1px solid #73777d; padding:6px 12px; border-radius:4px; font-size:0.85rem; cursor:pointer; font-weight:700; }
 .header-actions{ display:flex; align-items:center; gap:10px; }
 .theme-toggle{
