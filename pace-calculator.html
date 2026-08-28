@@ -48,7 +48,7 @@
   <aside class="sidebar" id="sidebarMenu">
     <nav>
       <div class="menu-group">
-        <h3>금융</h3>
+        <h2>금융</h2>
         <ul>
           <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
           <li><a href="savings-calculator.html">예·적금 계산기</a></li>
@@ -57,7 +57,7 @@
         </ul>
       </div>
       <div class="menu-group">
-        <h3>건강</h3>
+        <h2>건강</h2>
         <ul>
           <li><a href="bmi-calculator.html">BMI 계산기</a></li>
           <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
@@ -66,14 +66,14 @@
         </ul>
       </div>
       <div class="menu-group">
-        <h3>수학</h3>
+        <h2>수학</h2>
         <ul>
           <li><a href="scientific-calculator.html">공학용 계산기</a></li>
           <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
         </ul>
       </div>
       <div class="menu-group">
-        <h3>생활</h3>
+        <h2>생활</h2>
         <ul>
           <li><a href="age-calculator.html">만 나이 계산기</a></li>
           <li><a href="date-calculator.html">날짜 계산기</a></li>
@@ -113,12 +113,12 @@
           </div>
 
           <div class="field mode-field" data-modes="pace time">
-            <label>거리 (km)</label>
+            <label for="r-distance">거리 (km)</label>
             <input type="number" id="r-distance" step="0.01" value="5">
           </div>
 
           <div class="field mode-field" data-modes="pace distance">
-            <label>완주 시간</label>
+            <label for="r-hour">완주 시간</label>
             <div class="field-row">
               <input type="number" id="r-hour" placeholder="시" min="0" value="0">
               <input type="number" id="r-min" placeholder="분" min="0" value="25">
@@ -127,7 +127,7 @@
           </div>
 
           <div class="field mode-field hidden" data-modes="time distance">
-            <label>페이스 (분'초"/km)</label>
+            <label for="r-pace-min">페이스 (분'초"/km)</label>
             <div class="field-row">
               <input type="number" id="r-pace-min" placeholder="분" min="0" value="5">
               <input type="number" id="r-pace-sec" placeholder="초" min="0" max="59" value="0">

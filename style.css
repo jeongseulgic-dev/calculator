@@ -57,7 +57,7 @@
 /* 변수가 아니라 색이 직접 박혀 있던 것들 — 라이트모드 규칙은 그대로 두고 다크값만 추가 */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) .menu-group{ background:#26282c; border-color:#3a3d42; box-shadow:none; }
-  :root:not([data-theme="light"]) .menu-group h3{ border-bottom-color:#3a3d42; }
+  :root:not([data-theme="light"]) .menu-group h2{ border-bottom-color:#3a3d42; }
   :root:not([data-theme="light"]) .menu-group li a{ color:#c7c9cc; }
   :root:not([data-theme="light"]) .info-block{ border-color:#3a3d42; }
   :root:not([data-theme="light"]) .formula-box{ background:#1e2023; }
@@ -70,7 +70,7 @@
   :root:not([data-theme="light"]) .ad-slot{ background:#1e2023; border-color:#3a3d42; }
 }
 :root[data-theme="dark"] .menu-group{ background:#26282c; border-color:#3a3d42; box-shadow:none; }
-:root[data-theme="dark"] .menu-group h3{ border-bottom-color:#3a3d42; }
+:root[data-theme="dark"] .menu-group h2{ border-bottom-color:#3a3d42; }
 :root[data-theme="dark"] .menu-group li a{ color:#c7c9cc; }
 :root[data-theme="dark"] .info-block{ border-color:#3a3d42; }
 :root[data-theme="dark"] .formula-box{ background:#1e2023; }
@@ -104,7 +104,7 @@ header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; colo
 .layout-wrapper{ display:flex; width:100%; max-width:1120px; margin:0 auto; padding:24px 16px 60px; gap:28px; align-items:flex-start; }
 .sidebar{ width:210px; flex-shrink:0; }
 .menu-group{ margin-bottom:20px; background:#caccce; padding:14px; border-radius:5px; border:1px solid #b8bac0; box-shadow:inset 1px 1px 3px rgba(255,255,255,0.7), 2px 2px 5px rgba(0,0,0,0.08); }
-.menu-group h3{ font-size:0.88rem; color:var(--pink); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #a3a6ac; font-weight:900; }
+.menu-group h2{ font-size:0.88rem; color:var(--pink); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #a3a6ac; font-weight:900; }
 .menu-group ul{ list-style:none; }
 .menu-group li a{ text-decoration:none; color:#4a4e53; font-size:0.85rem; display:block; padding:5px 0; font-weight:700; }
 .menu-group li a:hover, .menu-group li a.active{ color:var(--pink); font-weight:900; }
