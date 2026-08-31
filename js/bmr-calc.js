@@ -44,8 +44,6 @@ function recalc(){
   statBody.innerHTML = `
     <tr><th>기초대사량 (BMR)</th><td>${fmt0(bmr)} kcal</td></tr>
     <tr class="stat-highlight"><th>활동대사량 (TDEE)</th><td>${fmt0(tdee)} kcal</td></tr>
-    <tr><th>체중 유지 권장 섭취량</th><td>약 ${fmt0(tdee)} kcal</td></tr>
-    <tr><th>체중 감량 권장 섭취량 (−15%)</th><td>약 ${fmt0(tdee*0.85)} kcal</td></tr>
   `;
 
   UrlState.sync({ age, height, weight, gender, activity }, URL_DEFAULTS);

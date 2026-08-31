@@ -14,15 +14,15 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="기초대사량(BMR) 계산기 | 나이·키·몸무게·활동량으로 기초대사량과 활동대사량(TDEE)을 계산하는 무료 계산기">
-<title>기초대사량(BMR) 계산기 | 계산기</title>
-<link rel="canonical" href="https://kcalculator.net/bmr-calculator.html">
+<meta name="description" content="칼로리 계산기 | 감량·유지·증량 목표별 하루 권장 칼로리와 탄수화물·단백질·지방 구성을 계산하는 무료 계산기">
+<title>칼로리 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/calorie-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="기초대사량(BMR) 계산기 | 계산기">
-<meta property="og:description" content="기초대사량(BMR) 계산기 | 나이·키·몸무게·활동량으로 기초대사량과 활동대사량(TDEE)을 계산하는 무료 계산기">
-<meta property="og:url" content="https://kcalculator.net/bmr-calculator.html">
+<meta property="og:title" content="칼로리 계산기 | 계산기">
+<meta property="og:description" content="칼로리 계산기 | 감량·유지·증량 목표별 하루 권장 칼로리와 탄수화물·단백질·지방 구성을 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/calorie-calculator.html">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -39,7 +39,7 @@
   <div class="header-inner">
     <div>
       <h1><a href="index.html">계산기</a></h1>
-      <div class="eyebrow">BMR CALCULATOR</div>
+      <div class="eyebrow">CALORIE CALCULATOR</div>
     </div>
     <div class="header-actions">
       <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
@@ -65,8 +65,8 @@
         <h2>건강</h2>
         <ul>
           <li><a href="bmi-calculator.html">BMI 계산기</a></li>
-          <li><a href="bmr-calculator.html" class="active">기초대사량(BMR) 계산기</a></li>
-          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html" class="active">칼로리 계산기</a></li>
           <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
           <li><a href="sleep-calculator.html">수면 계산기</a></li>
           <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
@@ -95,8 +95,8 @@
 
   <div class="page-content">
     <div class="page-title">
-      <h2>기초대사량(BMR) 계산기</h2>
-      <p>Mifflin-St Jeor 공식 기준으로 기초대사량과 활동대사량(TDEE), 권장 섭취 칼로리를 계산합니다.</p>
+      <h2>칼로리 계산기</h2>
+      <p>감량·유지·증량 목표를 선택하면 하루 권장 칼로리와 탄수화물·단백질·지방 구성을 계산합니다.</p>
     </div>
 
     <div class="shell">
@@ -105,7 +105,7 @@
         <aside class="calc-panel">
         <div class="screen-shell">
           <div class="screen">
-            <div class="label">활동대사량 (TDEE)</div>
+            <div class="label">목표 칼로리</div>
             <div class="value" id="miniScreen">0</div>
             <div class="value-sub" id="miniScreenSub"></div>
           </div>
@@ -120,18 +120,18 @@
         </div>
 
         <div class="field">
-          <label for="m-age">나이</label>
-          <input type="number" id="m-age" placeholder="예: 30" value="30">
+          <label for="cl-age">나이</label>
+          <input type="number" id="cl-age" placeholder="예: 30" value="30">
         </div>
 
         <div class="field">
-          <label for="m-height">키 (cm)</label>
-          <input type="number" id="m-height" placeholder="예: 170" value="170">
+          <label for="cl-height">키 (cm)</label>
+          <input type="number" id="cl-height" placeholder="예: 170" value="170">
         </div>
 
         <div class="field">
-          <label for="m-weight">몸무게 (kg)</label>
-          <input type="number" id="m-weight" placeholder="예: 65" value="65">
+          <label for="cl-weight">몸무게 (kg)</label>
+          <input type="number" id="cl-weight" placeholder="예: 65" value="65">
         </div>
 
         <div class="field">
@@ -144,21 +144,38 @@
           </div>
         </div>
 
+        <div class="field">
+          <label>목표</label>
+          <div class="seg-toggle" data-target="goal" style="width:100%;">
+            <button type="button" class="seg-btn" data-value="lose" style="flex:1;">감량</button>
+            <button type="button" class="seg-btn active" data-value="maintain" style="flex:1;">유지</button>
+            <button type="button" class="seg-btn" data-value="gain" style="flex:1;">증량</button>
+          </div>
+        </div>
+
         <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
         </aside>
       </div>
 
       <div>
         <div class="pages-heading">
-          <h2>대사량 결과</h2>
+          <h2>칼로리·매크로 결과</h2>
           <div class="pages-heading-actions">
             <span id="page-meta">--</span>
             <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
           </div>
         </div>
+
         <section class="receipt-strip">
           <div class="strip-block">
             <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+
+          <div class="strip-divider"></div>
+
+          <div class="strip-block">
+            <h3 class="block-title">탄단지 구성</h3>
+            <table class="stat-table"><tbody id="macroBody"></tbody></table>
           </div>
         </section>
       </div>
@@ -167,98 +184,64 @@
     <div class="ad-slot"></div>
 
     <section class="info-section">
-      <h2>BMR 계산기 안내</h2>
+      <h2>칼로리 계산기 안내</h2>
 
       <div class="info-block">
-        <h3><span class="info-icon">💡</span>기초대사량(BMR)이란?</h3>
-        <p>기초대사량(BMR, Basal Metabolic Rate)은 아무 활동도 하지 않고 하루 종일 가만히 누워만 있어도 호흡, 체온 유지, 심장박동 등 생명 유지를 위해 몸이 소모하는 최소한의 에너지량입니다.</p>
-        <p>여기에 일상적인 활동량을 반영한 값이 활동대사량(TDEE, Total Daily Energy Expenditure)이며, 실제 다이어트나 식단 계획에는 BMR이 아니라 TDEE를 기준으로 삼는 것이 정확합니다.</p>
+        <h3><span class="info-icon">💡</span>칼로리 계산기란?</h3>
+        <p>기초대사량(BMR)·활동대사량(TDEE) 자체는 <a href="bmr-calculator.html">BMR 계산기</a>와 똑같은 공식으로 계산하고, 여기서는 한 걸음 더 나가 감량·유지·증량 목표에 따라 하루 몇 칼로리를 먹어야 하는지, 그리고 탄수화물·단백질·지방을 각각 몇 그램씩 먹어야 하는지까지 함께 보여줍니다.</p>
+        <p>체중 변화는 섭취 칼로리뿐 아니라 개인 대사, 활동량 변화, 수분 등 다양한 요인의 영향을 받는 참고용 추정치입니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">🧮</span>계산 공식</h3>
-        <p>이 계산기는 현재 가장 널리 쓰이고 신뢰도가 높다고 알려진 Mifflin-St Jeor 공식을 사용합니다.</p>
-        <div class="method-def">
-          <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">남성 BMR = 10×몸무게(kg) + 6.25×키(cm) − 5×나이 + 5</span></span>
-            <span class="frac-sep"></span>
-            <span class="frac-part"><span class="frac-lhs">여성 BMR = 10×몸무게(kg) + 6.25×키(cm) − 5×나이 − 161</span></span>
-          </div>
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="formula-box formula-frac">
+          <span class="frac-part"><span class="frac-lhs">목표 칼로리 = TDEE + (감량 −500 / 유지 0 / 증량 +500)</span></span>
         </div>
-        <div class="method-def">
-          <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">TDEE = BMR × 활동량 계수</span></span>
-          </div>
+        <div class="formula-box formula-frac">
+          <span class="frac-part"><span class="frac-lhs">탄수화물(g) = 목표 칼로리×50% ÷ 4</span></span>
+          <span class="frac-sep"></span>
+          <span class="frac-part"><span class="frac-lhs">단백질(g) = 목표 칼로리×20% ÷ 4</span></span>
+          <span class="frac-sep"></span>
+          <span class="frac-part"><span class="frac-lhs">지방(g) = 목표 칼로리×30% ÷ 9</span></span>
         </div>
-        <p>예) 몸무게 65kg, 키 170cm, 30세 남성 → BMR ≈ 1,568kcal</p>
+        <p>±500kcal는 "약 3,500kcal가 체중 0.5kg에 해당한다"는 통상적인 어림값에 근거합니다. 실제로는 개인마다 체중 변화 속도가 다르고 이 어림값이 과대추정되는 경향이 있다는 지적도 있어, 참고용 추정치로만 활용하는 것이 좋습니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span>활동량 계수 기준표</h3>
-        <div class="method-compare-grid">
-          <div class="method-compare-card">
-            <span class="mc-badge">× 1.2</span>
-            <h4>거의 없음</h4>
-            <ul>
-              <li><span>운동 빈도</span><span>거의 안 함</span></li>
-              <li><span>일상 활동</span><span>주로 앉아서 생활</span></li>
-            </ul>
-          </div>
-          <div class="method-compare-card">
-            <span class="mc-badge">× 1.375</span>
-            <h4>가벼운 운동</h4>
-            <ul>
-              <li><span>운동 빈도</span><span>주 1~3회</span></li>
-              <li><span>일상 활동</span><span>가벼운 운동 병행</span></li>
-            </ul>
-          </div>
-          <div class="method-compare-card">
-            <span class="mc-badge best">× 1.55</span>
-            <h4>보통</h4>
-            <ul>
-              <li><span>운동 빈도</span><span>주 3~5회</span></li>
-              <li><span>일상 활동</span><span>중강도 운동</span></li>
-            </ul>
-          </div>
-          <div class="method-compare-card">
-            <span class="mc-badge">× 1.725</span>
-            <h4>활발함</h4>
-            <ul>
-              <li><span>운동 빈도</span><span>주 6~7회</span></li>
-              <li><span>일상 활동</span><span>고강도 운동</span></li>
-            </ul>
-          </div>
-        </div>
+        <h3><span class="info-icon">📊</span>목표별 칼로리 예시 (TDEE 2,000kcal 기준)</h3>
+        <table class="criteria-table">
+          <tbody>
+            <tr><td>감량</td><td>1,500kcal</td></tr>
+            <tr><td>유지</td><td>2,000kcal</td></tr>
+            <tr><td>증량</td><td>2,500kcal</td></tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary>BMR과 TDEE는 어떻게 다른가요?</summary>
-          <p class="faq-a">BMR은 활동 없이 생존에만 필요한 최소 칼로리이고, TDEE는 여기에 일상 활동·운동으로 소모하는 칼로리까지 더한 하루 총 소모량입니다. 식단을 계획할 때는 TDEE를 기준으로 삼아야 합니다.</p>
+          <summary>±500kcal는 어디서 나온 수치인가요?</summary>
+          <p class="faq-a">지방 조직 약 3,500kcal가 체중 약 0.5kg에 해당한다는 계산에서 나온, 널리 쓰이는 어림값입니다. 다만 최근 연구에서는 이 어림값이 실제 체중 변화를 과대추정하는 경향이 있다고 지적하므로, 정확한 예측이 아닌 대략적인 참고치로 보는 것이 좋습니다.</p>
         </details>
         <details class="faq-item">
-          <summary>다이어트할 때 이 수치를 어떻게 활용하나요?</summary>
-          <p class="faq-a">TDEE보다 적게 섭취하면 체중이 감소하고, 많이 섭취하면 증가합니다. 목표(감량·유지·증량)별 정확한 칼로리와 탄수화물·단백질·지방 구성까지 보고 싶다면 <a href="calorie-calculator.html">칼로리 계산기</a>를 이용하세요.</p>
+          <summary>탄수화물·단백질·지방 비율은 왜 50/20/30으로 정했나요?</summary>
+          <p class="faq-a">보건복지부·한국영양학회가 발표한 「2025 한국인 영양소 섭취기준」의 에너지적정비율(탄수화물 50~65%, 단백질 10~20%, 지방 15~30%) 범위 안에서, 다이어트·운동을 병행하는 분들이 많이 참고하는 비율로 고정했습니다.</p>
         </details>
         <details class="faq-item">
-          <summary>왜 남녀 계산식이 다른가요?</summary>
-          <p class="faq-a">평균적으로 남성이 여성보다 근육량이 많고 체지방률이 낮아 기초대사량이 더 높은 경향이 있습니다. Mifflin-St Jeor 공식은 이 차이를 성별 보정값(남성 +5, 여성 −161)으로 반영합니다.</p>
+          <summary>BMR 계산기와 뭐가 다른가요?</summary>
+          <p class="faq-a">BMR·TDEE를 구하는 공식 자체는 완전히 같습니다. BMR 계산기는 "기초대사량이 얼마인지"에 집중하고, 이 계산기는 거기서 한 걸음 더 나아가 목표(감량·유지·증량)별 칼로리와 탄단지 구성까지 보여준다는 점이 다릅니다.</p>
         </details>
         <details class="faq-item">
-          <summary>이 계산기는 어떤 공식을 사용하나요?</summary>
-          <p class="faq-a">Mifflin-St Jeor 공식을 사용합니다. 더 오래된 Harris-Benedict 공식보다 실제 측정값에 가깝다고 알려져 있어 최근에는 임상·영양 분야에서 더 널리 사용됩니다.</p>
-        </details>
-        <details class="faq-item">
-          <summary>활동량은 어떤 기준으로 선택해야 하나요?</summary>
-          <p class="faq-a">평소 운동 빈도와 일 강도를 함께 고려하세요. 사무직이면서 운동을 거의 하지 않는다면 '거의 없음', 주 3회 이상 헬스·러닝 등을 한다면 '보통' 이상을 선택하는 것이 일반적입니다.</p>
+          <summary>탄단지 비율을 직접 조정할 수 있나요?</summary>
+          <p class="faq-a">지금은 고정된 비율(50/20/30)로만 계산합니다. 특정 식단(저탄고지 등)에 맞춘 비율 조정이 필요하다면 계산된 목표 칼로리를 기준으로 직접 비율을 적용해 보시길 권장합니다.</p>
         </details>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
-          <li><a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" target="_blank" rel="noopener">Mifflin MD, et al. "A new predictive equation for resting energy expenditure in healthy individuals," The American Journal of Clinical Nutrition, 1990 (PubMed) ↗</a></li>
+          <li><a href="https://www.mohw.go.kr/board.es?mid=a10411010200&bid=0019&tag=&act=view&list_no=1488446" target="_blank" rel="noopener">보건복지부·한국영양학회 – 2025 한국인 영양소 섭취기준 ↗</a></li>
         </ul>
       </div>
     </section>
@@ -275,6 +258,6 @@
 <script src="js/site.js"></script>
 <script src="js/url-state.js"></script>
 <script src="js/export.js"></script>
-<script src="js/bmr-calc.js"></script>
+<script src="js/calorie-calc.js"></script>
 </body>
 </html>
