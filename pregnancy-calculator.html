@@ -14,15 +14,15 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="수면 계산기 | 90분 수면 주기를 기준으로 취침·기상 시간을 추천하는 무료 계산기">
-<title>수면 계산기 | 계산기</title>
-<link rel="canonical" href="https://kcalculator.net/sleep-calculator.html">
+<meta name="description" content="임신·출산예정일 계산기 | 마지막 생리 시작일로 출산예정일과 현재 임신 주수를 계산하는 무료 계산기">
+<title>임신·출산예정일 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/pregnancy-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="수면 계산기 | 계산기">
-<meta property="og:description" content="수면 계산기 | 90분 수면 주기를 기준으로 취침·기상 시간을 추천하는 무료 계산기">
-<meta property="og:url" content="https://kcalculator.net/sleep-calculator.html">
+<meta property="og:title" content="임신·출산예정일 계산기 | 계산기">
+<meta property="og:description" content="임신·출산예정일 계산기 | 마지막 생리 시작일로 출산예정일과 현재 임신 주수를 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/pregnancy-calculator.html">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -39,7 +39,7 @@
   <div class="header-inner">
     <div>
       <h1><a href="index.html">계산기</a></h1>
-      <div class="eyebrow">SLEEP CALCULATOR</div>
+      <div class="eyebrow">PREGNANCY DUE DATE CALCULATOR</div>
     </div>
     <div class="header-actions">
       <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
@@ -67,9 +67,9 @@
           <li><a href="bmi-calculator.html">BMI 계산기</a></li>
           <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
           <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
-          <li><a href="sleep-calculator.html" class="active">수면 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
           <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
-          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html" class="active">임신·출산예정일 계산기</a></li>
         </ul>
       </div>
       <div class="menu-group">
@@ -94,43 +94,31 @@
 
   <div class="page-content">
     <div class="page-title">
-      <h2>수면 계산기</h2>
-      <p>취침 또는 기상 시간을 입력하면 90분 수면 주기를 기준으로 적정 취침·기상 시간을 추천합니다.</p>
+      <h2>임신·출산예정일 계산기</h2>
+      <p>마지막 생리 시작일을 입력하면 출산예정일과 현재 임신 주수를 계산합니다.</p>
     </div>
 
     <div class="shell">
       <div>
-        <div class="pages-heading"><h2>시간 입력</h2></div>
+        <div class="pages-heading"><h2>정보 입력</h2></div>
         <aside class="calc-panel">
           <div class="screen-shell">
             <div class="screen">
-              <div class="label">권장 시각</div>
-              <div class="value" id="miniScreen">--:--</div>
+              <div class="label">출산예정일</div>
+              <div class="value" id="miniScreen" style="font-size:1.15rem;">--</div>
               <div class="value-sub" id="miniScreenSub"></div>
             </div>
           </div>
 
           <div class="field">
-            <label>기준</label>
-            <div class="seg-toggle" data-target="mode" style="width:100%;">
-              <button type="button" class="seg-btn active" data-value="wake" style="flex:1;">기상 시간 기준</button>
-              <button type="button" class="seg-btn" data-value="sleep" style="flex:1;">취침 시간 기준</button>
-            </div>
-          </div>
-
-          <div class="field mode-field" data-mode="wake">
-            <label for="s-wake">기상 시간</label>
-            <input type="time" id="s-wake" value="07:00">
-          </div>
-
-          <div class="field mode-field hidden" data-mode="sleep">
-            <label for="s-sleep">취침 시간</label>
-            <input type="time" id="s-sleep" value="23:00">
+            <label for="pg-lmp">마지막 생리 시작일</label>
+            <input type="text" id="pg-lmp" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
           </div>
 
           <div class="field">
-            <label for="s-latency">잠드는 데 걸리는 시간 (분)</label>
-            <input type="number" id="s-latency" value="14" min="0">
+            <label for="pg-cycle">평균 생리주기 (일, 선택)</label>
+            <input type="number" id="pg-cycle" value="28" min="1">
+            <p class="field-note">28일이 아니면 그 차이만큼 출산예정일을 보정합니다.</p>
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -139,15 +127,16 @@
 
       <div>
         <div class="pages-heading">
-          <h2>추천 결과</h2>
+          <h2>임신 주수·출산예정일 결과</h2>
           <div class="pages-heading-actions">
             <span id="page-meta">--</span>
             <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
           </div>
         </div>
+
         <section class="receipt-strip">
           <div class="strip-block">
-            <div class="compare-grid" id="compareGrid"></div>
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
           </div>
         </section>
       </div>
@@ -156,52 +145,59 @@
     <div class="ad-slot"></div>
 
     <section class="info-section">
-      <h2>수면 계산기 안내</h2>
+      <h2>임신·출산예정일 계산기 안내</h2>
 
       <div class="info-block">
-        <h3><span class="info-icon">💡</span>수면 주기란?</h3>
-        <p>수면은 얕은 잠(비렘수면)과 렘(REM)수면이 번갈아 반복되는 주기로 이뤄져 있고, 한 주기는 평균적으로 약 90분 정도로 알려져 있습니다. 이 주기가 막 끝나는 시점, 즉 얕은 잠 단계에서 깨어나면 깊은 잠 도중에 깰 때보다 상대적으로 개운하다는 설명이 널리 알려져 있습니다.</p>
-        <p>이 계산기는 이 90분 주기를 기준으로, 원하는 기상 시간이나 취침 시간에 맞춰 몇 번의 주기를 채울 수 있는 시각을 참고용으로 추천합니다. 실제 수면 주기 길이는 사람마다, 그리고 같은 사람이라도 날마다 다를 수 있어 정확한 보장은 아닙니다.</p>
+        <h3><span class="info-icon">💡</span>출산예정일 계산이란?</h3>
+        <p>임신 기간은 보통 마지막 생리 시작일부터 280일(40주)로 계산합니다. 배란과 수정은 보통 생리 시작 후 2주쯤 일어나지만, 임신 주수는 실제 수정일이 아니라 마지막 생리 시작일을 기준으로 세는 것이 국제적으로 통용되는 방식입니다.</p>
+        <p>이 계산기는 마지막 생리일 기준의 통계적 추정치이며, <strong>실제 출산일은 초음파 검사 등 의료진의 진단으로 확인해야 합니다. 이 계산 결과는 의학적 진단을 대체하지 않습니다.</strong></p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🧮</span>계산 방식</h3>
         <div class="formula-box formula-frac">
-          <span class="frac-lhs">기상 시각 = 취침 시각 + 입면 시간 + (수면 주기 수 × 90분)</span>
+          <span class="frac-lhs">출산예정일 = 마지막 생리 시작일 + 280일 + (생리주기 − 28일)</span>
         </div>
-        <p>기상 시간을 기준으로 입력한 경우에는 이 식을 거꾸로 풀어 취침 시각을 계산합니다. 입면 시간은 눕고 나서 실제로 잠드는 데까지 걸리는 시간으로, 기본값은 흔히 언급되는 평균치인 14분을 사용하지만 직접 조정할 수 있습니다.</p>
+        <p>예) 마지막 생리 시작일 2026-01-01, 생리주기 28일(보정 없음) → 출산예정일 2026-10-08. 정상 분만은 예정일을 전후로 약 2주(38~42주) 사이에 이뤄지는 것으로 봅니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span>수면 주기별 총 수면시간</h3>
-        <table class="criteria-table">
+        <h3><span class="info-icon">📊</span>임신 삼분기 구분</h3>
+        <table class="criteria-table text-table">
           <tbody>
-            <tr><td>4주기</td><td>6시간</td></tr>
-            <tr><td>5주기 (권장)</td><td>7시간 30분</td></tr>
-            <tr><td>6주기</td><td>9시간</td></tr>
+            <tr><td>1분기</td><td>임신 확인 직후 ~ 13주 6일</td></tr>
+            <tr><td>2분기</td><td>14주 ~ 27주 6일</td></tr>
+            <tr><td>3분기</td><td>28주 이후 ~ 출산</td></tr>
           </tbody>
         </table>
-        <p class="field-note">성인 권장 수면시간(대략 7~9시간) 범위에 맞춰 4~6주기 세 가지 옵션만 보여드립니다.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary>왜 90분 단위로 계산하나요?</summary>
-          <p class="faq-a">한 번의 수면 주기가 평균 약 90분이라는 설명이 널리 알려져 있어서, 이 단위를 기준으로 여러 주기를 채우는 시각을 계산합니다. 실제로는 사람마다 주기 길이가 조금씩 다를 수 있는 평균적인 추정치입니다.</p>
+          <summary>출산예정일에 정확히 태어나나요?</summary>
+          <p class="faq-a">그렇지 않은 경우가 대부분입니다. 정상 분만은 예정일을 전후로 약 2주(38~42주) 범위 안에서 이뤄지는 것으로 보며, 실제로 계산된 예정일 당일에 태어나는 경우는 드뭅니다.</p>
         </details>
         <details class="faq-item">
-          <summary>3주기(4시간 30분)는 왜 추천 목록에 없나요?</summary>
-          <p class="faq-a">일반적인 성인 권장 수면시간(약 7~9시간)에 크게 못 미치는 경우가 많아, 이 계산기에서는 4~6주기(6~9시간) 세 가지만 보여드립니다.</p>
+          <summary>생리주기가 28일이 아니면 어떻게 되나요?</summary>
+          <p class="faq-a">생리주기가 길거나 짧으면 배란 시점도 그만큼 늦거나 빨라지므로, 28일과의 차이만큼 출산예정일을 보정해 계산합니다. 평균 생리주기를 모른다면 기본값(28일)으로 계산해도 큰 차이는 없습니다.</p>
         </details>
         <details class="faq-item">
-          <summary>입면 시간은 왜 따로 입력받나요?</summary>
-          <p class="faq-a">침대에 누운 시점과 실제로 잠드는 시점 사이에는 보통 시간차가 있습니다. 이를 반영해야 계산된 시각에 실제로 눈을 뜨는 시점이 원하는 기상 시간과 더 가까워집니다.</p>
+          <summary>초음파 검사가 왜 더 정확한가요?</summary>
+          <p class="faq-a">마지막 생리일 기준 계산은 생리주기가 규칙적이라는 가정에 의존하지만, 임신 초기 초음파 검사는 태아를 직접 측정해 임신 주수를 확인하기 때문에 생리주기가 불규칙하거나 마지막 생리일이 불확실한 경우 더 정확합니다.</p>
         </details>
         <details class="faq-item">
-          <summary>계산된 시각에 정확히 일어나면 무조건 개운한가요?</summary>
-          <p class="faq-a">그렇게 보장할 수는 없습니다. 수면 주기 길이는 사람마다, 그리고 컨디션에 따라서도 달라질 수 있어 이 계산 결과는 참고용 추정치이며, 실제 수면의 질은 개인차가 있습니다.</p>
+          <summary>이 계산기가 의학적 진단을 대체하나요?</summary>
+          <p class="faq-a">아니요. 이 계산기는 참고용 추정 도구이며, 임신·출산과 관련된 모든 판단은 반드시 산부인과 의료진의 진단을 따라야 합니다.</p>
         </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener">ACOG – Methods for Estimating the Due Date (Committee Opinion) ↗</a></li>
+          <li><a href="https://health.seoulmc.or.kr/healthCareInfo/pregnancyView.do?boardPid=847" target="_blank" rel="noopener">서울시민 건강포털(서울의료원, 국민건강보험공단 제공) – 분만예정일 계산법 ↗</a></li>
+        </ul>
       </div>
     </section>
 
@@ -217,6 +213,6 @@
 <script src="js/site.js"></script>
 <script src="js/url-state.js"></script>
 <script src="js/export.js"></script>
-<script src="js/sleep-calc.js"></script>
+<script src="js/pregnancy-calc.js"></script>
 </body>
 </html>
