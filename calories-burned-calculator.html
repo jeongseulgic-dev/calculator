@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="소모 칼로리 계산기 | 운동 종류·체중·시간을 입력하면 MET 기반으로 소모 칼로리를 계산하는 무료 계산기">
+<title>소모 칼로리 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/calories-burned-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="소모 칼로리 계산기 | 계산기">
+<meta property="og:description" content="소모 칼로리 계산기 | 운동 종류·체중·시간을 입력하면 MET 기반으로 소모 칼로리를 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/calories-burned-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">CALORIES BURNED CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator.html">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator.html">전세자금대출 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator.html" class="active">소모 칼로리 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>소모 칼로리 계산기</h2>
+      <p>운동 종류·체중·시간을 입력하면 MET 기반으로 소모 칼로리를 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">소모 칼로리</div>
+              <div class="value" id="miniScreen">0 kcal</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="c-activity">활동</label>
+            <select id="c-activity">
+              <optgroup label="일상">
+                <option value="1.0">앉아서 휴식·TV 시청</option>
+                <option value="1.3">서있기</option>
+                <option value="3.5">요리</option>
+                <option value="3.3">집안 청소</option>
+                <option value="2.0">설거지</option>
+              </optgroup>
+              <optgroup label="걷기">
+                <option value="2.8">걷기 (느리게, 3km/h)</option>
+                <option value="3.8">걷기 (보통, 4.5km/h)</option>
+                <option value="4.8">걷기 (빠르게, 5.6km/h)</option>
+                <option value="7.0">걷기 (매우 빠르게, 6.4km/h)</option>
+              </optgroup>
+              <optgroup label="달리기">
+                <option value="3.3">조깅 (6km/h)</option>
+                <option value="8.5">달리기 (8km/h)</option>
+                <option value="9.3" selected>달리기 (10km/h)</option>
+                <option value="11.8">달리기 (12km/h)</option>
+                <option value="12.5">달리기 (14km/h)</option>
+                <option value="14.8">달리기 (16km/h)</option>
+              </optgroup>
+              <optgroup label="자전거">
+                <option value="6.8">자전거 (레저, 16~19km/h)</option>
+                <option value="8.0">자전거 (보통, 19~22km/h)</option>
+                <option value="10.0">자전거 (빠르게, 22~25km/h)</option>
+              </optgroup>
+              <optgroup label="수영">
+                <option value="5.8">수영 자유형 (여유롭게)</option>
+                <option value="9.8">수영 자유형 (빠르게)</option>
+              </optgroup>
+              <optgroup label="근력·컨디셔닝">
+                <option value="3.5">웨이트트레이닝 (일반)</option>
+                <option value="6.0">웨이트트레이닝 (고강도)</option>
+                <option value="2.3">요가</option>
+                <option value="2.8">필라테스</option>
+                <option value="11.0">줄넘기</option>
+                <option value="9.3">계단 오르기 머신</option>
+                <option value="7.3">에어로빅</option>
+                <option value="5.3">등산·하이킹</option>
+              </optgroup>
+              <optgroup label="스포츠">
+                <option value="7.0">축구 (가볍게)</option>
+                <option value="12.0">축구 (경쟁)</option>
+                <option value="7.5">농구</option>
+                <option value="8.0">테니스 (단식)</option>
+                <option value="6.0">테니스 (복식)</option>
+                <option value="5.5">배드민턴</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="c-weight">체중 (kg)</label>
+            <input type="number" id="c-weight" placeholder="예: 65" value="65">
+          </div>
+
+          <div class="field">
+            <label for="c-minutes">운동 시간 (분)</label>
+            <input type="number" id="c-minutes" placeholder="예: 30" value="30">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>소모 칼로리 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>소모 칼로리 계산기란?</h3>
+        <p>운동이나 활동마다 몸이 쓰는 에너지 강도는 MET(운동대사당량, Metabolic Equivalent of Task)로 나타냅니다. 1 MET는 가만히 앉아있을 때의 에너지 소비량이고, 숫자가 클수록 강도가 높은 활동입니다. 이 계산기는 활동의 MET 값과 체중·운동 시간을 곱해 소모 칼로리를 추정합니다.</p>
+        <p>실제 소모 칼로리는 개인의 체력 수준, 운동 강도, 지형 등에 따라 달라질 수 있는 참고용 추정치입니다. 하루 전체 목표 칼로리·탄단지 구성이 궁금하다면 <a href="calorie-calculator.html">칼로리 계산기</a>를 이용하세요 — 그 페이지는 기초대사량 기반으로 하루 목표 칼로리를 계산하는 다른 도구입니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="formula-box formula-frac">
+          <span class="frac-part">
+            <span class="frac-lhs">소모 칼로리 =</span>
+            <span class="frac"><span class="num">MET × 3.5 × 체중(kg) × 시간(분)</span><span class="den">200</span></span>
+          </span>
+        </div>
+        <p>미국스포츠의학회(ACSM)의 대사당량 공식입니다. 체중이 무겁거나 운동 시간이 길수록, MET(강도)가 높을수록 소모 칼로리가 커집니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>활동 강도 기준표</h3>
+        <table class="criteria-table">
+          <thead><tr><th>강도</th><th>MET 범위</th></tr></thead>
+          <tbody>
+            <tr><td>저강도</td><td>3.0 미만</td></tr>
+            <tr><td>중강도</td><td>3.0 ~ 5.9</td></tr>
+            <tr><td>고강도</td><td>6.0 이상</td></tr>
+          </tbody>
+        </table>
+        <p class="field-note">미국 질병통제예방센터(CDC) 기준입니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>기존 칼로리 계산기와 뭐가 다른가요?</summary>
+          <p class="faq-a"><a href="calorie-calculator.html">칼로리 계산기</a>는 기초대사량(BMR)을 기반으로 하루 전체 목표 칼로리·탄단지 구성을 계산합니다. 이 계산기는 특정 운동을 몇 분 했을 때 그 운동만으로 소모한 칼로리를 계산하는, 별개의 도구입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>MET가 무엇인가요?</summary>
+          <p class="faq-a">MET(운동대사당량)는 활동 강도를 나타내는 표준 단위입니다. 1 MET는 가만히 앉아있을 때의 에너지 소비량이며, 예를 들어 6 MET인 활동은 앉아있을 때보다 6배의 에너지를 씁니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>같은 활동인데 사람마다 왜 다르게 나오나요?</summary>
+          <p class="faq-a">이 계산기의 공식은 체중에 비례해 계산됩니다. 체중이 많이 나갈수록 같은 활동이라도 더 많은 칼로리를 소모하는 것으로 계산됩니다. 다만 개인의 체력·효율 차이는 반영하지 않는 평균적인 추정치입니다.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://pacompendium.com/" target="_blank" rel="noopener">Compendium of Physical Activities — 2024 Adult Compendium (MET 값)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/calories-burned-calc.js"></script>
+</body>
+</html>
