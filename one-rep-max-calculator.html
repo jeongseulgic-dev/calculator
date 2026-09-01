@@ -14,15 +14,15 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="임신·출산예정일 계산기 | 마지막 생리 시작일로 출산예정일과 현재 임신 주수를 계산하는 무료 계산기">
-<title>임신·출산예정일 계산기 | 계산기</title>
-<link rel="canonical" href="https://kcalculator.net/pregnancy-calculator.html">
+<meta name="description" content="1RM(최대중량) 계산기 | Epley·Brzycki·Lombardi 공식으로 1회 최대 중량을 추정하고 %1RM별 훈련 중량을 계산하는 무료 계산기">
+<title>1RM(최대중량) 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/one-rep-max-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="임신·출산예정일 계산기 | 계산기">
-<meta property="og:description" content="임신·출산예정일 계산기 | 마지막 생리 시작일로 출산예정일과 현재 임신 주수를 계산하는 무료 계산기">
-<meta property="og:url" content="https://kcalculator.net/pregnancy-calculator.html">
+<meta property="og:title" content="1RM(최대중량) 계산기 | 계산기">
+<meta property="og:description" content="1RM(최대중량) 계산기 | Epley·Brzycki·Lombardi 공식으로 1회 최대 중량을 추정하고 %1RM별 훈련 중량을 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/one-rep-max-calculator.html">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -39,7 +39,7 @@
   <div class="header-inner">
     <div>
       <h1><a href="index.html">계산기</a></h1>
-      <div class="eyebrow">PREGNANCY DUE DATE CALCULATOR</div>
+      <div class="eyebrow">ONE REP MAX CALCULATOR</div>
     </div>
     <div class="header-actions">
       <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
@@ -74,10 +74,10 @@
           <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
           <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
           <li><a href="calories-burned-calculator.html">소모 칼로리 계산기</a></li>
-          <li><a href="one-rep-max-calculator.html">1RM(최대중량) 계산기</a></li>
+          <li><a href="one-rep-max-calculator.html" class="active">1RM(최대중량) 계산기</a></li>
           <li><a href="sleep-calculator.html">수면 계산기</a></li>
           <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
-          <li><a href="pregnancy-calculator.html" class="active">임신·출산예정일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
         </ul>
       </div>
       <div class="menu-group">
@@ -103,31 +103,31 @@
 
   <div class="page-content">
     <div class="page-title">
-      <h2>임신·출산예정일 계산기</h2>
-      <p>마지막 생리 시작일을 입력하면 출산예정일과 현재 임신 주수를 계산합니다.</p>
+      <h2>1RM(최대중량) 계산기</h2>
+      <p>든 무게와 반복 횟수를 입력하면 Epley·Brzycki·Lombardi 공식으로 1회 최대 중량(1RM)을 추정합니다.</p>
     </div>
 
     <div class="shell">
       <div>
-        <div class="pages-heading"><h2>정보 입력</h2></div>
+        <div class="pages-heading"><h2>입력</h2></div>
         <aside class="calc-panel">
           <div class="screen-shell">
             <div class="screen">
-              <div class="label">출산예정일</div>
-              <div class="value" id="miniScreen" style="font-size:1.15rem;">--</div>
+              <div class="label">3개 공식 평균 1RM</div>
+              <div class="value" id="miniScreen">0.0 kg</div>
               <div class="value-sub" id="miniScreenSub"></div>
             </div>
           </div>
 
           <div class="field">
-            <label for="pg-lmp">마지막 생리 시작일</label>
-            <input type="text" id="pg-lmp" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+            <label for="o-weight">든 무게 (kg)</label>
+            <input type="number" id="o-weight" placeholder="예: 80" value="80">
           </div>
 
           <div class="field">
-            <label for="pg-cycle">평균 생리주기 (일, 선택)</label>
-            <input type="number" id="pg-cycle" value="28" min="1">
-            <p class="field-note">28일이 아니면 그 차이만큼 출산예정일을 보정합니다.</p>
+            <label for="o-reps">반복 횟수</label>
+            <input type="number" id="o-reps" min="1" max="12" placeholder="예: 5" value="5">
+            <p class="field-note">10회를 넘으면 추정 정확도가 낮아질 수 있습니다.</p>
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -136,16 +136,22 @@
 
       <div>
         <div class="pages-heading">
-          <h2>임신 주수·출산예정일 결과</h2>
+          <h2>공식별 비교</h2>
           <div class="pages-heading-actions">
             <span id="page-meta">--</span>
             <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
           </div>
         </div>
-
         <section class="receipt-strip">
           <div class="strip-block">
-            <table class="stat-table"><tbody id="statBody"></tbody></table>
+            <div class="compare-grid" id="compareGrid"></div>
+          </div>
+
+          <div class="strip-divider"></div>
+
+          <div class="strip-block">
+            <h3 class="block-title">%1RM별 훈련 중량 (평균 1RM 기준)</h3>
+            <table class="stat-table"><tbody id="pctBody"></tbody></table>
           </div>
         </section>
       </div>
@@ -154,58 +160,80 @@
     <div class="ad-slot"></div>
 
     <section class="info-section">
-      <h2>임신·출산예정일 계산기 안내</h2>
+      <h2>1RM(최대중량) 계산기 안내</h2>
 
       <div class="info-block">
-        <h3><span class="info-icon">💡</span>출산예정일 계산이란?</h3>
-        <p>임신 기간은 보통 마지막 생리 시작일부터 280일(40주)로 계산합니다. 배란과 수정은 보통 생리 시작 후 2주쯤 일어나지만, 임신 주수는 실제 수정일이 아니라 마지막 생리 시작일을 기준으로 세는 것이 국제적으로 통용되는 방식입니다.</p>
-        <p>이 계산기는 마지막 생리일 기준의 통계적 추정치이며, <strong>실제 출산일은 초음파 검사 등 의료진의 진단으로 확인해야 합니다. 이 계산 결과는 의학적 진단을 대체하지 않습니다.</strong></p>
+        <h3><span class="info-icon">💡</span>1RM이란?</h3>
+        <p>1RM(One Rep Max)은 정확한 자세로 단 한 번 들어올릴 수 있는 최대 중량입니다. 실제로 최대 중량까지 직접 들어보는 것은 부상 위험이 있어, 보통 가벼운 무게로 여러 번 반복한 기록을 공식에 대입해 안전하게 추정합니다.</p>
+        <p>이 계산기는 대표적인 세 공식(Epley, Brzycki, Lombardi)을 동시에 계산해서 보여줍니다. 반복 횟수가 많아질수록(특히 10회를 넘으면) 세 공식의 추정치가 서로 크게 벌어지는 경향이 있어 참고용으로만 활용하세요.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🧮</span>계산 방식</h3>
-        <div class="formula-box formula-frac">
-          <span class="frac-lhs">출산예정일 = 마지막 생리 시작일 + 280일 + (생리주기 − 28일)</span>
+        <div class="method-def">
+          <h4>Epley 공식</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">1RM = 무게 × (1 + 반복수 ÷ 30)</span></span>
+          </div>
         </div>
-        <p>예) 마지막 생리 시작일 2026-01-01, 생리주기 28일(보정 없음) → 출산예정일 2026-10-08. 정상 분만은 예정일을 전후로 약 2주(38~42주) 사이에 이뤄지는 것으로 봅니다.</p>
+        <div class="method-def">
+          <h4>Brzycki 공식</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">1RM = 무게 ×</span>
+              <span class="frac"><span class="num">36</span><span class="den">37 − 반복수</span></span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>Lombardi 공식</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">1RM = 무게 × 반복수^0.10</span></span>
+          </div>
+        </div>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span>임신 삼분기 구분</h3>
-        <table class="criteria-table text-table">
+        <h3><span class="info-icon">📊</span>%1RM 훈련 강도표</h3>
+        <table class="criteria-table">
+          <thead><tr><th>반복 횟수</th><th>%1RM</th></tr></thead>
           <tbody>
-            <tr><td>1분기</td><td>임신 확인 직후 ~ 13주 6일</td></tr>
-            <tr><td>2분기</td><td>14주 ~ 27주 6일</td></tr>
-            <tr><td>3분기</td><td>28주 이후 ~ 출산</td></tr>
+            <tr><td>1회</td><td>100%</td></tr>
+            <tr><td>2회</td><td>95%</td></tr>
+            <tr><td>3회</td><td>93%</td></tr>
+            <tr><td>4회</td><td>90%</td></tr>
+            <tr><td>5회</td><td>87%</td></tr>
+            <tr><td>6회</td><td>85%</td></tr>
+            <tr><td>7회</td><td>83%</td></tr>
+            <tr><td>8회</td><td>80%</td></tr>
+            <tr><td>9회</td><td>77%</td></tr>
+            <tr><td>10회</td><td>75%</td></tr>
+            <tr><td>12회</td><td>70%</td></tr>
           </tbody>
         </table>
+        <p class="field-note">일반적으로 90% 이상은 최대근력, 80~89%는 근력, 70~79%는 근비대(근육 크기), 50~69%는 근지구력 훈련 목적으로 활용됩니다.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary>출산예정일에 정확히 태어나나요?</summary>
-          <p class="faq-a">그렇지 않은 경우가 대부분입니다. 정상 분만은 예정일을 전후로 약 2주(38~42주) 범위 안에서 이뤄지는 것으로 보며, 실제로 계산된 예정일 당일에 태어나는 경우는 드뭅니다.</p>
+          <summary>왜 세 공식의 값이 다른가요?</summary>
+          <p class="faq-a">세 공식은 서로 다른 연구에서 유도된 근사식이라 반복수가 늘어날수록 추정치가 벌어집니다. 저반복(1~5회) 구간에서는 세 공식이 비교적 비슷하게 나옵니다.</p>
         </details>
         <details class="faq-item">
-          <summary>생리주기가 28일이 아니면 어떻게 되나요?</summary>
-          <p class="faq-a">생리주기가 길거나 짧으면 배란 시점도 그만큼 늦거나 빨라지므로, 28일과의 차이만큼 출산예정일을 보정해 계산합니다. 평균 생리주기를 모른다면 기본값(28일)으로 계산해도 큰 차이는 없습니다.</p>
+          <summary>반복 횟수를 몇 회까지 입력해야 정확한가요?</summary>
+          <p class="faq-a">10회 이하로 입력하는 것을 권장합니다. 반복수가 많아질수록 근지구력 등 다른 요소가 섞여 들어가 1RM 추정 정확도가 떨어집니다.</p>
         </details>
         <details class="faq-item">
-          <summary>초음파 검사가 왜 더 정확한가요?</summary>
-          <p class="faq-a">마지막 생리일 기준 계산은 생리주기가 규칙적이라는 가정에 의존하지만, 임신 초기 초음파 검사는 태아를 직접 측정해 임신 주수를 확인하기 때문에 생리주기가 불규칙하거나 마지막 생리일이 불확실한 경우 더 정확합니다.</p>
-        </details>
-        <details class="faq-item">
-          <summary>이 계산기가 의학적 진단을 대체하나요?</summary>
-          <p class="faq-a">아니요. 이 계산기는 참고용 추정 도구이며, 임신·출산과 관련된 모든 판단은 반드시 산부인과 의료진의 진단을 따라야 합니다.</p>
+          <summary>1RM을 직접 측정해도 되나요?</summary>
+          <p class="faq-a">가능하지만 부상 위험이 있어 충분히 숙련된 후, 보조자(스포터)와 함께 안전하게 시도하는 것이 좋습니다. 이 계산기의 추정치로 먼저 대략적인 감을 잡는 것을 권장합니다.</p>
         </details>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
-          <li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener">ACOG – Methods for Estimating the Due Date (Committee Opinion) ↗</a></li>
-          <li><a href="https://health.seoulmc.or.kr/healthCareInfo/pregnancyView.do?boardPid=847" target="_blank" rel="noopener">서울시민 건강포털(서울의료원, 국민건강보험공단 제공) – 분만예정일 계산법 ↗</a></li>
+          <li><a href="https://www.nsca.com/contentassets/61d813865e264c6e852cadfe247eae52/nsca_training_load_chart.pdf" target="_blank" rel="noopener">NSCA — Training Load Chart (Landers, 1984 인용)</a></li>
         </ul>
       </div>
     </section>
@@ -222,6 +250,6 @@
 <script src="js/site.js"></script>
 <script src="js/url-state.js"></script>
 <script src="js/export.js"></script>
-<script src="js/pregnancy-calc.js"></script>
+<script src="js/one-rep-max-calc.js"></script>
 </body>
 </html>
