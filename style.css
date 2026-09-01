@@ -135,6 +135,19 @@ header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; colo
 .field-row{ display:flex; gap:7px; align-items:stretch; }
 .field-row input, .field-row select{ flex:1; min-width:0; }
 .field-note{ font-size:0.68rem; color:var(--header-bg); opacity:0.75; line-height:1.5; margin-top:7px; }
+
+.course-row{ display:flex; gap:7px; align-items:center; margin-bottom:8px; }
+.course-row .course-name{ flex:1.6; min-width:0; font-family:'Noto Sans KR', sans-serif; font-size:0.86rem; font-weight:400; }
+.course-row .course-credit{ flex:0.7; min-width:0; }
+.course-row .course-grade{ flex:1; min-width:0; }
+.course-row-remove{
+  flex:0 0 auto; width:32px; height:32px; border:none; border-radius:5px;
+  background:var(--btn-fn); color:#fff; font-size:1rem; font-weight:700; line-height:1;
+  cursor:pointer;
+}
+.course-row-remove:hover{ background:var(--pink); }
+.course-row-remove:disabled{ opacity:0.35; cursor:not-allowed; }
+.add-row-btn{ width:100%; margin-top:2px; }
 .swap-btn{
   display:flex; align-items:center; justify-content:center; width:100%;
   background:var(--btn-fn); color:#fff; border:none; border-radius:5px; padding:8px;
