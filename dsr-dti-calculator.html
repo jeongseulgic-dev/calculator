@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DSR·DTI 계산기 | 연소득과 부채를 입력하면 총부채원리금상환비율(DSR)·총부채상환비율(DTI)을 계산하는 무료 계산기">
+<title>DSR·DTI 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/dsr-dti-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="DSR·DTI 계산기 | 계산기">
+<meta property="og:description" content="DSR·DTI 계산기 | 연소득과 부채를 입력하면 총부채원리금상환비율(DSR)·총부채상환비율(DTI)을 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/dsr-dti-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">DSR DTI CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html" class="active">DSR·DTI 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>DSR·DTI 계산기</h2>
+      <p>연소득과 보유 부채를 입력하면 총부채원리금상환비율(DSR)과 총부채상환비율(DTI)을 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>입력</h2></div>
+        <aside class="calc-panel">
+        <div class="screen-shell">
+          <div class="screen">
+            <div class="label">DSR</div>
+            <div class="value" id="miniScreen">0%</div>
+            <div class="value-sub" id="miniScreenSub"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="d-income">연소득 (원)</label>
+          <input type="text" id="d-income" placeholder="예: 50,000,000">
+          <div class="key-row">
+            <button type="button" class="calc-key" data-add="1000000">+100만</button>
+            <button type="button" class="calc-key" data-add="10000000">+1000만</button>
+            <button type="button" class="calc-key pink" data-reset>C</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>부채 목록</label>
+          <div class="debt-row-header">
+            <span>대출 종류</span><span>연간 원금상환액</span><span>연간 이자상환액</span>
+          </div>
+          <div id="debtRows"></div>
+          <button type="button" class="load-more-btn add-row-btn" id="addDebtBtn">+ 부채 추가</button>
+          <p class="field-note">주택담보대출은 원금+이자 전부, 기타대출(신용대출·카드론 등)은 이자만 DTI에 반영됩니다.</p>
+        </div>
+
+        <div class="field">
+          <label>신규 대출 한도 역산</label>
+          <div class="seg-toggle" data-target="capType" style="width:100%;">
+            <button type="button" class="seg-btn active" data-value="40" style="flex:1;">은행권(40%)</button>
+            <button type="button" class="seg-btn" data-value="50" style="flex:1;">2금융권(50%)</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="d-new-rate">신규 대출 금리 (연 %)</label>
+          <input type="number" step="0.1" id="d-new-rate" value="4.5">
+        </div>
+        <div class="field">
+          <label for="d-new-period">신규 대출 기간 (년)</label>
+          <input type="number" id="d-new-period" value="30">
+          <p class="field-note">선택한 규제 비율까지 남은 여유분으로 신규 주택담보대출을 받는다고 가정하고 최대 원금을 역산합니다.</p>
+        </div>
+
+        <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-block">
+            <h3 class="block-title">신규 대출 한도 역산</h3>
+            <table class="stat-table"><tbody id="limitBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>DSR·DTI 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>DSR·DTI란?</h3>
+        <p>DSR(총부채원리금상환비율)과 DTI(총부채상환비율)는 모두 연소득 대비 대출 상환 부담을 나타내는 지표로, 은행이 대출 한도를 정할 때 기준으로 씁니다. 차이는 기타대출(신용대출·카드론 등)을 반영하는 방식에 있습니다 — DSR은 원금까지 전부 반영하고, DTI는 이자만 반영합니다. 그래서 같은 조건이면 DSR이 DTI보다 더 엄격하게(낮게) 나오는 경우가 많습니다.</p>
+        <p>실제 대출 심사 시 금융기관·상품마다 세부 산정 방식이 다를 수 있고, 신규 대출을 검토 중이라면 스트레스 DSR 등 추가 규제가 적용돼 이 계산기 결과보다 한도가 낮게 나올 수 있습니다. 정확한 심사 기준은 금융기관에 문의하세요.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>DSR</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">DSR =</span>
+              <span class="frac"><span class="num">모든 대출의 연간 원리금 상환액</span><span class="den">연소득</span></span>
+            </span>
+            <span class="frac-part"><span class="frac-lhs">× 100</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>DTI</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">DTI =</span>
+              <span class="frac"><span class="num">주택담보대출 원리금 + 기타대출 이자</span><span class="den">연소득</span></span>
+            </span>
+            <span class="frac-part"><span class="frac-lhs">× 100</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>신규 대출 한도 역산</h4>
+          <p>선택한 규제 비율(40%/50%)까지 DSR·DTI 각각의 여유 연간 원리금을 구하고, 둘 중 더 적은 쪽을 기준으로 신규 대출 금리·기간을 적용해 원리금균등·원금균등 상환 공식을 거꾸로 풀어 최대 원금을 계산합니다.</p>
+          <p>두 방식의 한도가 차이 나는 이유는 상환액이 몰리는 시점이 다르기 때문입니다. 원리금균등은 매달 내는 돈이 똑같아 여유 월 상환액을 그대로 원금으로 환산하지만, 원금균등은 이자가 초반에 크게 붙어 첫 달 상환액이 가장 많습니다. 이 계산기는 그 첫 달 부담이 여유 월 상환액을 넘지 않는 선에서 최대 원금을 구하기 때문에, 같은 조건이면 원금균등 쪽 한도가 항상 더 낮게 나옵니다.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>기준표</h3>
+        <table class="criteria-table">
+          <thead><tr><th>업권</th><th>DSR·DTI 규제 비율</th></tr></thead>
+          <tbody>
+            <tr><td>은행(1금융권)</td><td>40%</td></tr>
+            <tr><td>2금융권(캐피탈·저축은행 등)</td><td>50%</td></tr>
+          </tbody>
+        </table>
+        <p class="field-note">2025년 7월부터 신규 대출 심사에는 "스트레스 DSR 3단계"가 추가로 적용됩니다 — 변동금리 대출에 미래 금리 상승을 가정한 가산금리를 얹어 대출 한도를 더 보수적으로 계산하는 제도로, 이 계산기의 결과에는 반영되어 있지 않습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>DSR과 DTI 중 어느 쪽이 대출 한도 기준이 되나요?</summary>
+          <p class="faq-a">대출 종류와 금융기관에 따라 다릅니다. 최근에는 DSR이 더 널리 쓰이는 편이지만, 정확히 어떤 지표가 적용되는지는 대출 상품 안내를 확인하거나 금융기관에 문의해야 합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>스트레스 DSR은 왜 반영하지 않나요?</summary>
+          <p class="faq-a">스트레스 DSR은 신규 대출을 심사할 때 은행이 적용하는 개념이라, "지금 보유한 부채로 DSR·DTI가 얼마인지" 확인하는 이 계산기의 목적과는 다릅니다. 신규 대출의 실제 한도는 스트레스 DSR까지 반영해 금융기관에서 다시 계산됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>규제 비율을 넘으면 대출이 아예 안 나오나요?</summary>
+          <p class="faq-a">규제 비율을 넘는 만큼 대출 한도가 줄어들거나 승인이 거절될 수 있습니다. 정확한 운영 기준은 금융기관마다 다릅니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>신규 대출 한도 역산 결과에는 스트레스 DSR이 반영되나요?</summary>
+          <p class="faq-a">아니요. 이 역산도 현재 금리를 그대로 사용하며, 스트레스 DSR(미래 금리 상승 가산금리)은 반영하지 않습니다. 실제 은행에서 받는 신규 대출 한도는 이 결과보다 낮게 나올 수 있습니다.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.fsc.go.kr/no010101/84617" target="_blank" rel="noopener">금융위원회 — 3단계 스트레스 DSR 시행방안 확정·발표</a></li>
+          <li><a href="https://www.fsc.go.kr/no010101/82526" target="_blank" rel="noopener">금융위원회 — 하반기 스트레스 DSR 운용방향</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/dsr-dti-calc.js"></script>
+</body>
+</html>
