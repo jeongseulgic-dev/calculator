@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuGroups = document.querySelectorAll('.menu-group');
   menuGroups.forEach(group => {
     const h2 = group.querySelector('h2');
-    h2?.addEventListener('click', () => group.classList.toggle('open'));
+    h2?.addEventListener('click', () => {
+      const wasOpen = group.classList.contains('open');
+      menuGroups.forEach(g => g.classList.remove('open'));
+      if (!wasOpen) group.classList.add('open');
+    });
   });
   const activeLink = document.querySelector('.sidebar a.active');
   const groupToOpen = activeLink ? activeLink.closest('.menu-group') : menuGroups[0];
