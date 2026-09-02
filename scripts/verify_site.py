@@ -103,6 +103,11 @@ def check_sitemap():
     sitemap_pages = {u for u in sitemap_urls if u.endswith('.html')}
 
     calculator_pages = {f.name for f in html_files() if f.name.endswith('-calculator.html')}
+    noindexed = {
+        f.name for f in html_files()
+        if re.search(r'<meta\s+name="robots"\s+content="noindex', f.read_text(encoding='utf-8'))
+    }
+    calculator_pages -= noindexed
 
     missing = calculator_pages - sitemap_pages
     if missing:
