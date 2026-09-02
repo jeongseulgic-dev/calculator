@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="순열과 조합 계산기 | 전체 개수(n)와 선택 개수(r)를 입력하면 순열(nPr)과 조합(nCr)을 바로 계산하는 무료 계산기">
+<title>순열과 조합 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/permutation-combination-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="순열과 조합 계산기 | 계산기">
+<meta property="og:description" content="순열과 조합 계산기 | 전체 개수(n)와 선택 개수(r)를 입력하면 순열(nPr)과 조합(nCr)을 바로 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/permutation-combination-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">PERMUTATION AND COMBINATION CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator.html">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator.html">전세자금대출 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator.html">소모 칼로리 계산기</a></li>
+          <li><a href="one-rep-max-calculator.html">1RM(최대중량) 계산기</a></li>
+          <li><a href="target-heart-rate-calculator.html">목표심박수 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+          <li><a href="fraction-calculator.html">분수 계산기</a></li>
+          <li><a href="exponent-calculator.html">지수 계산기</a></li>
+          <li><a href="root-calculator.html">제곱근·거듭제곱근 계산기</a></li>
+          <li><a href="quadratic-calculator.html">이차방정식 계산기</a></li>
+          <li><a href="logarithm-calculator.html">로그 계산기</a></li>
+          <li><a href="ratio-calculator.html">비율 계산기</a></li>
+          <li><a href="lcm-calculator.html">최소공배수 계산기</a></li>
+          <li><a href="gcf-calculator.html">최대공약수 계산기</a></li>
+          <li><a href="factor-calculator.html">약수·소인수분해 계산기</a></li>
+          <li><a href="rounding-calculator.html">반올림 계산기</a></li>
+          <li><a href="percent-error-calculator.html">오차백분율 계산기</a></li>
+          <li><a href="binary-calculator.html">이진수 변환기</a></li>
+          <li><a href="hex-calculator.html">16진수 변환기</a></li>
+          <li><a href="scientific-notation-calculator.html">과학적 표기법 계산기</a></li>
+          <li><a href="half-life-calculator.html">반감기 계산기</a></li>
+          <li><a href="descriptive-stats-calculator.html">기술통계 계산기</a></li>
+          <li><a href="permutation-combination-calculator.html" class="active">순열과 조합 계산기</a></li>
+          <li><a href="z-score-calculator.html">Z-점수 계산기</a></li>
+          <li><a href="confidence-interval-calculator.html">신뢰구간 계산기</a></li>
+          <li><a href="probability-calculator.html">확률 계산기</a></li>
+          <li><a href="sample-size-calculator.html">표본크기 계산기</a></li>
+          <li><a href="sequence-calculator.html">수열 계산기</a></li>
+          <li><a href="triangle-calculator.html">삼각형 계산기</a></li>
+          <li><a href="right-triangle-calculator.html">직각삼각형·피타고라스 정리 계산기</a></li>
+          <li><a href="area-calculator.html">넓이 계산기</a></li>
+          <li><a href="volume-calculator.html">입체도형 부피·표면적 계산기</a></li>
+          <li><a href="circle-calculator.html">원 계산기</a></li>
+          <li><a href="slope-distance-calculator.html">두 점 사이 기울기·거리 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>순열과 조합 계산기</h2>
+      <p>전체 개수(n)와 선택 개수(r)를 입력하면 순열(nPr)과 조합(nCr)을 바로 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">조합 (nCr)</div>
+              <div class="value" id="miniScreen">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="pc-n">전체 개수 (n)</label>
+            <input type="number" id="pc-n" value="10" min="0" max="170">
+          </div>
+
+          <div class="field">
+            <label for="pc-r">선택 개수 (r)</label>
+            <input type="number" id="pc-r" value="3" min="0">
+            <p class="field-note">r은 n보다 클 수 없습니다.</p>
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>순열과 조합 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>순열과 조합의 차이</h3>
+        <p>순열(Permutation)과 조합(Combination)은 모두 전체 n개 중 r개를 뽑는 경우의 수를 구하지만, <strong>순서를 따지는지</strong>가 다릅니다. 순열은 뽑은 순서까지 다른 경우로 세고(예: 1등·2등·3등 정하기), 조합은 순서와 무관하게 묶음만 같으면 같은 경우로 셉니다(예: 대표 3명 뽑기).</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>순열 (nPr)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">nPr =</span>
+              <span class="frac"><span class="num">n!</span><span class="den">(n − r)!</span></span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>조합 (nCr)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">nCr =</span>
+              <span class="frac"><span class="num">n!</span><span class="den">r! × (n − r)!</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>어떤 상황에 무엇을 쓰나</h3>
+        <div class="method-compare-grid">
+          <div class="method-compare-card">
+            <span class="mc-badge">순서 O</span>
+            <h4>순열 (nPr)</h4>
+            <ul>
+              <li><span>예시</span><span>달리기 1·2·3등 정하기</span></li>
+              <li><span>특징</span><span>같은 조합도 순서 다르면 다른 경우</span></li>
+            </ul>
+          </div>
+          <div class="method-compare-card">
+            <span class="mc-badge">순서 X</span>
+            <h4>조합 (nCr)</h4>
+            <ul>
+              <li><span>예시</span><span>대표 3명 뽑기, 로또 번호 6개</span></li>
+              <li><span>특징</span><span>묶음만 같으면 같은 경우</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>r이 0이면 결과는 어떻게 되나요?</summary>
+          <p class="faq-a">아무것도 뽑지 않는 경우는 항상 1가지(아무것도 안 뽑음)이므로, r=0이면 순열·조합 모두 1이 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>n=r이면 어떻게 되나요?</summary>
+          <p class="faq-a">전체를 다 뽑는 경우입니다. 조합(nCr)은 항상 1(전체를 한 묶음으로 뽑는 경우는 1가지)이 되고, 순열(nPr)은 n!(전체를 한 줄로 세우는 모든 경우의 수)이 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>같은 것을 여러 번 뽑을 수 있는 경우(중복순열·중복조합)도 계산할 수 있나요?</summary>
+          <p class="faq-a">이 계산기는 한 번 뽑은 대상을 다시 뽑지 않는 경우(비복원 추출)만 계산합니다. 중복을 허용하는 경우는 다른 공식(중복순열 nʳ, 중복조합)이 필요합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/permutation-combination-calc.js"></script>
+</body>
+</html>

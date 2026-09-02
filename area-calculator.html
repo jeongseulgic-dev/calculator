@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="넓이 계산기 | 직사각형·삼각형·사다리꼴·원·부채꼴·타원·평행사변형 7가지 도형의 넓이를 계산하는 무료 계산기">
+<title>넓이 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/area-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="넓이 계산기 | 계산기">
+<meta property="og:description" content="넓이 계산기 | 직사각형·삼각형·사다리꼴·원·부채꼴·타원·평행사변형 7가지 도형의 넓이를 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/area-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">AREA CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator.html">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator.html">전세자금대출 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator.html">소모 칼로리 계산기</a></li>
+          <li><a href="one-rep-max-calculator.html">1RM(최대중량) 계산기</a></li>
+          <li><a href="target-heart-rate-calculator.html">목표심박수 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+          <li><a href="fraction-calculator.html">분수 계산기</a></li>
+          <li><a href="exponent-calculator.html">지수 계산기</a></li>
+          <li><a href="root-calculator.html">제곱근·거듭제곱근 계산기</a></li>
+          <li><a href="quadratic-calculator.html">이차방정식 계산기</a></li>
+          <li><a href="logarithm-calculator.html">로그 계산기</a></li>
+          <li><a href="ratio-calculator.html">비율 계산기</a></li>
+          <li><a href="lcm-calculator.html">최소공배수 계산기</a></li>
+          <li><a href="gcf-calculator.html">최대공약수 계산기</a></li>
+          <li><a href="factor-calculator.html">약수·소인수분해 계산기</a></li>
+          <li><a href="rounding-calculator.html">반올림 계산기</a></li>
+          <li><a href="percent-error-calculator.html">오차백분율 계산기</a></li>
+          <li><a href="binary-calculator.html">이진수 변환기</a></li>
+          <li><a href="hex-calculator.html">16진수 변환기</a></li>
+          <li><a href="scientific-notation-calculator.html">과학적 표기법 계산기</a></li>
+          <li><a href="half-life-calculator.html">반감기 계산기</a></li>
+          <li><a href="descriptive-stats-calculator.html">기술통계 계산기</a></li>
+          <li><a href="permutation-combination-calculator.html">순열과 조합 계산기</a></li>
+          <li><a href="z-score-calculator.html">Z-점수 계산기</a></li>
+          <li><a href="confidence-interval-calculator.html">신뢰구간 계산기</a></li>
+          <li><a href="probability-calculator.html">확률 계산기</a></li>
+          <li><a href="sample-size-calculator.html">표본크기 계산기</a></li>
+          <li><a href="sequence-calculator.html">수열 계산기</a></li>
+          <li><a href="triangle-calculator.html">삼각형 계산기</a></li>
+          <li><a href="right-triangle-calculator.html">직각삼각형·피타고라스 정리 계산기</a></li>
+          <li><a href="area-calculator.html" class="active">넓이 계산기</a></li>
+          <li><a href="volume-calculator.html">입체도형 부피·표면적 계산기</a></li>
+          <li><a href="circle-calculator.html">원 계산기</a></li>
+          <li><a href="slope-distance-calculator.html">두 점 사이 기울기·거리 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>넓이 계산기</h2>
+      <p>도형을 고르고 값을 입력하면 넓이를 바로 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">넓이</div>
+              <div class="value" id="miniScreen">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ar-shape">도형</label>
+            <select id="ar-shape">
+              <option value="rect" selected>직사각형</option>
+              <option value="tri">삼각형 (세 변)</option>
+              <option value="trap">사다리꼴</option>
+              <option value="circle">원</option>
+              <option value="sector">부채꼴</option>
+              <option value="ellipse">타원</option>
+              <option value="para">평행사변형</option>
+            </select>
+          </div>
+
+          <div class="field mode-field" data-mode="rect">
+            <label for="ar-l">길이</label>
+            <input type="number" id="ar-l" value="10" min="0" step="any">
+          </div>
+          <div class="field mode-field" data-mode="rect">
+            <label for="ar-w">너비</label>
+            <input type="number" id="ar-w" value="5" min="0" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="tri">
+            <label for="ar-ta">변 a</label>
+            <input type="number" id="ar-ta" value="3" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="tri">
+            <label for="ar-tb">변 b</label>
+            <input type="number" id="ar-tb" value="4" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="tri">
+            <label for="ar-tc">변 c</label>
+            <input type="number" id="ar-tc" value="5" min="0" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="trap">
+            <label for="ar-b1">윗변</label>
+            <input type="number" id="ar-b1" value="6" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="trap">
+            <label for="ar-b2">아랫변</label>
+            <input type="number" id="ar-b2" value="10" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="trap">
+            <label for="ar-th">높이</label>
+            <input type="number" id="ar-th" value="4" min="0" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="circle">
+            <label for="ar-r">반지름</label>
+            <input type="number" id="ar-r" value="5" min="0" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="sector">
+            <label for="ar-sr">반지름</label>
+            <input type="number" id="ar-sr" value="5" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="sector">
+            <label for="ar-sa">중심각 (도)</label>
+            <input type="number" id="ar-sa" value="90" min="0" max="360" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="ellipse">
+            <label for="ar-ea">장반경 (a)</label>
+            <input type="number" id="ar-ea" value="6" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="ellipse">
+            <label for="ar-eb">단반경 (b)</label>
+            <input type="number" id="ar-eb" value="4" min="0" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="para">
+            <label for="ar-pb">밑변</label>
+            <input type="number" id="ar-pb" value="8" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="para">
+            <label for="ar-ph">높이</label>
+            <input type="number" id="ar-ph" value="5" min="0" step="any">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>넓이 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>넓이 계산기란?</h3>
+        <p>자주 쓰는 7가지 평면 도형(직사각형·삼각형·사다리꼴·원·부채꼴·타원·평행사변형)의 넓이를 도형별 공식에 맞게 계산합니다. 단위는 입력한 길이 단위의 제곱(예: cm 입력 시 cm²)입니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>도형별 계산 방식</h3>
+        <div class="method-def">
+          <h4>직사각형 · 평행사변형</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">넓이 = 밑변 × 높이</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>삼각형 (헤론의 공식)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">넓이 = √(s(s−a)(s−b)(s−c)), s = (a+b+c)/2</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>사다리꼴</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">넓이 =</span>
+              <span class="frac"><span class="num">(윗변 + 아랫변)</span><span class="den">2</span></span>
+              <span class="frac-lhs">× 높이</span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>원 · 부채꼴 · 타원</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">원 = πr² · 부채꼴 = πr² × (중심각/360) · 타원 = πab</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>도형별 필요 입력값</h3>
+        <table class="criteria-table text-table">
+          <thead><tr><th>도형</th><th>입력값</th></tr></thead>
+          <tbody>
+            <tr><td>직사각형</td><td>길이, 너비</td></tr>
+            <tr><td>삼각형</td><td>세 변 a, b, c</td></tr>
+            <tr><td>사다리꼴</td><td>윗변, 아랫변, 높이</td></tr>
+            <tr><td>원</td><td>반지름</td></tr>
+            <tr><td>부채꼴</td><td>반지름, 중심각</td></tr>
+            <tr><td>타원</td><td>장반경, 단반경</td></tr>
+            <tr><td>평행사변형</td><td>밑변, 높이</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>정사각형의 넓이도 구할 수 있나요?</summary>
+          <p class="faq-a">직사각형에서 길이와 너비를 같은 값으로 입력하면 정사각형 넓이가 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>부채꼴에서 중심각이 360도이면 어떻게 되나요?</summary>
+          <p class="faq-a">중심각 360도는 원 전체와 같으므로, 원 넓이 공식(πr²)과 같은 결과가 나옵니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>이 목록에 없는 도형(다각형 등)은 어떻게 하나요?</summary>
+          <p class="faq-a">일반 다각형은 변의 개수와 모양이 다양해 하나의 공식으로 표현하기 어려워 이 계산기에서는 다루지 않습니다. 정다각형이라면 변의 개수와 한 변의 길이로 별도 공식을 적용해야 합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/area-calc.js"></script>
+</body>
+</html>

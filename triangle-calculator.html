@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="삼각형 계산기 | 세 변(SSS), 두 변과 끼인각(SAS), 한 변과 두 각(ASA)으로 삼각형의 나머지 변·각·넓이·둘레를 계산하는 무료 계산기">
+<title>삼각형 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/triangle-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="삼각형 계산기 | 계산기">
+<meta property="og:description" content="삼각형 계산기 | 세 변(SSS), 두 변과 끼인각(SAS), 한 변과 두 각(ASA)으로 삼각형의 나머지 변·각·넓이·둘레를 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/triangle-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">TRIANGLE CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator.html">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator.html">전세자금대출 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator.html">소모 칼로리 계산기</a></li>
+          <li><a href="one-rep-max-calculator.html">1RM(최대중량) 계산기</a></li>
+          <li><a href="target-heart-rate-calculator.html">목표심박수 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+          <li><a href="fraction-calculator.html">분수 계산기</a></li>
+          <li><a href="exponent-calculator.html">지수 계산기</a></li>
+          <li><a href="root-calculator.html">제곱근·거듭제곱근 계산기</a></li>
+          <li><a href="quadratic-calculator.html">이차방정식 계산기</a></li>
+          <li><a href="logarithm-calculator.html">로그 계산기</a></li>
+          <li><a href="ratio-calculator.html">비율 계산기</a></li>
+          <li><a href="lcm-calculator.html">최소공배수 계산기</a></li>
+          <li><a href="gcf-calculator.html">최대공약수 계산기</a></li>
+          <li><a href="factor-calculator.html">약수·소인수분해 계산기</a></li>
+          <li><a href="rounding-calculator.html">반올림 계산기</a></li>
+          <li><a href="percent-error-calculator.html">오차백분율 계산기</a></li>
+          <li><a href="binary-calculator.html">이진수 변환기</a></li>
+          <li><a href="hex-calculator.html">16진수 변환기</a></li>
+          <li><a href="scientific-notation-calculator.html">과학적 표기법 계산기</a></li>
+          <li><a href="half-life-calculator.html">반감기 계산기</a></li>
+          <li><a href="descriptive-stats-calculator.html">기술통계 계산기</a></li>
+          <li><a href="permutation-combination-calculator.html">순열과 조합 계산기</a></li>
+          <li><a href="z-score-calculator.html">Z-점수 계산기</a></li>
+          <li><a href="confidence-interval-calculator.html">신뢰구간 계산기</a></li>
+          <li><a href="probability-calculator.html">확률 계산기</a></li>
+          <li><a href="sample-size-calculator.html">표본크기 계산기</a></li>
+          <li><a href="sequence-calculator.html">수열 계산기</a></li>
+          <li><a href="triangle-calculator.html" class="active">삼각형 계산기</a></li>
+          <li><a href="right-triangle-calculator.html">직각삼각형·피타고라스 정리 계산기</a></li>
+          <li><a href="area-calculator.html">넓이 계산기</a></li>
+          <li><a href="volume-calculator.html">입체도형 부피·표면적 계산기</a></li>
+          <li><a href="circle-calculator.html">원 계산기</a></li>
+          <li><a href="slope-distance-calculator.html">두 점 사이 기울기·거리 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>삼각형 계산기</h2>
+      <p>알고 있는 값(세 변, 두 변과 끼인각, 한 변과 두 각)을 입력하면 나머지 변·각·넓이·둘레를 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">넓이</div>
+              <div class="value" id="miniScreen">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>알고 있는 값</label>
+            <div class="seg-toggle" data-target="mode" style="width:100%; flex-wrap:wrap;">
+              <button type="button" class="seg-btn active" data-value="sss" style="flex:1;">세 변 (SSS)</button>
+              <button type="button" class="seg-btn" data-value="sas" style="flex:1;">두 변+끼인각 (SAS)</button>
+              <button type="button" class="seg-btn" data-value="asa" style="flex:1;">한 변+두 각 (ASA)</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="sss">
+            <label for="tr-a">변 a</label>
+            <input type="number" id="tr-a" value="3" min="0" step="any">
+          </div>
+          <div class="field mode-field" data-mode="sss">
+            <label for="tr-b">변 b</label>
+            <input type="number" id="tr-b" value="4" min="0" step="any">
+          </div>
+          <div class="field mode-field" data-mode="sss">
+            <label for="tr-c">변 c</label>
+            <input type="number" id="tr-c" value="5" min="0" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="sas">
+            <label for="tr-sa">변 a</label>
+            <input type="number" id="tr-sa" value="3" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="sas">
+            <label for="tr-sb">변 b</label>
+            <input type="number" id="tr-sb" value="4" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="sas">
+            <label for="tr-sC">끼인각 C (도, a와 b 사이)</label>
+            <input type="number" id="tr-sC" value="90" min="0" max="180" step="any">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="asa">
+            <label for="tr-aa">변 a (B와 C 각 사이의 변)</label>
+            <input type="number" id="tr-aa" value="5" min="0" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="asa">
+            <label for="tr-aB">각 B (도)</label>
+            <input type="number" id="tr-aB" value="45" min="0" max="179" step="any">
+          </div>
+          <div class="field mode-field hidden" data-mode="asa">
+            <label for="tr-aC">각 C (도)</label>
+            <input type="number" id="tr-aC" value="45" min="0" max="179" step="any">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>삼각형 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>삼각형을 결정하는 3가지 정보</h3>
+        <p>삼각형은 세 변(SSS), 두 변과 그 사이 각(SAS), 한 변과 그 양 끝 두 각(ASA) 중 하나만 알아도 나머지 모든 변·각을 구할 수 있습니다. 이 계산기는 이 세 가지 입력 방식을 모두 지원합니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>제2코사인법칙 (세 변 → 각)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">cos A = (b² + c² − a²) ÷ 2bc</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>제1코사인법칙 (두 변+끼인각 → 나머지 변)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">c² = a² + b² − 2ab cos C</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>사인법칙 (한 변+두 각 → 나머지 변)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">a / sin A =</span>
+              <span class="frac"><span class="num">b</span><span class="den">sin B</span></span>
+              <span class="frac-lhs">=</span>
+              <span class="frac"><span class="num">c</span><span class="den">sin C</span></span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>넓이</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">넓이 = (1/2) × a × b × sin C</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>삼각형 분류 기준</h3>
+        <table class="criteria-table text-table">
+          <thead><tr><th>기준</th><th>분류</th></tr></thead>
+          <tbody>
+            <tr><td>변의 길이</td><td>정삼각형(세 변 같음) · 이등변삼각형(두 변 같음) · 부등변삼각형(모두 다름)</td></tr>
+            <tr><td>가장 큰 각</td><td>예각삼각형(모든 각 &lt; 90°) · 직각삼각형(= 90°) · 둔각삼각형(&gt; 90°)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>SSS 입력에서 "삼각형을 이룰 수 없다"는 안내가 뜨는 이유는?</summary>
+          <p class="faq-a">삼각형이 되려면 어떤 두 변의 합도 나머지 한 변보다 커야 합니다(삼각부등식). 예를 들어 1, 2, 5는 1+2=3&lt;5라서 삼각형을 만들 수 없습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>ASA에서 입력한 두 각의 합이 180도를 넘으면요?</summary>
+          <p class="faq-a">삼각형의 세 내각의 합은 항상 180도이므로, 두 각만 더해도 이미 180도를 넘거나 같으면 나머지 한 각이 0 이하가 되어 삼각형을 만들 수 없습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>라디안 단위로도 입력할 수 있나요?</summary>
+          <p class="faq-a">이 계산기는 도(°) 단위만 지원합니다. 라디안 값이 있다면 도 = 라디안 × (180/π)로 변환해서 입력하세요.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/triangle-calc.js"></script>
+</body>
+</html>

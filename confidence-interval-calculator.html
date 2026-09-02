@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="신뢰구간 계산기 | 표본크기·표본평균·표준편차로 모평균의 신뢰구간을 계산하는 무료 계산기">
+<title>신뢰구간 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/confidence-interval-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="신뢰구간 계산기 | 계산기">
+<meta property="og:description" content="신뢰구간 계산기 | 표본크기·표본평균·표준편차로 모평균의 신뢰구간을 계산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/confidence-interval-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">CONFIDENCE INTERVAL CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator.html">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator.html">전세자금대출 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator.html">소모 칼로리 계산기</a></li>
+          <li><a href="one-rep-max-calculator.html">1RM(최대중량) 계산기</a></li>
+          <li><a href="target-heart-rate-calculator.html">목표심박수 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+          <li><a href="fraction-calculator.html">분수 계산기</a></li>
+          <li><a href="exponent-calculator.html">지수 계산기</a></li>
+          <li><a href="root-calculator.html">제곱근·거듭제곱근 계산기</a></li>
+          <li><a href="quadratic-calculator.html">이차방정식 계산기</a></li>
+          <li><a href="logarithm-calculator.html">로그 계산기</a></li>
+          <li><a href="ratio-calculator.html">비율 계산기</a></li>
+          <li><a href="lcm-calculator.html">최소공배수 계산기</a></li>
+          <li><a href="gcf-calculator.html">최대공약수 계산기</a></li>
+          <li><a href="factor-calculator.html">약수·소인수분해 계산기</a></li>
+          <li><a href="rounding-calculator.html">반올림 계산기</a></li>
+          <li><a href="percent-error-calculator.html">오차백분율 계산기</a></li>
+          <li><a href="binary-calculator.html">이진수 변환기</a></li>
+          <li><a href="hex-calculator.html">16진수 변환기</a></li>
+          <li><a href="scientific-notation-calculator.html">과학적 표기법 계산기</a></li>
+          <li><a href="half-life-calculator.html">반감기 계산기</a></li>
+          <li><a href="descriptive-stats-calculator.html">기술통계 계산기</a></li>
+          <li><a href="permutation-combination-calculator.html">순열과 조합 계산기</a></li>
+          <li><a href="z-score-calculator.html">Z-점수 계산기</a></li>
+          <li><a href="confidence-interval-calculator.html" class="active">신뢰구간 계산기</a></li>
+          <li><a href="probability-calculator.html">확률 계산기</a></li>
+          <li><a href="sample-size-calculator.html">표본크기 계산기</a></li>
+          <li><a href="sequence-calculator.html">수열 계산기</a></li>
+          <li><a href="triangle-calculator.html">삼각형 계산기</a></li>
+          <li><a href="right-triangle-calculator.html">직각삼각형·피타고라스 정리 계산기</a></li>
+          <li><a href="area-calculator.html">넓이 계산기</a></li>
+          <li><a href="volume-calculator.html">입체도형 부피·표면적 계산기</a></li>
+          <li><a href="circle-calculator.html">원 계산기</a></li>
+          <li><a href="slope-distance-calculator.html">두 점 사이 기울기·거리 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>신뢰구간 계산기</h2>
+      <p>표본크기·표본평균·표준편차와 신뢰수준을 입력하면 모평균의 신뢰구간을 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">신뢰구간</div>
+              <div class="value" id="miniScreen" style="font-size:1.5rem;">0</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ci-n">표본크기 (n)</label>
+            <input type="number" id="ci-n" value="50" min="1">
+          </div>
+
+          <div class="field">
+            <label for="ci-mean">표본평균 (x̄)</label>
+            <input type="number" id="ci-mean" value="20.6" step="any">
+          </div>
+
+          <div class="field">
+            <label for="ci-std">표준편차 (s)</label>
+            <input type="number" id="ci-std" value="4.8" step="any" min="0">
+          </div>
+
+          <div class="field">
+            <label for="ci-level">신뢰수준</label>
+            <select id="ci-level">
+              <option value="80">80%</option>
+              <option value="85">85%</option>
+              <option value="90">90%</option>
+              <option value="95" selected>95%</option>
+              <option value="98">98%</option>
+              <option value="99">99%</option>
+              <option value="99.9">99.9%</option>
+            </select>
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>신뢰구간 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>신뢰구간이란?</h3>
+        <p>신뢰구간은 표본 조사 결과로 모집단 전체의 참값(모평균)이 있을 것으로 추정되는 범위입니다. "95% 신뢰수준"은 같은 방식으로 100번 표본을 뽑아 신뢰구간을 구하면 그중 약 95번은 참값을 포함한다는 의미입니다.</p>
+        <p>표본크기가 클수록, 데이터가 덜 흩어져 있을수록(표준편차가 작을수록) 신뢰구간은 더 좁아져 추정이 더 정밀해집니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>오차범위</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">오차범위 = Z ×</span>
+              <span class="frac"><span class="num">s</span><span class="den">√n</span></span>
+            </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>신뢰구간</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">신뢰구간 = x̄ ± 오차범위</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>신뢰수준별 Z값</h3>
+        <table class="criteria-table text-table">
+          <thead><tr><th>신뢰수준</th><th>Z값</th></tr></thead>
+          <tbody>
+            <tr><td>90%</td><td>1.645</td></tr>
+            <tr><td>95%</td><td>1.960</td></tr>
+            <tr><td>98%</td><td>2.326</td></tr>
+            <tr><td>99%</td><td>2.576</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>신뢰수준을 95%에서 99%로 올리면 왜 구간이 넓어지나요?</summary>
+          <p class="faq-a">더 높은 확률로 참값을 포함하도록 보장하려면 그만큼 더 넓은 범위를 잡아야 하기 때문입니다. 신뢰수준과 신뢰구간의 폭은 항상 함께 늘어나는 관계입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>표본평균·표준편차를 모르고 원본 데이터만 있으면요?</summary>
+          <p class="faq-a">기술통계 계산기에 원본 숫자 목록을 입력하면 평균과 표준편차(표본 기준)를 먼저 구할 수 있습니다. 그 값을 이 계산기에 그대로 입력하면 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>표본크기가 작아도(예: n=10) 정확한가요?</summary>
+          <p class="faq-a">이 계산기는 표본크기가 충분히 클 때(일반적으로 30 이상) 정확도가 높은 정규분포 근사(Z분포)를 사용합니다. 표본크기가 작으면 t분포를 쓰는 것이 이론적으로 더 정확하지만, 실무에서는 여전히 널리 참고되는 근사치입니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/confidence-interval-calc.js"></script>
+</body>
+</html>
