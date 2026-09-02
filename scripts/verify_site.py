@@ -59,12 +59,17 @@ def check_internal_links():
     for f in html_files():
         text = f.read_text(encoding='utf-8')
         for href in re.findall(r'href="([^"]*)"', text):
-            if href.startswith(('http://', 'https://', 'mailto:', '#')) or href in ('style.css',):
+            if href.startswith(('http://', 'https://', 'mailto:', '#')):
                 continue
             if href == '/':
                 continue
             slug = href.lstrip('/').split('#')[0]
-            if slug not in existing:
+            # 확장자가 있는 정적 파일(style.css, favicon.png 등)은 실제 파일
+            # 존재 여부로, 계산기 페이지 슬러그는 확장자 없는 존재 집합으로 확인
+            if '.' in slug:
+                if not (ROOT / slug).exists():
+                    fail(f'[broken link] {f.name}: href="{href}" does not exist')
+            elif slug not in existing:
                 fail(f'[broken link] {f.name}: href="{href}" does not exist')
 
 
