@@ -34,6 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"전세자금대출 계산기","item":"https://kcalculator.net/jeonse-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"전세자금대출 계산기","description":"전세자금대출 계산기 | 버팀목전세자금대출·은행 일반 전세자금대출의 대출한도와 월 이자를 계산하는 무료 계산기","url":"https://kcalculator.net/jeonse-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"버팀목전세대출과 은행 전세대출 중 어느 쪽이 유리한가요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 특정 상품을 추천하지 않습니다. 다만 소득·자산 요건을 충족한다면 버팀목전세자금대출이 대체로 금리가 낮습니다. 소득 기준을 초과하면 은행 일반 전세자금대출을 이용해야 합니다."}},{"@type":"Question","name":"청년전용 버팀목전세자금대출은 다른가요?","acceptedAnswer":{"@type":"Answer","text":"네, 만 19~34세 청년을 대상으로 소득 기준이 완화된 별도 상품입니다. 이 계산기는 일반 버팀목전세자금대출(신혼부부·다자녀가구 포함)만 다루며, 청년전용 상품은 포함하지 않습니다."}},{"@type":"Question","name":"대출 원금은 언제 갚나요?","acceptedAnswer":{"@type":"Answer","text":"전세계약이 끝나고 집주인에게 보증금을 반환받을 때 그 돈으로 원금을 상환합니다. 계약을 갱신하며 계속 거주한다면 대출도 함께 갱신해 이자만 납부하는 기간을 이어갈 수 있습니다."}}]}]</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -169,7 +170,7 @@
 
         <div class="field mode-field" data-mode="butim">
           <label for="b-deposit">임차보증금 (원)</label>
-          <input type="text" id="b-deposit" value="200,000,000" placeholder="예: 200,000,000">
+          <input type="text" id="b-deposit" inputmode="numeric" value="200,000,000" placeholder="예: 200,000,000">
           <div class="key-row">
             <button type="button" class="calc-key" data-add="10000000" data-target="b-deposit">+1000만</button>
             <button type="button" class="calc-key" data-add="100000000" data-target="b-deposit">+1억</button>
@@ -192,7 +193,7 @@
         </div>
         <div class="field mode-field" data-mode="butim">
           <label for="b-income">부부합산 연소득 (원)</label>
-          <input type="text" id="b-income" value="45,000,000" placeholder="예: 45,000,000">
+          <input type="text" id="b-income" inputmode="numeric" value="45,000,000" placeholder="예: 45,000,000">
         </div>
         <div class="field mode-field" data-mode="butim">
           <label for="b-rate">금리 (연 %)</label>
@@ -202,7 +203,7 @@
 
         <div class="field mode-field hidden" data-mode="bank">
           <label for="k-deposit">임차보증금 (원)</label>
-          <input type="text" id="k-deposit" value="300,000,000" placeholder="예: 300,000,000">
+          <input type="text" id="k-deposit" inputmode="numeric" value="300,000,000" placeholder="예: 300,000,000">
           <div class="key-row">
             <button type="button" class="calc-key" data-add="10000000" data-target="k-deposit">+1000만</button>
             <button type="button" class="calc-key" data-add="100000000" data-target="k-deposit">+1억</button>
