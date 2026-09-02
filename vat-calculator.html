@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="부가가치세(VAT) 계산기 | 공급가액에서 부가세·합계금액을 계산하거나, 합계금액에서 공급가액·부가세를 역산하는 무료 계산기">
+<title>부가가치세(VAT) 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/vat-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="부가가치세(VAT) 계산기 | 계산기">
+<meta property="og:description" content="부가가치세(VAT) 계산기 | 공급가액에서 부가세·합계금액을 계산하거나, 합계금액에서 공급가액·부가세를 역산하는 무료 계산기">
+<meta property="og:url" content="https://kcalculator.net/vat-calculator.html">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1><a href="index.html">계산기</a></h1>
+      <div class="eyebrow">VAT CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator.html">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator.html">예·적금 계산기</a></li>
+          <li><a href="salary-calculator.html">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator.html">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator.html">복리 계산기</a></li>
+          <li><a href="student-loan-calculator.html">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator.html">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator.html">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator.html">전세자금대출 계산기</a></li>
+          <li><a href="vat-calculator.html" class="active">부가가치세(VAT) 계산기</a></li>
+          <li><a href="electricity-bill-calculator.html">전기요금 계산기</a></li>
+          <li><a href="inheritance-tax-calculator.html">상속세 계산기</a></li>
+          <li><a href="inflation-calculator.html">인플레이션(화폐가치) 계산기</a></li>
+          <li><a href="budget-calculator.html">예산(가계부) 계산기</a></li>
+          <li><a href="depreciation-calculator.html">감가상각 계산기</a></li>
+          <li><a href="margin-calculator.html">마진·할인율 계산기</a></li>
+          <li><a href="national-pension-calculator.html">국민연금 예상수령액 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator.html">BMI 계산기</a></li>
+          <li><a href="bmr-calculator.html">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator.html">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator.html">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator.html">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator.html">소모 칼로리 계산기</a></li>
+          <li><a href="one-rep-max-calculator.html">1RM(최대중량) 계산기</a></li>
+          <li><a href="target-heart-rate-calculator.html">목표심박수 계산기</a></li>
+          <li><a href="sleep-calculator.html">수면 계산기</a></li>
+          <li><a href="ovulation-calculator.html">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator.html">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator.html">공학용 계산기</a></li>
+          <li><a href="percent-calculator.html">퍼센트 계산기</a></li>
+          <li><a href="fraction-calculator.html">분수 계산기</a></li>
+          <li><a href="exponent-calculator.html">지수 계산기</a></li>
+          <li><a href="root-calculator.html">제곱근·거듭제곱근 계산기</a></li>
+          <li><a href="quadratic-calculator.html">이차방정식 계산기</a></li>
+          <li><a href="logarithm-calculator.html">로그 계산기</a></li>
+          <li><a href="ratio-calculator.html">비율 계산기</a></li>
+          <li><a href="lcm-calculator.html">최소공배수 계산기</a></li>
+          <li><a href="gcf-calculator.html">최대공약수 계산기</a></li>
+          <li><a href="factor-calculator.html">약수·소인수분해 계산기</a></li>
+          <li><a href="rounding-calculator.html">반올림 계산기</a></li>
+          <li><a href="percent-error-calculator.html">오차백분율 계산기</a></li>
+          <li><a href="binary-calculator.html">이진수 변환기</a></li>
+          <li><a href="hex-calculator.html">16진수 변환기</a></li>
+          <li><a href="scientific-notation-calculator.html">과학적 표기법 계산기</a></li>
+          <li><a href="half-life-calculator.html">반감기 계산기</a></li>
+          <li><a href="descriptive-stats-calculator.html">기술통계 계산기</a></li>
+          <li><a href="permutation-combination-calculator.html">순열과 조합 계산기</a></li>
+          <li><a href="z-score-calculator.html">Z-점수 계산기</a></li>
+          <li><a href="confidence-interval-calculator.html">신뢰구간 계산기</a></li>
+          <li><a href="probability-calculator.html">확률 계산기</a></li>
+          <li><a href="sample-size-calculator.html">표본크기 계산기</a></li>
+          <li><a href="sequence-calculator.html">수열 계산기</a></li>
+          <li><a href="triangle-calculator.html">삼각형 계산기</a></li>
+          <li><a href="right-triangle-calculator.html">직각삼각형·피타고라스 정리 계산기</a></li>
+          <li><a href="area-calculator.html">넓이 계산기</a></li>
+          <li><a href="volume-calculator.html">입체도형 부피·표면적 계산기</a></li>
+          <li><a href="circle-calculator.html">원 계산기</a></li>
+          <li><a href="slope-distance-calculator.html">두 점 사이 기울기·거리 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator.html">만 나이 계산기</a></li>
+          <li><a href="date-calculator.html">날짜 계산기</a></li>
+          <li><a href="unit-calculator.html">단위 변환기</a></li>
+          <li><a href="pace-calculator.html">페이스 계산기</a></li>
+          <li><a href="fuel-calculator.html">유류비 계산기</a></li>
+          <li><a href="gpa-calculator.html">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-title">
+      <h2>부가가치세(VAT) 계산기</h2>
+      <p>공급가액에서 부가세·합계금액을 계산하거나, 합계금액에서 공급가액·부가세를 거꾸로 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">계산 결과</div>
+              <div class="value" id="miniScreen">0원</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>계산 유형</label>
+            <div class="seg-toggle" data-target="mode" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="supply" style="flex:1;">공급가액 기준</button>
+              <button type="button" class="seg-btn" data-value="total" style="flex:1;">합계금액 기준</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="supply">
+            <label for="vat-supply">공급가액 (원)</label>
+            <input type="text" id="vat-supply" inputmode="numeric">
+            <p class="field-note">부가세가 포함되지 않은 순수 판매(공급) 금액입니다.</p>
+          </div>
+
+          <div class="field mode-field hidden" data-mode="total">
+            <label for="vat-total">합계금액 (원, 부가세 포함)</label>
+            <input type="text" id="vat-total" inputmode="numeric">
+            <p class="field-note">영수증·세금계산서에 적힌 최종 결제 금액(공급대가)입니다.</p>
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>부가가치세(VAT) 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>부가가치세(VAT)란?</h3>
+        <p>부가가치세는 상품·서비스 거래 시 부가된 가치에 매기는 세금으로, 한국은 10% 단일세율을 적용합니다. 사업자가 물건을 팔 때 받는 돈(공급대가)에는 순수 판매금액(공급가액)에 부가세 10%가 포함되어 있습니다.</p>
+        <p>이 계산기는 공급가액을 알 때 부가세와 합계금액을 계산하거나, 반대로 영수증에 찍힌 합계금액만 알 때 공급가액과 부가세를 거꾸로 계산하는 것을 모두 지원합니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>공급가액 → 부가세·합계금액</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">부가세 = 공급가액 × 10%</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">합계금액 = 공급가액 × 1.1</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>합계금액 → 공급가액·부가세 (역산)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">공급가액 =</span>
+              <span class="frac"><span class="num">합계금액</span><span class="den">1.1</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>계산 예시</h3>
+        <table class="criteria-table text-table">
+          <thead><tr><th>공급가액</th><th>부가세</th><th>합계금액</th></tr></thead>
+          <tbody>
+            <tr><td>100,000원</td><td>10,000원</td><td>110,000원</td></tr>
+            <tr><td>1,000,000원</td><td>100,000원</td><td>1,100,000원</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>합계금액에서 공급가액을 구할 때 왜 1.1로 나누나요?</summary>
+          <p class="faq-a">합계금액은 공급가액에 부가세 10%가 더해진 금액(공급가액×1.1)이기 때문에, 거꾸로 공급가액을 구하려면 합계금액을 1.1로 나눠야 합니다. 합계금액에 그냥 10%를 곱해서 빼면 실제보다 큰 값이 나와 틀립니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>모든 품목에 부가세 10%가 붙나요?</summary>
+          <p class="faq-a">기본 미가공식료품, 도서·신문 등 일부 품목은 부가가치세가 면제되는 면세 대상입니다. 이 계산기는 부가세 과세 대상 거래를 기준으로 합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>간이과세자도 이 계산이 그대로 적용되나요?</summary>
+          <p class="faq-a">간이과세자는 업종별로 낮은 부가가치율을 적용받아 실제 납부세액 계산 방식이 다릅니다. 이 계산기는 일반과세자의 표준 세금계산서 기준(10%)입니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/url-state.js"></script>
+<script src="js/export.js"></script>
+<script src="js/vat-calc.js"></script>
+</body>
+</html>
