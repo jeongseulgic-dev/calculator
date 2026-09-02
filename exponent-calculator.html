@@ -136,15 +136,29 @@
           </div>
 
           <div class="field">
-            <label for="e-base">밑 (base)</label>
-            <input type="number" id="e-base" value="2">
+            <label>구하려는 값</label>
+            <div class="seg-toggle" data-target="solve" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="result" style="flex:1;">결과값</button>
+              <button type="button" class="seg-btn" data-value="base" style="flex:1;">밑</button>
+              <button type="button" class="seg-btn" data-value="exp" style="flex:1;">지수</button>
+            </div>
           </div>
 
-          <div class="field">
+          <div class="field mode-field" data-mode="result,exp">
+            <label for="e-base">밑 (base)</label>
+            <input type="number" id="e-base" value="2" step="any">
+          </div>
+
+          <div class="field mode-field" data-mode="result,base">
             <label for="e-exp">지수 (exponent)</label>
             <input type="number" id="e-exp" value="10" step="any">
-            <p class="field-note">소수(예: 0.5)는 거듭제곱근, 음수(예: −2)는 역수의 거듭제곱으로 계산됩니다.</p>
           </div>
+
+          <div class="field mode-field" data-mode="base,exp">
+            <label for="e-result">결과값</label>
+            <input type="number" id="e-result" value="1024" step="any">
+          </div>
+          <p class="field-note">소수(예: 0.5)는 거듭제곱근, 음수(예: −2)는 역수의 거듭제곱으로 계산됩니다.</p>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
         </aside>
@@ -174,6 +188,7 @@
       <div class="info-block">
         <h3><span class="info-icon">💡</span>지수(거듭제곱)란?</h3>
         <p>지수는 같은 수를 몇 번 곱하는지를 나타냅니다. 밑(base)이 x이고 지수(exponent)가 n일 때, xⁿ은 x를 n번 곱한 값을 뜻합니다. 지수가 음수면 역수의 거듭제곱, 소수(특히 1/n 꼴)면 거듭제곱근을 의미합니다.</p>
+        <p>밑·지수·결과값 세 값 중 두 개를 알면 나머지 하나를 역산할 수 있어, 이 계산기는 상단에서 구하려는 값을 선택하도록 되어 있습니다.</p>
       </div>
 
       <div class="info-block">
@@ -197,6 +212,21 @@
           <h4>소수(분수) 지수</h4>
           <div class="formula-box formula-frac">
             <span class="frac-part"><span class="frac-lhs">x^(1/n) = x의 n제곱근</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>밑을 구할 때 (결과값·지수가 주어졌을 때)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">밑 = 결과값^(1/지수)</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>지수를 구할 때 (밑·결과값이 주어졌을 때)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">지수 =</span>
+              <span class="frac"><span class="num">log(결과값)</span><span class="den">log(밑)</span></span>
+            </span>
           </div>
         </div>
       </div>
@@ -228,6 +258,10 @@
         <details class="faq-item">
           <summary>제곱근이나 세제곱근만 계산하고 싶으면 어떻게 하나요?</summary>
           <p class="faq-a">지수를 0.5로 입력하면 제곱근, 1/3(≈0.3333)을 입력하면 세제곱근이 됩니다. n제곱근을 더 직접적으로 계산하려면 제곱근·거듭제곱근 계산기를 이용하세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>"밑"이나 "지수"를 구하는 건 어떻게 다른가요?</summary>
+          <p class="faq-a">"밑"을 구하는 건 x^n = 결과값 방정식을 x에 대해 푸는 것(거듭제곱근 계산과 같음)이고, "지수"를 구하는 건 같은 방정식을 n에 대해 푸는 것(로그 계산과 같음)입니다. 예를 들어 "2를 몇 제곱해야 1024가 될까?"처럼 지수 자체가 궁금할 때 지수 모드를 씁니다.</p>
         </details>
       </div>
     </section>

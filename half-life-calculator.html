@@ -136,20 +136,35 @@
           </div>
 
           <div class="field">
+            <label>구하려는 값</label>
+            <div class="seg-toggle" data-target="solve" style="width:100%; flex-wrap:wrap;">
+              <button type="button" class="seg-btn active" data-value="nt" style="flex:1;">잔여량</button>
+              <button type="button" class="seg-btn" data-value="n0" style="flex:1;">초기량</button>
+              <button type="button" class="seg-btn" data-value="t" style="flex:1;">경과 시간</button>
+              <button type="button" class="seg-btn" data-value="half" style="flex:1;">반감기</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="nt,t,half">
             <label for="hl-n0">초기량 (N₀)</label>
             <input type="number" id="hl-n0" value="100" step="any">
           </div>
 
-          <div class="field">
+          <div class="field mode-field" data-mode="n0,t,half">
+            <label for="hl-nt">잔여량 (Nₜ)</label>
+            <input type="number" id="hl-nt" value="17.6777" step="any">
+          </div>
+
+          <div class="field mode-field" data-mode="nt,n0,t">
             <label for="hl-half">반감기</label>
             <input type="number" id="hl-half" value="10" step="any">
           </div>
 
-          <div class="field">
+          <div class="field mode-field" data-mode="nt,n0,half">
             <label for="hl-t">경과 시간</label>
             <input type="number" id="hl-t" value="25" step="any">
-            <p class="field-note">반감기와 경과 시간은 같은 단위(예: 둘 다 년, 둘 다 일)로 입력해야 합니다.</p>
           </div>
+          <p class="field-note">반감기와 경과 시간은 같은 단위(예: 둘 다 년, 둘 다 일)로 입력해야 합니다.</p>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
         </aside>
@@ -179,7 +194,7 @@
       <div class="info-block">
         <h3><span class="info-icon">💡</span>반감기란?</h3>
         <p>반감기는 어떤 양이 절반으로 줄어드는 데 걸리는 시간입니다. 방사성 동위원소의 붕괴, 약물이 체내에서 분해되는 속도, 카페인 대사 등 시간에 따라 일정한 비율로 줄어드는(지수 감쇠) 현상을 설명할 때 쓰입니다.</p>
-        <p>반감기 한 번이 지날 때마다 남은 양은 정확히 절반이 되며, 이 계산기는 경과 시간이 반감기의 몇 배인지를 기준으로 잔여량을 계산합니다.</p>
+        <p>반감기 한 번이 지날 때마다 남은 양은 정확히 절반이 됩니다. 초기량·잔여량·경과시간·반감기 중 나머지 세 값을 알면 남은 한 값을 역산할 수 있어, 이 계산기는 상단에서 구하려는 값을 선택하도록 되어 있습니다.</p>
       </div>
 
       <div class="info-block">
@@ -191,7 +206,17 @@
               <span class="frac-lhs">N = N₀ × (1/2)^(t / T)</span>
             </span>
           </div>
-          <p>N₀: 초기량, T: 반감기, t: 경과 시간</p>
+          <p>N₀: 초기량, Nₜ: 잔여량, T: 반감기, t: 경과 시간</p>
+        </div>
+        <div class="method-def">
+          <h4>다른 값을 구할 때 (위 공식을 변형)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">N₀ = Nₜ × 2^(t/T)</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">t = T × log₂(N₀/Nₜ)</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">T = t ÷ log₂(N₀/Nₜ)</span></span>
+          </div>
         </div>
       </div>
 
@@ -222,6 +247,10 @@
         <details class="faq-item">
           <summary>잔여량이 정확히 0이 되는 시점이 있나요?</summary>
           <p class="faq-a">이론적으로는 시간이 아무리 지나도 지수적으로 줄어들 뿐 수학적으로 정확히 0에 도달하지는 않습니다. 다만 실제로는 반감기 10회 정도(잔여 비율 약 0.1%) 이후면 거의 남지 않은 것으로 취급합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>반감기 자체를 역산할 수도 있나요?</summary>
+          <p class="faq-a">네. 상단의 "구하려는 값"에서 반감기를 선택하면, 초기량·잔여량·경과시간 세 값으로 반감기를 거꾸로 계산합니다. 예를 들어 방사성 동위원소의 붕괴량을 실측해 반감기를 추정하는 경우에 활용할 수 있습니다.</p>
         </details>
       </div>
     </section>

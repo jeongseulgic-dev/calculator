@@ -13,6 +13,18 @@ function toSci(x){
   return { a: sign * a, n };
 }
 
+function toEngineering(x){
+  if (x === 0) return { a: 0, n: 0 };
+  const sign = x < 0 ? -1 : 1;
+  const ax = Math.abs(x);
+  const n0 = Math.floor(Math.log10(ax));
+  let n = Math.floor(n0 / 3) * 3;
+  let a = ax / Math.pow(10, n);
+  while (a >= 1000){ a /= 1000; n += 3; }
+  while (a < 1){ a *= 1000; n -= 3; }
+  return { a: sign * a, n };
+}
+
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(b=>b.classList.remove('active'));
@@ -42,12 +54,17 @@ function recalc(){
     }
     const { a, n } = toSci(x);
     const sciStr = `${fmt(a, 6)} × 10${superscript(n)}`;
+    const eStr = `${fmt(a, 6)}E${n >= 0 ? '+' : ''}${n}`;
+    const eng = toEngineering(x);
+    const engStr = `${fmt(eng.a, 6)} × 10${superscript(eng.n)}`;
     miniScreen.textContent = sciStr;
     miniScreenSub.textContent = `일반 표기 ${fmt(x)}`;
     meta.textContent = `${fmt(x)} → 과학적 표기법`;
     statBody.innerHTML = `
       <tr><th>일반 표기</th><td>${fmt(x)}</td></tr>
       <tr class="stat-highlight"><th>과학적 표기법</th><td>${sciStr}</td></tr>
+      <tr><th>E 표기법</th><td>${eStr}</td></tr>
+      <tr><th>공학용 표기법</th><td>${engStr}</td></tr>
     `;
     UrlState.sync({ mode, x }, URL_DEFAULTS);
   }

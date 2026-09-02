@@ -66,6 +66,30 @@ function recalc(){
     `;
     UrlState.sync({ mode, sa: a, sb: b, sc: c }, URL_DEFAULTS);
   }
+
+  else if (mode === 'scale'){
+    const a = parseFloat(document.getElementById('rt-ka').value);
+    const b = parseFloat(document.getElementById('rt-kb').value);
+    const k = parseFloat(document.getElementById('rt-k').value);
+    if (!Number.isFinite(a) || !Number.isFinite(b) || !Number.isFinite(k) || k <= 0){
+      miniScreen.textContent = '0:0';
+      miniScreenSub.textContent = '';
+      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">비율(A, B)과 0보다 큰 배율(k)을 입력해 주세요</td></tr>';
+      meta.textContent = '--';
+      return;
+    }
+    const sa = a * k, sb = b * k;
+    const label = k > 1 ? '확대' : k < 1 ? '축소' : '동일';
+    miniScreen.textContent = `${fmt(sa)} : ${fmt(sb)}`;
+    miniScreenSub.textContent = `${a}:${b}를 ${fmt(k)}배 ${label}`;
+    meta.textContent = `${a}:${b} × ${k}`;
+    statBody.innerHTML = `
+      <tr><th>원래 비율</th><td>${fmt(a)} : ${fmt(b)}</td></tr>
+      <tr><th>배율</th><td>${fmt(k)}배 (${label})</td></tr>
+      <tr class="stat-highlight"><th>결과 비율</th><td>${fmt(sa)} : ${fmt(sb)}</td></tr>
+    `;
+    UrlState.sync({ mode, ka: a, kb: b, k }, URL_DEFAULTS);
+  }
 }
 
 const URL_DEFAULTS = {
@@ -74,17 +98,20 @@ const URL_DEFAULTS = {
   b: document.getElementById('rt-b').defaultValue,
   sa: document.getElementById('rt-sa').defaultValue,
   sb: document.getElementById('rt-sb').defaultValue,
-  sc: document.getElementById('rt-sc').defaultValue
+  sc: document.getElementById('rt-sc').defaultValue,
+  ka: document.getElementById('rt-ka').defaultValue,
+  kb: document.getElementById('rt-kb').defaultValue,
+  k: document.getElementById('rt-k').defaultValue
 };
 
 const urlParams = UrlState.read();
-['a','b','sa','sb','sc'].forEach(k=>{
-  const el = document.getElementById('rt-' + k);
-  if (urlParams[k] && el) el.value = urlParams[k];
+['a','b','sa','sb','sc','ka','kb','k'].forEach(key=>{
+  const el = document.getElementById('rt-' + key);
+  if (urlParams[key] && el) el.value = urlParams[key];
 });
 if (urlParams.mode) clickToggle('mode', urlParams.mode);
 
-document.querySelectorAll('#rt-a, #rt-b, #rt-sa, #rt-sb, #rt-sc').forEach(el=>{
+document.querySelectorAll('#rt-a, #rt-b, #rt-sa, #rt-sb, #rt-sc, #rt-ka, #rt-kb, #rt-k').forEach(el=>{
   el.addEventListener('input', recalc);
 });
 

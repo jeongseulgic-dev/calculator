@@ -136,14 +136,28 @@
           </div>
 
           <div class="field">
+            <label>구하려는 값</label>
+            <div class="seg-toggle" data-target="solve" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="y" style="flex:1;">결과값</button>
+              <button type="button" class="seg-btn" data-value="x" style="flex:1;">진수</button>
+              <button type="button" class="seg-btn" data-value="base" style="flex:1;">밑</button>
+            </div>
+          </div>
+
+          <div class="field mode-field" data-mode="y,base">
             <label for="l-x">진수 (x)</label>
             <input type="number" id="l-x" value="100" step="any">
           </div>
 
-          <div class="field">
+          <div class="field mode-field" data-mode="y,x">
             <label for="l-base">밑 (기본 10 = 상용로그)</label>
             <input type="number" id="l-base" value="10" step="any">
             <button type="button" class="swap-btn" id="l-base-e">e로 설정 (자연로그, ln)</button>
+          </div>
+
+          <div class="field mode-field" data-mode="x,base">
+            <label for="l-y">결과값 (y)</label>
+            <input type="number" id="l-y" value="2" step="any">
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -175,6 +189,7 @@
         <h3><span class="info-icon">💡</span>로그란?</h3>
         <p>로그는 거듭제곱의 반대 개념입니다. log_b(x)는 "b를 몇 번 곱해야 x가 되는가"를 뜻합니다. 밑이 10이면 상용로그, 밑이 자연상수 e(≈2.71828)면 자연로그(ln)라고 부릅니다.</p>
         <p>진수(x)는 항상 0보다 커야 하고, 밑은 1이 아닌 양수여야 로그가 정의됩니다.</p>
+        <p>진수·밑·결과값 세 값 중 두 개를 알면 나머지 하나를 역산할 수 있어, 이 계산기는 상단에서 구하려는 값을 선택하도록 되어 있습니다.</p>
       </div>
 
       <div class="info-block">
@@ -192,6 +207,18 @@
               <span class="frac-lhs">log_b(x) =</span>
               <span class="frac"><span class="num">ln(x)</span><span class="den">ln(b)</span></span>
             </span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>진수를 구할 때 (밑·결과값이 주어졌을 때)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">x = b^y</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>밑을 구할 때 (진수·결과값이 주어졌을 때)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">b = x^(1/y)</span></span>
           </div>
         </div>
       </div>
@@ -221,6 +248,10 @@
         <details class="faq-item">
           <summary>밑이 1이면 왜 계산이 안 되나요?</summary>
           <p class="faq-a">1은 아무리 거듭제곱해도 항상 1이기 때문에, 밑이 1인 로그는 수학적으로 정의할 수 없습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>"진수"나 "밑"을 구하는 건 어떻게 다른가요?</summary>
+          <p class="faq-a">"진수"를 구하는 건 log_b(x) = y를 x에 대해 푸는 것(거듭제곱 계산과 같음)이고, "밑"을 구하는 건 같은 식을 b에 대해 푸는 것(거듭제곱근 계산과 같음)입니다. 밑을 구하는 경우는 흔치 않지만, 어떤 밑의 로그 체계인지 역으로 알아내야 할 때 씁니다.</p>
         </details>
       </div>
     </section>
