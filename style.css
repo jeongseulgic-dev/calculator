@@ -104,7 +104,11 @@ header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; colo
 .layout-wrapper{ display:flex; width:100%; max-width:1120px; margin:0 auto; padding:24px 16px 60px; gap:28px; align-items:flex-start; }
 .sidebar{ width:210px; flex-shrink:0; }
 .menu-group{ margin-bottom:20px; background:#caccce; padding:14px; border-radius:5px; border:1px solid #b8bac0; box-shadow:inset 1px 1px 3px rgba(255,255,255,0.7), 2px 2px 5px rgba(0,0,0,0.08); }
-.menu-group h2{ font-size:0.88rem; color:var(--pink); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #a3a6ac; font-weight:900; }
+.menu-group h2{ font-size:0.88rem; color:var(--pink); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #a3a6ac; font-weight:900; cursor:pointer; user-select:none; display:flex; align-items:center; justify-content:space-between; }
+.menu-group h2::after{ content:'▾'; font-size:0.7rem; }
+.menu-group:not(.open) h2{ margin-bottom:0; padding-bottom:5px; }
+.menu-group:not(.open) h2::after{ content:'▸'; }
+.menu-group:not(.open) ul{ display:none; }
 .menu-group ul{ list-style:none; }
 .menu-group li a{ text-decoration:none; color:#4a4e53; font-size:0.85rem; display:block; padding:5px 0; font-weight:700; }
 .menu-group li a:hover, .menu-group li a.active{ color:var(--pink); font-weight:900; }
@@ -334,6 +338,16 @@ table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight
 .cat-card h3{ font-size:0.95rem; color:var(--ink); }
 .cat-card p{ font-size:0.78rem; color:var(--ink-soft); line-height:1.4; }
 .cat-card .cat-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; color:var(--pink); font-weight:700; }
+
+/* ===== 메인페이지 카테고리별 전체 계산기 링크 목록 ===== */
+.all-calcs{ width:100%; max-width:1120px; margin:0 auto; padding:40px 16px 20px; }
+.all-calcs h2{ font-size:1.05rem; font-weight:900; color:var(--heading); border-bottom:2px solid var(--heading); padding-bottom:8px; margin-bottom:15px; }
+.all-calcs-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:14px; }
+.all-calcs-group{ background:var(--card-bg); border:1px solid #dfe2e6; border-radius:8px; padding:16px 18px; }
+.all-calcs-group h3{ font-size:0.88rem; color:var(--pink); font-weight:900; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #dfe2e6; }
+.all-calcs-group ul{ list-style:none; }
+.all-calcs-group li a{ display:block; padding:4px 0; font-size:0.82rem; color:var(--ink-soft); text-decoration:none; }
+.all-calcs-group li a:hover{ color:var(--pink); }
 
 /* ===== 서브페이지 설명 섹션 (개념/공식/기준표/FAQ) ===== */
 .info-section{ margin-top:32px; }

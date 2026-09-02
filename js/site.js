@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  document.querySelectorAll('.menu-group').forEach(group => {
+    if (group.querySelector('a.active')) group.classList.add('open');
+    const h2 = group.querySelector('h2');
+    h2?.addEventListener('click', () => group.classList.toggle('open'));
+  });
+
   const themeBtn = document.getElementById('themeToggle');
   const syncThemeIcon = () => { if (themeBtn) themeBtn.textContent = currentTheme() === 'dark' ? '☀️' : '🌙'; };
   syncThemeIcon();
