@@ -38,7 +38,6 @@ function convertTrigToDeg(expr){
 
 class Engine {
   static evaluate(expression){
-    if (!window.math) throw new Error('math.js not loaded');
     let expr = Fmt.removeCommas(expression);
 
     expr = expr.replace(/[⎕□]/g, '');
@@ -55,18 +54,22 @@ class Engine {
     expr = expr.replace(/(\d+(?:\.\d+)?)\s*×\s*(\d+(?:\.\d+)?)%/g, '$1 * ($2/100)');
     expr = expr.replace(/(\d+(?:\.\d+)?)%/g, '($1/100)');
 
-    expr = expr.replace(/×/g,'*').replace(/÷/g,'/').replace(/π/g,'pi')
-                .replace(/√\(/g,'sqrt(').replace(/log\(/g,'log10(').replace(/ln\(/g,'log(');
-
-    expr = expr.replace(/(\d)\s*(pi|e|sqrt|log10|log|sin|cos|tan)\b/g, '$1 * $2');
+    // 괄호 앞뒤 암시적 곱셈은 log/ln -> log10/log 치환보다 먼저 처리해야 한다.
+    // 순서가 바뀌면 "log10"의 끝자리 숫자 0을 괄호 앞 숫자로 오인해
+    // "log10(100)"이 "log10 * (100)"으로 깨지는 버그가 있었다(log10을 값이
+    // 아닌 함수로 곱하려다 에러 발생 — 실사용 시 상용로그 계산이 전부 실패).
     expr = expr.replace(/(\d)\s*\(/g, '$1 * (');
     expr = expr.replace(/\)\s*(\d)/g, ') * $1');
     expr = expr.replace(/\)\s*\(/g, ') * (');
 
+    expr = expr.replace(/×/g,'*').replace(/÷/g,'/').replace(/π/g,'pi')
+                .replace(/√\(/g,'sqrt(').replace(/log\(/g,'log10(').replace(/ln\(/g,'log(');
+
+    expr = expr.replace(/(\d)\s*(pi|e|sqrt|log10|log|sin|cos|tan)\b/g, '$1 * $2');
+
     expr = convertTrigToDeg(expr);
 
-    const raw = math.evaluate(expr);
-    let num = (typeof raw === 'object' && raw.isBigNumber) ? raw.toNumber() : Number(raw);
+    const num = ExprEval.evaluate(expr);
     if (!isFinite(num) || isNaN(num)) throw new Error('invalid result');
     return Math.round(num * 1e8) / 1e8;
   }
