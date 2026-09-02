@@ -17,11 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  document.querySelectorAll('.menu-group').forEach(group => {
-    if (group.querySelector('a.active')) group.classList.add('open');
+  const menuGroups = document.querySelectorAll('.menu-group');
+  menuGroups.forEach(group => {
     const h2 = group.querySelector('h2');
     h2?.addEventListener('click', () => group.classList.toggle('open'));
   });
+  const activeLink = document.querySelector('.sidebar a.active');
+  const groupToOpen = activeLink ? activeLink.closest('.menu-group') : menuGroups[0];
+  groupToOpen?.classList.add('open');
 
   const themeBtn = document.getElementById('themeToggle');
   const syncThemeIcon = () => { if (themeBtn) themeBtn.textContent = currentTheme() === 'dark' ? '☀️' : '🌙'; };
