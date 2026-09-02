@@ -53,13 +53,18 @@ def check_label_for():
 
 
 def check_internal_links():
-    existing = {f.name for f in html_files()}
+    # Cloudflare Pages가 .html을 벗겨 서빙하므로 내부 링크는 확장자 없이 쓴다
+    # (index.html만 "/"). existing은 그 확장자 없는 슬러그 집합.
+    existing = {f.stem for f in html_files() if f.name not in ('index.html', '404.html')}
     for f in html_files():
         text = f.read_text(encoding='utf-8')
-        for href in re.findall(r'href="([^"#][^"]*\.html)(?:#[^"]*)?"', text):
-            if href.startswith(('http://', 'https://', 'mailto:')):
+        for href in re.findall(r'href="([^"]*)"', text):
+            if href.startswith(('http://', 'https://', 'mailto:', '#')) or href in ('style.css',):
                 continue
-            if href not in existing:
+            if href == '/':
+                continue
+            slug = href.lstrip('/').split('#')[0]
+            if slug not in existing:
                 fail(f'[broken link] {f.name}: href="{href}" does not exist')
 
 
@@ -67,7 +72,7 @@ def sidebar_links(text):
     m = re.search(r'<nav>(.*?)</nav>', text, re.DOTALL)
     if not m:
         return None
-    return set(re.findall(r'<li><a href="([^"?]+\.html)"', m.group(1)))
+    return set(re.findall(r'<li><a href="([^"?]+)"', m.group(1)))
 
 
 def check_sidebar_consistency():
@@ -85,7 +90,8 @@ def check_sidebar_consistency():
         canonical |= links
 
     for name, links in per_file.items():
-        missing = canonical - links - {name}  # a page needn't link to itself
+        slug = name[:-5]  # name.html -> name (sidebar hrefs are extensionless)
+        missing = canonical - links - {slug}  # a page needn't link to itself
         extra = links - canonical
         if missing:
             fail(f'[sidebar] {name}: missing links to {sorted(missing)}')
@@ -100,20 +106,20 @@ def check_sitemap():
         return
     text = sitemap_path.read_text(encoding='utf-8')
     sitemap_urls = set(re.findall(r'<loc>https://kcalculator\.net/([^<]*)</loc>', text))
-    sitemap_pages = {u for u in sitemap_urls if u.endswith('.html')}
+    sitemap_slugs = {u for u in sitemap_urls if u}  # 빈 문자열('/'=홈)은 제외
 
-    calculator_pages = {f.name for f in html_files() if f.name.endswith('-calculator.html')}
+    calculator_pages = {f.stem for f in html_files() if f.name.endswith('-calculator.html')}
     noindexed = {
-        f.name for f in html_files()
+        f.stem for f in html_files()
         if re.search(r'<meta\s+name="robots"\s+content="noindex', f.read_text(encoding='utf-8'))
     }
     calculator_pages -= noindexed
 
-    missing = calculator_pages - sitemap_pages
+    missing = calculator_pages - sitemap_slugs
     if missing:
         fail(f'[sitemap] missing from sitemap.xml: {sorted(missing)}')
 
-    stray = sitemap_pages - {f.name for f in html_files()}
+    stray = sitemap_slugs - {f.stem for f in html_files()}
     if stray:
         fail(f'[sitemap] sitemap.xml references nonexistent files: {sorted(stray)}')
 
