@@ -60,6 +60,9 @@
   :root:not([data-theme="light"]) .menu-group h2{ border-bottom-color:#3a3d42; }
   :root:not([data-theme="light"]) .menu-group li a{ color:#c7c9cc; }
   :root:not([data-theme="light"]) .info-block{ border-color:#3a3d42; }
+  :root:not([data-theme="light"]) .all-calcs-group{ border-color:#3a3d42; }
+  :root:not([data-theme="light"]) .all-calcs-group h3{ border-bottom-color:#3a3d42; }
+  :root:not([data-theme="light"]) .all-calcs-group li a{ color:#fff; }
   :root:not([data-theme="light"]) .formula-box{ background:#1e2023; }
   :root:not([data-theme="light"]) .criteria-table th,
   :root:not([data-theme="light"]) .criteria-table td,
@@ -73,6 +76,9 @@
 :root[data-theme="dark"] .menu-group h2{ border-bottom-color:#3a3d42; }
 :root[data-theme="dark"] .menu-group li a{ color:#c7c9cc; }
 :root[data-theme="dark"] .info-block{ border-color:#3a3d42; }
+:root[data-theme="dark"] .all-calcs-group{ border-color:#3a3d42; }
+:root[data-theme="dark"] .all-calcs-group h3{ border-bottom-color:#3a3d42; }
+:root[data-theme="dark"] .all-calcs-group li a{ color:#fff; }
 :root[data-theme="dark"] .formula-box{ background:#1e2023; }
 :root[data-theme="dark"] .criteria-table th,
 :root[data-theme="dark"] .criteria-table td,
