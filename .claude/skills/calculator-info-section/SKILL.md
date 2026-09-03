@@ -22,6 +22,7 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
       <h2>{{결과 라벨}}</h2>
       <div class="pages-heading-actions">
         <span id="page-meta">--</span>
+        <button type="button" id="copyResultBtn" class="load-more-btn">결과 복사</button>
         <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
       </div>
     </div>
@@ -225,15 +226,22 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
   `return`하는 분기 전부에서 `#csvDownloadBtn`도 같이 숨긴다 — 안 그러면 에러 화면에서
   이전 계산의 stale 데이터를 내보낼 수 있다.
 
-## 공유하기 버튼 + page-meta (필수)
+## 결과 복사 · 공유하기 버튼 + page-meta (필수)
 
-결과 쪽 `pages-heading`에는 `#page-meta`(입력 요약 텍스트) + `#shareBtn`("공유하기" 버튼)을
-`.pages-heading-actions`로 묶어서 항상 넣는다 — 위 페이지 골격 예시가 정본.
+결과 쪽 `pages-heading`에는 `#page-meta`(입력 요약 텍스트) + `#copyResultBtn`("결과 복사"
+버튼) + `#shareBtn`("공유하기" 버튼)을 `.pages-heading-actions`로 묶어서 항상 넣는다 — 위
+페이지 골격 예시가 정본. 둘 다 클릭 핸들러를 **따로 작성하지 않는다** — `js/export.js`가
+`#copyResultBtn`/`#shareBtn`을 보고 자동으로 연결한다. `<script src="js/export.js">`를
+`url-state.js` 다음, 페이지 자신의 `*-calc.js` 앞에 추가하기만 하면 된다.
 
-- `#shareBtn` 클릭 핸들러는 **따로 작성하지 않는다**. `js/export.js`가 `#shareBtn`을 보고
-  자동으로 연결한다(공유 대상 URL은 `url-state.js`가 이미 반영해둔 현재 주소 그대로,
-  모바일은 OS 공유시트, 미지원 환경은 링크 클립보드 복사로 자동 대체). `<script src="js/export.js">`
-  를 `url-state.js` 다음, 페이지 자신의 `*-calc.js` 앞에 추가하기만 하면 된다.
+- `#copyResultBtn`은 `.page-title h1` 제목 + `.screen .label`/`#miniScreen`/
+  `#miniScreenSub`(계산기 좌측 상단 스크린에 이미 있는 대표 결과값) + `#page-meta` + 현재
+  URL을 줄바꿈으로 이어붙여 클립보드에 복사한다 — 카카오톡 등에 붙여넣기 좋은 짧은 텍스트가
+  되도록 `.stat-table`/`.ledger-table` 등 결과 표 전체를 덤프하지 않는다. `.screen .label`이
+  정적 텍스트(HTML에 이미 있는 문구, 예: "월 실수령액")라 별도 JS 작업 없이 모든 페이지에서
+  동작한다.
+- 공유 대상 URL은 `url-state.js`가 이미 반영해둔 현재 주소 그대로, 모바일은 OS 공유시트,
+  미지원 환경은 링크 클립보드 복사로 자동 대체.
 - `#page-meta`는 `recalc()`/`recalcAll()`에서 직접 채운다 — "라벨 값 · 라벨 값" 형식으로,
   화면에 이미 있는 입력값을 그대로 옮긴다(새로 계산하지 않는다):
   ```js
@@ -241,10 +249,9 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
   ```
   성공 경로뿐 아니라 **입력 오류로 일찍 return하는 모든 분기**에도 `meta.textContent = '--';`를
   넣는다 — 안 그러면 입력을 지웠을 때 이전 계산의 요약 텍스트가 그대로 남는다.
-- 이 요약 텍스트는 공유 시 문자열(`navigator.share`의 `text`)로도 그대로 쓰인다
-  (`export.js`가 `#page-meta`가 있으면 우선 사용, 없으면 결과 화면 `#miniScreen`/
-  `#miniScreenSub`로 대체) — 그래서 입력값이 있는 페이지는 빠짐없이 `#page-meta`를 채워야
-  공유 링크의 미리보기 텍스트도 의미가 있다.
+- 이 요약 텍스트는 공유 시 문자열(`navigator.share`의 `text`)로도, 결과 복사 텍스트의 한
+  줄로도 그대로 쓰인다 — 그래서 입력값이 있는 페이지는 빠짐없이 `#page-meta`를 채워야 공유·
+  복사 결과의 텍스트도 의미가 있다.
 
 ## JSON-LD 구조화 데이터 (새 페이지마다 필수)
 

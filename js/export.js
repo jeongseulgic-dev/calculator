@@ -1,5 +1,5 @@
 /*!
- * export.js — CSV 다운로드(대출·예적금) + 결과 링크 공유(전체 계산기 공용) 유틸.
+ * export.js — CSV 다운로드(대출·예적금) + 결과 링크 공유·결과 복사(전체 계산기 공용) 유틸.
  * 공유는 이미지가 아니라 URL을 공유한다 — url-state.js가 이미 입력값을 URL에 반영해두므로
  * 링크를 타고 온 사람이 같은 계산 결과를 그대로 보게 된다.
  */
@@ -74,6 +74,42 @@
   }
 
   global.Export = { downloadCsv: downloadCsv, shareLink: shareLink };
+
+  var copyBtn = document.getElementById('copyResultBtn');
+  if (copyBtn){
+    var copyOriginalLabel = copyBtn.textContent;
+    copyBtn.addEventListener('click', function(){
+      if (copyBtn.disabled) return;
+      var titleEl = document.querySelector('.page-title h1');
+      var screenLabelEl = document.querySelector('.screen .label');
+      var miniScreen = document.getElementById('miniScreen');
+      var miniScreenSub = document.getElementById('miniScreenSub');
+      var metaEl = document.getElementById('page-meta');
+      var lines = [];
+      if (titleEl) lines.push(titleEl.textContent.trim());
+      if (screenLabelEl && miniScreen){
+        var subText = miniScreenSub ? miniScreenSub.textContent.trim() : '';
+        var resultLine = screenLabelEl.textContent.trim() + ': ' + miniScreen.textContent.trim();
+        if (subText && subText !== screenLabelEl.textContent.trim()){
+          resultLine += ' (' + subText + ')';
+        }
+        lines.push(resultLine);
+      }
+      if (metaEl && metaEl.textContent.trim() && metaEl.textContent.trim() !== '--'){
+        lines.push(metaEl.textContent.trim());
+      }
+      lines.push(global.location.href);
+      copyLink(lines.join('\n')).then(function(){
+        copyBtn.disabled = true;
+        copyBtn.textContent = '복사됨';
+        setTimeout(function(){ copyBtn.textContent = copyOriginalLabel; copyBtn.disabled = false; }, 2000);
+      }).catch(function(err){
+        console.error('[copy result]', err);
+        copyBtn.textContent = '복사 실패';
+        setTimeout(function(){ copyBtn.textContent = copyOriginalLabel; }, 2000);
+      });
+    });
+  }
 
   var btn = document.getElementById('shareBtn');
   if (btn){
