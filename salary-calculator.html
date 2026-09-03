@@ -35,7 +35,7 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"연봉 실수령액 계산기","item":"https://kcalculator.net/salary-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"연봉 실수령액 계산기","description":"연봉 실수령액 계산기 | 4대보험과 근로소득세를 반영해 월 실수령액을 계산하는 무료 계산기","url":"https://kcalculator.net/salary-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"이 계산 결과가 실제 급여명세서와 정확히 같나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"식대 등 비과세액은 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요."}},{"@type":"Question","name":"부양가족 수는 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다."}},{"@type":"Question","name":"국민연금은 왜 상한선이 있나요?","acceptedAnswer":{"@type":"Answer","text":"국민연금 보험료는 실제 월급이 아니라 '기준소득월액'이라는 상한(2026년 기준 659만원)과 하한(41만원) 안에서만 매겨집니다. 연봉이 아무리 높아도 국민연금 보험료는 상한선 이상으로 늘지 않습니다."}},{"@type":"Question","name":"세전 연봉에 성과급이나 상여금도 포함해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"포함하는 것이 정확합니다. 이 계산기는 연간 총급여를 기준으로 계산하므로, 매달 받는 급여 외에 정기 상여금·성과급까지 더한 세전 연봉을 입력하면 실제 월평균 실수령액에 더 가깝습니다."}},{"@type":"Question","name":"결과의 \"소득세(OO% 구간)\"는 소득 전체에 그 세율이 붙는다는 뜻인가요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 소득세는 누진세라 과세표준을 구간별로 나눠 각 구간에 해당 세율만 적용합니다. \"OO% 구간\"은 과세표준이 도달한 가장 높은 구간(한계세율)을 알려주는 것일 뿐, 소득 전체에 그 세율이 곱해지는 것이 아닙니다. 실제로는 낮은 구간에 낮은 세율이 먼저 적용되고, 초과분에만 높은 세율이 적용되는 방식이라 평균 세율은 표시된 구간 세율보다 항상 낮습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -328,9 +328,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=2"></script>
-<script src="js/url-state.js?v=2"></script>
-<script src="js/export.js?v=2"></script>
-<script src="js/salary-calc.js?v=2"></script>
+<script src="js/site.js?v=3"></script>
+<script src="js/url-state.js?v=3"></script>
+<script src="js/export.js?v=3"></script>
+<script src="js/salary-calc.js?v=3"></script>
 </body>
 </html>

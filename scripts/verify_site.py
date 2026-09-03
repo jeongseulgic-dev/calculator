@@ -130,12 +130,36 @@ def check_sitemap():
         fail(f'[sitemap] sitemap.xml references nonexistent files: {sorted(stray)}')
 
 
+def check_asset_version():
+    # style.css·js/*.js는 전부 같은 ?v=N 캐시 버스팅 쿼리를 달고 있어야 한다
+    # (CLAUDE.md 파일 구조 섹션 참고) — 하나라도 빠지거나 값이 어긋나면 배포
+    # 직후 일부 방문자가 옛 자산을 계속 캐시해서 쓰는 사고로 이어진다.
+    versions = set()
+    for f in html_files():
+        text = f.read_text(encoding='utf-8')
+        for href in re.findall(r'href="(style\.css[^"]*)"', text):
+            m = re.search(r'\?v=(\d+)$', href)
+            if not m:
+                fail(f'[asset version] {f.name}: href="{href}" missing ?v= query')
+            else:
+                versions.add(m.group(1))
+        for src in re.findall(r'src="(js/[a-z0-9-]+\.js[^"]*)"', text):
+            m = re.search(r'\?v=(\d+)$', src)
+            if not m:
+                fail(f'[asset version] {f.name}: src="{src}" missing ?v= query')
+            else:
+                versions.add(m.group(1))
+    if len(versions) > 1:
+        fail(f'[asset version] 여러 버전이 섞여 있음: {sorted(versions)} (전체가 같은 값이어야 함)')
+
+
 def main():
     check_tag_balance()
     check_label_for()
     check_internal_links()
     check_sidebar_consistency()
     check_sitemap()
+    check_asset_version()
 
     if errors:
         print(f'FAILED — {len(errors)}개 문제 발견:\n')

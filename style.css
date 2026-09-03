@@ -357,8 +357,8 @@ table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight
 .info-section{ margin-top:32px; }
 .info-section > h2{ font-size:1.02rem; font-weight:900; color:var(--heading); margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--heading); }
 .info-block{ background:var(--card-bg); border:1px solid #dfe2e6; border-left:3px solid var(--pink); border-radius:6px; padding:18px 20px; margin-bottom:14px; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
-.info-block h3{ display:flex; align-items:center; gap:8px; font-size:0.95rem; font-weight:900; color:var(--heading); margin-bottom:10px; }
-.info-block h3 .info-icon{ font-size:1rem; }
+.info-block h2, .info-block h3{ display:flex; align-items:center; gap:8px; font-size:0.95rem; font-weight:900; color:var(--heading); margin-bottom:10px; }
+.info-block h2 .info-icon, .info-block h3 .info-icon{ font-size:1rem; }
 .info-block p{ font-size:0.85rem; line-height:1.75; color:var(--ink); margin-bottom:10px; }
 .info-block p:last-child{ margin-bottom:0; }
 
