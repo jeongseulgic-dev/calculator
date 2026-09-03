@@ -34,6 +34,12 @@ calculator.net을 UX(기능 구성)만 참고하고 UI는 독자적으로 만들
 - 페이지가 특정 공식 요율·기준치·학술 공식(4대보험 요율, WHO 기준, 논문 공식 등)을
   명시할 땐 안내 섹션 끝에 "출처" info-block으로 공인된 출처(정부기관·공인 학회·원 논문
   등)를 링크한다. 검색해서 나오는 게 개인 블로그뿐이면 링크 없이 넘어간다.
+- 법에 근거한 요율·기준금액은 **개정일과 시행일을 구분해서 확인**한다. 개정만 되고 아직
+  시행 전이면 시행 전(현행) 수치를 그대로 쓴다 — 뉴스에 "개정안 통과" 식으로 나와도 국회
+  통과·시행 여부를 원 출처(예: 국세청)에서 직접 확인하고, 실제 시행된 뒤에야 계산 로직과
+  문구를 함께 갱신한다.
+- meta description은 `<title>` 텍스트를 반복하지 않는다. 제목이 못 담는 정보(무엇을
+  입력하면 무엇이 나오는지, 세율·기준연도 같은 구체적 사실)를 80~90자 내외로 채운다.
 - 화면에 보이는 퍼센트 표기는 소수점 둘째 자리까지만 쓰고, 불필요한 뒤 0은 생략한다
   (예: 3.595% → 3.6%). 실제 계산에 쓰는 내부 값(`RATE` 등 JS 상수)은 원래 정확한 값을
   그대로 유지하고, 화면 표시 텍스트만 반올림한다 — 계산 로직을 건드리는 게 아니다.
@@ -75,7 +81,16 @@ calculator.net을 UX(기능 구성)만 참고하고 UI는 독자적으로 만들
   그대로 참고 — `og:type`/`og:site_name`/`og:locale`/`og:title`/`og:description`/`og:url`/
   `og:image`(+`og:image:width`/`height`/`alt`, 전 페이지 공통으로 `/og-image.png` 재사용),
   `og:title`·`og:description`은 이미 있는 `<title>`/`<meta description>` 텍스트 재사용).
-  `sitemap.xml`에도 새 URL을 추가한다.
+  canonical·og:url·`sitemap.xml`·내부 링크는 전부 `.html` 확장자 없이 쓴다(Cloudflare
+  Pages가 `.html` 요청을 확장자 없는 주소로 리디렉션함 — 외부 사이트로 나가는 링크는
+  예외). `sitemap.xml`에도 새 URL을 추가한다.
+- **모든 새 페이지 공통**: canonical 다음 줄에 favicon 3종(`favicon.png`/`favicon-16.png`/
+  `apple-touch-icon.png`) 링크 태그, `</head>` 직전엔 JSON-LD(BreadcrumbList + 계산기
+  페이지는 WebApplication + FAQ 있으면 FAQPage)를 넣는다 — 정확한 스키마는
+  `calculator-info-section` 스킬 참고.
+- **모든 새 페이지 공통**: 헤더 로고는 `<div class="logo">`로 만든다(`<h1>` 아님).
+  서브페이지는 `.page-title` 안의 실제 주제 제목이 `<h1>`이어야 한다(index.html만 예외 —
+  로고 자체가 사이트 전체를 대표하므로 h1 유지).
 - `index.html`에는 광고 슬롯(`.ad-slot`)을 넣지 않는다.
 - 광고는 항상 계산 결과 아래에만 둔다. 계산기 UI 위쪽에는 넣지 않고, 자동광고·앵커·
   전면(인터스티셜) 광고는 쓰지 않는다.

@@ -45,8 +45,11 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
   입력창을 연결하는 유일한 방법이다. `field-row`처럼 입력창이 여러 개 묶인 경우는 그중
   첫 번째 입력창에 연결한다. 세그토글(버튼 그룹)만 있고 `id`가 있는 입력창이 없는 라벨은
   `for` 없이 그대로 둔다(버튼 자체에 이미 읽을 수 있는 텍스트가 있어서 문제되지 않는다).
+- 콤마 포맷 금액·단일 숫자 필드의 `<input type="text">`엔 `inputmode="numeric"`을 붙여
+  모바일에서 숫자 키패드가 뜨게 한다. 쉼표로 구분한 숫자 목록이나 16진수 입력처럼 숫자
+  아닌 문자가 필요한 필드는 넣지 않는다(넣으면 오히려 입력이 불편해진다).
 
-## info-block 4개 (고정 순서) + 선택적 5번째
+## info-block 4개 (고정 순서) + 선택적 5·6번째
 
 | # | 아이콘 | 제목 | 내용 |
 |---|---|---|---|
@@ -55,9 +58,18 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
 | 3 | 📊 | "~ 기준표" / "~ 비교" | 연속 범위는 표, 배타적 선택지는 카드 |
 | 4 | ❓ | "자주 묻는 질문" | `<details>` 4~5개, 이 계산기 특유의 질문만 |
 | 5 (선택) | 🔗 | "출처" | FAQ 뒤. 특정 공식 요율·기준치·학술 공식을 명시할 때만, `.source-list`로 |
+| 6 (선택) | 📅 | "기준일" | 출처 바로 뒤. 바뀔 수 있는 법정 요율·기준금액을 실을 때만 |
 
 공인 출처(정부기관·공인 학회·원 논문 등)가 없고 블로그뿐이면 5번째 블록 자체를 생략한다
-(`CLAUDE.md` 콘텐츠 원칙 참고).
+(`CLAUDE.md` 콘텐츠 원칙 참고). 6번째(기준일)는 각 수치가 언제부터 적용됐는지·언제
+개정됐는지를 한 `<p class="field-note">` 안에 `<br>`로 줄만 나눠 적는다(문단을 여러 개로
+쪼개면 줄 간격이 벌어진다). "최종 확인 YYYY-MM-DD" 같은 확인일 줄은 넣지 않는다.
+```html
+<div class="info-block">
+  <h3><span class="info-icon">📅</span>기준일</h3>
+  <p class="field-note">{{항목A}} — {{언제부터/변동 여부}}<br>{{항목B}} — {{개정·시행일}}</p>
+</div>
+```
 
 **한계(면책) 고지는 필수**: 1번 또는 2번 블록 안에 "참고용 계산 결과이며 실제 값은
 개인 상황에 따라 달라질 수 있다"는 취지의 문장을 반드시 넣는다. 별도 블록을 새로
@@ -233,6 +245,37 @@ description: 계산기 서브페이지(입력창+결과+설명 섹션+광고 슬
   (`export.js`가 `#page-meta`가 있으면 우선 사용, 없으면 결과 화면 `#miniScreen`/
   `#miniScreenSub`로 대체) — 그래서 입력값이 있는 페이지는 빠짐없이 `#page-meta`를 채워야
   공유 링크의 미리보기 텍스트도 의미가 있다.
+
+## JSON-LD 구조화 데이터 (새 페이지마다 필수)
+
+`</head>` 직전에 스크립트 태그 하나로 배열째 넣는다(블록마다 태그를 나누지 않는다).
+계산기 페이지는 BreadcrumbList + WebApplication + (FAQ 있으면) FAQPage,
+about/contact 같은 비계산기 페이지는 BreadcrumbList만, index.html은 WebSite만
+(`potentialAction`/SearchAction은 넣지 않는다 — 사이트에 실제 검색 기능이 없다).
+
+```json
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},
+  {"@type":"ListItem","position":2,"name":"{{페이지 제목, title의 | 앞부분}}","item":"{{canonical}}"}
+]}
+```
+```json
+{"@context":"https://schema.org","@type":"WebApplication","name":"{{제목}}",
+  "description":"{{meta description}}","url":"{{canonical}}",
+  "applicationCategory":"{{카테고리}}","operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"}
+```
+`applicationCategory`는 사이드바 카테고리 기준: 금융→FinanceApplication,
+건강→HealthApplication, 수학→EducationalApplication, 생활→UtilitiesApplication.
+
+```json
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"{{질문}}",
+    "acceptedAnswer":{"@type":"Answer","text":"{{답변}}"}}
+]}
+```
+`mainEntity`는 그 페이지 `.faq-item`의 `<summary>`/`.faq-a` 텍스트를 그대로 옮긴다(새로
+쓰지 않는다).
 
 ## CSS
 
