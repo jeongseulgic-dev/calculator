@@ -95,6 +95,27 @@
         }
         lines.push(resultLine);
       }
+      var methodCards = document.querySelectorAll('.receipt-strip .method-card');
+      if (methodCards.length){
+        lines.push('');
+        methodCards.forEach(function(card){
+          var nameEl = card.querySelector('h3');
+          if (!nameEl) return;
+          var name = nameEl.textContent.trim();
+          var stamp = card.querySelector('.stamp');
+          if (stamp){
+            var stampText = (stamp.innerText || stamp.textContent).replace(/\s+/g, ' ').trim();
+            if (stampText) name += ' (' + stampText + ')';
+          }
+          lines.push(name);
+          card.querySelectorAll('.method-row').forEach(function(row){
+            var label = row.children[0] ? row.children[0].textContent.trim() : '';
+            var val = row.querySelector('.val');
+            if (label && val) lines.push('  ' + label + ': ' + val.textContent.trim());
+          });
+        });
+        lines.push('');
+      }
       if (metaEl && metaEl.textContent.trim() && metaEl.textContent.trim() !== '--'){
         lines.push(metaEl.textContent.trim());
       }
