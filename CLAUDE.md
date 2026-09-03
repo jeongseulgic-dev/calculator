@@ -79,6 +79,9 @@ calculator.net을 UX(기능 구성)만 참고하고 UI는 독자적으로 만들
 - **계산기 추가**: `.claude/skills/calculator-info-section` 스킬을 따라 만들고 —
   (1) 다른 모든 페이지의 사이드바 nav에 링크 추가, (2) `index.html` 카테고리 카드 추가,
   (3) 새 페이지 자신의 사이드바 링크에만 `class="active"`.
+- **금융 계산기**: `<title>`/`og:title`에 "(연도)"를 붙인다(예: "대출 이자 계산기
+  (2026)") — 요율·세율이 매년 바뀌는 계산기라 최신성이 검색 결과에서 바로 보여야 한다.
+  다른 카테고리(건강·수학·생활)는 이 표기를 쓰지 않는다.
 - **모든 새 페이지 공통**: footer에 소개(`about.html`)·문의(`contact.html`)·
   개인정보처리방침(`privacy.html`)·이용약관(`terms.html`) 링크 4개를 그대로 포함한다
   (기존 페이지의 footer 마크업을 복사).
