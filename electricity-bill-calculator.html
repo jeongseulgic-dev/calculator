@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="전기요금 계산기 | 주택용 전기 사용량(kWh)으로 누진제 기준 전기요금을 계산하는 무료 계산기">
+<meta name="description" content="월 사용량(kWh)을 입력하면 3단계 누진제 기준 전기요금을 계산합니다. 기초생활수급자·장애인 등 복지할인 한도도 함께 안내합니다.">
 <title>전기요금 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/electricity-bill-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="전기요금 계산기 | 계산기">
-<meta property="og:description" content="전기요금 계산기 | 주택용 전기 사용량(kWh)으로 누진제 기준 전기요금을 계산하는 무료 계산기">
+<meta property="og:description" content="월 사용량(kWh)을 입력하면 3단계 누진제 기준 전기요금을 계산합니다. 기초생활수급자·장애인 등 복지할인 한도도 함께 안내합니다.">
 <meta property="og:url" content="https://kcalculator.net/electricity-bill-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"전기요금 계산기","item":"https://kcalculator.net/electricity-bill-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"전기요금 계산기","description":"전기요금 계산기 | 주택용 전기 사용량(kWh)으로 누진제 기준 전기요금을 계산하는 무료 계산기","url":"https://kcalculator.net/electricity-bill-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"기본요금은 왜 사용량 전체가 아니라 도달한 단계 하나만 적용되나요?","acceptedAnswer":{"@type":"Answer","text":"기본요금은 사용량이 최종적으로 속한 단계의 정액이 한 번만 부과되는 방식입니다. 예를 들어 350kWh를 쓰면 2단계에 속하므로 2단계 기본요금(1,600원)만 부과되고, 1단계 기본요금은 별도로 추가되지 않습니다."}},{"@type":"Question","name":"전력량요금은 왜 사용량 전체에 3단계 단가를 곱하지 않나요?","acceptedAnswer":{"@type":"Answer","text":"누진제는 사용량 전체가 아니라 구간별로 나눠서 각 구간에 해당하는 사용량만큼만 그 구간 단가를 적용합니다. 예를 들어 350kWh를 쓰면 처음 200kWh는 1단계 단가, 나머지 150kWh는 2단계 단가로 각각 계산해서 더합니다."}},{"@type":"Question","name":"실제 청구서와 금액이 다를 수 있는 이유는?","acceptedAnswer":{"@type":"Answer","text":"복지할인(장애인·기초생활수급자 등), 전기차 충전할인, 명절 특별할인 등 각종 감면·할인이 개인 상황에 따라 추가로 적용될 수 있고, 부가세·기금 반올림 방식에 따라 10원 내외 차이가 날 수 있습니다. 정확한 금액은 청구서나 한전ON에서 확인하세요."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"전기요금 계산기","item":"https://kcalculator.net/electricity-bill-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"전기요금 계산기","description":"월 사용량(kWh)을 입력하면 3단계 누진제 기준 전기요금을 계산합니다. 기초생활수급자·장애인 등 복지할인 한도도 함께 안내합니다.","url":"https://kcalculator.net/electricity-bill-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"기본요금은 왜 사용량 전체가 아니라 도달한 단계 하나만 적용되나요?","acceptedAnswer":{"@type":"Answer","text":"기본요금은 사용량이 최종적으로 속한 단계의 정액이 한 번만 부과되는 방식입니다. 예를 들어 350kWh를 쓰면 2단계에 속하므로 2단계 기본요금(1,600원)만 부과되고, 1단계 기본요금은 별도로 추가되지 않습니다."}},{"@type":"Question","name":"전력량요금은 왜 사용량 전체에 3단계 단가를 곱하지 않나요?","acceptedAnswer":{"@type":"Answer","text":"누진제는 사용량 전체가 아니라 구간별로 나눠서 각 구간에 해당하는 사용량만큼만 그 구간 단가를 적용합니다. 예를 들어 350kWh를 쓰면 처음 200kWh는 1단계 단가, 나머지 150kWh는 2단계 단가로 각각 계산해서 더합니다."}},{"@type":"Question","name":"실제 청구서와 금액이 다를 수 있는 이유는?","acceptedAnswer":{"@type":"Answer","text":"복지할인(장애인·기초생활수급자 등), 전기차 충전할인, 명절 특별할인 등 각종 감면·할인이 개인 상황에 따라 추가로 적용될 수 있고, 부가세·기금 반올림 방식에 따라 10원 내외 차이가 날 수 있습니다. 정확한 금액은 청구서나 한전ON에서 확인하세요."}},{"@type":"Question","name":"복지할인은 얼마나 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"기초생활수급자(생계·의료급여)와 장애인·상이유공자는 월 16,000원(여름철 20,000원), 차상위계층은 월 8,000원(여름철 10,000원) 한도로 할인됩니다. 대상자별 정확한 한도는 위 복지할인 표를 참고하세요. 신청은 한전 고객센터·한전ON·주민센터에서 할 수 있습니다."}},{"@type":"Question","name":"아파트처럼 고압으로 전기를 받으면 요금이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 일반 가정에서 흔히 쓰는 주택용 저압 기준입니다. 아파트 단지 전체가 고압으로 전기를 받아 세대별로 나누는 주택용 고압은 저압보다 전력량요금 단가가 조금 더 낮게 책정됩니다."}}]}]</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -234,6 +233,22 @@
       </div>
 
       <div class="info-block">
+        <h3><span class="info-icon">🤝</span>복지할인 제도</h3>
+        <p>기초생활수급자·장애인 등 취약계층은 신청 시 전기요금이 추가로 할인됩니다. 이 계산기는 할인을 반영하지 않은 표준 요금 기준이라, 대상자라면 실제 청구액이 아래 한도만큼 더 낮습니다.</p>
+        <table class="criteria-table text-table">
+          <thead><tr><th>대상</th><th>월 한도</th><th>여름철(6~8월) 한도</th></tr></thead>
+          <tbody>
+            <tr><td>기초생활수급자(생계·의료급여)</td><td>16,000원</td><td>20,000원</td></tr>
+            <tr><td>기초생활수급자(주거·교육급여)</td><td>10,000원</td><td>12,000원</td></tr>
+            <tr><td>장애인·상이유공자·독립유공자</td><td>16,000원</td><td>20,000원</td></tr>
+            <tr><td>차상위계층</td><td>8,000원</td><td>10,000원</td></tr>
+            <tr><td>3자녀 이상·출산가구·생명유지장치 사용 가구</td><td>요금 30% (최대 16,000원)</td><td>동일</td></tr>
+          </tbody>
+        </table>
+        <p>복지할인 대상 가구는 월평균 사용량(2022년 기준 약 313kWh)까지 전력량요금 단가도 별도로 낮게 적용되는 필수사용량 보장공제도 함께 받습니다.</p>
+      </div>
+
+      <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>기본요금은 왜 사용량 전체가 아니라 도달한 단계 하나만 적용되나요?</summary>
@@ -247,13 +262,28 @@
           <summary>실제 청구서와 금액이 다를 수 있는 이유는?</summary>
           <p class="faq-a">복지할인(장애인·기초생활수급자 등), 전기차 충전할인, 명절 특별할인 등 각종 감면·할인이 개인 상황에 따라 추가로 적용될 수 있고, 부가세·기금 반올림 방식에 따라 10원 내외 차이가 날 수 있습니다. 정확한 금액은 청구서나 한전ON에서 확인하세요.</p>
         </details>
+        <details class="faq-item">
+          <summary>복지할인은 얼마나 받을 수 있나요?</summary>
+          <p class="faq-a">기초생활수급자(생계·의료급여)와 장애인·상이유공자는 월 16,000원(여름철 20,000원), 차상위계층은 월 8,000원(여름철 10,000원) 한도로 할인됩니다. 대상자별 정확한 한도는 위 복지할인 표를 참고하세요. 신청은 한전 고객센터·한전ON·주민센터에서 할 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>아파트처럼 고압으로 전기를 받으면 요금이 다른가요?</summary>
+          <p class="faq-a">이 계산기는 일반 가정에서 흔히 쓰는 주택용 저압 기준입니다. 아파트 단지 전체가 고압으로 전기를 받아 세대별로 나누는 주택용 고압은 저압보다 전력량요금 단가가 조금 더 낮게 책정됩니다.</p>
+        </details>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
           <li><a href="https://home.kepco.co.kr/kepco/front/html/CY/E/E/CYEEHP00101.html" target="_blank" rel="noopener">한국전력공사 — 주택용 전기요금표</a></li>
+          <li><a href="https://home.kepco.co.kr/kepco/front/html/WZ/2018_11_12/sub15.html" target="_blank" rel="noopener">한국전력공사 — 전기요금 복지할인 제도</a></li>
+          <li><a href="https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=1008&ccfNo=2&cciNo=1&cnpClsNo=2" target="_blank" rel="noopener">법제처 찾기쉬운 생활법령정보 — 전기요금 할인받기</a></li>
         </ul>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📅</span>기준일</h3>
+        <p class="field-note">누진 3단계 요금·구간은 2024.4. 개편분 — 개편 전까지 여러 차례 조정돼 왔음<br>복지할인 한도(기본공급약관시행세칙 제48조제6항)는 법제처 생활법령정보 2026년 8월 기준 확인된 금액</p>
       </div>
     </section>
 
