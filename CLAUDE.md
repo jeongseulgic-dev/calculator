@@ -57,6 +57,10 @@ calculator.net을 UX(기능 구성)만 참고하고 UI는 독자적으로 만들
 
 - HTML은 저장소 루트, 스크립트는 `js/`, 스타일은 `style.css` 하나로 통합한다
   (계산기별로 CSS를 따로 만들지 않는다).
+- `style.css`나 `js/*.js` 아무 파일이나 수정하면, 모든 HTML의 `href="style.css?v=N"`/
+  `src="js/*.js?v=N"` 쿼리의 `N`을 하나 올린다(전체 파일 동일 버전, 개별 추적 안 함).
+  Cloudflare가 이 파일들을 4시간 캐시하는데 버전을 안 올리면 재방문자가 새 HTML +
+  옛 JS/CSS 조합으로 깨진 화면을 보게 된다.
 - `.claude/skills/calculator-info-section/`: 계산기 서브페이지(입력+결과+설명+광고슬롯)
   전용 구조 스킬. 계산기 페이지를 만들거나 손볼 땐 이 스킬을 먼저 로드한다.
 

@@ -63,9 +63,10 @@ def check_internal_links():
                 continue
             if href == '/':
                 continue
-            slug = href.lstrip('/').split('#')[0]
+            slug = href.lstrip('/').split('#')[0].split('?')[0]
             # 확장자가 있는 정적 파일(style.css, favicon.png 등)은 실제 파일
             # 존재 여부로, 계산기 페이지 슬러그는 확장자 없는 존재 집합으로 확인
+            # (캐시 버스팅용 ?v= 쿼리는 파일 존재 확인 전에 떼어낸다)
             if '.' in slug:
                 if not (ROOT / slug).exists():
                     fail(f'[broken link] {f.name}: href="{href}" does not exist')
