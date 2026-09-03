@@ -34,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"유류비 계산기","item":"https://kcalculator.net/fuel-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"유류비 계산기","description":"유류비 계산기 | 주행 거리·연비·연료 가격으로 총 유류비를 계산하는 무료 계산기","url":"https://kcalculator.net/fuel-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"연료 가격은 왜 자동으로 안 채워지나요?","acceptedAnswer":{"@type":"Answer","text":"전국 평균 유가는 매일 바뀌고 주유소마다도 차이가 커서, 특정 시점의 가격을 기본값으로 고정해두면 시간이 지날수록 부정확해집니다. 최신 가격은 오피넷 등에서 확인한 뒤 직접 입력하는 것을 권장합니다."}},{"@type":"Question","name":"연비는 어떻게 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"차량 계기판의 평균 연비 표시를 확인하거나, \"주행거리 ÷ 주유량\"으로 직접 계산할 수 있습니다. 공인 연비(신차 표시 연비)는 실제 주행 연비보다 높게 나오는 경우가 많아 실주행 기준으로 입력하는 것이 더 정확합니다."}},{"@type":"Question","name":"전기차도 사용할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"연비 대신 전비(km/kWh)를, 연료 가격 대신 전기 요금(원/kWh)을 입력하면 같은 방식으로 전기차의 이동 비용을 계산할 수 있습니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"유류비 계산기","item":"https://kcalculator.net/fuel-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"유류비 계산기","description":"주행 거리·연비·연료 가격을 입력하면 편도·왕복·반복 횟수를 반영한 총 유류비를 계산합니다.","url":"https://kcalculator.net/fuel-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"연료 가격은 왜 자동으로 안 채워지나요?","acceptedAnswer":{"@type":"Answer","text":"전국 평균 유가는 매일 바뀌고 주유소마다도 차이가 커서, 특정 시점의 가격을 기본값으로 고정해두면 시간이 지날수록 부정확해집니다. 최신 가격은 한국석유공사가 운영하는 오피넷에서 확인한 뒤 직접 입력하는 것을 권장합니다."}},{"@type":"Question","name":"연비는 어떻게 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"차량 계기판의 평균 연비 표시를 확인하거나, \"주행거리 ÷ 주유량\"으로 직접 계산할 수 있습니다. 공인 연비(신차 표시 연비)는 실제 주행 연비보다 높게 나오는 경우가 많아 실주행 기준으로 입력하는 것이 더 정확합니다."}},{"@type":"Question","name":"전기차도 사용할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"연비 대신 전비(km/kWh)를, 연료 가격 대신 전기 요금(원/kWh)을 입력하면 같은 방식으로 전기차의 이동 비용을 계산할 수 있습니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
@@ -249,7 +249,7 @@
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>연료 가격은 왜 자동으로 안 채워지나요?</summary>
-          <p class="faq-a">전국 평균 유가는 매일 바뀌고 주유소마다도 차이가 커서, 특정 시점의 가격을 기본값으로 고정해두면 시간이 지날수록 부정확해집니다. 최신 가격은 오피넷 등에서 확인한 뒤 직접 입력하는 것을 권장합니다.</p>
+          <p class="faq-a">전국 평균 유가는 매일 바뀌고 주유소마다도 차이가 커서, 특정 시점의 가격을 기본값으로 고정해두면 시간이 지날수록 부정확해집니다. 최신 가격은 한국석유공사가 운영하는 오피넷에서 확인한 뒤 직접 입력하는 것을 권장합니다.</p>
         </details>
         <details class="faq-item">
           <summary>연비는 어떻게 알 수 있나요?</summary>
@@ -259,6 +259,13 @@
           <summary>전기차도 사용할 수 있나요?</summary>
           <p class="faq-a">연비 대신 전비(km/kWh)를, 연료 가격 대신 전기 요금(원/kWh)을 입력하면 같은 방식으로 전기차의 이동 비용을 계산할 수 있습니다.</p>
         </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.opinet.co.kr/" target="_blank" rel="noopener">한국석유공사 오피넷 — 전국 실시간 유가 정보</a></li>
+        </ul>
       </div>
     </section>
 
