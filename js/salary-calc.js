@@ -12,6 +12,36 @@ const RATE = {
 const MEAL_NONTAX_CAP = 200000; // 식대 비과세 한도 (월, 2023년~)
 const URL_DEFAULTS = { salary: '40000000', meal: String(MEAL_NONTAX_CAP), deps: '1' };
 
+// 근로소득 백분위 구간별 연평균 근로소득(원) — 공공데이터포털 "국세청_근로소득 백분위(천분위)
+// 자료"(2024년 귀속, 데이터 등록 2026-02-24) 원자료에서 각 구간(상위 N%) 행의
+// 총급여÷인원으로 산출. 구간 컷오프 자체가 아니라 그 구간의 평균값을 근사치로 쓴다.
+const INCOME_PERCENTILES = [
+  { pct: 1, avg: 199530338 },
+  { pct: 2, avg: 173320208 },
+  { pct: 3, avg: 147173911 },
+  { pct: 4, avg: 131172047 },
+  { pct: 5, avg: 119841070 },
+  { pct: 10, avg: 91169675 },
+  { pct: 20, avg: 65341626 },
+  { pct: 30, avg: 50626468 },
+  { pct: 40, avg: 41006518 },
+  { pct: 50, avg: 34167991 },
+  { pct: 60, avg: 28531307 },
+  { pct: 70, avg: 23843727 },
+  { pct: 80, avg: 15835966 },
+  { pct: 90, avg: 7668952 }
+];
+
+function incomePercentileLabel(annual){
+  for (let i = 0; i < INCOME_PERCENTILES.length; i++){
+    if (annual >= INCOME_PERCENTILES[i].avg){
+      const lo = i === 0 ? null : INCOME_PERCENTILES[i - 1].pct;
+      return lo === null ? '상위 1% 이내' : `상위 ${lo}~${INCOME_PERCENTILES[i].pct}%`;
+    }
+  }
+  return '상위 90% 이하';
+}
+
 function earnedIncomeDeduction(annual){
   if (annual <= 5000000) return annual * 0.7;
   if (annual <= 15000000) return 3500000 + (annual - 5000000) * 0.4;
@@ -101,12 +131,14 @@ function recalc(){
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
   const meta = document.getElementById('page-meta');
+  const percentileNote = document.getElementById('incomePercentileNote');
 
   if (!annual){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">연봉을 입력해 주세요</td></tr>';
     meta.textContent = '--';
+    percentileNote.textContent = '';
     return;
   }
 
@@ -129,6 +161,7 @@ function recalc(){
     <tr><th>연 실수령액</th><td>${fmt0(r.annualNet)}원</td></tr>
     <tr class="stat-highlight"><th>월 실수령액</th><td>${fmt0(r.monthlyNet)}원</td></tr>
   `;
+  percentileNote.textContent = `근로소득 기준 ${incomePercentileLabel(annual)} 구간입니다 (2024년 귀속 자료)`;
 
   UrlState.sync({ salary: annual, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
 }
