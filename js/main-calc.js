@@ -94,7 +94,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let expMode = false;
   let mem = 0;
   let gt = 0;
-  let log = []; // in-memory only
+
+  const HISTORY_KEY = 'calcHistory';
+  function loadHistory(){
+    try {
+      const parsed = JSON.parse(localStorage.getItem(HISTORY_KEY));
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) { return []; }
+  }
+  function saveHistory(){
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(log)); } catch (e) {}
+  }
+  let log = loadHistory();
 
   function renderScreen(){
     const text = Fmt.display(current);
@@ -128,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     historyBody.scrollTop = historyBody.scrollHeight;
   }
 
-  clearHistoryBtn?.addEventListener('click', ()=>{ log = []; renderHistory(); });
+  clearHistoryBtn?.addEventListener('click', ()=>{ log = []; saveHistory(); renderHistory(); });
   mobileHistoryBtn?.addEventListener('click', ()=> receiptPanel.classList.toggle('open'));
 
   function execute(){
@@ -142,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gt += res;
       log.push({expr: full, result: res});
       if (log.length>50) log.shift();
+      saveHistory();
       renderHistory();
 
       current = String(res);
@@ -249,4 +261,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   renderScreen();
+  renderHistory();
 });
