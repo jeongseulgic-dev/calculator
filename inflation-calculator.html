@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="인플레이션(화폐가치) 계산기 | 물가상승률과 경과연수로 화폐가치 변화를 계산하는 무료 계산기">
+<meta name="description" content="기준금액·물가상승률·경과연수를 입력하면 화폐가치 변화를 계산합니다. 최근 한국 소비자물가상승률 통계와 72의 법칙도 안내합니다.">
 <title>인플레이션(화폐가치) 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/inflation-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="인플레이션(화폐가치) 계산기 | 계산기">
-<meta property="og:description" content="인플레이션(화폐가치) 계산기 | 물가상승률과 경과연수로 화폐가치 변화를 계산하는 무료 계산기">
+<meta property="og:description" content="기준금액·물가상승률·경과연수를 입력하면 화폐가치 변화를 계산합니다. 최근 한국 소비자물가상승률 통계와 72의 법칙도 안내합니다.">
 <meta property="og:url" content="https://kcalculator.net/inflation-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"인플레이션(화폐가치) 계산기","item":"https://kcalculator.net/inflation-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"인플레이션(화폐가치) 계산기","description":"인플레이션(화폐가치) 계산기 | 물가상승률과 경과연수로 화폐가치 변화를 계산하는 무료 계산기","url":"https://kcalculator.net/inflation-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"과거→현재 환산과 현재→미래 환산이 왜 같은 계산식인가요?","acceptedAnswer":{"@type":"Answer","text":"두 질문 모두 \"물가가 일정 비율로 n년간 올랐을 때 화폐가치가 얼마나 바뀌는가\"를 묻는 것으로 수학적으로 동일합니다. 과거 금액을 현재 가치로 옮기든, 현재 금액을 미래에 필요한 금액으로 옮기든 같은 방향(시간이 흐르는 방향)으로 상승률을 곱하기 때문입니다."}},{"@type":"Question","name":"물가상승률을 몇 %로 넣어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"정해진 답은 없습니다. 한국은 최근 수십 년간 연평균 소비자물가상승률이 대략 2~3% 안팎이었지만, 특정 시기(예: 2022년 고물가기)에는 5%를 넘기도 했습니다. 원하는 기간의 실제 통계가 필요하면 통계청 소비자물가지수 자료를 참고하세요."}},{"@type":"Question","name":"마이너스(음수) 상승률도 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 음수를 입력하면 물가가 하락(디플레이션)하는 상황을 가정한 계산이 됩니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"인플레이션(화폐가치) 계산기","item":"https://kcalculator.net/inflation-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"인플레이션(화폐가치) 계산기","description":"기준금액·물가상승률·경과연수를 입력하면 화폐가치 변화를 계산합니다. 최근 한국 소비자물가상승률 통계와 72의 법칙도 안내합니다.","url":"https://kcalculator.net/inflation-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"과거→현재 환산과 현재→미래 환산이 왜 같은 계산식인가요?","acceptedAnswer":{"@type":"Answer","text":"두 질문 모두 \"물가가 일정 비율로 n년간 올랐을 때 화폐가치가 얼마나 바뀌는가\"를 묻는 것으로 수학적으로 동일합니다. 과거 금액을 현재 가치로 옮기든, 현재 금액을 미래에 필요한 금액으로 옮기든 같은 방향(시간이 흐르는 방향)으로 상승률을 곱하기 때문입니다."}},{"@type":"Question","name":"물가상승률을 몇 %로 넣어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"정해진 답은 없습니다. 위 표에서 보듯 한국의 연간 소비자물가상승률은 2019~2020년 0%대부터 2022년 5.1%까지 편차가 큽니다. 장기 계획이라면 최근 몇 년의 평균을, 특정 연도를 가정하고 싶다면 그 해의 실제 수치를 넣어보세요."}},{"@type":"Question","name":"마이너스(음수) 상승률도 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 음수를 입력하면 물가가 하락(디플레이션)하는 상황을 가정한 계산이 됩니다."}},{"@type":"Question","name":"화폐가치가 반토막 나는 데 걸리는 기간을 빨리 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"위의 72의 법칙을 쓰면 됩니다. 72를 연 물가상승률로 나누면 구매력이 절반으로 줄어드는 대략적인 연수가 나옵니다. 정확한 값이 필요하면 이 계산기에 경과연수를 여러 값으로 바꿔가며 확인하세요."}}]}]</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -230,6 +229,29 @@
       </div>
 
       <div class="info-block">
+        <h3><span class="info-icon">📊</span>최근 한국 소비자물가상승률</h3>
+        <p>몇 %를 넣어야 할지 감이 안 잡힌다면 최근 실제 상승률을 참고하세요. 연도별 편차가 커서 하나의 평균값으로 단순화하기 어렵습니다.</p>
+        <table class="criteria-table">
+          <thead><tr><th>연도</th><th>소비자물가상승률(전년대비)</th></tr></thead>
+          <tbody>
+            <tr><td>2018</td><td>1.5%</td></tr>
+            <tr><td>2019</td><td>0.4%</td></tr>
+            <tr><td>2020</td><td>0.5%</td></tr>
+            <tr><td>2021</td><td>2.5%</td></tr>
+            <tr><td>2022</td><td>5.1%</td></tr>
+            <tr><td>2023</td><td>3.6%</td></tr>
+            <tr><td>2024</td><td>2.3%</td></tr>
+            <tr><td>2025</td><td>2.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>72의 법칙</h3>
+        <p>연 상승률로 72를 나누면, 지금 화폐가치(구매력)가 대략 절반으로 줄어드는 데 걸리는 연수를 빠르게 가늠할 수 있습니다. 예를 들어 연 3% 물가상승이 계속되면 72 ÷ 3 = 약 24년 후 지금 100만원의 구매력이 절반 수준으로 떨어집니다. 정확한 값은 아니지만 암산으로 감을 잡기에 유용한 근사식입니다.</p>
+      </div>
+
+      <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>과거→현재 환산과 현재→미래 환산이 왜 같은 계산식인가요?</summary>
@@ -237,12 +259,24 @@
         </details>
         <details class="faq-item">
           <summary>물가상승률을 몇 %로 넣어야 하나요?</summary>
-          <p class="faq-a">정해진 답은 없습니다. 한국은 최근 수십 년간 연평균 소비자물가상승률이 대략 2~3% 안팎이었지만, 특정 시기(예: 2022년 고물가기)에는 5%를 넘기도 했습니다. 원하는 기간의 실제 통계가 필요하면 통계청 소비자물가지수 자료를 참고하세요.</p>
+          <p class="faq-a">정해진 답은 없습니다. 위 표에서 보듯 한국의 연간 소비자물가상승률은 2019~2020년 0%대부터 2022년 5.1%까지 편차가 큽니다. 장기 계획이라면 최근 몇 년의 평균을, 특정 연도를 가정하고 싶다면 그 해의 실제 수치를 넣어보세요.</p>
         </details>
         <details class="faq-item">
           <summary>마이너스(음수) 상승률도 입력할 수 있나요?</summary>
           <p class="faq-a">네. 음수를 입력하면 물가가 하락(디플레이션)하는 상황을 가정한 계산이 됩니다.</p>
         </details>
+        <details class="faq-item">
+          <summary>화폐가치가 반토막 나는 데 걸리는 기간을 빨리 알 수 있나요?</summary>
+          <p class="faq-a">위의 72의 법칙을 쓰면 됩니다. 72를 연 물가상승률로 나누면 구매력이 절반으로 줄어드는 대략적인 연수가 나옵니다. 정확한 값이 필요하면 이 계산기에 경과연수를 여러 값으로 바꿔가며 확인하세요.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.index.go.kr/unify/idx-info.do?idxCd=4226" target="_blank" rel="noopener">e-나라지표 — 소비자물가상승률</a></li>
+          <li><a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1J22041" target="_blank" rel="noopener">통계청 KOSIS — 연도별 소비자물가 등락률</a></li>
+        </ul>
       </div>
     </section>
 
