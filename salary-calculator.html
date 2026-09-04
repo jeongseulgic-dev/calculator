@@ -35,7 +35,7 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"연봉 실수령액 계산기","item":"https://kcalculator.net/salary-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"연봉 실수령액 계산기","description":"연봉 또는 월급·식대 비과세액·부양가족 수를 입력하면 2026년 4대보험 요율을 반영해 계산합니다.","url":"https://kcalculator.net/salary-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"이 계산 결과가 실제 급여명세서와 정확히 같나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"식대 등 비과세액은 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요."}},{"@type":"Question","name":"부양가족 수는 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다."}},{"@type":"Question","name":"국민연금은 왜 상한선이 있나요?","acceptedAnswer":{"@type":"Answer","text":"국민연금 보험료는 실제 월급이 아니라 '기준소득월액'이라는 상한(2026년 기준 659만원)과 하한(41만원) 안에서만 매겨집니다. 연봉이 아무리 높아도 국민연금 보험료는 상한선 이상으로 늘지 않습니다."}},{"@type":"Question","name":"세전 연봉에 성과급이나 상여금도 포함해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"포함하는 것이 정확합니다. 이 계산기는 연간 총급여를 기준으로 계산하므로, 매달 받는 급여 외에 정기 상여금·성과급까지 더한 세전 연봉을 입력하면 실제 월평균 실수령액에 더 가깝습니다."}},{"@type":"Question","name":"월급 입력 모드는 정확히 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"입력한 월급에 12를 곱해 연봉으로 환산한 뒤, 연봉 입력 모드와 완전히 같은 방식으로 계산합니다. 다만 이 환산은 매달 받는 금액이 일정하다고 가정하므로, 정기 상여금·성과급이 따로 있다면 월급×12만으로는 실제 연봉보다 적게 잡힙니다. 상여금이 있다면 연봉 입력 모드로 전환해 (월급×12 + 상여금 등)을 직접 계산해 넣는 것이 더 정확합니다."}},{"@type":"Question","name":"결과의 \"소득세(OO% 구간)\"는 소득 전체에 그 세율이 붙는다는 뜻인가요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 소득세는 누진세라 과세표준을 구간별로 나눠 각 구간에 해당 세율만 적용합니다. \"OO% 구간\"은 과세표준이 도달한 가장 높은 구간(한계세율)을 알려주는 것일 뿐, 소득 전체에 그 세율이 곱해지는 것이 아닙니다. 실제로는 낮은 구간에 낮은 세율이 먼저 적용되고, 초과분에만 높은 세율이 적용되는 방식이라 평균 세율은 표시된 구간 세율보다 항상 낮습니다."}},{"@type":"Question","name":"근로소득 백분위는 어떤 사람들을 기준으로 한 건가요?","acceptedAnswer":{"@type":"Answer","text":"근로소득을 신고한 전체 근로소득자(약 2,100만 명) 기준입니다. 단시간·단기간 근무자도 포함되어 있어 하위 구간에는 정규직이 아닌 근로자도 섞여 있으며, 사업소득(자영업)은 포함하지 않습니다. 또한 표의 수치는 구간의 정확한 경계값이 아니라 그 구간 전체의 평균 근로소득이라, 실제 순위와는 다소 차이가 있을 수 있는 근사치입니다."}},{"@type":"Question","name":"매달 내는 국민연금으로 나중에 얼마를 받게 되나요?","acceptedAnswer":{"@type":"Answer","text":"여기서 계산된 국민연금 보험료는 매달 내는 금액이고, 나중에 실제로 받는 연금액은 가입기간 전체의 평균소득을 반영해 따로 계산됩니다. 국민연금 예상수령액 계산기에서 확인할 수 있습니다."}},{"@type":"Question","name":"실수령액을 계산한 다음엔 뭘 하면 좋을까요?","acceptedAnswer":{"@type":"Answer","text":"계산된 월 실수령액을 예산(가계부) 계산기에 그대로 입력하면, 고정지출·소비·저축 비율을 50/30/20 권장 배분이나 통계청 실제 가구 평균과 비교해볼 수 있습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 
@@ -394,9 +394,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=12"></script>
-<script src="js/url-state.js?v=12"></script>
-<script src="js/export.js?v=12"></script>
-<script src="js/salary-calc.js?v=12"></script>
+<script src="js/site.js?v=13"></script>
+<script src="js/url-state.js?v=13"></script>
+<script src="js/export.js?v=13"></script>
+<script src="js/salary-calc.js?v=13"></script>
 </body>
 </html>

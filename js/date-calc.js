@@ -28,12 +28,13 @@ function calendarDiff(start, end){
 }
 
 function countBusinessDays(from, to){
-  let count = 0;
-  const cur = new Date(from);
-  while (cur <= to){
-    const day = cur.getDay();
+  const totalDays = Math.round((to - from) / 86400000) + 1;
+  const fullWeeks = Math.floor(totalDays / 7);
+  let count = fullWeeks * 5;
+  let day = from.getDay();
+  for (let i = 0; i < totalDays % 7; i++){
     if (day !== 0 && day !== 6) count++;
-    cur.setDate(cur.getDate() + 1);
+    day = (day + 1) % 7;
   }
   return count;
 }
