@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="예산(가계부) 계산기 | 50/30/20 법칙으로 월 소득의 권장 지출·저축 배분을 계산하거나 실제 지출 비율을 확인하는 무료 계산기">
+<meta name="description" content="월 소득을 입력하면 50/30/20 법칙 기준 권장 배분을 계산하고, 실제 한국 가구 소비 통계와 비교합니다.">
 <title>예산(가계부) 계산기 (2026) | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/budget-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="예산(가계부) 계산기 (2026) | 계산기">
-<meta property="og:description" content="예산(가계부) 계산기 | 50/30/20 법칙으로 월 소득의 권장 지출·저축 배분을 계산하거나 실제 지출 비율을 확인하는 무료 계산기">
+<meta property="og:description" content="월 소득을 입력하면 50/30/20 법칙 기준 권장 배분을 계산하고, 실제 한국 가구 소비 통계와 비교합니다.">
 <meta property="og:url" content="https://kcalculator.net/budget-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"예산(가계부) 계산기","item":"https://kcalculator.net/budget-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"예산(가계부) 계산기","description":"예산(가계부) 계산기 | 50/30/20 법칙으로 월 소득의 권장 지출·저축 배분을 계산하거나 실제 지출 비율을 확인하는 무료 계산기","url":"https://kcalculator.net/budget-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"세전 소득과 세후 소득 중 어느 걸 입력해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"50/30/20 법칙은 원래 세후(실수령) 소득을 기준으로 설계되었습니다. 세전 연봉을 입력하면 실제 쓸 수 있는 돈보다 배분액이 크게 나올 수 있어, 실수령액 기준으로 입력하는 것을 권장합니다."}},{"@type":"Question","name":"미배정 금액이 남거나 모자라면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"\"내 지출 비교\" 모드에서 세 항목의 합이 월 소득과 다르면 미배정 금액으로 표시됩니다. 양수면 아직 배분하지 않은 여유 자금이, 음수면 소득을 초과해 지출하고 있다는 뜻입니다."}},{"@type":"Question","name":"부채 상환은 어느 항목에 넣어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"대출 최소 상환액처럼 반드시 내야 하는 금액은 필수 생활비로, 여유가 있어 추가로 갚는 금액은 저축·투자 항목으로 분류하는 것이 일반적입니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=7">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"예산(가계부) 계산기","item":"https://kcalculator.net/budget-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"예산(가계부) 계산기","description":"월 소득을 입력하면 50/30/20 법칙 기준 권장 배분을 계산하고, 실제 한국 가구 소비 통계와 비교합니다.","url":"https://kcalculator.net/budget-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"세전 소득과 세후 소득 중 어느 걸 입력해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"50/30/20 법칙은 원래 세후(실수령) 소득을 기준으로 설계되었습니다. 세전 연봉을 입력하면 실제 쓸 수 있는 돈보다 배분액이 크게 나올 수 있어, 실수령액 기준으로 입력하는 것을 권장합니다."}},{"@type":"Question","name":"미배정 금액이 남거나 모자라면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"\"내 지출 비교\" 모드에서 세 항목의 합이 월 소득과 다르면 미배정 금액으로 표시됩니다. 양수면 아직 배분하지 않은 여유 자금이, 음수면 소득을 초과해 지출하고 있다는 뜻입니다."}},{"@type":"Question","name":"부채 상환은 어느 항목에 넣어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"대출 최소 상환액처럼 반드시 내야 하는 금액은 필수 생활비로, 여유가 있어 추가로 갚는 금액은 저축·투자 항목으로 분류하는 것이 일반적입니다."}},{"@type":"Question","name":"실제 한국 가구는 50/30/20 비율대로 소비하고 있나요?","acceptedAnswer":{"@type":"Answer","text":"평균적으로는 저축 비중이 법칙보다 높게 나타납니다(2025년 평균소비성향 기준 흑자율 약 30% 내외). 다만 이는 전체 가구 평균이라 개인차가 크고, 흑자율 계산 방식이 법칙의 \"저축·투자 20%\"와 완전히 같은 개념은 아닙니다."}},{"@type":"Question","name":"소득이 낮으면 이 법칙을 그대로 적용하기 어렵나요?","acceptedAnswer":{"@type":"Answer","text":"그런 경향이 있습니다. 통계청 자료를 보면 소득이 낮을수록 주거비·식비 등 필수 생활비 비중이 50%를 넘기기 쉽습니다. 이 경우 법칙의 비율을 그대로 맞추려 하기보다, 필수 생활비를 먼저 확보하고 남는 범위에서 선택 소비와 저축 비율을 조정하는 것이 현실적입니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -164,33 +163,33 @@
           <div class="field">
             <label>계산 유형</label>
             <div class="seg-toggle" data-target="mode" style="width:100%;">
-              <button type="button" class="seg-btn active" data-value="guide" style="flex:1;">권장 배분 보기</button>
-              <button type="button" class="seg-btn" data-value="compare" style="flex:1;">내 지출 비교</button>
+              <button type="button" class="seg-btn active" data-value="compare" style="flex:1;">내 지출 비교</button>
+              <button type="button" class="seg-btn" data-value="guide" style="flex:1;">권장 배분 보기</button>
             </div>
           </div>
 
-          <div class="field mode-field" data-mode="guide">
-            <label for="bg-income">월 소득 (원)</label>
-            <input type="text" id="bg-income" inputmode="numeric">
-          </div>
-
-          <div class="field mode-field hidden" data-mode="compare">
+          <div class="field mode-field" data-mode="compare">
             <label for="bg-income2">월 소득 (원)</label>
             <input type="text" id="bg-income2" inputmode="numeric">
           </div>
-          <div class="field mode-field hidden" data-mode="compare">
+          <div class="field mode-field" data-mode="compare">
             <label for="bg-need">고정·필수 지출 (원)</label>
             <input type="text" id="bg-need" inputmode="numeric">
             <p class="field-note">월세·공과금·식비·통신비 등 줄이기 어려운 지출</p>
           </div>
-          <div class="field mode-field hidden" data-mode="compare">
+          <div class="field mode-field" data-mode="compare">
             <label for="bg-want">선택 소비 (원)</label>
             <input type="text" id="bg-want" inputmode="numeric">
             <p class="field-note">외식·취미·쇼핑 등 조절 가능한 지출</p>
           </div>
-          <div class="field mode-field hidden" data-mode="compare">
+          <div class="field mode-field" data-mode="compare">
             <label for="bg-save">저축·투자 (원)</label>
             <input type="text" id="bg-save" inputmode="numeric">
+          </div>
+
+          <div class="field mode-field hidden" data-mode="guide">
+            <label for="bg-income">월 소득 (원)</label>
+            <input type="text" id="bg-income" inputmode="numeric">
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -258,6 +257,12 @@
       </div>
 
       <div class="info-block">
+        <h3><span class="info-icon">📈</span>한국 가구의 실제 소비 패턴</h3>
+        <p>통계청(국가데이터처) 가계동향조사에 따르면 2025년 분기별 평균소비성향(처분가능소득 중 소비지출이 차지하는 비율)은 67.2~70.5% 수준이었습니다. 거꾸로 보면 흑자율(저축 여력)은 약 30% 내외로, 50/30/20 법칙의 저축 권장치(20%)보다 오히려 높은 편입니다. 다만 이 흑자율에는 대출 원리금 상환처럼 법칙상 "저축·투자"와는 다른 지출도 일부 섞여 있어, 정확히 같은 개념으로 비교하긴 어렵습니다.</p>
+        <p>소득 수준별로 지출 구조도 다르게 나타납니다. 2026년 1분기 기준 소득 하위 20%(1분위) 가구는 주거·수도·광열(21.7%)과 식료품·비주류음료(20.8%) 비중이 특히 높아 필수 생활비가 소득의 상당 부분을 차지한 반면, 소득 상위 20%(5분위) 가구는 교통·운송(14.7%)과 음식·숙박(14.1%) 비중이 상대적으로 높았습니다. 소득이 낮을수록 필수 지출이 50%를 넘기 쉽다는 뜻입니다.</p>
+      </div>
+
+      <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>세전 소득과 세후 소득 중 어느 걸 입력해야 하나요?</summary>
@@ -271,6 +276,26 @@
           <summary>부채 상환은 어느 항목에 넣어야 하나요?</summary>
           <p class="faq-a">대출 최소 상환액처럼 반드시 내야 하는 금액은 필수 생활비로, 여유가 있어 추가로 갚는 금액은 저축·투자 항목으로 분류하는 것이 일반적입니다.</p>
         </details>
+        <details class="faq-item">
+          <summary>실제 한국 가구는 50/30/20 비율대로 소비하고 있나요?</summary>
+          <p class="faq-a">평균적으로는 저축 비중이 법칙보다 높게 나타납니다(2025년 평균소비성향 기준 흑자율 약 30% 내외). 다만 이는 전체 가구 평균이라 개인차가 크고, 흑자율 계산 방식이 법칙의 "저축·투자 20%"와 완전히 같은 개념은 아닙니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>소득이 낮으면 이 법칙을 그대로 적용하기 어렵나요?</summary>
+          <p class="faq-a">그런 경향이 있습니다. 통계청 자료를 보면 소득이 낮을수록 주거비·식비 등 필수 생활비 비중이 50%를 넘기기 쉽습니다. 이 경우 법칙의 비율을 그대로 맞추려 하기보다, 필수 생활비를 먼저 확보하고 남는 범위에서 선택 소비와 저축 비율을 조정하는 것이 현실적입니다.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://mods.go.kr/menu.es?mid=a10301040400" target="_blank" rel="noopener">국가데이터처(통계청) – 가계동향조사 ↗</a></li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📅</span>기준일</h3>
+        <p class="field-note">평균소비성향·흑자율 — 2025년 분기별 가계동향조사 기준<br>소득분위별 지출 비중 — 2026년 1분기 가계동향조사 기준(최신)</p>
       </div>
     </section>
 
@@ -283,9 +308,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=7"></script>
-<script src="js/url-state.js?v=7"></script>
-<script src="js/export.js?v=7"></script>
-<script src="js/budget-calc.js?v=7"></script>
+<script src="js/site.js?v=8"></script>
+<script src="js/url-state.js?v=8"></script>
+<script src="js/export.js?v=8"></script>
+<script src="js/budget-calc.js?v=8"></script>
 </body>
 </html>

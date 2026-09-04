@@ -1,4 +1,4 @@
-let mode = 'guide';
+let mode = 'compare';
 
 function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
 
@@ -81,7 +81,7 @@ document.getElementById('bg-want').addEventListener('input', function(){ formatI
 document.getElementById('bg-save').addEventListener('input', function(){ formatInputComma(this); recalc(); });
 
 const URL_DEFAULTS = {
-  mode: 'guide',
+  mode: 'compare',
   income: '3000000',
   income2: '3000000',
   need: '1500000',
