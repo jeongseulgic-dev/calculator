@@ -130,6 +130,23 @@ def check_sitemap():
         fail(f'[sitemap] sitemap.xml references nonexistent files: {sorted(stray)}')
 
 
+def check_heading_order():
+    # 사이드바(<nav>)는 자체 그룹 제목(금융/건강/수학/생활)이 h2라 본문 헤딩
+    # 순서와 별개 트리로 취급한다 — 제외하고 본문 흐름만 검사한다.
+    # 레벨이 내려가는 건(h3 뒤에 h2 등, 새 섹션 시작) 항상 허용하고, 레벨을
+    # 건너뛰며 올라가는 것만(h1 다음 h3처럼 h2 없이 깊어짐) 위반으로 본다 —
+    # 접근성 도구(axe-core heading-order 규칙)가 쓰는 것과 같은 기준.
+    for f in html_files():
+        text = f.read_text(encoding='utf-8')
+        text = re.sub(r'<nav>.*?</nav>', '', text, flags=re.DOTALL)
+        headings = re.findall(r'<h([1-6])[\s>]', text)
+        prev = None
+        for level in (int(h) for h in headings):
+            if prev is not None and level > prev + 1:
+                fail(f'[heading order] {f.name}: h{prev} 다음에 h{level} (h{prev + 1} 건너뜀)')
+            prev = level
+
+
 def check_asset_version():
     # style.css·js/*.js는 전부 같은 ?v=N 캐시 버스팅 쿼리를 달고 있어야 한다
     # (CLAUDE.md 파일 구조 섹션 참고) — 하나라도 빠지거나 값이 어긋나면 배포
@@ -159,6 +176,7 @@ def main():
     check_internal_links()
     check_sidebar_consistency()
     check_sitemap()
+    check_heading_order()
     check_asset_version()
 
     if errors:
