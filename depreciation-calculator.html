@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="감가상각 계산기 | 정액법·정률법으로 취득가액의 연차별 감가상각비와 장부가액을 계산하는 무료 계산기">
+<meta name="description" content="취득가액·잔존가치율·내용연수를 입력하면 정액법·정률법 감가상각비를 계산하고, 자산별 법정 기준내용연수도 안내합니다.">
 <title>감가상각 계산기 (2026) | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/depreciation-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="감가상각 계산기 (2026) | 계산기">
-<meta property="og:description" content="감가상각 계산기 | 정액법·정률법으로 취득가액의 연차별 감가상각비와 장부가액을 계산하는 무료 계산기">
+<meta property="og:description" content="취득가액·잔존가치율·내용연수를 입력하면 정액법·정률법 감가상각비를 계산하고, 자산별 법정 기준내용연수도 안내합니다.">
 <meta property="og:url" content="https://kcalculator.net/depreciation-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"감가상각 계산기","item":"https://kcalculator.net/depreciation-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"감가상각 계산기","description":"감가상각 계산기 | 정액법·정률법으로 취득가액의 연차별 감가상각비와 장부가액을 계산하는 무료 계산기","url":"https://kcalculator.net/depreciation-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"잔존가치를 0%로 넣으면 정률법은 왜 이상해지나요?","acceptedAnswer":{"@type":"Answer","text":"정률법 상각률 공식은 잔존가치율의 거듭제곱근을 계산하는데, 잔존가치가 0%면 상각률이 100%가 되어 1년차에 장부가액이 전부 상각되어 버립니다. 실무에서는 정률법에 보통 5% 안팎의 잔존가치를 사용합니다."}},{"@type":"Question","name":"정액법과 정률법 중 총 상각액은 같은가요?","acceptedAnswer":{"@type":"Answer","text":"네. 내용연수가 끝나는 시점의 장부가액(잔존가치)은 두 방법 모두 동일합니다. 다만 그 잔존가치에 도달하는 속도(매년 상각되는 금액의 분배)가 다를 뿐입니다."}},{"@type":"Question","name":"실제 법인세 신고에 이 계산 결과를 그대로 써도 되나요?","acceptedAnswer":{"@type":"Answer","text":"세법상 내용연수는 자산 종류별로 정해진 기준내용연수와 그 상하 25% 범위에서 신고해야 하는 등 추가 규정이 있습니다. 정확한 신고를 위해서는 세무 전문가와 상담하거나 국세청 자료를 확인하세요."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"감가상각 계산기","item":"https://kcalculator.net/depreciation-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"감가상각 계산기","description":"취득가액·잔존가치율·내용연수를 입력하면 정액법·정률법 감가상각비를 계산하고, 자산별 법정 기준내용연수도 안내합니다.","url":"https://kcalculator.net/depreciation-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"잔존가치를 0%로 넣으면 정률법은 왜 이상해지나요?","acceptedAnswer":{"@type":"Answer","text":"정률법 상각률 공식은 잔존가치율의 거듭제곱근을 계산하는데, 잔존가치가 0%면 상각률이 100%가 되어 1년차에 장부가액이 전부 상각되어 버립니다. 실무에서는 정률법에 보통 5% 안팎의 잔존가치를 사용합니다."}},{"@type":"Question","name":"정액법과 정률법 중 총 상각액은 같은가요?","acceptedAnswer":{"@type":"Answer","text":"네. 내용연수가 끝나는 시점의 장부가액(잔존가치)은 두 방법 모두 동일합니다. 다만 그 잔존가치에 도달하는 속도(매년 상각되는 금액의 분배)가 다를 뿐입니다."}},{"@type":"Question","name":"실제 법인세 신고에 이 계산 결과를 그대로 써도 되나요?","acceptedAnswer":{"@type":"Answer","text":"세법상 내용연수는 자산 종류별로 정해진 기준내용연수와 그 상하 25% 범위에서 신고해야 하는 등 추가 규정이 있습니다. 정확한 신고를 위해서는 세무 전문가와 상담하거나 국세청 자료를 확인하세요."}},{"@type":"Question","name":"신고내용연수를 기준내용연수와 다르게 정해도 되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 자산 취득일이 속하는 사업연도의 법인세 과세표준 신고 기한까지 기준내용연수의 상하 25% 범위 안에서 신고내용연수를 선택해 신고할 수 있습니다. 별도로 신고하지 않으면 기준내용연수가 그대로 적용됩니다."}},{"@type":"Question","name":"기계장치도 위 표의 기준내용연수를 그대로 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 기계장치는 건물·차량 등과 달리 업종별로 별도의 기준내용연수표(별표6)가 적용됩니다. 업종에 따라 연수가 크게 달라질 수 있어 이 계산기의 표에는 포함하지 않았으니, 정확한 값은 국세청·세무 전문가를 통해 확인하세요."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
@@ -215,7 +214,7 @@
       <div class="info-block">
         <h3><span class="info-icon">💡</span>감가상각이란?</h3>
         <p>감가상각은 건물·설비·차량 같은 자산이 시간이 지나며 닳거나 낡아가는 가치 감소분을 매년 비용으로 나눠 반영하는 회계 방법입니다. 정액법은 매년 같은 금액을, 정률법은 매년 남은 장부가액에 일정 비율을 곱해 초반에 더 많이 상각합니다.</p>
-        <p>실제 세무상 감가상각은 자산 종류별로 국세청이 정한 기준내용연수(예: 건물 40년, 차량운반구 5년, 비품 5년 등)와 그 상하 25% 범위 내에서 선택해야 하며, 자산 종류·업종에 따라 세부 기준이 달라질 수 있습니다. 이 계산기는 사용자가 직접 입력한 내용연수로 계산하는 일반 공식 도구입니다.</p>
+        <p>실제 세무상 감가상각은 자산 종류별로 법인세법 시행규칙이 정한 기준내용연수와 그 상하 25% 범위(신고내용연수 범위) 내에서 선택해야 하며, 자산 종류·업종에 따라 세부 기준이 달라질 수 있습니다. 이 계산기는 사용자가 직접 입력한 내용연수로 계산하는 일반 공식 도구입니다.</p>
       </div>
 
       <div class="info-block">
@@ -262,6 +261,21 @@
       </div>
 
       <div class="info-block">
+        <h3><span class="info-icon">📋</span>자산별 기준내용연수</h3>
+        <p>법인세법 시행규칙은 자산 종류별로 기준내용연수와 그 상하 25% 범위(신고내용연수 범위)를 정해두고 있습니다. 사업자는 최초 신고 시 이 범위 안에서 내용연수를 선택해 관할 세무서에 신고할 수 있습니다.</p>
+        <table class="criteria-table text-table">
+          <thead><tr><th>자산 구분</th><th>기준내용연수(신고 범위)</th></tr></thead>
+          <tbody>
+            <tr><td>건물·구축물 — 벽돌조·블록조·콘크리트조·목조 등</td><td>20년(15~25년)</td></tr>
+            <tr><td>건물·구축물 — 철골조·철근콘크리트조·석조 등</td><td>40년(30~50년)</td></tr>
+            <tr><td>차량 및 운반구, 공구·기구 및 비품</td><td>5년(4~6년)</td></tr>
+            <tr><td>선박 및 항공기</td><td>12년(9~15년)</td></tr>
+          </tbody>
+        </table>
+        <p class="field-note">기계장치 등 업종별 자산은 업종에 따라 기준내용연수가 별도로 정해져 있어(별표6), 이 표에는 포함하지 않았습니다.</p>
+      </div>
+
+      <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>잔존가치를 0%로 넣으면 정률법은 왜 이상해지나요?</summary>
@@ -275,6 +289,26 @@
           <summary>실제 법인세 신고에 이 계산 결과를 그대로 써도 되나요?</summary>
           <p class="faq-a">세법상 내용연수는 자산 종류별로 정해진 기준내용연수와 그 상하 25% 범위에서 신고해야 하는 등 추가 규정이 있습니다. 정확한 신고를 위해서는 세무 전문가와 상담하거나 국세청 자료를 확인하세요.</p>
         </details>
+        <details class="faq-item">
+          <summary>신고내용연수를 기준내용연수와 다르게 정해도 되나요?</summary>
+          <p class="faq-a">네. 자산 취득일이 속하는 사업연도의 법인세 과세표준 신고 기한까지 기준내용연수의 상하 25% 범위 안에서 신고내용연수를 선택해 신고할 수 있습니다. 별도로 신고하지 않으면 기준내용연수가 그대로 적용됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>기계장치도 위 표의 기준내용연수를 그대로 쓰나요?</summary>
+          <p class="faq-a">아닙니다. 기계장치는 건물·차량 등과 달리 업종별로 별도의 기준내용연수표(별표6)가 적용됩니다. 업종에 따라 연수가 크게 달라질 수 있어 이 계산기의 표에는 포함하지 않았으니, 정확한 값은 국세청·세무 전문가를 통해 확인하세요.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99" target="_blank" rel="noopener">국가법령정보센터 – 법인세법 시행규칙 [별표5] 건축물 등의 기준내용연수 및 내용연수범위 ↗</a></li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📅</span>기준일</h3>
+        <p class="field-note">자산별 기준내용연수(별표5) — 2024.3.22. 개정, 2024.4.1. 시행(현재 최신)<br>정률법 잔존가치 5% 관행 — 세법상 정률법 상각률 산정 기준으로 명시</p>
       </div>
     </section>
 
