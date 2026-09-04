@@ -183,6 +183,7 @@ header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; colo
 .seg-toggle{ display:flex; border-radius:5px; overflow:hidden; box-shadow:0 3px 0 rgba(0,0,0,0.25); flex-shrink:0; }
 .seg-btn{ background:var(--btn-fn); color:#fff; border:none; font-size:0.74rem; font-weight:700; padding:9px 10px; cursor:pointer; font-family:'IBM Plex Mono', monospace; }
 .seg-btn.active{ background:var(--pink); }
+.seg-toggle-compact .seg-btn{ font-size:0.62rem; padding:9px 4px; word-break:keep-all; }
 
 .key-row{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
 .calc-key{

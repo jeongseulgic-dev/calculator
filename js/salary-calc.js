@@ -10,7 +10,8 @@ const RATE = {
 };
 
 const MEAL_NONTAX_CAP = 200000; // 식대 비과세 한도 (월, 2023년~)
-const URL_DEFAULTS = { salary: '40000000', meal: String(MEAL_NONTAX_CAP), deps: '1' };
+let mode = 'annual';
+const URL_DEFAULTS = { mode: 'annual', salary: '40000000', monthly: '3000000', meal: String(MEAL_NONTAX_CAP), deps: '1' };
 
 // 근로소득 백분위 구간별 연평균 근로소득(원) — 공공데이터포털 "국세청_근로소득 백분위(천분위)
 // 자료"(2024년 귀속, 데이터 등록 2026-02-24) 원자료에서 각 구간(상위 N%) 행의
@@ -123,7 +124,9 @@ function calcSalary(annual, dependents, monthlyNontaxInput){
 }
 
 function recalc(){
-  const annual = Number(document.getElementById('sl-salary').value.replace(/,/g, ''));
+  const monthlyInput = Number(document.getElementById('sl-salary-monthly').value.replace(/,/g, ''));
+  const annualInput = Number(document.getElementById('sl-salary').value.replace(/,/g, ''));
+  const annual = mode === 'monthly' ? monthlyInput * 12 : annualInput;
   const monthlyNontax = Number(document.getElementById('sl-nontax').value.replace(/,/g, '')) || 0;
   const dependents = Math.max(parseInt(document.getElementById('sl-dependents').value) || 1, 1);
 
@@ -136,7 +139,7 @@ function recalc(){
   if (!annual){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">연봉을 입력해 주세요</td></tr>';
+    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">' + (mode === 'monthly' ? '월급을' : '연봉을') + ' 입력해 주세요</td></tr>';
     meta.textContent = '--';
     percentileNote.textContent = '';
     return;
@@ -146,7 +149,9 @@ function recalc(){
 
   miniScreen.textContent = fmt0(r.monthlyNet) + '원';
   miniScreenSub.textContent = '월 실수령액';
-  meta.textContent = `연봉 ${fmt0(annual)}원 · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명`;
+  meta.textContent = mode === 'monthly'
+    ? `월급 ${fmt0(monthlyInput)}원(연봉 환산 ${fmt0(annual)}원) · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명`
+    : `연봉 ${fmt0(annual)}원 · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명`;
 
   statBody.innerHTML = `
     <tr><th>월 급여 (세전)</th><td>${fmt0(r.monthlyGross)}원</td></tr>
@@ -163,20 +168,37 @@ function recalc(){
   `;
   percentileNote.textContent = `근로소득 기준 ${incomePercentileLabel(annual)} 구간입니다 (2024년 귀속 자료)`;
 
-  UrlState.sync({ salary: annual, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
+  UrlState.sync({ mode, salary: annualInput, monthly: monthlyInput, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
 }
 
-document.getElementById('sl-salary').addEventListener('input', function(){ formatInputComma(this); recalc(); });
-document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{ addAmount('sl-salary', Number(btn.dataset.add)); recalc(); });
+document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.value;
+    document.querySelectorAll('.mode-field').forEach(f=>{
+      f.classList.toggle('hidden', f.dataset.mode !== mode);
+    });
+    recalc();
+  });
 });
-document.querySelector('.calc-key[data-reset]').addEventListener('click', ()=>{ resetAmount('sl-salary'); recalc(); });
+
+document.getElementById('sl-salary').addEventListener('input', function(){ formatInputComma(this); recalc(); });
+document.getElementById('sl-salary-monthly').addEventListener('input', function(){ formatInputComma(this); recalc(); });
+document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{ addAmount(btn.dataset.target, Number(btn.dataset.add)); recalc(); });
+});
+document.querySelectorAll('.calc-key[data-reset]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{ resetAmount(btn.dataset.target); recalc(); });
+});
 document.getElementById('sl-nontax').addEventListener('input', function(){ formatInputComma(this); recalc(); });
 document.getElementById('sl-dependents').addEventListener('input', recalc);
 
 const urlParams = UrlState.read();
 document.getElementById('sl-salary').value = Number(urlParams.salary || URL_DEFAULTS.salary).toLocaleString('ko-KR');
+document.getElementById('sl-salary-monthly').value = Number(urlParams.monthly || URL_DEFAULTS.monthly).toLocaleString('ko-KR');
 document.getElementById('sl-nontax').value = Number(urlParams.meal != null ? urlParams.meal : URL_DEFAULTS.meal).toLocaleString('ko-KR');
+if (urlParams.mode) clickToggle('mode', urlParams.mode);
 if (urlParams.deps) document.getElementById('sl-dependents').value = urlParams.deps;
 
 recalc();

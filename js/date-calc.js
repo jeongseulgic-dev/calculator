@@ -27,6 +27,17 @@ function calendarDiff(start, end){
   return { y, m, d };
 }
 
+function countBusinessDays(from, to){
+  let count = 0;
+  const cur = new Date(from);
+  while (cur <= to){
+    const day = cur.getDay();
+    if (day !== 0 && day !== 6) count++;
+    cur.setDate(cur.getDate() + 1);
+  }
+  return count;
+}
+
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(b=>b.classList.remove('active'));
@@ -131,6 +142,66 @@ function recalc(){
       mode, base: document.getElementById('d-base').value, amount, op: addOp, unit: addUnit
     }, URL_DEFAULTS);
   }
+
+  else if (mode === 'dday'){
+    const target = parseIsoDate(document.getElementById('d-dday').value);
+    if (!target){
+      miniScreen.textContent = '-';
+      miniScreenSub.textContent = '';
+      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">기준일을 YYYY-MM-DD 형식으로 입력해 주세요</td></tr>';
+      meta.textContent = '--';
+      return;
+    }
+    const now = new Date();
+    const todayMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diff = Math.round((target - todayMid) / 86400000);
+    const ddayLabel = diff > 0 ? `D-${diff}` : diff === 0 ? 'D-DAY' : `D+${Math.abs(diff)}`;
+
+    miniScreen.textContent = ddayLabel;
+    miniScreenSub.textContent = fmtDate(target);
+    meta.textContent = `기준일 ${document.getElementById('d-dday').value}`;
+
+    statBody.innerHTML = `
+      <tr><th>오늘</th><td>${fmtDate(todayMid)}</td></tr>
+      <tr><th>기준일</th><td>${fmtDate(target)}</td></tr>
+      <tr class="stat-highlight"><th>D-day</th><td>${ddayLabel}</td></tr>
+      <tr><th>총 일수 차이</th><td>${Math.abs(diff).toLocaleString('ko-KR')}일</td></tr>
+    `;
+
+    UrlState.sync({ mode, dday: document.getElementById('d-dday').value }, URL_DEFAULTS);
+  }
+
+  else if (mode === 'bizdays'){
+    const start = parseIsoDate(document.getElementById('d-biz-start').value);
+    const end = parseIsoDate(document.getElementById('d-biz-end').value);
+    if (!start || !end){
+      miniScreen.textContent = '0일';
+      miniScreenSub.textContent = '';
+      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">시작일과 종료일을 YYYY-MM-DD 형식으로 입력해 주세요</td></tr>';
+      meta.textContent = '--';
+      return;
+    }
+    const [from, to] = start <= end ? [start, end] : [end, start];
+    const totalDays = Math.round((to - from) / 86400000) + 1;
+    const bizDays = countBusinessDays(from, to);
+    const weekendDays = totalDays - bizDays;
+
+    miniScreen.textContent = bizDays.toLocaleString('ko-KR') + '일';
+    miniScreenSub.textContent = '영업일 수 (주말 제외)';
+    meta.textContent = `시작일 ${document.getElementById('d-biz-start').value} · 종료일 ${document.getElementById('d-biz-end').value}`;
+
+    statBody.innerHTML = `
+      <tr><th>시작일</th><td>${fmtDate(from)}</td></tr>
+      <tr><th>종료일</th><td>${fmtDate(to)}</td></tr>
+      <tr><th>전체 일수</th><td>${totalDays.toLocaleString('ko-KR')}일</td></tr>
+      <tr class="stat-highlight"><th>영업일 수 (주말 제외)</th><td>${bizDays.toLocaleString('ko-KR')}일</td></tr>
+      <tr><th>주말 일수</th><td>${weekendDays.toLocaleString('ko-KR')}일</td></tr>
+    `;
+
+    UrlState.sync({
+      mode, bizStart: document.getElementById('d-biz-start').value, bizEnd: document.getElementById('d-biz-end').value
+    }, URL_DEFAULTS);
+  }
 }
 
 const today = new Date();
@@ -138,6 +209,9 @@ const in100Days = new Date(today.getTime() + 100*86400000);
 document.getElementById('d-start').value = toInputValue(today);
 document.getElementById('d-end').value = toInputValue(in100Days);
 document.getElementById('d-base').value = toInputValue(today);
+document.getElementById('d-dday').value = toInputValue(in100Days);
+document.getElementById('d-biz-start').value = toInputValue(today);
+document.getElementById('d-biz-end').value = toInputValue(in100Days);
 
 const URL_DEFAULTS = {
   mode: toggleDefault('mode'),
@@ -146,12 +220,18 @@ const URL_DEFAULTS = {
   base: toInputValue(today),
   amount: document.getElementById('d-amount').defaultValue,
   op: toggleDefault('addOp'),
-  unit: toggleDefault('addUnit')
+  unit: toggleDefault('addUnit'),
+  dday: toInputValue(in100Days),
+  bizStart: toInputValue(today),
+  bizEnd: toInputValue(in100Days)
 };
 
 attachDateMask('d-start', recalc);
 attachDateMask('d-end', recalc);
 attachDateMask('d-base', recalc);
+attachDateMask('d-dday', recalc);
+attachDateMask('d-biz-start', recalc);
+attachDateMask('d-biz-end', recalc);
 document.getElementById('d-amount').addEventListener('input', recalc);
 
 const urlParams = UrlState.read();
@@ -161,6 +241,9 @@ if (urlParams.base) document.getElementById('d-base').value = urlParams.base;
 if (urlParams.amount) document.getElementById('d-amount').value = urlParams.amount;
 if (urlParams.op) clickToggle('addOp', urlParams.op);
 if (urlParams.unit) clickToggle('addUnit', urlParams.unit);
+if (urlParams.dday) document.getElementById('d-dday').value = urlParams.dday;
+if (urlParams.bizStart) document.getElementById('d-biz-start').value = urlParams.bizStart;
+if (urlParams.bizEnd) document.getElementById('d-biz-end').value = urlParams.bizEnd;
 if (urlParams.mode) clickToggle('mode', urlParams.mode);
 
 recalc();

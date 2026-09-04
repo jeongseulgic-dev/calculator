@@ -35,7 +35,7 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"전기요금 계산기","item":"https://kcalculator.net/electricity-bill-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"전기요금 계산기","description":"월 사용량(kWh)을 입력하면 3단계 누진제 기준 전기요금을 계산합니다. 기초생활수급자·장애인 등 복지할인 한도도 함께 안내합니다.","url":"https://kcalculator.net/electricity-bill-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"기본요금은 왜 사용량 전체가 아니라 도달한 단계 하나만 적용되나요?","acceptedAnswer":{"@type":"Answer","text":"기본요금은 사용량이 최종적으로 속한 단계의 정액이 한 번만 부과되는 방식입니다. 예를 들어 350kWh를 쓰면 2단계에 속하므로 2단계 기본요금(1,600원)만 부과되고, 1단계 기본요금은 별도로 추가되지 않습니다."}},{"@type":"Question","name":"전력량요금은 왜 사용량 전체에 3단계 단가를 곱하지 않나요?","acceptedAnswer":{"@type":"Answer","text":"누진제는 사용량 전체가 아니라 구간별로 나눠서 각 구간에 해당하는 사용량만큼만 그 구간 단가를 적용합니다. 예를 들어 350kWh를 쓰면 처음 200kWh는 1단계 단가, 나머지 150kWh는 2단계 단가로 각각 계산해서 더합니다."}},{"@type":"Question","name":"실제 청구서와 금액이 다를 수 있는 이유는?","acceptedAnswer":{"@type":"Answer","text":"복지할인(장애인·기초생활수급자 등), 전기차 충전할인, 명절 특별할인 등 각종 감면·할인이 개인 상황에 따라 추가로 적용될 수 있고, 부가세·기금 반올림 방식에 따라 10원 내외 차이가 날 수 있습니다. 정확한 금액은 청구서나 한전ON에서 확인하세요."}},{"@type":"Question","name":"복지할인은 얼마나 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"기초생활수급자(생계·의료급여)와 장애인·상이유공자는 월 16,000원(여름철 20,000원), 차상위계층은 월 8,000원(여름철 10,000원) 한도로 할인됩니다. 대상자별 정확한 한도는 위 복지할인 표를 참고하세요. 신청은 한전 고객센터·한전ON·주민센터에서 할 수 있습니다."}},{"@type":"Question","name":"아파트처럼 고압으로 전기를 받으면 요금이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 일반 가정에서 흔히 쓰는 주택용 저압 기준입니다. 아파트 단지 전체가 고압으로 전기를 받아 세대별로 나누는 주택용 고압은 저압보다 전력량요금 단가가 조금 더 낮게 책정됩니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -297,9 +297,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=8"></script>
-<script src="js/url-state.js?v=8"></script>
-<script src="js/export.js?v=8"></script>
-<script src="js/electricity-bill-calc.js?v=8"></script>
+<script src="js/site.js?v=11"></script>
+<script src="js/url-state.js?v=11"></script>
+<script src="js/export.js?v=11"></script>
+<script src="js/electricity-bill-calc.js?v=11"></script>
 </body>
 </html>
