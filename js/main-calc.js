@@ -244,9 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', ()=> press(btn.getAttribute('data-key') || btn.textContent.trim()));
   });
 
+  const KEYDOWN_MAP = { NumpadEnter: 'Enter', '*': '×', '/': '÷' };
   window.addEventListener('keydown', (e)=>{
     if (['INPUT','SELECT'].includes(e.target.tagName)) return;
-    let key = e.key === 'NumpadEnter' ? 'Enter' : e.key;
+    let key = KEYDOWN_MAP[e.key] || e.key;
     const target = document.querySelector(`.key[data-key="${key}"]`);
     if (target){
       target.classList.add('pressed');
