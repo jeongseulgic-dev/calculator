@@ -100,6 +100,8 @@ function recalcButim(){
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">임차보증금과 연소득을 입력해 주세요</td></tr>';
     meta.textContent = '--';
+    document.getElementById('nextDsrDti').href = 'dsr-dti-calculator';
+    document.getElementById('nextMortgage').href = 'mortgage-calculator';
     return;
   }
 
@@ -135,6 +137,10 @@ function recalcButim(){
     ${overIncome ? `<tr><td colspan="2" style="color:var(--pink); font-weight:700;">부부합산 연소득이 기준(${fmt(incomeCap)}원)을 초과해 버팀목전세자금대출 대상이 아닐 수 있습니다.</td></tr>` : ''}
   `;
 
+  const roundedIncome = Math.round(income);
+  document.getElementById('nextDsrDti').href = `dsr-dti-calculator?income=${roundedIncome}`;
+  document.getElementById('nextMortgage').href = `mortgage-calculator?income=${roundedIncome}`;
+
   UrlState.sync({
     mode, bDeposit: deposit, bRegion, bHousehold, bIncome: income,
     bRate: bRateTouched ? document.getElementById('b-rate').value : ''
@@ -158,6 +164,8 @@ function recalcBank(){
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">임차보증금과 금리를 입력해 주세요</td></tr>';
     meta.textContent = '--';
+    document.getElementById('nextDsrDti').href = 'dsr-dti-calculator';
+    document.getElementById('nextMortgage').href = 'mortgage-calculator';
     return;
   }
 
@@ -182,6 +190,9 @@ function recalcBank(){
     <tr><th>적용 기준</th><td>${basis} (한도 상한액 ${fmt(capLimit)}원)</td></tr>
     <tr class="stat-highlight"><th>월 이자</th><td>${fmt(monthlyInterest)}원</td></tr>
   `;
+
+  document.getElementById('nextDsrDti').href = 'dsr-dti-calculator';
+  document.getElementById('nextMortgage').href = 'mortgage-calculator';
 
   UrlState.sync({
     mode, kDeposit: deposit, kRegion, kHousehold, kRate: document.getElementById('k-rate').value
