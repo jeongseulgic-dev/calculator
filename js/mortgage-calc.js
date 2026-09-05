@@ -109,6 +109,10 @@ function recalc(){
     <tr><th>참고: 월 상환액(원리금균등)</th><td>${fmt(finalMonthly)}원</td></tr>
   `;
 
+  const roundedIncome = Math.round(income);
+  document.getElementById('nextDsrDti').href = `dsr-dti-calculator?income=${roundedIncome}`;
+  document.getElementById('nextJeonse').href = `jeonse-calculator?mode=butim&bIncome=${roundedIncome}`;
+
   UrlState.sync({
     price, region, firstTime, income, existing, rate: document.getElementById('m-rate').value, period
   }, URL_DEFAULTS);

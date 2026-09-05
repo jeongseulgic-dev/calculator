@@ -34,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"주택담보대출 계산기","item":"https://kcalculator.net/mortgage-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"주택담보대출 계산기","description":"주택담보대출 계산기 | 무주택자·생애최초 실거주 주택구입 시 LTV·대출한도·DSR 기준 최대 대출 가능액을 계산하는 무료 계산기","url":"https://kcalculator.net/mortgage-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"내 주택이 규제지역인지 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 지역 목록을 직접 관리하지 않습니다. KB부동산의 규제지역 조회 페이지(공식 정부 자료는 아니며 참고용) 또는 국토교통부 공고를 통해 최신 지정 현황을 확인한 뒤 이 계산기의 \"지역\" 항목을 선택하세요."}},{"@type":"Question","name":"다주택자는 왜 다루지 않나요?","acceptedAnswer":{"@type":"Answer","text":"2주택 이상 보유자가 규제지역 내에서 추가 주택을 구입하는 경우 LTV 0%(사실상 대출 불가)가 적용됩니다. 이런 예외적인 경우는 이 계산기로 계산할 수 없으니 금융기관에 별도로 상담하세요."}},{"@type":"Question","name":"실제 대출 가능액이 이 계산기 결과보다 적게 나올 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. DTI, 스트레스 DSR, 개별 금융기관의 심사 기준 등 이 계산기가 반영하지 않은 조건에 따라 실제 한도는 더 낮게 나올 수 있습니다. DSR·DTI를 더 정확히 확인하려면 DSR·DTI 계산기를 함께 이용하세요."}},{"@type":"Question","name":"주택 구입 대신 전세를 고려하고 있다면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"전세자금대출 계산기에서 버팀목전세자금대출·은행 일반 전세자금대출의 한도와 월 이자를 확인해 매매와 비교해볼 수 있습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=17">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"주택담보대출 계산기","item":"https://kcalculator.net/mortgage-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"주택담보대출 계산기","description":"주택담보대출 계산기 | 무주택자·생애최초 실거주 주택구입 시 LTV·대출한도·DSR 기준 최대 대출 가능액을 계산하는 무료 계산기","url":"https://kcalculator.net/mortgage-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"내 주택이 규제지역인지 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 지역 목록을 직접 관리하지 않습니다. KB부동산의 규제지역 조회 페이지(공식 정부 자료는 아니며 참고용) 또는 국토교통부 공고를 통해 최신 지정 현황을 확인한 뒤 이 계산기의 \"지역\" 항목을 선택하세요."}},{"@type":"Question","name":"다주택자는 왜 다루지 않나요?","acceptedAnswer":{"@type":"Answer","text":"2주택 이상 보유자가 규제지역 내에서 추가 주택을 구입하는 경우 LTV 0%(사실상 대출 불가)가 적용됩니다. 이런 예외적인 경우는 이 계산기로 계산할 수 없으니 금융기관에 별도로 상담하세요."}},{"@type":"Question","name":"실제 대출 가능액이 이 계산기 결과보다 적게 나올 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. DTI, 스트레스 DSR, 개별 금융기관의 심사 기준 등 이 계산기가 반영하지 않은 조건에 따라 실제 한도는 더 낮게 나올 수 있습니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 
@@ -194,7 +194,7 @@
         <div class="field">
           <label for="m-existing">기존 부채 연간 원리금 상환액 (원)</label>
           <input type="text" id="m-existing" inputmode="numeric" value="5,000,000" placeholder="예: 5,000,000">
-          <p class="field-note">정확히 계산하려면 <a href="dsr-dti-calculator">DSR·DTI 계산기</a>를 먼저 이용해 보세요.</p>
+          <p class="field-note">정확한 금액을 모른다면 다른 대출의 연간 원리금상환액을 합산해 입력하세요.</p>
         </div>
 
         <div class="field">
@@ -224,6 +224,14 @@
         <section class="receipt-strip">
           <div class="strip-block">
             <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-block">
+            <h3 class="block-title">다음 계산</h3>
+            <div class="next-calc-grid">
+              <a class="next-calc-card" id="nextDsrDti" href="dsr-dti-calculator"><span>이 소득으로 DSR·DTI 확인하기</span><span class="next-calc-arrow">→</span></a>
+              <a class="next-calc-card" id="nextJeonse" href="jeonse-calculator"><span>전세자금대출과 비교하기</span><span class="next-calc-arrow">→</span></a>
+            </div>
           </div>
         </section>
       </div>
@@ -291,11 +299,7 @@
         </details>
         <details class="faq-item">
           <summary>실제 대출 가능액이 이 계산기 결과보다 적게 나올 수 있나요?</summary>
-          <p class="faq-a">네. DTI, 스트레스 DSR, 개별 금융기관의 심사 기준 등 이 계산기가 반영하지 않은 조건에 따라 실제 한도는 더 낮게 나올 수 있습니다. DSR·DTI를 더 정확히 확인하려면 <a href="dsr-dti-calculator">DSR·DTI 계산기</a>를 함께 이용하세요.</p>
-        </details>
-        <details class="faq-item">
-          <summary>주택 구입 대신 전세를 고려하고 있다면 어떻게 하나요?</summary>
-          <p class="faq-a"><a href="jeonse-calculator">전세자금대출 계산기</a>에서 버팀목전세자금대출·은행 일반 전세자금대출의 한도와 월 이자를 확인해 매매와 비교해볼 수 있습니다.</p>
+          <p class="faq-a">네. DTI, 스트레스 DSR, 개별 금융기관의 심사 기준 등 이 계산기가 반영하지 않은 조건에 따라 실제 한도는 더 낮게 나올 수 있습니다.</p>
         </details>
       </div>
 
@@ -317,9 +321,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=17"></script>
-<script src="js/url-state.js?v=17"></script>
-<script src="js/export.js?v=17"></script>
-<script src="js/mortgage-calc.js?v=17"></script>
+<script src="js/site.js?v=18"></script>
+<script src="js/url-state.js?v=18"></script>
+<script src="js/export.js?v=18"></script>
+<script src="js/mortgage-calc.js?v=18"></script>
 </body>
 </html>
