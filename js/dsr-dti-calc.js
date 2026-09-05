@@ -161,6 +161,10 @@ function recalc(){
     `;
   }
 
+  const roundedIncome = Math.round(income);
+  document.getElementById('nextMortgage').href = `mortgage-calculator?income=${roundedIncome}&existing=${Math.round(totalPI)}`;
+  document.getElementById('nextJeonse').href = `jeonse-calculator?mode=butim&bIncome=${roundedIncome}`;
+
   UrlState.sync({ income, debts: serializeDebts(), capType, newRate: document.getElementById('d-new-rate').value, newPeriod: document.getElementById('d-new-period').value }, URL_DEFAULTS);
 }
 
