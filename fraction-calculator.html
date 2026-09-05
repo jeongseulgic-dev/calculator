@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="분수 계산기 | 두 분수의 덧셈·뺄셈·곱셈·나눗셈을 기약분수·대분수·소수로 바로 계산하는 무료 계산기">
+<meta name="description" content="분자·분모 두 쌍과 사칙연산을 입력하면 기약분수·대분수·소수 세 가지 형태로 결과를 보여줍니다.">
 <title>분수 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/fraction-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="분수 계산기 | 계산기">
-<meta property="og:description" content="분수 계산기 | 두 분수의 덧셈·뺄셈·곱셈·나눗셈을 기약분수·대분수·소수로 바로 계산하는 무료 계산기">
+<meta property="og:description" content="분자·분모 두 쌍과 사칙연산을 입력하면 기약분수·대분수·소수 세 가지 형태로 결과를 보여줍니다.">
 <meta property="og:url" content="https://kcalculator.net/fraction-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"분수 계산기","item":"https://kcalculator.net/fraction-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"분수 계산기","description":"분수 계산기 | 두 분수의 덧셈·뺄셈·곱셈·나눗셈을 기약분수·대분수·소수로 바로 계산하는 무료 계산기","url":"https://kcalculator.net/fraction-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"음수 분수도 계산할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 분자나 분모에 음수를 입력하면 그대로 계산되며, 결과는 항상 분모가 양수인 형태로 정리해서 보여줍니다."}},{"@type":"Question","name":"분모에 0을 입력하면 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"분모가 0인 분수는 정의되지 않으므로 계산되지 않습니다. 나눗셈의 경우 분수 2의 분자가 0이어도 같은 이유로 계산할 수 없습니다."}},{"@type":"Question","name":"대분수가 표시되지 않을 때도 있나요?","acceptedAnswer":{"@type":"Answer","text":"계산 결과가 진분수(분자 < 분모)이거나 나누어떨어지는 정수라면 대분수로 따로 표시할 필요가 없어 생략됩니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"분수 계산기","item":"https://kcalculator.net/fraction-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"분수 계산기","description":"분자·분모 두 쌍과 사칙연산을 입력하면 기약분수·대분수·소수 세 가지 형태로 결과를 보여줍니다.","url":"https://kcalculator.net/fraction-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"음수 분수도 계산할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 분자나 분모에 음수를 입력하면 그대로 계산되며, 결과는 항상 분모가 양수인 형태로 정리해서 보여줍니다."}},{"@type":"Question","name":"분모에 0을 입력하면 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"분모가 0인 분수는 정의되지 않으므로 계산되지 않습니다. 나눗셈의 경우 분수 2의 분자가 0이어도 같은 이유로 계산할 수 없습니다."}},{"@type":"Question","name":"대분수가 표시되지 않을 때도 있나요?","acceptedAnswer":{"@type":"Answer","text":"계산 결과가 진분수(분자 < 분모)이거나 나누어떨어지는 정수라면 대분수로 따로 표시할 필요가 없어 생략됩니다."}},{"@type":"Question","name":"분모를 그대로 곱하는 대신 최소공배수를 쓰면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"써도 결과는 같습니다. 이 계산기는 두 분모를 그대로 곱해 공통분모로 삼지만, 최종 결과를 자동으로 기약분수로 정리하기 때문에 최소공배수로 미리 통분한 것과 동일한 값이 나옵니다. 손으로 계산할 때 숫자를 작게 유지하고 싶다면 최소공배수 계산기로 두 분모의 LCM을 먼저 구해 통분하는 것이 편합니다."}},{"@type":"Question","name":"계산 결과가 순환소수이면 소수 표시는 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"소수점 6자리까지 반올림해서 보여줍니다. 예를 들어 1/3의 결과는 정확한 순환소수(0.333...)가 아니라 0.333333으로 표시되며, 이는 근삿값입니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
@@ -229,6 +228,7 @@
               <span class="frac"><span class="num">ad ± bc</span><span class="den">bd</span></span>
             </span>
           </div>
+          <p>두 분모(b, d)를 그대로 곱해 공통분모로 삼는 방식입니다. 최소공배수(LCM)를 공통분모로 쓰면 계산 도중의 숫자가 더 작아지지만, 최종 결과는 어차피 기약분수로 정리되므로 값은 같습니다.</p>
         </div>
         <div class="method-def">
           <h4>곱셈</h4>
@@ -275,6 +275,14 @@
         <details class="faq-item">
           <summary>대분수가 표시되지 않을 때도 있나요?</summary>
           <p class="faq-a">계산 결과가 진분수(분자 &lt; 분모)이거나 나누어떨어지는 정수라면 대분수로 따로 표시할 필요가 없어 생략됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>분모를 그대로 곱하는 대신 최소공배수를 쓰면 안 되나요?</summary>
+          <p class="faq-a">써도 결과는 같습니다. 이 계산기는 두 분모를 그대로 곱해 공통분모로 삼지만, 최종 결과를 자동으로 기약분수로 정리하기 때문에 최소공배수로 미리 통분한 것과 동일한 값이 나옵니다. 손으로 계산할 때 숫자를 작게 유지하고 싶다면 <a href="lcm-calculator">최소공배수 계산기</a>로 두 분모의 LCM을 먼저 구해 통분하는 것이 편합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>계산 결과가 순환소수이면 소수 표시는 어떻게 되나요?</summary>
+          <p class="faq-a">소수점 6자리까지 반올림해서 보여줍니다. 예를 들어 1/3의 결과는 정확한 순환소수(0.333...)가 아니라 0.333333으로 표시되며, 이는 근삿값입니다.</p>
         </details>
       </div>
     </section>
