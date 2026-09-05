@@ -293,6 +293,11 @@ input:checked + .slider::before{ transform:translateX(18px); }
 .method-row{ display:flex; justify-content:space-between; font-size:0.8rem; padding:5px 0; border-bottom:1px dotted #e5decb; }
 .method-row:last-child{ border-bottom:none; }
 .method-row .val{ font-family:'IBM Plex Mono', monospace; font-weight:600; }
+
+.next-calc-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; }
+.next-calc-card{ display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card-tint); border:1px solid #ecd9b8; border-radius:7px; padding:12px 14px; text-decoration:none; color:var(--ink); font-size:0.84rem; font-weight:400; transition:border-color 0.15s; }
+.next-calc-card:hover{ border-color:var(--pink); }
+.next-calc-arrow{ color:var(--pink); font-weight:700; flex-shrink:0; }
 .method-row.total .val{ color:var(--pink); font-weight:700; }
 
 .stamp{

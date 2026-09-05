@@ -168,6 +168,13 @@ function recalc(){
   `;
   percentileNote.textContent = `근로소득 기준 ${incomePercentileLabel(annual)} 구간입니다 (2024년 귀속 자료)`;
 
+  const roundedAnnual = Math.round(annual);
+  document.getElementById('nextDsrDti').href = `dsr-dti-calculator?income=${roundedAnnual}`;
+  document.getElementById('nextMortgage').href = `mortgage-calculator?income=${roundedAnnual}`;
+  document.getElementById('nextJeonse').href = `jeonse-calculator?mode=butim&bIncome=${roundedAnnual}`;
+  document.getElementById('nextPension').href = `national-pension-calculator?b=${Math.round(annual / 12)}`;
+  document.getElementById('nextBudget').href = `budget-calculator?mode=compare&income2=${Math.round(r.monthlyNet)}`;
+
   UrlState.sync({ mode, salary: annualInput, monthly: monthlyInput, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
 }
 
