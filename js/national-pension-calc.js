@@ -15,6 +15,7 @@ function recalc(){
     miniScreenSub.textContent = '';
     statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">A값·본인 평균소득월액·가입기간(모두 0보다 큼)을 입력해 주세요</td></tr>';
     meta.textContent = '--';
+    document.getElementById('nextSalary').href = 'salary-calculator';
     return;
   }
 
@@ -34,6 +35,8 @@ function recalc(){
     <tr class="stat-highlight"><th>예상 월 연금액(근사치)</th><td>${fmt(basicPension)}원</td></tr>
     ${under10y ? '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">가입기간이 10년(120개월) 미만이면 노령연금이 아닌 반환일시금 대상이 될 수 있습니다</td></tr>' : ''}
   `;
+
+  document.getElementById('nextSalary').href = `salary-calculator?salary=${Math.round(bValue * 12)}`;
 
   UrlState.sync({ a: aValue, b: bValue, years }, URL_DEFAULTS);
 }
