@@ -89,8 +89,8 @@ function recalc(){
   }
 
   else if (mode === 'half'){
-    if (!Number.isFinite(n0) || !Number.isFinite(nt) || !Number.isFinite(t) || n0 <= 0 || nt <= 0 || nt > n0 || t <= 0){
-      fail('초기량 ≥ 잔여량 > 0, 경과시간(0보다 큼)을 입력해 주세요');
+    if (!Number.isFinite(n0) || !Number.isFinite(nt) || !Number.isFinite(t) || n0 <= 0 || nt <= 0 || nt >= n0 || t <= 0){
+      fail('초기량 > 잔여량 > 0 (아직 감소하지 않았다면 계산할 수 없습니다), 경과시간(0보다 큼)을 입력해 주세요');
       return;
     }
     const result = t * Math.log(2) / Math.log(n0 / nt);

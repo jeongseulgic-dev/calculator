@@ -31,10 +31,10 @@ function recalc(){
   const macroBody = document.getElementById('macroBody');
   const meta = document.getElementById('page-meta');
 
-  if (!age || !height || !weight){
+  if (!(age > 0) || !(height > 0) || !(weight > 0)){
     miniScreen.textContent = '0';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">나이·키·몸무게를 입력해 주세요</td></tr>';
+    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">나이·키·몸무게를 0보다 큰 값으로 입력해 주세요</td></tr>';
     macroBody.innerHTML = '';
     meta.textContent = '--';
     return;

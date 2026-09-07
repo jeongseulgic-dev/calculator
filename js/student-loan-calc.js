@@ -59,7 +59,9 @@ function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type){
 
   let monthlyConstant = 0;
   if (type === 'equal-principal-interest' && repayMonths > 0) {
-    monthlyConstant = (P * monthlyRate * Math.pow(1 + monthlyRate, repayMonths)) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
+    monthlyConstant = monthlyRate === 0
+      ? P / repayMonths
+      : (P * monthlyRate * Math.pow(1 + monthlyRate, repayMonths)) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
   }
   let fixedPrincipal = (type === 'equal-principal' && repayMonths > 0) ? P / repayMonths : 0;
 

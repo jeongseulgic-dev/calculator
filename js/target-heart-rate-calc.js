@@ -13,7 +13,7 @@ function calcMaxHR(formula, age){
 }
 
 function zoneBpm(maxHR, restHR, pct){
-  return restHR
+  return restHR > 0
     ? Math.round((maxHR - restHR) * pct/100 + restHR)
     : Math.round(maxHR * pct/100);
 }

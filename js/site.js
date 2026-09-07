@@ -73,7 +73,10 @@ function attachDateMask(inputId, onChange){
 function parseIsoDate(val){
   if (!val || !/^\d{4}-\d{2}-\d{2}$/.test(val)) return null;
   const d = new Date(val + 'T00:00:00');
-  return isNaN(d.getTime()) ? null : d;
+  if (isNaN(d.getTime())) return null;
+  const [y, m, day] = val.split('-').map(Number);
+  if (d.getFullYear() !== y || d.getMonth() + 1 !== m || d.getDate() !== day) return null;
+  return d;
 }
 
 function clickToggle(target, value){

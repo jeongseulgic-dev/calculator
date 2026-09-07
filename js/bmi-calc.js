@@ -17,10 +17,10 @@ function recalc(){
   const statBody = document.getElementById('statBody');
   const meta = document.getElementById('page-meta');
 
-  if (!height || !weight){
+  if (!(height > 0) || !(weight > 0)){
     miniScreen.textContent = '0.0';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">키와 몸무게를 입력해 주세요</td></tr>';
+    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">키와 몸무게를 0보다 큰 값으로 입력해 주세요</td></tr>';
     meta.textContent = '--';
     return;
   }

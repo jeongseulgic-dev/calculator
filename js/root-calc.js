@@ -2,7 +2,7 @@ function fmt(n){ return n.toLocaleString('ko-KR', { maximumFractionDigits:8 }); 
 
 function nthRoot(x, n){
   if (x < 0){
-    if (n % 2 === 0) return NaN;
+    if (!Number.isInteger(n) || n % 2 === 0) return NaN;
     return -Math.pow(-x, 1/n);
   }
   return Math.pow(x, 1/n);
@@ -30,10 +30,10 @@ function recalc(){
 
   if (!Number.isFinite(result)){
     miniScreen.textContent = '실수 범위 아님';
-    miniScreenSub.textContent = '음수의 짝수제곱근';
+    miniScreenSub.textContent = '음수의 짝수·소수 차수 제곱근';
     statBody.innerHTML = `
       <tr><th>계산식</th><td>${x}의 ${rootName}</td></tr>
-      <tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">음수의 짝수제곱근은 실수 범위에서 존재하지 않습니다</td></tr>
+      <tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">음수의 짝수제곱근이나, 차수가 정수가 아닌 홀수 형태가 아니면 실수 범위에서 존재하지 않습니다</td></tr>
     `;
     meta.textContent = `${x}의 ${n}제곱근`;
     return;

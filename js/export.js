@@ -137,7 +137,7 @@
     var originalLabel = btn.textContent;
     btn.addEventListener('click', function(){
       if (btn.disabled) return;
-      var titleEl = document.querySelector('.page-title h2');
+      var titleEl = document.querySelector('.page-title h1');
       var metaEl = document.getElementById('page-meta');
       var miniScreen = document.getElementById('miniScreen');
       var miniScreenSub = document.getElementById('miniScreenSub');

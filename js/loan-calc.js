@@ -61,7 +61,9 @@ function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type, extra){
 
   let monthlyConstant = 0;
   if (type === 'equal-principal-interest' && repayMonths > 0) {
-    monthlyConstant = (P * monthlyRate * Math.pow(1 + monthlyRate, repayMonths)) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
+    monthlyConstant = monthlyRate === 0
+      ? P / repayMonths
+      : (P * monthlyRate * Math.pow(1 + monthlyRate, repayMonths)) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
   }
   let fixedPrincipal = (type === 'equal-principal' && repayMonths > 0) ? P / repayMonths : 0;
 
@@ -97,7 +99,9 @@ function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type, extra){
       const remainingMonths = totalMonths - m;
       if (balance > 0 && remainingMonths > 0 && extra.type === 'reduce'){
         if (type === 'equal-principal-interest'){
-          monthlyConstant = (balance * monthlyRate * Math.pow(1 + monthlyRate, remainingMonths)) / (Math.pow(1 + monthlyRate, remainingMonths) - 1);
+          monthlyConstant = monthlyRate === 0
+            ? balance / remainingMonths
+            : (balance * monthlyRate * Math.pow(1 + monthlyRate, remainingMonths)) / (Math.pow(1 + monthlyRate, remainingMonths) - 1);
         } else if (type === 'equal-principal'){
           fixedPrincipal = balance / remainingMonths;
         }

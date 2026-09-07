@@ -26,8 +26,8 @@ function allDivisors(n){
 }
 
 function recalc(){
-  const raw = document.getElementById('fc-n').value;
-  const n = parseInt(raw, 10);
+  const raw = document.getElementById('fc-n').value.trim();
+  const n = /^\d+$/.test(raw) ? parseInt(raw, 10) : NaN;
 
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');

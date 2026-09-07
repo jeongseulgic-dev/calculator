@@ -4,6 +4,23 @@ function fmt(n){ return n.toLocaleString('ko-KR', { maximumFractionDigits:6 }); 
 
 function gcd(a, b){ a = Math.abs(a); b = Math.abs(b); while (b){ [a, b] = [b, a % b]; } return a || 1; }
 
+// 부동소수점 오차 없이 소수 비율을 정확히 약분하기 위해, 두 값을 정수로 만드는
+// 최소 배율(10의 거듭제곱)을 곱한 뒤 정수 gcd로 약분한다(직접 float gcd를
+// 쓰면 0.1:0.3 같은 값에서 부동소수점 오차가 누적돼 터무니없이 큰 값이 나온다).
+function decimalPlaces(n){
+  const s = Math.abs(n).toString();
+  const i = s.indexOf('.');
+  return i === -1 ? 0 : Math.min(s.length - i - 1, 10);
+}
+
+function simplifyRatio(a, b){
+  const scale = Math.pow(10, Math.max(decimalPlaces(a), decimalPlaces(b)));
+  const ia = Math.round(a * scale);
+  const ib = Math.round(b * scale);
+  const g = gcd(ia, ib);
+  return [ia / g, ib / g];
+}
+
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(b=>b.classList.remove('active'));
@@ -32,8 +49,7 @@ function recalc(){
       meta.textContent = '--';
       return;
     }
-    const g = gcd(a, b);
-    const sa = a / g, sb = b / g;
+    const [sa, sb] = simplifyRatio(a, b);
     miniScreen.textContent = `${fmt(sa)} : ${fmt(sb)}`;
     miniScreenSub.textContent = '기약비';
     meta.textContent = `${a} : ${b} 단순화`;

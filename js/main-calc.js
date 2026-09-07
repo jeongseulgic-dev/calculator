@@ -27,7 +27,7 @@ function convertTrigToDeg(expr){
         if (expr[i] === ')'){ depth--; if (depth===0) break; }
         inner += expr[i]; i++;
       }
-      out += convertTrigToDeg(inner) + ' deg)';
+      out += '(' + convertTrigToDeg(inner) + ') deg)';
       i++;
     } else {
       out += expr[i]; i++;

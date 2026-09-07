@@ -27,10 +27,10 @@ function recalc(){
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  if (!lmp || lmp > today){
+  if (!lmp || lmp > today || cycle <= 0){
     miniScreen.textContent = '--';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">마지막 생리 시작일을 오늘 이전 날짜로 입력해 주세요</td></tr>';
+    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">마지막 생리 시작일을 오늘 이전 날짜로, 주기를 0보다 큰 값으로 입력해 주세요</td></tr>';
     meta.textContent = '--';
     return;
   }

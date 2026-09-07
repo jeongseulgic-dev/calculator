@@ -6,7 +6,7 @@ function parseNums(raw){
   return raw.split(',')
     .map(s => s.trim())
     .filter(s => s.length > 0)
-    .map(s => parseInt(s, 10));
+    .map(s => /^-?\d+$/.test(s) ? parseInt(s, 10) : NaN);
 }
 
 function recalc(){

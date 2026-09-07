@@ -22,8 +22,8 @@ function fail(msg){
 }
 
 function fibonacci(n){
-  let a = 0, b = 1;
-  if (n === 1) return 0;
+  let a = 0n, b = 1n;
+  if (n === 1) return 0n;
   for (let i = 2; i < n; i++){ [a, b] = [b, a + b]; }
   return b;
 }

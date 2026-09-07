@@ -84,12 +84,14 @@ function recalcAll(){
     }
   } else {
     totalPrincipal = P * months;
+    // 월복리 적금의 누적이자는 등비수열 합의 닫힌 형태로 계산한다(원래 이중 for문으로
+    // 매달 처음부터 다시 합산해 O(월수²)였는데, 기간을 아주 크게 입력하면 브라우저가
+    // 멈출 수 있었다 — 영업일 계산기에서 같은 이유로 이미 한 번 고친 것과 같은 종류의 버그).
+    const annuityFv = (m) => monthlyRate === 0 ? P * m : P * (1 + monthlyRate) * (Math.pow(1 + monthlyRate, m) - 1) / monthlyRate;
     if (method === 'simple'){
       preTaxInterest = P * rate * (months * (months + 1) / 24);
     } else {
-      let sum = 0;
-      for (let i = 1; i <= months; i++) sum += P * Math.pow(1+monthlyRate, i);
-      preTaxInterest = sum - totalPrincipal;
+      preTaxInterest = annuityFv(months) - totalPrincipal;
     }
 
     let cumPrincipal = 0;
@@ -99,9 +101,7 @@ function recalcAll(){
       if (method === 'simple'){
         cumInterest = P * rate * (m * (m+1) / 24);
       } else {
-        let tempSum = 0;
-        for (let k = 1; k <= m; k++) tempSum += P * Math.pow(1+monthlyRate, m-k+1);
-        cumInterest = tempSum - cumPrincipal;
+        cumInterest = annuityFv(m) - cumPrincipal;
       }
       const cumTax = cumInterest * taxRate;
       scheduleData.push({ month:m, principal:cumPrincipal, interest:Math.round(cumInterest), preTax:Math.round(cumPrincipal+cumInterest), afterTax:Math.round(cumPrincipal+cumInterest-cumTax) });

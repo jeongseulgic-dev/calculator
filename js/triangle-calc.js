@@ -82,7 +82,7 @@ function recalc(){
       return;
     }
     const c = Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(toRad(C)));
-    const A = toDeg(Math.asin(a * Math.sin(toRad(C)) / c));
+    const A = toDeg(Math.acos((b * b + c * c - a * a) / (2 * b * c)));
     const B = 180 - A - C;
     showResult(a, b, c, A, B, C, `a=${a}, b=${b}, C=${C}° (SAS)`);
     UrlState.sync({ mode, sa: a, sb: b, sC: C }, URL_DEFAULTS);

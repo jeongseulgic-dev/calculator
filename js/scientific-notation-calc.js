@@ -72,10 +72,10 @@ function recalc(){
   else if (mode === 'fromSci'){
     const a = parseFloat(document.getElementById('sn-a').value);
     const n = parseFloat(document.getElementById('sn-n').value);
-    if (!Number.isFinite(a) || !Number.isFinite(n)){
+    if (!Number.isFinite(a) || !Number.isFinite(n) || !Number.isInteger(n)){
       miniScreen.textContent = '0';
       miniScreenSub.textContent = '';
-      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">계수(a)와 지수(n)를 입력해 주세요</td></tr>';
+      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">계수(a)와 정수 지수(n)를 입력해 주세요 (과학적 표기법의 지수는 항상 정수입니다)</td></tr>';
       meta.textContent = '--';
       return;
     }

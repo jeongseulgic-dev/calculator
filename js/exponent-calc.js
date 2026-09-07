@@ -4,7 +4,7 @@ function fmt(n){ return n.toLocaleString('ko-KR', { maximumFractionDigits:8 }); 
 
 function nthRoot(x, n){
   if (x < 0){
-    if (n % 2 === 0) return NaN;
+    if (!Number.isInteger(n) || n % 2 === 0) return NaN;
     return -Math.pow(-x, 1/n);
   }
   return Math.pow(x, 1/n);
@@ -82,7 +82,7 @@ function recalc(){
     }
     const b = nthRoot(result, exp);
     if (!Number.isFinite(b)){
-      fail('결과값이 음수이고 지수가 짝수이면 실수 범위에서 밑을 구할 수 없습니다');
+      fail('결과값이 음수이고 지수가 짝수이거나 정수가 아니면 실수 범위에서 밑을 구할 수 없습니다');
       meta.textContent = `?^${exp} = ${result}`;
       return;
     }

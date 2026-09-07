@@ -36,12 +36,12 @@ function recalc(){
   const meta = document.getElementById('page-meta');
 
   const needHip = gender === 'female';
-  const inputsOk = height && weight && neck && waist && (!needHip || hip);
+  const inputsOk = height > 0 && weight > 0 && neck > 0 && waist > 0 && (!needHip || hip > 0);
 
   if (!inputsOk){
     miniScreen.textContent = '0.0%';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">키·몸무게·목둘레·허리둘레를 입력해 주세요</td></tr>';
+    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">키·몸무게·목둘레·허리둘레를 모두 0보다 큰 값으로 입력해 주세요</td></tr>';
     meta.textContent = '--';
     return;
   }

@@ -21,12 +21,19 @@ function recalc(){
   const meta = document.getElementById('page-meta');
 
   if (mode === 'dec2bin'){
-    const raw = document.getElementById('b-dec').value;
-    const n = parseInt(raw, 10);
-    if (!Number.isFinite(n) || n < 0 || String(raw).trim() === ''){
+    const raw = document.getElementById('b-dec').value.trim();
+    const n = /^\d+$/.test(raw) ? parseInt(raw, 10) : NaN;
+    if (!Number.isFinite(n)){
       miniScreen.textContent = '0';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">0 이상의 정수를 입력해 주세요</td></tr>';
+      meta.textContent = '--';
+      return;
+    }
+    if (!Number.isSafeInteger(n)){
+      miniScreen.textContent = '0';
+      miniScreenSub.textContent = '';
+      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">숫자가 너무 커서 정확하게 변환할 수 없습니다 (최대 9,007,199,254,740,991)</td></tr>';
       meta.textContent = '--';
       return;
     }
@@ -49,6 +56,13 @@ function recalc(){
       miniScreen.textContent = '0';
       miniScreenSub.textContent = '';
       statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">0과 1로만 이루어진 2진수를 입력해 주세요</td></tr>';
+      meta.textContent = '--';
+      return;
+    }
+    if (raw.length > 53){
+      miniScreen.textContent = '0';
+      miniScreenSub.textContent = '';
+      statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">비트 수가 너무 많아 정확하게 변환할 수 없습니다 (최대 53비트)</td></tr>';
       meta.textContent = '--';
       return;
     }

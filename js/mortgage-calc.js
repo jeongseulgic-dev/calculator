@@ -81,8 +81,10 @@ function recalc(){
 
   const monthlyRate = rate / 100 / 12;
   const months = period * 12;
+  const periodCapped = capApplies && period > 30;
+  const effectiveMonths = periodCapped ? 360 : months;
   const availableAnnualPI = Math.max(0, income * 0.40 - existing);
-  const dsrAmount = maxPrincipalEqualPI(availableAnnualPI / 12, monthlyRate, months);
+  const dsrAmount = maxPrincipalEqualPI(availableAnnualPI / 12, monthlyRate, effectiveMonths);
 
   const finalAmount = Math.min(capAmount, dsrAmount);
 
@@ -94,14 +96,14 @@ function recalc(){
   }
 
   const requiredCash = Math.max(0, price - finalAmount);
-  const finalMonthly = monthlyPaymentEqualPI(finalAmount, monthlyRate, months);
+  const finalMonthly = monthlyPaymentEqualPI(finalAmount, monthlyRate, effectiveMonths);
 
   miniScreen.textContent = fmt(finalAmount) + '원';
   miniScreenSub.textContent = `병목: ${bottleneck}`;
 
   statBody.innerHTML = `
     <tr><th>LTV 기준</th><td>${ltvRate}% · ${fmt(ltvAmount)}원</td></tr>
-    <tr><th>대출 한도 제한</th><td>${capApplies ? (ltvAmount > 600000000 ? `6억원 한도 적용` : '6억원 이내 (해당 없음)') : '해당 없음(비규제지역)'}</td></tr>
+    <tr><th>대출 한도 제한</th><td>${capApplies ? [ltvAmount > 600000000 ? '6억원 한도 적용' : '6억원 이내 (해당 없음)', periodCapped ? `만기 30년 한도 적용 (입력 ${period}년 → 30년)` : null].filter(Boolean).join(' · ') : '해당 없음(비규제지역)'}</td></tr>
     <tr><th>DSR(은행권 40%) 기준</th><td>${fmt(dsrAmount)}원</td></tr>
     <tr class="stat-highlight"><th>최종 대출 가능액</th><td>${fmt(finalAmount)}원</td></tr>
     <tr><th>병목 사유</th><td>${bottleneck}</td></tr>
