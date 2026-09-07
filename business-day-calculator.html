@@ -14,16 +14,15 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="수열 계산기 | 등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산하는 무료 계산기">
-<title>수열 계산기 | 계산기</title>
-<link rel="canonical" href="https://kcalculator.net/sequence-calculator">
-<meta name="robots" content="noindex,follow">
+<meta name="description" content="시작일과 종료일을 입력하면 주말을 제외한 영업일 수를 바로 계산합니다.">
+<title>영업일 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/business-day-calculator">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="수열 계산기 | 계산기">
-<meta property="og:description" content="수열 계산기 | 등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산하는 무료 계산기">
-<meta property="og:url" content="https://kcalculator.net/sequence-calculator">
+<meta property="og:title" content="영업일 계산기 | 계산기">
+<meta property="og:description" content="시작일과 종료일을 입력하면 주말을 제외한 영업일 수를 바로 계산합니다.">
+<meta property="og:url" content="https://kcalculator.net/business-day-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"수열 계산기","item":"https://kcalculator.net/sequence-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"수열 계산기","description":"수열 계산기 | 등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산하는 무료 계산기","url":"https://kcalculator.net/sequence-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"무한등비급수 합은 언제만 나오나요?","acceptedAnswer":{"@type":"Answer","text":"공비의 절댓값이 1보다 작을 때(|r| < 1)만 항을 무한히 더해도 특정 값에 수렴합니다. |r| ≥ 1이면 합이 무한히 커지거나 진동해 수렴하지 않으므로 표시되지 않습니다."}},{"@type":"Question","name":"공비가 1이면 등비수열 합은 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"공비가 1이면 모든 항이 첫째항과 같아지므로(나눗셈 공식을 쓸 수 없어), 합은 단순히 a₁ × n으로 계산합니다."}},{"@type":"Question","name":"피보나치수열의 n을 너무 크게 입력하면요?","acceptedAnswer":{"@type":"Answer","text":"피보나치 수는 항이 늘어날수록 매우 빠르게(지수적으로) 커지기 때문에, 계산 정확도와 처리 속도를 위해 n을 1~1000 사이로 제한합니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"영업일 계산기","item":"https://kcalculator.net/business-day-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"영업일 계산기","description":"시작일과 종료일을 입력하면 주말을 제외한 영업일 수를 바로 계산합니다.","url":"https://kcalculator.net/business-day-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"영업일 계산에 공휴일도 반영되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요, 이 계산기는 토·일요일만 제외하고 계산합니다. 설날·추석 등 공휴일과 회사별 재량휴무일은 반영하지 않으므로, 공휴일이 낀 기간이라면 실제 근무일수는 이 결과보다 적을 수 있습니다."}},{"@type":"Question","name":"영업일은 주로 어디에 쓰이나요?","acceptedAnswer":{"@type":"Answer","text":"근무 일수 계산, 배송·처리 소요일 안내(예: 영업일 기준 3~5일 소요), 계약서의 이행 기한 산정 등 토·일요일을 빼고 실제 업무가 진행되는 날만 세야 하는 상황에서 씁니다."}},{"@type":"Question","name":"시작일과 종료일 중 어느 쪽이 더 빨라야 하나요?","acceptedAnswer":{"@type":"Answer","text":"순서는 상관없습니다. 종료일을 시작일보다 먼저 입력해도 자동으로 두 날짜를 비교해 이른 날짜부터 계산합니다."}},{"@type":"Question","name":"시작일과 종료일 둘 다 영업일 수에 포함되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 시작일과 종료일을 포함한 전체 기간에서 토·일요일이 아닌 날의 개수를 셉니다. 예를 들어 월요일부터 금요일까지면 시작일과 종료일을 모두 포함해 5일입니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=21">
 </head>
 <body>
@@ -44,7 +43,7 @@
   <div class="header-inner">
     <div>
       <div class="logo"><a href="/">계산기</a></div>
-      <div class="eyebrow">SEQUENCE CALCULATOR</div>
+      <div class="eyebrow">BUSINESS DAY CALCULATOR</div>
     </div>
     <div class="header-actions">
       <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
@@ -120,7 +119,7 @@
           <li><a href="confidence-interval-calculator">신뢰구간 계산기</a></li>
           <li><a href="probability-calculator">확률 계산기</a></li>
           <li><a href="sample-size-calculator">표본크기 계산기</a></li>
-          <li><a href="sequence-calculator" class="active">수열 계산기</a></li>
+          <li><a href="sequence-calculator">수열 계산기</a></li>
           <li><a href="triangle-calculator">삼각형 계산기</a></li>
           <li><a href="right-triangle-calculator">직각삼각형·피타고라스 정리 계산기</a></li>
           <li><a href="area-calculator">넓이 계산기</a></li>
@@ -135,7 +134,7 @@
           <li><a href="age-calculator">만 나이 계산기</a></li>
           <li><a href="date-calculator">날짜 계산기</a></li>
           <li><a href="dday-calculator">디데이(D-day) 계산기</a></li>
-          <li><a href="business-day-calculator">영업일 계산기</a></li>
+          <li><a href="business-day-calculator" class="active">영업일 계산기</a></li>
           <li><a href="unit-calculator">단위 변환기</a></li>
           <li><a href="pace-calculator">페이스 계산기</a></li>
           <li><a href="fuel-calculator">유류비 계산기</a></li>
@@ -147,60 +146,30 @@
 
   <main class="page-content">
     <div class="page-title">
-      <h1>수열 계산기</h1>
-      <p>등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산합니다.</p>
+      <h1>영업일 계산기</h1>
+      <p>시작일과 종료일을 입력하면 토·일요일을 제외한 영업일 수를 바로 계산합니다.</p>
     </div>
 
     <div class="shell">
       <div>
-        <div class="pages-heading"><h2>값 입력</h2></div>
+        <div class="pages-heading"><h2>날짜 입력</h2></div>
         <aside class="calc-panel">
           <div class="screen-shell">
             <div class="screen">
-              <div class="label">계산 결과</div>
+              <div class="label">영업일 수</div>
               <div class="value" id="miniScreen">0</div>
               <div class="value-sub" id="miniScreenSub"></div>
             </div>
           </div>
 
           <div class="field">
-            <label>수열 종류</label>
-            <div class="seg-toggle" data-target="mode" style="width:100%;">
-              <button type="button" class="seg-btn active" data-value="arith" style="flex:1;">등차수열</button>
-              <button type="button" class="seg-btn" data-value="geo" style="flex:1;">등비수열</button>
-              <button type="button" class="seg-btn" data-value="fib" style="flex:1;">피보나치</button>
-            </div>
+            <label for="bd-start">시작일</label>
+            <input type="text" id="bd-start" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
           </div>
-
-          <div class="field mode-field" data-mode="arith">
-            <label for="sq-a1">첫째항 (a₁)</label>
-            <input type="number" id="sq-a1" value="1" step="any">
-          </div>
-          <div class="field mode-field" data-mode="arith">
-            <label for="sq-d">공차 (d)</label>
-            <input type="number" id="sq-d" value="2" step="any">
-          </div>
-          <div class="field mode-field" data-mode="arith">
-            <label for="sq-n">몇 번째 항 (n)</label>
-            <input type="number" id="sq-n" value="10" min="1">
-          </div>
-
-          <div class="field mode-field hidden" data-mode="geo">
-            <label for="sq-ga1">첫째항 (a₁)</label>
-            <input type="number" id="sq-ga1" value="1" step="any">
-          </div>
-          <div class="field mode-field hidden" data-mode="geo">
-            <label for="sq-r">공비 (r)</label>
-            <input type="number" id="sq-r" value="2" step="any">
-          </div>
-          <div class="field mode-field hidden" data-mode="geo">
-            <label for="sq-gn">몇 번째 항 (n)</label>
-            <input type="number" id="sq-gn" value="10" min="1">
-          </div>
-
-          <div class="field mode-field hidden" data-mode="fib">
-            <label for="sq-fn">몇 번째 항 (n)</label>
-            <input type="number" id="sq-fn" value="10" min="1" max="1000">
+          <div class="field">
+            <label for="bd-end">종료일</label>
+            <input type="text" id="bd-end" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+            <p class="field-note">토·일요일만 제외합니다. 공휴일은 반영하지 않습니다.</p>
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -227,53 +196,30 @@
     <div class="ad-slot"></div>
 
     <section class="info-section">
-      <h2>수열 계산기 안내</h2>
+      <h2>영업일 계산기 안내</h2>
 
       <div class="info-block">
-        <h3><span class="info-icon">💡</span>수열이란?</h3>
-        <p>수열은 일정한 규칙에 따라 나열된 숫자들의 목록입니다. 등차수열은 매번 같은 값을 더해가고(1, 3, 5, 7, ...), 등비수열은 매번 같은 값을 곱해가며(1, 2, 4, 8, ...), 피보나치수열은 바로 앞 두 항을 더해 다음 항을 만듭니다(0, 1, 1, 2, 3, 5, 8, ...).</p>
+        <h3><span class="info-icon">💡</span>영업일이란?</h3>
+        <p>영업일은 토·일요일을 뺀, 실제로 업무가 진행되는 날입니다. 근무 일수 계산, 배송·처리 소요일 안내, 계약 이행 기한 산정처럼 "실제로 며칠이 걸리는가"를 따질 때 달력상의 날짜 차이 대신 영업일을 기준으로 삼는 경우가 많습니다.</p>
+        <p>이 계산기는 참고용으로, 토·일요일만 제외하고 공휴일은 반영하지 않습니다. 공휴일이 낀 기간이라면 실제 근무일수는 이 결과보다 적을 수 있습니다.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🧮</span>계산 방식</h3>
-        <div class="method-def">
-          <h4>등차수열</h4>
-          <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">aₙ = a₁ + (n − 1)d</span></span>
-            <span class="frac-sep"></span>
-            <span class="frac-part">
-              <span class="frac-lhs">합 =</span>
-              <span class="frac"><span class="num">n(a₁ + aₙ)</span><span class="den">2</span></span>
-            </span>
-          </div>
+        <div class="formula-box formula-frac">
+          <span class="frac-part"><span class="frac-lhs">영업일 수 = 시작일~종료일 중 토·일요일이 아닌 날의 수</span></span>
         </div>
-        <div class="method-def">
-          <h4>등비수열</h4>
-          <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">aₙ = a₁ × rⁿ⁻¹</span></span>
-            <span class="frac-sep"></span>
-            <span class="frac-part">
-              <span class="frac-lhs">합 =</span>
-              <span class="frac"><span class="num">a₁(1 − rⁿ)</span><span class="den">1 − r</span></span>
-            </span>
-          </div>
-        </div>
-        <div class="method-def">
-          <h4>피보나치수열</h4>
-          <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">aₙ = aₙ₋₁ + aₙ₋₂ (a₁=0, a₂=1)</span></span>
-          </div>
-        </div>
+        <p>전체 기간을 온전한 주 단위로 나눠 각 주마다 평일 5일을 곱하고, 남는 며칠만 요일을 따져 더하는 방식으로 계산합니다. 시작일과 종료일 모두 계산에 포함됩니다.</p>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span>수열 예시</h3>
+        <h3><span class="info-icon">📊</span>계산 예시</h3>
         <table class="criteria-table text-table">
-          <thead><tr><th>종류</th><th>예시</th></tr></thead>
+          <thead><tr><th>기간</th><th>전체 일수</th><th>영업일 수</th></tr></thead>
           <tbody>
-            <tr><td>등차수열 (a₁=1, d=2)</td><td>1, 3, 5, 7, 9, 11, ...</td></tr>
-            <tr><td>등비수열 (a₁=1, r=2)</td><td>1, 2, 4, 8, 16, 32, ...</td></tr>
-            <tr><td>피보나치수열</td><td>0, 1, 1, 2, 3, 5, 8, 13, 21, ...</td></tr>
+            <tr><td>월요일~금요일</td><td>5일</td><td>5일</td></tr>
+            <tr><td>월요일~다음주 월요일</td><td>8일</td><td>6일</td></tr>
+            <tr><td>토요일~일요일</td><td>2일</td><td>0일</td></tr>
           </tbody>
         </table>
       </div>
@@ -281,16 +227,20 @@
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary>무한등비급수 합은 언제만 나오나요?</summary>
-          <p class="faq-a">공비의 절댓값이 1보다 작을 때(|r| &lt; 1)만 항을 무한히 더해도 특정 값에 수렴합니다. |r| ≥ 1이면 합이 무한히 커지거나 진동해 수렴하지 않으므로 표시되지 않습니다.</p>
+          <summary>영업일 계산에 공휴일도 반영되나요?</summary>
+          <p class="faq-a">아니요, 이 계산기는 토·일요일만 제외하고 계산합니다. 설날·추석 등 공휴일과 회사별 재량휴무일은 반영하지 않으므로, 공휴일이 낀 기간이라면 실제 근무일수는 이 결과보다 적을 수 있습니다.</p>
         </details>
         <details class="faq-item">
-          <summary>공비가 1이면 등비수열 합은 어떻게 계산되나요?</summary>
-          <p class="faq-a">공비가 1이면 모든 항이 첫째항과 같아지므로(나눗셈 공식을 쓸 수 없어), 합은 단순히 a₁ × n으로 계산합니다.</p>
+          <summary>영업일은 주로 어디에 쓰이나요?</summary>
+          <p class="faq-a">근무 일수 계산, 배송·처리 소요일 안내(예: 영업일 기준 3~5일 소요), 계약서의 이행 기한 산정 등 토·일요일을 빼고 실제 업무가 진행되는 날만 세야 하는 상황에서 씁니다.</p>
         </details>
         <details class="faq-item">
-          <summary>피보나치수열의 n을 너무 크게 입력하면요?</summary>
-          <p class="faq-a">피보나치 수는 항이 늘어날수록 매우 빠르게(지수적으로) 커지기 때문에, 계산 정확도와 처리 속도를 위해 n을 1~1000 사이로 제한합니다.</p>
+          <summary>시작일과 종료일 중 어느 쪽이 더 빨라야 하나요?</summary>
+          <p class="faq-a">순서는 상관없습니다. 종료일을 시작일보다 먼저 입력해도 자동으로 두 날짜를 비교해 이른 날짜부터 계산합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>시작일과 종료일 둘 다 영업일 수에 포함되나요?</summary>
+          <p class="faq-a">네. 시작일과 종료일을 포함한 전체 기간에서 토·일요일이 아닌 날의 개수를 셉니다. 예를 들어 월요일부터 금요일까지면 시작일과 종료일을 모두 포함해 5일입니다.</p>
         </details>
       </div>
     </section>
@@ -307,6 +257,6 @@
 <script src="js/site.js?v=21"></script>
 <script src="js/url-state.js?v=21"></script>
 <script src="js/export.js?v=21"></script>
-<script src="js/sequence-calc.js?v=21"></script>
+<script src="js/business-day-calc.js?v=21"></script>
 </body>
 </html>
