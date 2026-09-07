@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="최소공배수 계산기 | 두 개 이상의 자연수를 입력하면 최소공배수(LCM)를 바로 계산하는 무료 계산기">
+<meta name="description" content="쉼표로 구분해 자연수 2개 이상을 입력하면 모든 수의 최소공배수(LCM)를 한 번에 계산합니다.">
 <title>최소공배수 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/lcm-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="최소공배수 계산기 | 계산기">
-<meta property="og:description" content="최소공배수 계산기 | 두 개 이상의 자연수를 입력하면 최소공배수(LCM)를 바로 계산하는 무료 계산기">
+<meta property="og:description" content="쉼표로 구분해 자연수 2개 이상을 입력하면 모든 수의 최소공배수(LCM)를 한 번에 계산합니다.">
 <meta property="og:url" content="https://kcalculator.net/lcm-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"최소공배수 계산기","item":"https://kcalculator.net/lcm-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"최소공배수 계산기","description":"최소공배수 계산기 | 두 개 이상의 자연수를 입력하면 최소공배수(LCM)를 바로 계산하는 무료 계산기","url":"https://kcalculator.net/lcm-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"서로소인 수들의 최소공배수는 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"공약수가 1밖에 없는 서로소 관계의 수들은 최소공배수가 모든 수를 곱한 값과 같습니다(예: 3과 5의 최소공배수는 15)."}},{"@type":"Question","name":"소수(1.5 같은)나 음수도 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"최소공배수는 자연수(1 이상의 정수)에 대해서만 정의되는 개념이라 소수나 음수, 0은 입력할 수 없습니다."}},{"@type":"Question","name":"숫자를 몇 개까지 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"개수 제한은 없습니다. 쉼표로 구분해 원하는 만큼 입력하면 모든 수의 공통 최소공배수를 한 번에 계산합니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"최소공배수 계산기","item":"https://kcalculator.net/lcm-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"최소공배수 계산기","description":"쉼표로 구분해 자연수 2개 이상을 입력하면 모든 수의 최소공배수(LCM)를 한 번에 계산합니다.","url":"https://kcalculator.net/lcm-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"서로소인 수들의 최소공배수는 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"공약수가 1밖에 없는 서로소 관계의 수들은 최소공배수가 모든 수를 곱한 값과 같습니다(예: 3과 5의 최소공배수는 15)."}},{"@type":"Question","name":"소수(1.5 같은)나 음수도 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"최소공배수는 자연수(1 이상의 정수)에 대해서만 정의되는 개념이라 소수나 음수, 0은 입력할 수 없습니다."}},{"@type":"Question","name":"숫자를 몇 개까지 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"개수 제한은 없습니다. 쉼표로 구분해 원하는 만큼 입력하면 모든 수의 공통 최소공배수를 한 번에 계산합니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
@@ -208,6 +207,7 @@
               <span class="frac"><span class="num">a × b</span><span class="den">GCD(a, b)</span></span>
             </span>
           </div>
+          <p>최대공약수(GCD)를 먼저 구해야 하는 공식입니다 — 두 수의 최대공약수만 따로 구하고 싶다면 <a href="gcf-calculator">최대공약수 계산기</a>를 이용하세요.</p>
         </div>
         <div class="method-def">
           <h4>세 개 이상의 수</h4>
