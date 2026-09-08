@@ -34,13 +34,15 @@ document.getElementById('ci-target').value = (120000).toLocaleString('ko-KR');
 
 document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    addAmount('ci-amount', Number(btn.dataset.add));
+    addAmount(btn.dataset.target, Number(btn.dataset.add));
     scheduleRecalc();
   });
 });
-document.querySelector('.calc-key[data-reset]').addEventListener('click', ()=>{
-  resetAmount('ci-amount');
-  scheduleRecalc();
+document.querySelectorAll('.calc-key[data-reset]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    resetAmount(btn.dataset.target);
+    scheduleRecalc();
+  });
 });
 
 document.querySelectorAll('.seg-toggle[data-target="calcMode"] .seg-btn').forEach(btn=>{
@@ -75,10 +77,22 @@ function scheduleRecalc(){
 function computeSchedule(P, rate, N){
   let balance = P;
   const rows = [];
-  for (let n = 1; n <= N; n++){
+  const wholePeriods = Math.floor(N + 1e-9);
+  for (let n = 1; n <= wholePeriods; n++){
     const interest = balance * rate;
     balance += interest;
     rows.push({ period: n, interest: Math.round(interest), balance: Math.round(balance) });
+  }
+  // 소수 기간(예: 155.8일) 입력 시, 남은 부분 기간(0.8일)만큼 지수를 그대로 적용해
+  // 마지막 행을 채운다 — 역산 기능이 로그 공식(연속 복리 관점)으로 정확한 소수
+  // 기간을 계산해 주는데, 정방향 계산기가 정수만 받으면 그 값을 다시 넣어봐도
+  // 정수로 잘려 목표 금액과 어긋난다는 사용자 지적으로 추가.
+  const frac = N - wholePeriods;
+  if (frac > 1e-9){
+    const newBalance = balance * Math.pow(1 + rate, frac);
+    const interest = newBalance - balance;
+    rows.push({ period: Math.round(N * 100) / 100, interest: Math.round(interest), balance: Math.round(newBalance) });
+    balance = newBalance;
   }
   const simpleTotal = P * (1 + rate * N);
   return { rows, finalBalance: balance, simpleTotal };
@@ -119,8 +133,8 @@ function recalcAll(){
   let N, targetVal = null, exactN = null;
 
   if (calcMode === 'forward'){
-    N = parseInt(document.getElementById('ci-periods').value);
-    if (!N || N < 1){
+    N = parseFloat(document.getElementById('ci-periods').value);
+    if (!(N > 0)){
       showError('투자 기간을 확인해 주세요');
       return;
     }
@@ -158,7 +172,7 @@ function recalcAll(){
       <tr><th>단리였다면</th><td>${fmt(result.simpleTotal)}원 (+${fmt(simpleInterest)}원)</td></tr>
       <tr><th>복리 효과</th><td>+${fmt(compoundEffect)}원</td></tr>
     `;
-    meta.textContent = `원금 ${fmt(P)}원 · ${PERIOD_LABEL[period]}복리 ${rateVal}% · ${N}${PERIOD_LABEL[period]}`;
+    meta.textContent = `원금 ${fmt(P)}원 · ${PERIOD_LABEL[period]}복리 ${rateVal}% · ${fmt2(N)}${PERIOD_LABEL[period]}`;
   } else {
     miniScreen.textContent = fmt2(exactN) + PERIOD_LABEL[period];
     miniScreenSub.textContent = `목표 ${fmt(targetVal)}원 도달까지`;
