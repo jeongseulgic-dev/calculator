@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="수열 계산기 | 등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산하는 무료 계산기">
+<meta name="description" content="등차수열·등비수열·피보나치수열의 n번째 항과 첫 n항의 합을 계산합니다. 등비수열의 무한급수 합도 함께 표시합니다.">
 <title>수열 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/sequence-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="수열 계산기 | 계산기">
-<meta property="og:description" content="수열 계산기 | 등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산하는 무료 계산기">
+<meta property="og:description" content="등차수열·등비수열·피보나치수열의 n번째 항과 첫 n항의 합을 계산합니다. 등비수열의 무한급수 합도 함께 표시합니다.">
 <meta property="og:url" content="https://kcalculator.net/sequence-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"수열 계산기","item":"https://kcalculator.net/sequence-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"수열 계산기","description":"수열 계산기 | 등차수열·등비수열·피보나치수열의 n번째 항과 합을 계산하는 무료 계산기","url":"https://kcalculator.net/sequence-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"무한등비급수 합은 언제만 나오나요?","acceptedAnswer":{"@type":"Answer","text":"공비의 절댓값이 1보다 작을 때(|r| < 1)만 항을 무한히 더해도 특정 값에 수렴합니다. |r| ≥ 1이면 합이 무한히 커지거나 진동해 수렴하지 않으므로 표시되지 않습니다."}},{"@type":"Question","name":"공비가 1이면 등비수열 합은 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"공비가 1이면 모든 항이 첫째항과 같아지므로(나눗셈 공식을 쓸 수 없어), 합은 단순히 a₁ × n으로 계산합니다."}},{"@type":"Question","name":"피보나치수열의 n을 너무 크게 입력하면요?","acceptedAnswer":{"@type":"Answer","text":"피보나치 수는 항이 늘어날수록 매우 빠르게(지수적으로) 커지기 때문에, 계산 정확도와 처리 속도를 위해 n을 1~1000 사이로 제한합니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"수열 계산기","item":"https://kcalculator.net/sequence-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"수열 계산기","description":"등차수열·등비수열·피보나치수열의 n번째 항과 첫 n항의 합을 계산합니다. 등비수열의 무한급수 합도 함께 표시합니다.","url":"https://kcalculator.net/sequence-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"무한등비급수 합은 언제만 나오나요?","acceptedAnswer":{"@type":"Answer","text":"공비의 절댓값이 1보다 작을 때(|r| < 1)만 항을 무한히 더해도 특정 값에 수렴합니다. |r| ≥ 1이면 합이 무한히 커지거나 진동해 수렴하지 않으므로 표시되지 않습니다."}},{"@type":"Question","name":"공비가 1이면 등비수열 합은 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"공비가 1이면 모든 항이 첫째항과 같아지므로(나눗셈 공식을 쓸 수 없어), 합은 단순히 a₁ × n으로 계산합니다."}},{"@type":"Question","name":"피보나치수열의 n을 너무 크게 입력하면요?","acceptedAnswer":{"@type":"Answer","text":"피보나치 수는 항이 늘어날수록 매우 빠르게(지수적으로) 커집니다(1000번째 항은 209자리). 계산 자체는 정확하지만 화면에 표시하기 어려울 만큼 길어지므로 n을 1~1000 사이로 제한합니다."}},{"@type":"Question","name":"피보나치수열은 왜 유명한가요?","acceptedAnswer":{"@type":"Answer","text":"연속한 두 항의 비율(aₙ₊₁/aₙ)이 항이 커질수록 황금비(약 1.618)에 점점 가까워지는 성질 때문입니다. 해바라기 씨앗 배열, 나선형 껍데기 등 자연에서도 비슷한 패턴이 관찰되어 널리 알려져 있습니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=23">
 </head>
 <body>
@@ -257,6 +256,7 @@
               <span class="frac"><span class="num">a₁(1 − rⁿ)</span><span class="den">1 − r</span></span>
             </span>
           </div>
+          <p style="margin-top:8px; font-size:0.85rem; color:var(--ink-soft);">공비를 (1+이자율)로 두면 복리 이자의 원리금 계산과 같은 식이 됩니다. 실제 이자 금액은 <a href="compound-calculator">복리 계산기</a>를 참고하세요.</p>
         </div>
         <div class="method-def">
           <h4>피보나치수열</h4>
@@ -290,7 +290,11 @@
         </details>
         <details class="faq-item">
           <summary>피보나치수열의 n을 너무 크게 입력하면요?</summary>
-          <p class="faq-a">피보나치 수는 항이 늘어날수록 매우 빠르게(지수적으로) 커지기 때문에, 계산 정확도와 처리 속도를 위해 n을 1~1000 사이로 제한합니다.</p>
+          <p class="faq-a">피보나치 수는 항이 늘어날수록 매우 빠르게(지수적으로) 커집니다(1000번째 항은 209자리). 계산 자체는 정확하지만 화면에 표시하기 어려울 만큼 길어지므로 n을 1~1000 사이로 제한합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>피보나치수열은 왜 유명한가요?</summary>
+          <p class="faq-a">연속한 두 항의 비율(aₙ₊₁/aₙ)이 항이 커질수록 황금비(약 1.618)에 점점 가까워지는 성질 때문입니다. 해바라기 씨앗 배열, 나선형 껍데기 등 자연에서도 비슷한 패턴이 관찰되어 널리 알려져 있습니다.</p>
         </details>
       </div>
     </section>
