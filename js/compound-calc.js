@@ -1,9 +1,11 @@
 let compoundChart = null;
 let schedule = [];
 let visibleRows = 12;
+let calcMode = 'forward';
 let period = 'day';
 let debounceTimer = null;
 let principal = 0;
+let lastN = 0;
 
 const PERIOD_LABEL = { day: '일', week: '주', month: '개월', year: '년' };
 
@@ -18,8 +20,17 @@ function updateDynamicLabels(){
   if (loadMoreBtn) loadMoreBtn.textContent = `+12${unit} 더보기`;
 }
 
+function updateModeFields(){
+  document.querySelectorAll('.mode-field').forEach(f=>{
+    f.classList.toggle('hidden', f.dataset.mode !== calcMode);
+  });
+}
+
 document.getElementById('ci-amount').addEventListener('input', function(){ formatInputComma(this); scheduleRecalc(); });
-document.getElementById('ci-amount').value = (10000000).toLocaleString('ko-KR');
+document.getElementById('ci-amount').value = (100000).toLocaleString('ko-KR');
+
+document.getElementById('ci-target').addEventListener('input', function(){ formatInputComma(this); scheduleRecalc(); });
+document.getElementById('ci-target').value = (120000).toLocaleString('ko-KR');
 
 document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -30,6 +41,16 @@ document.querySelectorAll('.calc-key[data-add]').forEach(btn=>{
 document.querySelector('.calc-key[data-reset]').addEventListener('click', ()=>{
   resetAmount('ci-amount');
   scheduleRecalc();
+});
+
+document.querySelectorAll('.seg-toggle[data-target="calcMode"] .seg-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.seg-toggle[data-target="calcMode"] .seg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    calcMode = btn.dataset.value;
+    updateModeFields();
+    scheduleRecalc();
+  });
 });
 
 document.querySelectorAll('.seg-toggle[data-target="period"] .seg-btn').forEach(btn=>{
@@ -63,58 +84,102 @@ function computeSchedule(P, rate, N){
   return { rows, finalBalance: balance, simpleTotal };
 }
 
+// 목표 금액에 도달하는 데 필요한 주기 수(n)를 구한다. 복리 공식(FV = P×(1+r)ⁿ)은
+// n에 대해 로그로 정확히 풀리므로 역산에 수치해법이 필요 없다.
+function solvePeriods(target, P, rate){
+  return Math.log(target / P) / Math.log(1 + rate);
+}
+
 function recalcAll(){
   const P = Number(document.getElementById('ci-amount').value.replace(/,/g, ''));
   const rateVal = document.getElementById('ci-rate').value;
   const rate = parseFloat(rateVal) / 100;
-  const N = parseInt(document.getElementById('ci-periods').value);
 
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
   const meta = document.getElementById('page-meta');
 
-  if (!P || isNaN(rate) || !N || N < 1){
+  function showError(msg){
     miniScreen.textContent = '0원';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">원금·수익률·투자 기간을 확인해 주세요</td></tr>';
+    statBody.innerHTML = `<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">${msg}</td></tr>`;
     meta.textContent = '--';
     if (compoundChart) { compoundChart.destroy(); compoundChart = null; }
     document.getElementById('ledgerBody').innerHTML = '';
     document.getElementById('loadMoreBtn').style.display = 'none';
     document.getElementById('csvDownloadBtn').style.display = 'none';
+  }
+
+  if (!P || isNaN(rate)){
+    showError('원금·수익률을 확인해 주세요');
     return;
+  }
+
+  let N, targetVal = null, exactN = null;
+
+  if (calcMode === 'forward'){
+    N = parseInt(document.getElementById('ci-periods').value);
+    if (!N || N < 1){
+      showError('투자 기간을 확인해 주세요');
+      return;
+    }
+  } else {
+    targetVal = Number(document.getElementById('ci-target').value.replace(/,/g, ''));
+    if (!targetVal){
+      showError('목표 금액을 확인해 주세요');
+      return;
+    }
+    exactN = solvePeriods(targetVal, P, rate);
+    if (!Number.isFinite(exactN) || exactN < 0){
+      showError('이 조건으로는 목표 금액에 도달하는 기간을 계산할 수 없습니다 (수익률·목표 금액의 방향을 확인해 주세요)');
+      return;
+    }
+    N = Math.max(1, Math.ceil(exactN));
   }
 
   const result = computeSchedule(P, rate, N);
   schedule = result.rows;
   principal = P;
+  lastN = N;
   const totalInterest = result.finalBalance - P;
   const simpleInterest = result.simpleTotal - P;
   const compoundEffect = result.finalBalance - result.simpleTotal;
   const yieldPct = (totalInterest / P) * 100;
 
-  miniScreen.textContent = fmt(result.finalBalance) + '원';
-  miniScreenSub.textContent = `총 수익 +${fmt(totalInterest)}원 (${fmt2(yieldPct)}%)`;
-
-  statBody.innerHTML = `
-    <tr><th>원금</th><td>${fmt(P)}원</td></tr>
-    <tr class="stat-highlight"><th>복리 최종 금액</th><td>${fmt(result.finalBalance)}원</td></tr>
-    <tr><th>총 수익 (복리)</th><td>+${fmt(totalInterest)}원</td></tr>
-    <tr><th>총 수익률 (복리)</th><td>+${fmt2(yieldPct)}%</td></tr>
-    <tr><th>단리였다면</th><td>${fmt(result.simpleTotal)}원 (+${fmt(simpleInterest)}원)</td></tr>
-    <tr><th>복리 효과</th><td>+${fmt(compoundEffect)}원</td></tr>
-  `;
+  if (calcMode === 'forward'){
+    miniScreen.textContent = fmt(result.finalBalance) + '원';
+    miniScreenSub.textContent = `총 수익 +${fmt(totalInterest)}원 (${fmt2(yieldPct)}%)`;
+    statBody.innerHTML = `
+      <tr><th>원금</th><td>${fmt(P)}원</td></tr>
+      <tr class="stat-highlight"><th>복리 최종 금액</th><td>${fmt(result.finalBalance)}원</td></tr>
+      <tr><th>총 수익 (복리)</th><td>+${fmt(totalInterest)}원</td></tr>
+      <tr><th>총 수익률 (복리)</th><td>+${fmt2(yieldPct)}%</td></tr>
+      <tr><th>단리였다면</th><td>${fmt(result.simpleTotal)}원 (+${fmt(simpleInterest)}원)</td></tr>
+      <tr><th>복리 효과</th><td>+${fmt(compoundEffect)}원</td></tr>
+    `;
+    meta.textContent = `원금 ${fmt(P)}원 · ${PERIOD_LABEL[period]}복리 ${rateVal}% · ${N}${PERIOD_LABEL[period]}`;
+  } else {
+    miniScreen.textContent = fmt2(exactN) + PERIOD_LABEL[period];
+    miniScreenSub.textContent = `목표 ${fmt(targetVal)}원 도달까지`;
+    statBody.innerHTML = `
+      <tr><th>원금</th><td>${fmt(P)}원</td></tr>
+      <tr><th>목표 금액</th><td>${fmt(targetVal)}원</td></tr>
+      <tr class="stat-highlight"><th>필요한 주기 수</th><td>${fmt2(exactN)}${PERIOD_LABEL[period]}</td></tr>
+      <tr><th>${N}${PERIOD_LABEL[period]}차 예상 금액</th><td>${fmt(result.finalBalance)}원</td></tr>
+      <tr><th>예상 총 수익</th><td>+${fmt(totalInterest)}원 (${fmt2(yieldPct)}%)</td></tr>
+    `;
+    meta.textContent = `원금 ${fmt(P)}원 · ${PERIOD_LABEL[period]}복리 ${rateVal}% · 목표 ${fmt(targetVal)}원`;
+  }
 
   renderChart();
   visibleRows = 12;
   renderLedger();
   updateDynamicLabels();
 
-  meta.textContent = `원금 ${fmt(P)}원 · ${PERIOD_LABEL[period]}복리 ${rateVal}% · ${N}${PERIOD_LABEL[period]}`;
-
   UrlState.sync({
-    amount: P, period, rate: rateVal, periods: N
+    amount: P, period, rate: rateVal, periods: calcMode === 'forward' ? N : '',
+    target: calcMode === 'reverse' ? targetVal : '', calcMode
   }, URL_DEFAULTS);
 }
 
@@ -173,7 +238,6 @@ document.getElementById('csvDownloadBtn').addEventListener('click', ()=>{
   if (!schedule.length) return;
   const amount = document.getElementById('ci-amount').value;
   const rateVal = document.getElementById('ci-rate').value;
-  const N = document.getElementById('ci-periods').value;
   const d = new Date();
   const dateStr = d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
   Export.downloadCsv(
@@ -183,23 +247,28 @@ document.getElementById('csvDownloadBtn').addEventListener('click', ()=>{
     '본 계산 결과는 참고용 시뮬레이션이며, 실제 투자 수익률은 원금 손실 가능성을 포함해 매 기간 달라질 수 있습니다.',
     [
       ['원금(원)', '복리 주기', '주기당 수익률(%)', '총 기간'],
-      [amount, PERIOD_LABEL[period], rateVal, N]
+      [amount, PERIOD_LABEL[period], rateVal, lastN]
     ]
   );
 });
 
 const URL_DEFAULTS = {
-  amount: '10000000',
+  amount: '100000',
   period: toggleDefault('period'),
   rate: document.getElementById('ci-rate').defaultValue,
-  periods: document.getElementById('ci-periods').defaultValue
+  periods: document.getElementById('ci-periods').defaultValue,
+  target: '',
+  calcMode: toggleDefault('calcMode')
 };
 
 const urlParams = UrlState.read();
 if (urlParams.amount) document.getElementById('ci-amount').value = Number(urlParams.amount).toLocaleString('ko-KR');
 if (urlParams.rate) document.getElementById('ci-rate').value = urlParams.rate;
 if (urlParams.periods) document.getElementById('ci-periods').value = urlParams.periods;
+if (urlParams.target) document.getElementById('ci-target').value = Number(urlParams.target).toLocaleString('ko-KR');
 if (urlParams.period) clickToggle('period', urlParams.period);
+if (urlParams.calcMode) clickToggle('calcMode', urlParams.calcMode);
 
+updateModeFields();
 updateDynamicLabels();
 recalcAll();
