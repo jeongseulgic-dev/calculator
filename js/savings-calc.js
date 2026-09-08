@@ -67,16 +67,21 @@ function evaluateFv(P, months, rate, savType, method){
   if (method === 'compound'){
     return monthlyRate === 0 ? P * months : P * (1 + monthlyRate) * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
   }
-  // 적금 연복리: 1년마다 그 시점까지의 원금+이자를 잠금(lockedBalance)하고 다음 해부터
-  // 그 합산액에 다시 이자가 붙는다. 아직 1년이 안 된 기간의 신규 납입분은 단리로 계산.
-  let lockedBalance = 0, yearPrincipal = 0, balance = 0;
+  // 적금 연복리: 전년도까지 쌓인 잔액(yearStartBalance)은 해가 지나는 동안 그 자체로도
+  // 이자가 붙어야 한다(월할 비례). 이걸 매달 반영하지 않고 연도 경계에서만 한 번에
+  // 곱해버리면, 그 곱셈이 "다음 해"에만 반영돼 정확히 N년째 되는 달의 잔액에는
+  // 마지막 해의 복리 효과가 통째로 누락된다(연 단위 배수 기간에서 이자율이 실제보다
+  // 훨씬 크게 역산되는 버그였음 — 사용자가 월복리/연복리 전환 시 이자율 차이가
+  // 비정상적으로 크다고 지적해 발견).
+  let yearStartBalance = 0, yearPrincipal = 0, balance = 0;
   for (let m = 1; m <= months; m++){
     const monthInYear = ((m - 1) % 12) + 1;
     yearPrincipal += P;
-    const thisYearInterestSoFar = P * rate * (monthInYear * (monthInYear + 1) / 24);
-    balance = lockedBalance + yearPrincipal + thisYearInterestSoFar;
+    const thisYearInterestOnNew = P * rate * (monthInYear * (monthInYear + 1) / 24);
+    const interestOnCarried = yearStartBalance * rate * monthInYear / 12;
+    balance = yearStartBalance + interestOnCarried + yearPrincipal + thisYearInterestOnNew;
     if (monthInYear === 12){
-      lockedBalance = lockedBalance * (1 + rate) + yearPrincipal + thisYearInterestSoFar;
+      yearStartBalance = balance;
       yearPrincipal = 0;
     }
   }
@@ -187,7 +192,7 @@ function recalcAll(){
     // 멈출 수 있었다 — 영업일 계산기에서 같은 이유로 이미 한 번 고친 것과 같은 종류의 버그).
     const annuityFv = (m) => monthlyRate === 0 ? P * m : P * (1 + monthlyRate) * (Math.pow(1 + monthlyRate, m) - 1) / monthlyRate;
 
-    let cumPrincipal = 0, lockedBalance = 0, yearPrincipal = 0, lastCumInterest = 0;
+    let cumPrincipal = 0, yearStartBalance = 0, yearPrincipal = 0, lastCumInterest = 0;
     for (let m = 1; m <= months; m++){
       cumPrincipal += P;
       let cumInterest;
@@ -196,16 +201,16 @@ function recalcAll(){
       } else if (method === 'compound'){
         cumInterest = annuityFv(m) - cumPrincipal;
       } else {
-        // 적금 연복리: 1년마다 잔액을 잠그고 다음 해부터 그 합산액에 복리 적용,
-        // 1년이 안 된 기간의 신규 납입분은 단리로 계산 (evaluateFv와 동일한 방식,
-        // 여기서는 매달의 중간값을 전부 남겨야 해서 한 번의 반복문 안에서 함께 처리).
+        // 적금 연복리: evaluateFv와 완전히 동일한 방식(전년도 잔액도 월할로 이자가
+        // 붙어야 연도 경계에서 복리 효과가 누락되지 않는다 — 위 evaluateFv 주석 참고).
         const monthInYear = ((m - 1) % 12) + 1;
         yearPrincipal += P;
-        const thisYearInterestSoFar = P * rate * (monthInYear * (monthInYear + 1) / 24);
-        const balance = lockedBalance + yearPrincipal + thisYearInterestSoFar;
+        const thisYearInterestOnNew = P * rate * (monthInYear * (monthInYear + 1) / 24);
+        const interestOnCarried = yearStartBalance * rate * monthInYear / 12;
+        const balance = yearStartBalance + interestOnCarried + yearPrincipal + thisYearInterestOnNew;
         cumInterest = balance - cumPrincipal;
         if (monthInYear === 12){
-          lockedBalance = lockedBalance * (1 + rate) + yearPrincipal + thisYearInterestSoFar;
+          yearStartBalance = balance;
           yearPrincipal = 0;
         }
       }
