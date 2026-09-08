@@ -1,7 +1,7 @@
 let compoundChart = null;
 let schedule = [];
 let visibleRows = 12;
-let period = 'month';
+let period = 'day';
 let debounceTimer = null;
 let principal = 0;
 
