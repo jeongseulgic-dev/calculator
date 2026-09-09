@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Z-점수 계산기 | 원점수를 Z-점수로 변환하거나, Z-점수를 정규분포 확률로 변환하는 무료 계산기">
+<meta name="description" content="원점수·평균·표준편차로 Z-점수를 구하거나, Z-점수를 정규분포 확률(%)로 바꿉니다. 수능 표준점수 산출 방식과 동일합니다.">
 <title>Z-점수 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/z-score-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="Z-점수 계산기 | 계산기">
-<meta property="og:description" content="Z-점수 계산기 | 원점수를 Z-점수로 변환하거나, Z-점수를 정규분포 확률로 변환하는 무료 계산기">
+<meta property="og:description" content="원점수·평균·표준편차로 Z-점수를 구하거나, Z-점수를 정규분포 확률(%)로 바꿉니다. 수능 표준점수 산출 방식과 동일합니다.">
 <meta property="og:url" content="https://kcalculator.net/z-score-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"Z-점수 계산기","item":"https://kcalculator.net/z-score-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"Z-점수 계산기","description":"Z-점수 계산기 | 원점수를 Z-점수로 변환하거나, Z-점수를 정규분포 확률로 변환하는 무료 계산기","url":"https://kcalculator.net/z-score-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Z-점수가 음수이면 무슨 뜻인가요?","acceptedAnswer":{"@type":"Answer","text":"평균보다 작은 값이라는 뜻입니다. Z-점수의 절댓값이 클수록 평균에서 멀리 떨어진(드문) 값입니다."}},{"@type":"Question","name":"이 계산은 어떤 데이터에나 쓸 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"정규분포(종 모양 분포)를 따른다고 가정할 수 있는 데이터에 적합합니다. 데이터 분포가 정규분포와 많이 다르면(예: 한쪽으로 크게 치우친 분포) 확률 계산 결과가 실제와 다를 수 있습니다."}},{"@type":"Question","name":"표준편차를 모르면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"가진 원본 데이터로 먼저 평균과 표준편차를 구해야 합니다. 숫자 목록만 있다면 기술통계 계산기로 평균·표준편차를 먼저 계산한 뒤, 그 값을 여기에 입력하세요."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"Z-점수 계산기","item":"https://kcalculator.net/z-score-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"Z-점수 계산기","description":"원점수·평균·표준편차로 Z-점수를 구하거나, Z-점수를 정규분포 확률(%)로 바꿉니다. 수능 표준점수 산출 방식과 동일합니다.","url":"https://kcalculator.net/z-score-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Z-점수가 음수이면 무슨 뜻인가요?","acceptedAnswer":{"@type":"Answer","text":"평균보다 작은 값이라는 뜻입니다. Z-점수의 절댓값이 클수록 평균에서 멀리 떨어진(드문) 값입니다."}},{"@type":"Question","name":"이 계산은 어떤 데이터에나 쓸 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"정규분포(종 모양 분포)를 따른다고 가정할 수 있는 데이터에 적합합니다. 데이터 분포가 정규분포와 많이 다르면(예: 한쪽으로 크게 치우친 분포) 확률 계산 결과가 실제와 다를 수 있습니다."}},{"@type":"Question","name":"표준편차를 모르면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"가진 원본 데이터로 먼저 평균과 표준편차를 구해야 합니다. 숫자 목록만 있다면 기술통계 계산기로 평균·표준편차를 먼저 계산한 뒤, 그 값을 여기에 입력하세요."}},{"@type":"Question","name":"Z-점수는 시험 성적 말고 다른 데도 쓰이나요?","acceptedAnswer":{"@type":"Answer","text":"네. 서로 다른 척도의 값을 비교할 때 널리 쓰입니다. 예를 들어 공정관리에서 측정값이 관리 상한·하한을 벗어날 확률을 구하거나, 표준화된 심리·적성 검사 점수를 산출할 때도 같은 방식(값을 평균·표준편차 기준으로 표준화)을 사용합니다."}},{"@type":"Question","name":"정규분포 확률 계산 결과는 얼마나 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"표준정규분포의 누적분포함수(Φ)는 적분으로만 정의돼 있어 닫힌 형태의 수식이 없습니다. 이 계산기는 근사식을 사용하며, 오차가 7.5×10⁻⁸ 이내로 실용적인 용도에는 충분히 정확합니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
@@ -229,6 +228,7 @@
         <h3><span class="info-icon">💡</span>Z-점수란?</h3>
         <p>Z-점수는 어떤 값이 평균에서 표준편차 몇 개만큼 떨어져 있는지를 나타내는 표준화된 값입니다. 서로 다른 척도의 데이터를 같은 기준으로 비교하거나, 정규분포를 따르는 데이터에서 특정 값 이하·이상이 나올 확률을 구할 때 씁니다.</p>
         <p>이 계산기는 원점수를 Z-점수로 바꾸는 계산과, 반대로 Z-점수를 정규분포 확률(누적 확률)로 바꾸는 계산을 모두 지원합니다.</p>
+        <p>실생활에서 가장 눈에 띄는 활용 예는 대학수학능력시험 표준점수입니다. 원점수를 그대로 비교하면 과목·연도별 난이도 차이가 반영되지 않기 때문에, 응시자 집단의 평균·표준편차로 Z-점수를 구한 뒤 국어·수학·직업탐구는 <strong>20 × Z + 100</strong>, 사회·과학탐구와 제2외국어·한문은 <strong>10 × Z + 50</strong> 공식으로 다시 변환해 표준점수를 산출합니다 — 이 계산기의 "원점수→Z" 계산이 그 첫 단계와 동일합니다.</p>
       </div>
 
       <div class="info-block">
@@ -276,6 +276,21 @@
           <summary>표준편차를 모르면 어떻게 하나요?</summary>
           <p class="faq-a">가진 원본 데이터로 먼저 평균과 표준편차를 구해야 합니다. 숫자 목록만 있다면 기술통계 계산기로 평균·표준편차를 먼저 계산한 뒤, 그 값을 여기에 입력하세요.</p>
         </details>
+        <details class="faq-item">
+          <summary>Z-점수는 시험 성적 말고 다른 데도 쓰이나요?</summary>
+          <p class="faq-a">네. 서로 다른 척도의 값을 비교할 때 널리 쓰입니다. 예를 들어 공정관리에서 측정값이 관리 상한·하한을 벗어날 확률을 구하거나, 표준화된 심리·적성 검사 점수를 산출할 때도 같은 방식(값을 평균·표준편차 기준으로 표준화)을 사용합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>정규분포 확률 계산 결과는 얼마나 정확한가요?</summary>
+          <p class="faq-a">표준정규분포의 누적분포함수(Φ)는 적분으로만 정의돼 있어 닫힌 형태의 수식이 없습니다. 이 계산기는 아래 출처의 근사식을 사용하며, 오차가 7.5×10⁻⁸ 이내로 실용적인 용도에는 충분히 정확합니다.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.nist.gov/mathematics-statistics/handbook-mathematical-functions-abramowitz-and-stegun" target="_blank" rel="noopener">Abramowitz, M. & Stegun, I. A. (eds.), <em>Handbook of Mathematical Functions</em>, 미국 국립표준국(NBS, 현 NIST), 1964 — 표준정규분포 누적분포함수 근사식(26.2.17)</a></li>
+        </ul>
       </div>
     </section>
 
