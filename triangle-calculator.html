@@ -17,7 +17,6 @@
 <meta name="description" content="세 변(SSS), 두 변과 끼인각(SAS), 한 변과 두 각(ASA) 중 아는 값을 입력하면 나머지 변·각·넓이·둘레를 계산합니다.">
 <title>삼각형 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/triangle-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"삼각형 계산기","item":"https://kcalculator.net/triangle-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"삼각형 계산기","description":"세 변(SSS), 두 변과 끼인각(SAS), 한 변과 두 각(ASA) 중 아는 값을 입력하면 나머지 변·각·넓이·둘레를 계산합니다.","url":"https://kcalculator.net/triangle-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"SSS 입력에서 \"삼각형을 이룰 수 없다\"는 안내가 뜨는 이유는?","acceptedAnswer":{"@type":"Answer","text":"삼각형이 되려면 어떤 두 변의 합도 나머지 한 변보다 커야 합니다(삼각부등식). 예를 들어 1, 2, 5는 1+2=3<5라서 삼각형을 만들 수 없습니다."}},{"@type":"Question","name":"ASA에서 입력한 두 각의 합이 180도를 넘으면요?","acceptedAnswer":{"@type":"Answer","text":"삼각형의 세 내각의 합은 항상 180도이므로, 두 각만 더해도 이미 180도를 넘거나 같으면 나머지 한 각이 0 이하가 되어 삼각형을 만들 수 없습니다."}},{"@type":"Question","name":"라디안 단위로도 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 도(°) 단위만 지원합니다. 라디안 값이 있다면 도 = 라디안 × (180/π)로 변환해서 입력하세요."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"삼각형 계산기","item":"https://kcalculator.net/triangle-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"삼각형 계산기","description":"세 변(SSS), 두 변과 끼인각(SAS), 한 변과 두 각(ASA) 중 아는 값을 입력하면 나머지 변·각·넓이·둘레를 계산합니다.","url":"https://kcalculator.net/triangle-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"SSS 입력에서 \"삼각형을 이룰 수 없다\"는 안내가 뜨는 이유는?","acceptedAnswer":{"@type":"Answer","text":"삼각형이 되려면 어떤 두 변의 합도 나머지 한 변보다 커야 합니다(삼각부등식). 예를 들어 1, 2, 5는 1+2=3<5라서 삼각형을 만들 수 없습니다."}},{"@type":"Question","name":"ASA에서 입력한 두 각의 합이 180도를 넘으면요?","acceptedAnswer":{"@type":"Answer","text":"삼각형의 세 내각의 합은 항상 180도이므로, 두 각만 더해도 이미 180도를 넘거나 같으면 나머지 한 각이 0 이하가 되어 삼각형을 만들 수 없습니다."}},{"@type":"Question","name":"라디안 단위로도 입력할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 도(°) 단위만 지원합니다. 라디안 값이 있다면 도 = 라디안 × (180/π)로 변환해서 입력하세요."}},{"@type":"Question","name":"SSS 모드의 넓이는 헤론의 공식과 같은 값인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 이 계산기는 세 변으로 각을 먼저 구한 뒤 넓이 = (1/2)×a×b×sinC 공식을 쓰지만, 결과는 헤론의 공식(s=(a+b+c)/2, 넓이=√(s(s−a)(s−b)(s−c)))과 항상 같습니다. 두 방법 모두 세 변의 길이만으로 넓이를 구합니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
@@ -240,6 +239,7 @@
       <div class="info-block">
         <h3><span class="info-icon">💡</span>삼각형을 결정하는 3가지 정보</h3>
         <p>삼각형은 세 변(SSS), 두 변과 그 사이 각(SAS), 한 변과 그 양 끝 두 각(ASA) 중 하나만 알아도 나머지 모든 변·각을 구할 수 있습니다. 이 계산기는 이 세 가지 입력 방식을 모두 지원합니다.</p>
+        <p>세 변만 알면 각도를 몰라도 넓이를 바로 구할 수 있는데(헤론의 공식), 실제로 측량 현장에서 각도계 없이 줄자로 변의 길이만 재서 땅 넓이를 추정할 때 쓰이는 방법이기도 합니다.</p>
       </div>
 
       <div class="info-block">
@@ -273,6 +273,14 @@
             <span class="frac-part"><span class="frac-lhs">넓이 = (1/2) × a × b × sin C</span></span>
           </div>
         </div>
+        <div class="method-def">
+          <h4>헤론의 공식 (세 변 → 넓이, 각 없이 직접 계산)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">s = (a + b + c) ÷ 2</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">넓이 = √(s(s−a)(s−b)(s−c))</span></span>
+          </div>
+        </div>
       </div>
 
       <div class="info-block">
@@ -299,6 +307,10 @@
         <details class="faq-item">
           <summary>라디안 단위로도 입력할 수 있나요?</summary>
           <p class="faq-a">이 계산기는 도(°) 단위만 지원합니다. 라디안 값이 있다면 도 = 라디안 × (180/π)로 변환해서 입력하세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>SSS 모드의 넓이는 헤론의 공식과 같은 값인가요?</summary>
+          <p class="faq-a">네. 이 계산기는 세 변으로 각을 먼저 구한 뒤 넓이 = (1/2)×a×b×sinC 공식을 쓰지만, 결과는 헤론의 공식(s=(a+b+c)/2, 넓이=√(s(s−a)(s−b)(s−c)))과 항상 같습니다. 두 방법 모두 세 변의 길이만으로 넓이를 구합니다.</p>
         </details>
       </div>
     </section>

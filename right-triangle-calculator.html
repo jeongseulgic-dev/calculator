@@ -14,15 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="직각삼각형·피타고라스 정리 계산기 | 두 변 또는 한 변과 각을 입력하면 나머지 변·각·넓이를 계산하는 무료 계산기">
+<meta name="description" content="두 변, 한 변+빗변, 한 변+각 중 아는 값을 입력하면 직각삼각형의 나머지 변·각·넓이를 구합니다.">
 <title>직각삼각형·피타고라스 정리 계산기 | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/right-triangle-calculator">
-<meta name="robots" content="noindex,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="직각삼각형·피타고라스 정리 계산기 | 계산기">
-<meta property="og:description" content="직각삼각형·피타고라스 정리 계산기 | 두 변 또는 한 변과 각을 입력하면 나머지 변·각·넓이를 계산하는 무료 계산기">
+<meta property="og:description" content="두 변, 한 변+빗변, 한 변+각 중 아는 값을 입력하면 직각삼각형의 나머지 변·각·넓이를 구합니다.">
 <meta property="og:url" content="https://kcalculator.net/right-triangle-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"직각삼각형·피타고라스 정리 계산기","item":"https://kcalculator.net/right-triangle-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"직각삼각형·피타고라스 정리 계산기","description":"직각삼각형·피타고라스 정리 계산기 | 두 변 또는 한 변과 각을 입력하면 나머지 변·각·넓이를 계산하는 무료 계산기","url":"https://kcalculator.net/right-triangle-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"\"한 변+빗변\" 모드에서 왜 a가 c보다 작아야 하나요?","acceptedAnswer":{"@type":"Answer","text":"직각삼각형에서 빗변(직각의 대변)은 항상 다른 두 변보다 깁니다. 입력한 변이 빗변보다 크거나 같으면 애초에 성립할 수 없는 삼각형이라 계산되지 않습니다."}},{"@type":"Question","name":"빗변에 내린 높이(h)는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"직각이 있는 꼭짓점에서 빗변에 수직으로 내린 선분의 길이입니다. h = (a×b)÷c로 계산되며, 삼각형을 빗변 기준으로 넓이를 구할 때(넓이 = c×h÷2)도 쓰입니다."}},{"@type":"Question","name":"일반 삼각형(직각이 아닌 경우)도 계산할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 직각삼각형 전용입니다. 직각이 없는 일반 삼각형은 삼각형 계산기를 이용하세요."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"직각삼각형·피타고라스 정리 계산기","item":"https://kcalculator.net/right-triangle-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"직각삼각형·피타고라스 정리 계산기","description":"두 변, 한 변+빗변, 한 변+각 중 아는 값을 입력하면 직각삼각형의 나머지 변·각·넓이를 구합니다.","url":"https://kcalculator.net/right-triangle-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"\"한 변+빗변\" 모드에서 왜 a가 c보다 작아야 하나요?","acceptedAnswer":{"@type":"Answer","text":"직각삼각형에서 빗변(직각의 대변)은 항상 다른 두 변보다 깁니다. 입력한 변이 빗변보다 크거나 같으면 애초에 성립할 수 없는 삼각형이라 계산되지 않습니다."}},{"@type":"Question","name":"빗변에 내린 높이(h)는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"직각이 있는 꼭짓점에서 빗변에 수직으로 내린 선분의 길이입니다. h = (a×b)÷c로 계산되며, 삼각형을 빗변 기준으로 넓이를 구할 때(넓이 = c×h÷2)도 쓰입니다."}},{"@type":"Question","name":"일반 삼각형(직각이 아닌 경우)도 계산할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 직각삼각형 전용입니다. 직각이 없는 일반 삼각형은 삼각형 계산기를 이용하세요."}},{"@type":"Question","name":"TV 화면 크기(인치)에서 실제 가로·세로 길이를 어떻게 구하나요?","acceptedAnswer":{"@type":"Answer","text":"TV·모니터에 표시된 인치 수는 화면 대각선(빗변)의 길이입니다. 화면비가 16:9라면 가로·세로도 16:9 비율이므로, 가로 = 대각선 × 16/√(16²+9²), 세로 = 대각선 × 9/√(16²+9²)로 구합니다. 예를 들어 55인치 16:9 TV는 가로 약 121.7cm, 세로 약 68.5cm입니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
@@ -231,6 +230,7 @@
         <h3><span class="info-icon">💡</span>피타고라스 정리와 직각삼각형</h3>
         <p>직각삼각형은 한 각이 정확히 90도인 삼각형입니다. 피타고라스 정리(a² + b² = c²)는 두 변(직각을 낀 변)의 제곱의 합이 빗변의 제곱과 같다는 법칙으로, 두 변만 알아도 나머지 한 변을 구할 수 있게 해줍니다.</p>
         <p>변 하나와 각 하나만 알아도 삼각비(사인·탄젠트)를 이용해 나머지 값을 모두 구할 수 있어, 이 계산기는 세 가지 입력 방식을 모두 지원합니다.</p>
+        <p>일상에서 가장 흔한 활용 예는 TV·모니터 화면 크기입니다. 흔히 말하는 "55인치"는 화면 대각선, 즉 피타고라스 정리의 빗변 길이입니다. 화면비(예: 16:9)를 알면 실제 가로·세로 길이도 같은 원리로 구할 수 있습니다.</p>
       </div>
 
       <div class="info-block">
@@ -276,6 +276,10 @@
         <details class="faq-item">
           <summary>일반 삼각형(직각이 아닌 경우)도 계산할 수 있나요?</summary>
           <p class="faq-a">이 계산기는 직각삼각형 전용입니다. 직각이 없는 일반 삼각형은 삼각형 계산기를 이용하세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>TV 화면 크기(인치)에서 실제 가로·세로 길이를 어떻게 구하나요?</summary>
+          <p class="faq-a">TV·모니터에 표시된 인치 수는 화면 대각선(빗변)의 길이입니다. 화면비가 16:9라면 가로·세로도 16:9 비율이므로, 가로 = 대각선 × 16/√(16²+9²), 세로 = 대각선 × 9/√(16²+9²)로 구합니다. 예를 들어 55인치 16:9 TV는 가로 약 121.7cm, 세로 약 68.5cm입니다.</p>
         </details>
       </div>
     </section>
