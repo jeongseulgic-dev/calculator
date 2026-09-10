@@ -35,7 +35,7 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"상속세 계산기","item":"https://kcalculator.net/inheritance-tax-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"상속세 계산기","description":"부동산·금융재산 가액, 배우자 유무, 자녀 수를 입력하면 상속세 과세표준과 산출세액을 추정합니다.","url":"https://kcalculator.net/inheritance-tax-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"배우자공제는 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"배우자가 법정상속분(민법 제1009조 — 자녀 1인분을 1로 볼 때 배우자는 1.5)만큼 상속받았다고 가정해 추정합니다. 이렇게 구한 금액을 최소 5억 원, 최대 30억 원 범위로 반영합니다. 실제 협의분할 비율이 법정상속분과 다르면(예: 배우자가 더 많이 상속) 실제 공제액도 달라질 수 있습니다."}},{"@type":"Question","name":"자녀 수는 계산에 어떻게 반영되나요?","acceptedAnswer":{"@type":"Answer","text":"두 곳에 반영됩니다. 첫째, 자녀공제(1인당 5천만 원)가 기초공제 2억 원과 합산되어 일괄공제 5억 원과 비교됩니다(자녀가 7명 이상이면 기초+자녀공제 합계가 더 유리해집니다). 둘째, 자녀 수가 많을수록 법정상속분에서 배우자 몫 비율이 줄어들어 배우자공제 추정액에도 영향을 줍니다."}},{"@type":"Question","name":"금융재산상속공제는 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"순금융재산이 2천만 원 이하면 전액, 초과하면 순금융재산의 20%와 2천만 원 중 큰 금액(최대 2억 원)을 공제합니다. 이 계산기는 입력한 금융재산 전액을 순금융재산으로 간주합니다 — 실제로 금융채무가 있다면 그만큼 뺀 금액을 입력해야 정확합니다."}},{"@type":"Question","name":"실제로 낼 세액이 이 계산 결과보다 적을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네, 흔합니다. 동거주택상속공제, 미성년자·장애인·연로자 공제 등은 이 계산기가 반영하지 않아 상황에 따라 실제 과세표준이 더 낮아질 수 있습니다. 또 배우자공제는 실제 분할 비율이 법정상속분과 다르면 이 계산기의 추정치와 달라질 수 있습니다."}},{"@type":"Question","name":"이 계산기로 상속세 신고를 준비해도 되나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 대략적인 규모를 가늠하기 위한 참고용 도구입니다. 실제 신고·납부는 정확한 재산 평가와 공제 항목 확인이 필요해 세무 전문가와 상담하거나 국세청 홈택스의 상속세 신고 도움 서비스를 이용하는 것을 권장합니다."}},{"@type":"Question","name":"상속세는 언제까지 신고해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"상속개시일(사망일)이 속한 달의 말일부터 6개월 이내(피상속인 또는 상속인 전원이 비거주자면 9개월 이내)에 신고해야 합니다. 기한 내 신고하면 산출세액의 3%를 신고세액공제로 추가로 덜어주고, 기한을 넘기면 이 공제를 받지 못하고 가산세도 붙습니다."}},{"@type":"Question","name":"신고세액공제 3%는 이 계산기에 반영되어 있나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 이 계산기는 산출세액까지만 계산하며, 기한 내 신고 시 적용되는 신고세액공제 3%는 반영하지 않았습니다. 기한 내 신고하는 경우 실제 납부세액은 이 결과에서 3%만큼 더 낮습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=29">
+<link rel="stylesheet" href="style.css?v=30">
 </head>
 <body>
 
@@ -284,7 +284,7 @@
             <tr><td>동거주택상속공제</td><td>상속주택가액 전액, 최대 6억원(10년 이상 동거한 무주택 상속인 조건)</td><td>미반영</td></tr>
           </tbody>
         </table>
-        <p class="field-note">배우자가 단독상속인(다른 상속인이 전혀 없는 경우)이면 실제로는 일괄공제를 적용받지 못하고 기초공제+자녀공제만 적용됩니다 — 이 계산기는 이 예외를 반영하지 않고 항상 유리한 쪽을 선택합니다.</p>
+        <p class="field-note field-note-warn">배우자가 단독상속인(자녀 없이 배우자만 생존)이면 실제로는 일괄공제를 적용받지 못하고 기초공제 2억원만 적용됩니다 — 이 계산기는 이 예외를 반영하지 않고 항상 유리한 쪽(대개 일괄공제 5억원)을 선택하므로, 이 경우 계산기가 실제 세액보다 낮게 추정할 수 있습니다.</p>
       </div>
 
       <div class="info-block">
@@ -345,9 +345,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=29"></script>
-<script src="js/url-state.js?v=29"></script>
-<script src="js/export.js?v=29"></script>
-<script src="js/inheritance-tax-calc.js?v=29"></script>
+<script src="js/site.js?v=30"></script>
+<script src="js/url-state.js?v=30"></script>
+<script src="js/export.js?v=30"></script>
+<script src="js/inheritance-tax-calc.js?v=30"></script>
 </body>
 </html>
