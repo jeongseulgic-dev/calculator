@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="입사일·퇴사일·평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.">
+<title>퇴직금 계산기 (2026) | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/severance-pay-calculator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="퇴직금 계산기 (2026) | 계산기">
+<meta property="og:description" content="입사일·퇴사일·평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.">
+<meta property="og:url" content="https://kcalculator.net/severance-pay-calculator">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"퇴직금 계산기","item":"https://kcalculator.net/severance-pay-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"퇴직금 계산기","description":"입사일·퇴사일·평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.","url":"https://kcalculator.net/severance-pay-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"3개월 평균 월급만 입력했는데 정확한 평균임금과 다르지 않나요?","acceptedAnswer":{"@type":"Answer","text":"실제 평균임금은 퇴직 전 3개월간 지급된 임금총액(상여금·연차수당 비례분 포함)을 그 기간의 실제 달력일수로 나눠 계산합니다. 이 계산기는 매월을 30일로 가정해 월급×3÷90으로 근사하고 상여금·연차수당은 반영하지 않으므로, 실제 값과 다소 다를 수 있습니다."}},{"@type":"Question","name":"근속연수를 왜 올림 처리하나요?","acceptedAnswer":{"@type":"Answer","text":"소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 이 올림은 세액공제 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다."}},{"@type":"Question","name":"1년 미만 근무해도 퇴직금을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"원칙적으로 받을 수 없습니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자만 법정 퇴직금 지급 대상입니다."}},{"@type":"Question","name":"왜 퇴직소득세는 근로소득세보다 세율이 낮게 느껴지나요?","acceptedAnswer":{"@type":"Answer","text":"퇴직금은 여러 해에 걸쳐 쌓인 소득을 한 번에 받는 것이라, 그대로 과세하면 그 해에만 세율이 크게 튀어오릅니다. 이를 막기 위해 근속연수공제로 먼저 덜어내고, 남은 금액을 근속연수로 나눠 1년치 소득으로 환산해 세율을 적용한 뒤 다시 근속연수를 곱하는 방식(환산급여 방식)으로 누진 부담을 완화합니다."}},{"@type":"Question","name":"상여금·연차수당도 평균임금에 포함되나요?","acceptedAnswer":{"@type":"Answer","text":"원칙적으로는 포함됩니다(연간 상여금·전년도 미사용 연차수당의 3개월 비례분). 이 계산기는 3개월 평균 월급만 입력받는 단순화된 근사치라 상여금·수당을 별도로 반영하지 않으므로, 실제 평균임금·퇴직금과 차이가 있을 수 있습니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=30">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="logo"><a href="/">계산기</a></div>
+      <div class="eyebrow">SEVERANCE PAY CALCULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator">예·적금 계산기</a></li>
+          <li><a href="salary-calculator">연봉 실수령액 계산기</a></li>
+          <li><a href="installment-calculator">할부 수수료 계산기</a></li>
+          <li><a href="compound-calculator">복리 계산기</a></li>
+          <li><a href="student-loan-calculator">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator">전세자금대출 계산기</a></li>
+          <li><a href="vat-calculator">부가가치세(VAT) 계산기</a></li>
+          <li><a href="electricity-bill-calculator">전기요금 계산기</a></li>
+          <li><a href="inheritance-tax-calculator">상속세 계산기</a></li>
+          <li><a href="inflation-calculator">인플레이션(화폐가치) 계산기</a></li>
+          <li><a href="budget-calculator">예산(가계부) 계산기</a></li>
+          <li><a href="depreciation-calculator">감가상각 계산기</a></li>
+          <li><a href="margin-calculator">마진·할인율 계산기</a></li>
+          <li><a href="national-pension-calculator">국민연금 예상수령액 계산기</a></li>
+          <li><a href="unemployment-benefit-calculator">실업급여(구직급여) 계산기</a></li>
+          <li><a href="severance-pay-calculator" class="active">퇴직금 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator">BMI 계산기</a></li>
+          <li><a href="bmr-calculator">기초대사량(BMR) 계산기</a></li>
+          <li><a href="calorie-calculator">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator">체지방률 계산기</a></li>
+          <li><a href="lbm-calculator">제지방량(LBM) 계산기</a></li>
+          <li><a href="calories-burned-calculator">소모 칼로리 계산기</a></li>
+          <li><a href="one-rep-max-calculator">1RM(최대중량) 계산기</a></li>
+          <li><a href="target-heart-rate-calculator">목표심박수 계산기</a></li>
+          <li><a href="sleep-calculator">수면 계산기</a></li>
+          <li><a href="ovulation-calculator">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>수학</h2>
+        <ul>
+          <li><a href="scientific-calculator">공학용 계산기</a></li>
+          <li><a href="percent-calculator">퍼센트 계산기</a></li>
+          <li><a href="fraction-calculator">분수 계산기</a></li>
+          <li><a href="exponent-calculator">지수 계산기</a></li>
+          <li><a href="root-calculator">제곱근·거듭제곱근 계산기</a></li>
+          <li><a href="quadratic-calculator">이차방정식 계산기</a></li>
+          <li><a href="logarithm-calculator">로그 계산기</a></li>
+          <li><a href="ratio-calculator">비율 계산기</a></li>
+          <li><a href="lcm-calculator">최소공배수 계산기</a></li>
+          <li><a href="gcf-calculator">최대공약수 계산기</a></li>
+          <li><a href="factor-calculator">약수·소인수분해 계산기</a></li>
+          <li><a href="rounding-calculator">반올림 계산기</a></li>
+          <li><a href="percent-error-calculator">오차백분율 계산기</a></li>
+          <li><a href="binary-calculator">이진수 변환기</a></li>
+          <li><a href="hex-calculator">16진수 변환기</a></li>
+          <li><a href="scientific-notation-calculator">과학적 표기법 계산기</a></li>
+          <li><a href="half-life-calculator">반감기 계산기</a></li>
+          <li><a href="descriptive-stats-calculator">기술통계 계산기</a></li>
+          <li><a href="permutation-combination-calculator">순열과 조합 계산기</a></li>
+          <li><a href="z-score-calculator">Z-점수 계산기</a></li>
+          <li><a href="confidence-interval-calculator">신뢰구간 계산기</a></li>
+          <li><a href="probability-calculator">확률 계산기</a></li>
+          <li><a href="sample-size-calculator">표본크기 계산기</a></li>
+          <li><a href="sequence-calculator">수열 계산기</a></li>
+          <li><a href="triangle-calculator">삼각형 계산기</a></li>
+          <li><a href="right-triangle-calculator">직각삼각형·피타고라스 정리 계산기</a></li>
+          <li><a href="area-calculator">넓이 계산기</a></li>
+          <li><a href="volume-calculator">입체도형 부피·표면적 계산기</a></li>
+          <li><a href="circle-calculator">원 계산기</a></li>
+          <li><a href="slope-distance-calculator">두 점 사이 기울기·거리 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator">만 나이 계산기</a></li>
+          <li><a href="date-calculator">날짜 계산기</a></li>
+          <li><a href="dday-calculator">디데이(D-day) 계산기</a></li>
+          <li><a href="business-day-calculator">영업일 계산기</a></li>
+          <li><a href="unit-calculator">단위 변환기</a></li>
+          <li><a href="pace-calculator">페이스 계산기</a></li>
+          <li><a href="fuel-calculator">유류비 계산기</a></li>
+          <li><a href="gpa-calculator">학점(GPA) 계산기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="page-content">
+    <div class="page-title">
+      <h1>퇴직금 계산기</h1>
+      <p>입사일, 퇴사일, 퇴직 전 3개월 평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">세후 실수령액(추정)</div>
+              <div class="value" id="miniScreen">0원</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="sp-start">입사일</label>
+            <input type="text" id="sp-start" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+          </div>
+          <div class="field">
+            <label for="sp-end">퇴사일</label>
+            <input type="text" id="sp-end" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+          </div>
+
+          <div class="field">
+            <label for="sp-wage">퇴직 전 3개월 평균 월급 (세전, 원)</label>
+            <input type="text" id="sp-wage" inputmode="numeric">
+            <p class="field-note">실제 평균임금은 3개월간 임금총액(상여금·연차수당 비례분 포함)을 그 기간의 실제 일수로 나눈 값입니다. 이 계산기는 월 30일로 가정해 근사합니다.</p>
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>계산 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="copyResultBtn" class="load-more-btn">결과 복사</button>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="strip-block">
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>퇴직금 계산기 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>퇴직금이란?</h3>
+        <p>퇴직금은 근로자가 퇴직할 때 사용자로부터 받는 법정 급여입니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자에게 지급 의무가 있습니다.</p>
+        <p>받은 퇴직금 전액을 그대로 가져가는 것이 아니라 퇴직소득세(+지방소득세)를 뗀 금액을 실제로 수령합니다. <strong>이 계산기는 3개월 평균 월급만으로 평균임금을 근사하고 법정 세율·공제만 반영한 참고용 추정치</strong>이며, 실제 금액은 상여금·수당 포함 여부와 회사 자체 규정(법정 기준 이상 지급하는 경우 등)에 따라 달라질 수 있습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>법정 퇴직금</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">퇴직금 = 1일 평균임금 × 30 ×</span></span>
+            <span class="frac"><span class="num">재직일수</span><span class="den">365</span></span>
+          </div>
+        </div>
+        <div class="method-def">
+          <h4>퇴직소득세 (환산급여 방식)</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">환산급여 = (퇴직금 − 근속연수공제) × 12 ÷ 근속연수</span></span>
+          </div>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">과세표준 = 환산급여 − 환산급여공제</span></span>
+          </div>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">퇴직소득세 = (과세표준 × 기본세율 − 누진공제액) ÷ 12 × 근속연수</span></span>
+          </div>
+          <p>지방소득세(퇴직소득세의 10%)를 더한 금액을 퇴직금에서 뺀 값이 실수령액입니다.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>근속연수공제·환산급여공제 기준표</h3>
+        <table class="criteria-table text-table">
+          <thead><tr><th>근속연수</th><th>근속연수공제</th></tr></thead>
+          <tbody>
+            <tr><td>5년 이하</td><td>근속연수 × 100만원</td></tr>
+            <tr><td>5년 초과 10년 이하</td><td>500만원 + (근속연수−5) × 200만원</td></tr>
+            <tr><td>10년 초과 20년 이하</td><td>1,500만원 + (근속연수−10) × 250만원</td></tr>
+            <tr><td>20년 초과</td><td>4,000만원 + (근속연수−20) × 300만원</td></tr>
+          </tbody>
+        </table>
+        <table class="criteria-table text-table">
+          <thead><tr><th>환산급여</th><th>환산급여공제</th></tr></thead>
+          <tbody>
+            <tr><td>800만원 이하</td><td>전액</td></tr>
+            <tr><td>800만원 초과 7,000만원 이하</td><td>800만원 + 초과분 × 60%</td></tr>
+            <tr><td>7,000만원 초과 1억원 이하</td><td>4,520만원 + 초과분 × 55%</td></tr>
+            <tr><td>1억원 초과 3억원 이하</td><td>6,170만원 + 초과분 × 45%</td></tr>
+            <tr><td>3억원 초과</td><td>1억 5,170만원 + 초과분 × 35%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>3개월 평균 월급만 입력했는데 정확한 평균임금과 다르지 않나요?</summary>
+          <p class="faq-a">실제 평균임금은 퇴직 전 3개월간 지급된 임금총액(상여금·연차수당 비례분 포함)을 그 기간의 실제 달력일수로 나눠 계산합니다. 이 계산기는 매월을 30일로 가정해 월급×3÷90으로 근사하고 상여금·연차수당은 반영하지 않으므로, 실제 값과 다소 다를 수 있습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>근속연수를 왜 올림 처리하나요?</summary>
+          <p class="faq-a">소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 이 올림은 세액공제 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>1년 미만 근무해도 퇴직금을 받을 수 있나요?</summary>
+          <p class="faq-a">원칙적으로 받을 수 없습니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자만 법정 퇴직금 지급 대상입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>왜 퇴직소득세는 근로소득세보다 세율이 낮게 느껴지나요?</summary>
+          <p class="faq-a">퇴직금은 여러 해에 걸쳐 쌓인 소득을 한 번에 받는 것이라, 그대로 과세하면 그 해에만 세율이 크게 튀어오릅니다. 이를 막기 위해 근속연수공제로 먼저 덜어내고, 남은 금액을 근속연수로 나눠 1년치 소득으로 환산해 세율을 적용한 뒤 다시 근속연수를 곱하는 방식(환산급여 방식)으로 누진 부담을 완화합니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>상여금·연차수당도 평균임금에 포함되나요?</summary>
+          <p class="faq-a">원칙적으로는 포함됩니다(연간 상여금·전년도 미사용 연차수당의 3개월 비례분). 이 계산기는 3개월 평균 월급만 입력받는 단순화된 근사치라 상여금·수당을 별도로 반영하지 않으므로, 실제 평균임금·퇴직금과 차이가 있을 수 있습니다.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6444&cntntsId=7880" target="_blank" rel="noopener">국세청 — 퇴직소득세 계산방법</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%EB%B3%B4%EC%9E%A5%EB%B2%95" target="_blank" rel="noopener">국가법령정보센터 — 근로자퇴직급여 보장법</a></li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📅</span>기준일</h3>
+        <p class="field-note">근속연수공제·환산급여공제 기준표는 2023년 세법개정 이후 현재까지 동일하게 적용 중<br>퇴직소득세 산출에 쓰이는 종합소득세 기본세율(6~45%, 8단계)은 연봉 실수령액 계산기와 동일한 2026년 기준</p>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </main>
+</div>
+
+<footer>
+  <p>&copy; 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
+</footer>
+
+<script src="js/site.js?v=30"></script>
+<script src="js/url-state.js?v=30"></script>
+<script src="js/export.js?v=30"></script>
+<script src="js/severance-pay-calc.js?v=30"></script>
+</body>
+</html>
