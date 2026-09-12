@@ -65,6 +65,8 @@ function recalc(){
     <tr class="stat-highlight"><th>월급 합계(세전, 추정)</th><td>${fmt(monthlyTotal)}원</td></tr>
   `;
 
+  document.getElementById('nextSalary').href = `salary-calculator?mode=monthly&monthly=${Math.round(monthlyTotal)}`;
+
   UrlState.sync({ wage, daily: dailyHours, days: daysPerWeek, ot: otHours, size: over5 ? 'over5' : 'under5' }, URL_DEFAULTS);
 }
 

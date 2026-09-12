@@ -114,6 +114,7 @@ function recalc(){
   const roundedIncome = Math.round(income);
   document.getElementById('nextDsrDti').href = `dsr-dti-calculator?income=${roundedIncome}`;
   document.getElementById('nextJeonse').href = `jeonse-calculator?mode=butim&bIncome=${roundedIncome}`;
+  document.getElementById('nextSalary').href = `salary-calculator?mode=annual&salary=${roundedIncome}`;
 
   UrlState.sync({
     price, region, firstTime, income, existing, rate: document.getElementById('m-rate').value, period

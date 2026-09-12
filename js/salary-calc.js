@@ -174,6 +174,8 @@ function recalc(){
   document.getElementById('nextJeonse').href = `jeonse-calculator?mode=butim&bIncome=${roundedAnnual}`;
   document.getElementById('nextPension').href = `national-pension-calculator?b=${Math.round(annual / 12)}`;
   document.getElementById('nextBudget').href = `budget-calculator?mode=compare&income2=${Math.round(r.monthlyNet)}`;
+  document.getElementById('nextSeverance').href = `severance-pay-calculator?wage=${Math.round(r.monthlyGross)}`;
+  document.getElementById('nextUnemployment').href = `unemployment-benefit-calculator?wage=${Math.round(r.monthlyGross)}`;
 
   UrlState.sync({ mode, salary: annualInput, monthly: monthlyInput, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
 }

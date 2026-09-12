@@ -122,6 +122,8 @@ function recalc(){
       <tr class="stat-highlight"><th>휴게시간 제외 실제 시간</th><td>${formatDuration(net)}</td></tr>
     `;
 
+    document.getElementById('nextHourlyWage').href = `hourly-wage-calculator?daily=${(net / 60).toFixed(2)}&days=1`;
+
     UrlState.sync({ mode, start: document.getElementById('t-start').value, end: document.getElementById('t-end').value, brk: breakMin }, URL_DEFAULTS);
   }
 }

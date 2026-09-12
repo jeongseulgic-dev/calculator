@@ -102,6 +102,7 @@ function recalcButim(){
     meta.textContent = '--';
     document.getElementById('nextDsrDti').href = 'dsr-dti-calculator';
     document.getElementById('nextMortgage').href = 'mortgage-calculator';
+    document.getElementById('nextSalary').href = 'salary-calculator';
     return;
   }
 
@@ -140,6 +141,7 @@ function recalcButim(){
   const roundedIncome = Math.round(income);
   document.getElementById('nextDsrDti').href = `dsr-dti-calculator?income=${roundedIncome}`;
   document.getElementById('nextMortgage').href = `mortgage-calculator?income=${roundedIncome}`;
+  document.getElementById('nextSalary').href = `salary-calculator?mode=annual&salary=${roundedIncome}`;
 
   UrlState.sync({
     mode, bDeposit: deposit, bRegion, bHousehold, bIncome: income,
@@ -166,6 +168,7 @@ function recalcBank(){
     meta.textContent = '--';
     document.getElementById('nextDsrDti').href = 'dsr-dti-calculator';
     document.getElementById('nextMortgage').href = 'mortgage-calculator';
+    document.getElementById('nextSalary').href = 'salary-calculator';
     return;
   }
 
@@ -193,6 +196,7 @@ function recalcBank(){
 
   document.getElementById('nextDsrDti').href = 'dsr-dti-calculator';
   document.getElementById('nextMortgage').href = 'mortgage-calculator';
+  document.getElementById('nextSalary').href = 'salary-calculator';
 
   UrlState.sync({
     mode, kDeposit: deposit, kRegion, kHousehold, kRate: document.getElementById('k-rate').value

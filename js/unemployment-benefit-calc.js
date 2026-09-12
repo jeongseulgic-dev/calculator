@@ -69,6 +69,9 @@ function recalc(){
     <tr class="stat-highlight"><th>예상 총 수급액(추정)</th><td>${fmt(total)}원</td></tr>
   `;
 
+  document.getElementById('nextSalary').href = `salary-calculator?mode=monthly&monthly=${Math.round(wage)}`;
+  document.getElementById('nextSeverance').href = `severance-pay-calculator?wage=${Math.round(wage)}`;
+
   UrlState.sync({ wage, age, months }, URL_DEFAULTS);
 }
 

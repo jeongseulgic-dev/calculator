@@ -110,6 +110,9 @@ function recalc(){
     <tr class="stat-highlight"><th>세후 실수령액(추정)</th><td>${fmt(net)}원</td></tr>
   `;
 
+  document.getElementById('nextSalary').href = `salary-calculator?mode=monthly&monthly=${Math.round(wage)}`;
+  document.getElementById('nextUnemployment').href = `unemployment-benefit-calculator?wage=${Math.round(wage)}`;
+
   UrlState.sync({
     start: document.getElementById('sp-start').value,
     end: document.getElementById('sp-end').value,
