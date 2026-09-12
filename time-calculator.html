@@ -14,15 +14,15 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="나이와 안정시 심박수를 입력하면 Haskell&amp;Fox·Tanaka 공식과 Karvonen 방식으로 운동 강도별 목표심박수 5구간을 계산합니다.">
-<title>목표심박수 계산기 | 계산기</title>
-<link rel="canonical" href="https://kcalculator.net/target-heart-rate-calculator">
+<meta name="description" content="시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.">
+<title>시간 계산기 | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/time-calculator">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="목표심박수 계산기 | 계산기">
-<meta property="og:description" content="나이와 안정시 심박수를 입력하면 Haskell&amp;Fox·Tanaka 공식과 Karvonen 방식으로 운동 강도별 목표심박수 5구간을 계산합니다.">
-<meta property="og:url" content="https://kcalculator.net/target-heart-rate-calculator">
+<meta property="og:title" content="시간 계산기 | 계산기">
+<meta property="og:description" content="시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.">
+<meta property="og:url" content="https://kcalculator.net/time-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -34,7 +34,7 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"목표심박수 계산기","item":"https://kcalculator.net/target-heart-rate-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"목표심박수 계산기","description":"나이와 안정시 심박수를 입력하면 Haskell&Fox·Tanaka 공식과 Karvonen 방식으로 운동 강도별 목표심박수 5구간을 계산합니다.","url":"https://kcalculator.net/target-heart-rate-calculator","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Haskell & Fox와 Tanaka 중 어떤 공식을 써야 하나요?","acceptedAnswer":{"@type":"Answer","text":"Haskell & Fox(220−나이)는 가장 널리 쓰이는 간단한 공식이고, Tanaka 공식은 2001년 대규모 메타분석으로 도출돼 특히 40대 이상에서 더 정확하다고 알려져 있습니다. 두 공식 모두 개인차가 있는 추정치라는 점은 동일합니다."}},{"@type":"Question","name":"안정시 심박수는 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"평소 체력 수준에 따라 안정시 심박수가 사람마다 다르기 때문에, 이를 반영한 Karvonen 방식이 단순 %최대심박수 방식보다 더 개인화된 목표 구간을 제공합니다. 기상 직후 누운 상태에서 1분간 측정하면 가장 정확합니다."}},{"@type":"Question","name":"목표심박수 계산이 의학적 조언을 대체하나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 이 계산기는 나이 기반 통계 공식으로 추정한 참고용 수치입니다. 심장질환·고혈압 등 건강상 문제가 있거나 오랫동안 운동을 쉬었다면 운동 강도를 정하기 전 의료진과 상담하는 것이 안전합니다."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"시간 계산기","item":"https://kcalculator.net/time-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"시간 계산기","description":"시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.","url":"https://kcalculator.net/time-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"자정을 넘는 경우도 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 시각 더하기·빼기 모드는 결과가 자정을 넘으면 \"며칠 후/전\"으로 표시하고, 경과시간 모드는 종료 시각이 시작 시각보다 이르면 자동으로 다음날로 넘어간 것으로 계산합니다."}},{"@type":"Question","name":"야간 근무시간(예: 22:00~06:00)도 정확히 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 경과시간 모드에 시작 22:00, 종료 06:00을 입력하면 자정을 넘는 것으로 자동 인식해 8시간으로 계산합니다."}},{"@type":"Question","name":"휴게시간은 왜 따로 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"근로기준법 제54조에 따라 근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간을 근무 도중 줘야 합니다. 이 휴게시간은 무급이라 실제 임금 산정 기준이 되는 근무시간에서는 제외해야 해서 별도 입력란을 뒀습니다."}},{"@type":"Question","name":"이 결과를 시급 계산에 바로 쓸 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 경과시간 모드에서 구한 \"휴게시간 제외 실제 시간\"을 시급·주휴수당 계산기의 근무시간 입력에 그대로 활용하면 됩니다."}},{"@type":"Question","name":"분 단위까지 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"네, 분 단위까지 정확하게 계산합니다."}}]}]</script>
 <link rel="stylesheet" href="style.css?v=30">
 </head>
 <body>
@@ -43,7 +43,7 @@
   <div class="header-inner">
     <div>
       <div class="logo"><a href="/">계산기</a></div>
-      <div class="eyebrow">TARGET HEART RATE CALCULATOR</div>
+      <div class="eyebrow">TIME CALCULATOR</div>
     </div>
     <div class="header-actions">
       <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
@@ -90,7 +90,7 @@
           <li><a href="lbm-calculator">제지방량(LBM) 계산기</a></li>
           <li><a href="calories-burned-calculator">소모 칼로리 계산기</a></li>
           <li><a href="one-rep-max-calculator">1RM(최대중량) 계산기</a></li>
-          <li><a href="target-heart-rate-calculator" class="active">목표심박수 계산기</a></li>
+          <li><a href="target-heart-rate-calculator">목표심박수 계산기</a></li>
           <li><a href="sleep-calculator">수면 계산기</a></li>
           <li><a href="ovulation-calculator">배란일 계산기</a></li>
           <li><a href="pregnancy-calculator">임신·출산예정일 계산기</a></li>
@@ -138,7 +138,7 @@
           <li><a href="date-calculator">날짜 계산기</a></li>
           <li><a href="dday-calculator">디데이(D-day) 계산기</a></li>
           <li><a href="business-day-calculator">영업일 계산기</a></li>
-          <li><a href="time-calculator">시간 계산기</a></li>
+          <li><a href="time-calculator" class="active">시간 계산기</a></li>
           <li><a href="unit-calculator">단위 변환기</a></li>
           <li><a href="pace-calculator">페이스 계산기</a></li>
           <li><a href="fuel-calculator">유류비 계산기</a></li>
@@ -150,39 +150,61 @@
 
   <main class="page-content">
     <div class="page-title">
-      <h1>목표심박수 계산기</h1>
-      <p>나이(와 선택적으로 안정시 심박수)를 입력하면 운동 강도별 목표심박수 5구간을 계산합니다.</p>
+      <h1>시간 계산기</h1>
+      <p>시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.</p>
     </div>
 
     <div class="shell">
       <div>
-        <div class="pages-heading"><h2>입력</h2></div>
+        <div class="pages-heading"><h2>값 입력</h2></div>
         <aside class="calc-panel">
           <div class="screen-shell">
             <div class="screen">
-              <div class="label">예상 최대심박수</div>
-              <div class="value" id="miniScreen">0 bpm</div>
+              <div class="label">계산 결과</div>
+              <div class="value" id="miniScreen">--</div>
               <div class="value-sub" id="miniScreenSub"></div>
             </div>
           </div>
 
           <div class="field">
-            <label for="h-age">나이 (세)</label>
-            <input type="number" id="h-age" placeholder="예: 30" value="30">
-          </div>
-
-          <div class="field">
-            <label>최대심박수 공식</label>
-            <div class="seg-toggle" data-target="formula" style="width:100%;">
-              <button type="button" class="seg-btn active" data-value="hf" style="flex:1;">Haskell &amp; Fox</button>
-              <button type="button" class="seg-btn" data-value="tanaka" style="flex:1;">Tanaka</button>
+            <label>계산 방식</label>
+            <div class="seg-toggle" data-target="mode" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="add" style="flex:1;">시각 더하기·빼기</button>
+              <button type="button" class="seg-btn" data-value="between" style="flex:1;">두 시각 사이 경과시간</button>
             </div>
           </div>
 
-          <div class="field">
-            <label for="h-rest">안정시 심박수 (bpm, 선택)</label>
-            <input type="number" id="h-rest" placeholder="모르면 비워두세요">
-            <p class="field-note">비워두면 최대심박수 기준(%maxHR)으로, 입력하면 Karvonen 방식(심박수 예비량 기반)으로 계산합니다.</p>
+          <div class="field mode-field" data-mode="add">
+            <label for="t-base">기준 시각</label>
+            <input type="time" id="t-base" value="09:00">
+          </div>
+          <div class="field mode-field" data-mode="add">
+            <label>더하기·빼기</label>
+            <div class="seg-toggle" data-target="sign" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="plus" style="flex:1;">더하기</button>
+              <button type="button" class="seg-btn" data-value="minus" style="flex:1;">빼기</button>
+            </div>
+          </div>
+          <div class="field mode-field" data-mode="add">
+            <label for="t-addh">시간</label>
+            <div class="field-row">
+              <input type="number" id="t-addh" value="3" min="0" step="any">
+              <input type="number" id="t-addm" value="0" min="0" max="59" step="any">
+            </div>
+            <p class="field-note">앞칸은 시간, 뒷칸은 분입니다.</p>
+          </div>
+
+          <div class="field mode-field hidden" data-mode="between">
+            <label for="t-start">시작 시각</label>
+            <input type="time" id="t-start" value="09:00">
+          </div>
+          <div class="field mode-field hidden" data-mode="between">
+            <label for="t-end">종료 시각</label>
+            <input type="time" id="t-end" value="18:00">
+          </div>
+          <div class="field mode-field hidden" data-mode="between">
+            <label for="t-break">휴게시간 (분)</label>
+            <input type="number" id="t-break" value="60" min="0" step="any">
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -191,7 +213,7 @@
 
       <div>
         <div class="pages-heading">
-          <h2>강도별 목표심박수</h2>
+          <h2>계산 결과</h2>
           <div class="pages-heading-actions">
             <span id="page-meta">--</span>
             <button type="button" id="copyResultBtn" class="load-more-btn">결과 복사</button>
@@ -200,7 +222,7 @@
         </div>
         <section class="receipt-strip">
           <div class="strip-block">
-            <table class="stat-table"><tbody id="zoneBody"></tbody></table>
+            <table class="stat-table"><tbody id="statBody"></tbody></table>
           </div>
         </section>
       </div>
@@ -209,74 +231,73 @@
     <div class="ad-slot"></div>
 
     <section class="info-section">
-      <h2>목표심박수 계산기 안내</h2>
+      <h2>시간 계산기 안내</h2>
 
       <div class="info-block">
-        <h3><span class="info-icon">💡</span>목표심박수란?</h3>
-        <p>목표심박수는 운동 강도를 조절하기 위한 기준으로, 나이로 추정한 최대심박수(HRmax)의 일정 비율 구간으로 나눠 사용합니다. 준비운동부터 최고 강도까지 5개 구간으로 나누면 목적(체력 향상, 지방 연소, 심폐지구력 강화 등)에 맞는 강도를 고를 수 있습니다.</p>
-        <p>안정시 심박수를 함께 입력하면 Karvonen 방식(심박수 예비량 = 최대심박수 − 안정시 심박수 기반)으로 계산해, 평소 체력 수준이 반영된 좀 더 정밀한 구간을 볼 수 있습니다. 심장질환 등 건강상 이유로 운동 강도를 조절해야 한다면 이 계산기 대신 의료진과 상담하세요.</p>
+        <h3><span class="info-icon">💡</span>시간 계산기 두 가지 방식</h3>
+        <p>이 계산기는 시:분 단위의 두 가지 계산을 지원합니다. "시각 더하기·빼기"는 기준 시각에서 일정 시간이 지나거나 전인 시각을 구하고, "두 시각 사이 경과시간"은 시작·종료 시각 사이의 총 시간과 휴게시간을 뺀 실제 시간을 구합니다.</p>
+        <p>날짜(일) 단위 계산이 필요하면 날짜 계산기를, 특정 날짜까지 며칠 남았는지는 디데이 계산기를, 주말을 뺀 영업일수는 영업일 계산기를 이용하세요.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🧮</span>계산 방식</h3>
         <div class="method-def">
-          <h4>최대심박수(HRmax) 추정</h4>
+          <h4>시각 더하기·빼기</h4>
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">Haskell &amp; Fox = 220 − 나이</span></span>
-            <span class="frac-sep"></span>
-            <span class="frac-part"><span class="frac-lhs">Tanaka = 208 − (0.7 × 나이)</span></span>
+            <span class="frac-part"><span class="frac-lhs">계산된 시각 = 기준 시각 ± (시간×60 + 분), 24시간(1,440분) 단위로 날짜 넘김 처리</span></span>
           </div>
         </div>
         <div class="method-def">
-          <h4>목표심박수 (Karvonen 방식, 안정시 심박수 입력 시)</h4>
+          <h4>두 시각 사이 경과시간</h4>
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">목표심박수 = (최대심박수 − 안정시 심박수) × 강도% + 안정시 심박수</span></span>
+            <span class="frac-part"><span class="frac-lhs">경과시간 = 종료 시각 − 시작 시각 (음수면 +24시간, 다음날로 처리)</span></span>
           </div>
-        </div>
-        <div class="method-def">
-          <h4>목표심박수 (%최대심박수 방식, 안정시 심박수 미입력 시)</h4>
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">목표심박수 = 최대심박수 × 강도%</span></span>
+            <span class="frac-part"><span class="frac-lhs">실제 시간 = 경과시간 − 휴게시간</span></span>
           </div>
         </div>
       </div>
 
       <div class="info-block">
-        <h3><span class="info-icon">📊</span>심박수 구간표</h3>
+        <h3><span class="info-icon">📊</span>휴게시간 법정 기준</h3>
         <table class="criteria-table text-table">
-          <thead><tr><th>구간</th><th>강도</th><th>목적</th></tr></thead>
+          <thead><tr><th>근로시간</th><th>법정 휴게시간</th></tr></thead>
           <tbody>
-            <tr><td>구간 1</td><td>50~60%</td><td>준비운동·회복</td></tr>
-            <tr><td>구간 2</td><td>60~70%</td><td>지방 연소·유산소 기초 체력</td></tr>
-            <tr><td>구간 3</td><td>70~80%</td><td>유산소 지구력</td></tr>
-            <tr><td>구간 4</td><td>80~90%</td><td>무산소 능력 향상</td></tr>
-            <tr><td>구간 5</td><td>90~100%</td><td>최고 강도(단시간)</td></tr>
+            <tr><td>4시간</td><td>30분 이상</td></tr>
+            <tr><td>8시간</td><td>1시간 이상</td></tr>
           </tbody>
         </table>
-        <p class="field-note">강도 %는 안정시 심박수 입력 여부에 따라 심박수 예비량(Karvonen) 또는 최대심박수 기준으로 적용됩니다.</p>
+        <p>근로기준법 제54조에 따른 기준으로, 사업장 규모와 무관하게 모든 사업장에 적용됩니다.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary>Haskell &amp; Fox와 Tanaka 중 어떤 공식을 써야 하나요?</summary>
-          <p class="faq-a">Haskell &amp; Fox(220−나이)는 가장 널리 쓰이는 간단한 공식이고, Tanaka 공식은 2001년 대규모 메타분석으로 도출돼 특히 40대 이상에서 더 정확하다고 알려져 있습니다. 두 공식 모두 개인차가 있는 추정치라는 점은 동일합니다.</p>
+          <summary>자정을 넘는 경우도 계산되나요?</summary>
+          <p class="faq-a">네. 시각 더하기·빼기 모드는 결과가 자정을 넘으면 "며칠 후/전"으로 표시하고, 경과시간 모드는 종료 시각이 시작 시각보다 이르면 자동으로 다음날로 넘어간 것으로 계산합니다.</p>
         </details>
         <details class="faq-item">
-          <summary>안정시 심박수는 왜 입력하나요?</summary>
-          <p class="faq-a">평소 체력 수준에 따라 안정시 심박수가 사람마다 다르기 때문에, 이를 반영한 Karvonen 방식이 단순 %최대심박수 방식보다 더 개인화된 목표 구간을 제공합니다. 기상 직후 누운 상태에서 1분간 측정하면 가장 정확합니다.</p>
+          <summary>야간 근무시간(예: 22:00~06:00)도 정확히 계산되나요?</summary>
+          <p class="faq-a">네. 경과시간 모드에 시작 22:00, 종료 06:00을 입력하면 자정을 넘는 것으로 자동 인식해 8시간으로 계산합니다.</p>
         </details>
         <details class="faq-item">
-          <summary>목표심박수 계산이 의학적 조언을 대체하나요?</summary>
-          <p class="faq-a">아니요. 이 계산기는 나이 기반 통계 공식으로 추정한 참고용 수치입니다. 심장질환·고혈압 등 건강상 문제가 있거나 오랫동안 운동을 쉬었다면 운동 강도를 정하기 전 의료진과 상담하는 것이 안전합니다.</p>
+          <summary>휴게시간은 왜 따로 입력하나요?</summary>
+          <p class="faq-a">근로기준법 제54조에 따라 근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간을 근무 도중 줘야 합니다. 이 휴게시간은 무급이라 실제 임금 산정 기준이 되는 근무시간에서는 제외해야 해서 별도 입력란을 뒀습니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>이 결과를 시급 계산에 바로 쓸 수 있나요?</summary>
+          <p class="faq-a">네. 경과시간 모드에서 구한 "휴게시간 제외 실제 시간"을 시급·주휴수당 계산기의 근무시간 입력에 그대로 활용하면 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>분 단위까지 정확한가요?</summary>
+          <p class="faq-a">네, 분 단위까지 정확하게 계산합니다.</p>
         </details>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
-          <li><a href="https://www.sciencedirect.com/science/article/pii/S0735109700010548" target="_blank" rel="noopener">Tanaka, Monahan &amp; Seals (2001), Journal of the American College of Cardiology — Age-predicted maximal heart rate revisited</a></li>
-          <li><a href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates" target="_blank" rel="noopener">American Heart Association — Target Heart Rates Chart</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95" target="_blank" rel="noopener">국가법령정보센터 — 근로기준법 제54조(휴게)</a></li>
         </ul>
       </div>
     </section>
@@ -293,6 +314,6 @@
 <script src="js/site.js?v=30"></script>
 <script src="js/url-state.js?v=30"></script>
 <script src="js/export.js?v=30"></script>
-<script src="js/target-heart-rate-calc.js?v=30"></script>
+<script src="js/time-calc.js?v=30"></script>
 </body>
 </html>
