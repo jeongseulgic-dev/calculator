@@ -94,6 +94,8 @@ function recalc(){
     <tr class="stat-highlight"><th>상속세 산출세액(추정)</th><td>${fmt(tax)}원</td></tr>
   `;
 
+  document.getElementById('nextGiftTax').href = `gift-tax-calculator?amount=${Math.round(estate)}`;
+
   UrlState.sync({ realEstate, financial, spouse: hasSpouse ? 'yes' : 'no', children }, URL_DEFAULTS);
 }
 
