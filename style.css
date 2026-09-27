@@ -362,7 +362,7 @@ table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight
 .all-calcs-group{ background:var(--card-bg); border:1px solid #dfe2e6; border-radius:8px; padding:16px 18px; }
 .all-calcs-group h3{ font-size:0.88rem; color:var(--pink); font-weight:900; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #dfe2e6; }
 .all-calcs-group ul{ list-style:none; }
-.all-calcs-group li a{ display:block; padding:4px 0; font-size:0.82rem; color:var(--ink-soft); text-decoration:none; }
+.all-calcs-group li a{ display:block; padding:4px 0; font-size:0.82rem; font-weight:600; color:var(--ink-soft); text-decoration:none; }
 .all-calcs-group li a:hover{ color:var(--pink); }
 
 /* ===== 서브페이지 설명 섹션 (개념/공식/기준표/FAQ) ===== */
