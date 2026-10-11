@@ -81,6 +81,9 @@ function recalc(){
     <tr><th>제지방량 (근육·뼈 등)</th><td>${fmt1(leanMass)} kg</td></tr>
   `;
 
+  document.getElementById('nextBmi').href = `bmi-calculator?height=${height}&weight=${weight}`;
+  document.getElementById('nextCalorie').href = `calorie-calculator?height=${height}&weight=${weight}&gender=${gender}`;
+
   UrlState.sync({ height, weight, neck, waist, hip, gender }, URL_DEFAULTS);
 }
 
