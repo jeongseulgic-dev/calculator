@@ -12,10 +12,18 @@ const DAYS_TABLE = [
 
 function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
 
-function getBenefitDays(months, age){
+function getBenefitDays(months, age, disabled){
   const row = DAYS_TABLE.find(r => months < r.months);
-  return age >= 50 ? row.over50 : row.under50;
+  return (age >= 50 || disabled) ? row.over50 : row.under50;
 }
+
+document.querySelectorAll('.seg-toggle[data-target="disabled"] .seg-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.seg-toggle[data-target="disabled"] .seg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    recalc();
+  });
+});
 
 function fail(msg){
   document.getElementById('miniScreen').textContent = '0원';
@@ -28,6 +36,7 @@ function recalc(){
   const wage = parseFloat(document.getElementById('ub-wage').value.replace(/,/g, ''));
   const age = parseFloat(document.getElementById('ub-age').value);
   const months = parseFloat(document.getElementById('ub-months').value);
+  const disabled = toggleDefault('disabled') === 'yes';
 
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
@@ -50,7 +59,7 @@ function recalc(){
   const avgDaily = wage * 3 / 90;
   const rawDaily = avgDaily * 0.6;
   const daily = Math.max(LOWER_DAILY, Math.min(UPPER_DAILY, rawDaily));
-  const days = getBenefitDays(months, age);
+  const days = getBenefitDays(months, age, disabled);
   const total = daily * days;
 
   let clampNote = '해당 없음(60% 그대로 적용)';
@@ -59,7 +68,7 @@ function recalc(){
 
   miniScreen.textContent = fmt(total) + '원';
   miniScreenSub.textContent = '예상 총 수급액(추정)';
-  meta.textContent = `월급 ${fmt(wage)}원 · 만 ${age}세 · 가입 ${months}개월`;
+  meta.textContent = `월급 ${fmt(wage)}원 · 만 ${age}세${disabled ? ' · 장애인' : ''} · 가입 ${months}개월`;
 
   statBody.innerHTML = `
     <tr><th>1일 평균임금(근사)</th><td>${fmt(avgDaily)}원</td></tr>
@@ -72,18 +81,19 @@ function recalc(){
   document.getElementById('nextSalary').href = `salary-calculator?mode=monthly&monthly=${Math.round(wage)}`;
   document.getElementById('nextSeverance').href = `severance-pay-calculator?wage=${Math.round(wage)}`;
 
-  UrlState.sync({ wage, age, months }, URL_DEFAULTS);
+  UrlState.sync({ wage, age, months, disabled: disabled ? 'yes' : 'no' }, URL_DEFAULTS);
 }
 
 document.getElementById('ub-wage').addEventListener('input', function(){ formatInputComma(this); recalc(); });
 document.getElementById('ub-age').addEventListener('input', recalc);
 document.getElementById('ub-months').addEventListener('input', recalc);
 
-const URL_DEFAULTS = { wage: '3000000', age: '35', months: '24' };
+const URL_DEFAULTS = { wage: '3000000', age: '35', months: '24', disabled: 'no' };
 
 const urlParams = UrlState.read();
 document.getElementById('ub-wage').value = Number(urlParams.wage || URL_DEFAULTS.wage).toLocaleString('ko-KR');
 document.getElementById('ub-age').value = urlParams.age || URL_DEFAULTS.age;
 document.getElementById('ub-months').value = urlParams.months || URL_DEFAULTS.months;
+if (urlParams.disabled) clickToggle('disabled', urlParams.disabled);
 
 recalc();
