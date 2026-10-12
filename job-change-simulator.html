@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="google-adsense-account" content="ca-pub-3568008951320473">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXR1XBH8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVXR1XBH8Q');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="퇴사일·월급·재취업 시기를 넣으면 퇴직금·실업급여·조기재취업수당 합계, 공백기 버틸 기간, 이직 후 실수령 변화를 계산합니다.">
+<title>퇴사·이직 시뮬레이터 (2026) | 계산기</title>
+<link rel="canonical" href="https://kcalculator.net/job-change-simulator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="계산기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="퇴사·이직 시뮬레이터 (2026) | 계산기">
+<meta property="og:description" content="퇴사일·월급·재취업 시기를 넣으면 퇴직금·실업급여·조기재취업수당 합계, 공백기 버틸 기간, 이직 후 실수령 변화를 계산합니다.">
+<meta property="og:url" content="https://kcalculator.net/job-change-simulator">
+<meta property="og:image" content="https://kcalculator.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="계산기 — 무료 온라인 계산기 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"퇴사·이직 시뮬레이터","item":"https://kcalculator.net/job-change-simulator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"퇴사·이직 시뮬레이터","description":"퇴사일·월급·재취업 시기를 넣으면 퇴직금·실업급여·조기재취업수당 합계, 공백기 버틸 기간, 이직 후 실수령 변화를 계산합니다.","url":"https://kcalculator.net/job-change-simulator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"내가 실업급여를 받을 수 있는지 어떻게 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"권고사직·계약만료·폐업 같은 비자발적 이직이면서 이직 전 18개월 동안 고용보험 피보험단위기간이 180일 이상이면 대체로 받을 수 있습니다. 자발적 퇴사라도 임금체불, 통근 곤란 등 법에서 정한 정당한 사유가 인정되면 받을 수 있습니다. 확실하지 않다면 고용24나 가까운 고용센터에서 수급자격을 먼저 확인한 뒤 '받음/받지 않음'을 골라 두 경우를 비교해 보면 됩니다."}},{"@type":"Question","name":"공백기를 길게 잡으면 실업급여도 계속 늘어나나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 실업급여는 가입기간과 나이에 따라 정해진 소정급여일수(120~270일)까지만 나오기 때문에, 공백기가 그보다 길어지면 받는 돈은 더 늘지 않고 월급을 못 받는 기간만 길어집니다. 결과의 '실제 수령 일수'에 '최대 일수 소진'이 표시되면 그 시점부터는 저축에서 생활비가 나간다는 뜻입니다."}},{"@type":"Question","name":"빨리 재취업하면 오히려 손해 아닌가요?","acceptedAnswer":{"@type":"Answer","text":"남은 실업급여의 절반을 조기재취업수당으로 받을 수 있어서, 조건을 채우면 손해가 줄어듭니다. 또 새 직장 월급은 실업급여 1일액보다 대개 많기 때문에 재취업 시점을 앞당길수록 전체 수입은 늘어나는 경우가 많습니다. 재취업 기간을 바꿔 가며 '받는 돈'과 '공백기 동안 못 받는 월급'을 함께 비교해 보세요."}},{"@type":"Question","name":"연봉이 오르는 만큼 실수령액도 오르나요?","acceptedAnswer":{"@type":"Answer","text":"그만큼 오르지는 않습니다. 연봉이 오르면 4대보험료가 함께 늘고, 소득세는 누진세율이라 늘어난 부분에 더 높은 세율이 붙습니다. 그래서 '매달 달라지는 금액'은 연봉 차이를 12로 나눈 값보다 작게 나옵니다."}},{"@type":"Question","name":"퇴직금이 IRP 계좌로 들어온다는데 바로 쓸 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"2022년 4월 14일 이후 퇴직자는 원칙적으로 퇴직금을 개인형퇴직연금(IRP) 계좌로 받습니다(55세 이후 퇴직, 300만원 이하 등은 예외). IRP 계좌를 해지하면 인출할 수 있고, 이때 미뤄졌던 퇴직소득세를 떼고 지급되므로 이 시뮬레이터의 세후 퇴직금이 그 기준이 됩니다. 연금으로 나눠 받으면 세금이 줄어드는 대신 공백기 생활비로는 쓸 수 없습니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=35">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="logo"><a href="/">계산기</a></div>
+      <div class="eyebrow">JOB CHANGE SIMULATOR</div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드 전환">🌙</button>
+      <button id="sidebarToggle" class="mobile-menu-toggle">☰ 메뉴</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar" id="sidebarMenu">
+    <nav>
+      <div class="menu-group">
+        <h2>시뮬레이터</h2>
+        <ul>
+          <li><a href="job-change-simulator" class="active">퇴사·이직 시뮬레이터</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>금융</h2>
+        <ul>
+          <li><a href="loan-calculator">대출 이자 계산기</a></li>
+          <li><a href="savings-calculator">예·적금 계산기</a></li>
+          <li><a href="salary-calculator">연봉 실수령액 계산기</a></li>
+          <li><a href="compound-calculator">복리 계산기</a></li>
+          <li><a href="student-loan-calculator">학자금대출 계산기</a></li>
+          <li><a href="dsr-dti-calculator">DSR·DTI 계산기</a></li>
+          <li><a href="mortgage-calculator">주택담보대출 계산기</a></li>
+          <li><a href="jeonse-calculator">전세자금대출 계산기</a></li>
+          <li><a href="inheritance-tax-calculator">상속세 계산기</a></li>
+          <li><a href="gift-tax-calculator">증여세 계산기</a></li>
+          <li><a href="comprehensive-real-estate-tax-calculator">종합부동산세 계산기</a></li>
+          <li><a href="inflation-calculator">인플레이션(화폐가치) 계산기</a></li>
+          <li><a href="budget-calculator">예산(가계부) 계산기</a></li>
+          <li><a href="national-pension-calculator">국민연금 예상수령액 계산기</a></li>
+          <li><a href="unemployment-benefit-calculator">실업급여(구직급여) 계산기</a></li>
+          <li><a href="severance-pay-calculator">퇴직금 계산기</a></li>
+          <li><a href="hourly-wage-calculator">시급·주휴수당 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>건강</h2>
+        <ul>
+          <li><a href="bmi-calculator">BMI 계산기</a></li>
+          <li><a href="calorie-calculator">칼로리 계산기</a></li>
+          <li><a href="bodyfat-calculator">체지방률 계산기</a></li>
+          <li><a href="sleep-calculator">수면 계산기</a></li>
+          <li><a href="ovulation-calculator">배란일 계산기</a></li>
+          <li><a href="pregnancy-calculator">임신·출산예정일 계산기</a></li>
+        </ul>
+      </div>
+      <div class="menu-group">
+        <h2>생활</h2>
+        <ul>
+          <li><a href="age-calculator">만 나이 계산기</a></li>
+          <li><a href="date-calculator">날짜 계산기</a></li>
+          <li><a href="dday-calculator">디데이(D-day) 계산기</a></li>
+          <li><a href="business-day-calculator">영업일 계산기</a></li>
+          <li><a href="time-calculator">시간 계산기</a></li>
+          <li><a href="unit-calculator">단위 변환기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="page-content">
+    <div class="page-title">
+      <h1>퇴사·이직 시뮬레이터</h1>
+      <p>지금 그만두면 퇴직금과 실업급여로 얼마를 받는지, 재취업까지 공백기를 얼마나 버틸 수 있는지, 새 회사로 옮기면 매달 실수령액이 얼마나 바뀌는지 한 번에 계산합니다.</p>
+    </div>
+
+    <div class="shell">
+      <div>
+        <div class="pages-heading"><h2>내 상황 입력</h2></div>
+        <aside class="calc-panel">
+          <div class="screen-shell">
+            <div class="screen">
+              <div class="label">퇴사하면 받는 돈(추정)</div>
+              <div class="value" id="miniScreen">0원</div>
+              <div class="value-sub" id="miniScreenSub"></div>
+            </div>
+          </div>
+
+          <div class="sim-step first"><span class="sim-step-no">1</span><span class="sim-step-title">지금 회사</span><span class="sim-step-desc">퇴직금 계산</span></div>
+
+          <div class="sim-pair wide-left">
+            <div class="field">
+              <label for="js-wage">월급 (세전·3개월 평균)</label>
+              <input type="text" id="js-wage" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="js-age">만 나이</label>
+              <input type="number" id="js-age" value="35" min="15" max="100">
+            </div>
+          </div>
+
+          <div class="sim-pair">
+            <div class="field">
+              <label for="js-start">입사일</label>
+              <input type="text" id="js-start" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+            </div>
+            <div class="field">
+              <label for="js-end">퇴사(예정)일</label>
+              <input type="text" id="js-end" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+            </div>
+          </div>
+
+          <div class="sim-step"><span class="sim-step-no">2</span><span class="sim-step-title">퇴사 후</span><span class="sim-step-desc">실업급여·공백기</span></div>
+
+          <div class="field">
+            <label>실업급여 수급 여부</label>
+            <div class="seg-toggle" data-target="ub" style="width:100%;">
+              <button type="button" class="seg-btn active" data-value="yes" style="flex:1;">받음</button>
+              <button type="button" class="seg-btn" data-value="no" style="flex:1;">받지 않음</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="js-gap">재취업까지 예상 기간 (개월)</label>
+            <input type="number" id="js-gap" value="4" min="0" max="24" step="1">
+          </div>
+
+          <div class="sim-step"><span class="sim-step-no">3</span><span class="sim-step-title">새 회사</span><span class="sim-step-desc">실수령액 비교</span></div>
+
+          <div class="field">
+            <label for="js-new">옮길 회사 연봉 (세전, 원, 선택)</label>
+            <input type="text" id="js-new" inputmode="numeric" placeholder="비워 두면 이직 비교 생략">
+          </div>
+
+          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+        </aside>
+      </div>
+
+      <div>
+        <div class="pages-heading">
+          <h2>시뮬레이션 결과</h2>
+          <div class="pages-heading-actions">
+            <span id="page-meta">--</span>
+            <button type="button" id="copyResultBtn" class="load-more-btn">결과 복사</button>
+            <button type="button" id="shareBtn" class="load-more-btn">공유하기</button>
+          </div>
+        </div>
+        <section class="receipt-strip">
+          <div class="sim-timeline">
+            <div class="sim-node">
+              <div class="sim-node-label">퇴사</div>
+              <div class="sim-node-date" id="tlEndDate">--</div>
+              <div class="sim-node-value" id="tlCash">0원</div>
+              <div class="sim-node-sub">받는 돈 합계</div>
+            </div>
+            <div class="sim-arrow">→</div>
+            <div class="sim-node">
+              <div class="sim-node-label">공백기</div>
+              <div class="sim-node-date" id="tlGapLen">--</div>
+              <div class="sim-node-value" id="tlCover">0개월분</div>
+              <div class="sim-node-sub">지금 월급 기준으로 버틸 수 있는 기간</div>
+            </div>
+            <div class="sim-arrow">→</div>
+            <div class="sim-node">
+              <div class="sim-node-label">재취업</div>
+              <div class="sim-node-date" id="tlNewDate">--</div>
+              <div class="sim-node-value" id="tlDiff">--</div>
+              <div class="sim-node-sub">매달 실수령액 변화</div>
+            </div>
+          </div>
+          <div class="strip-block">
+            <h3 class="block-title">① 지금 그만두면 받는 돈</h3>
+            <table class="stat-table"><tbody id="cashBody"></tbody></table>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-block">
+            <h3 class="block-title">② 공백기를 얼마나 버틸 수 있나</h3>
+            <table class="stat-table"><tbody id="gapBody"></tbody></table>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-block">
+            <h3 class="block-title">③ 이직하면 월급은 얼마나 달라지나</h3>
+            <table class="stat-table"><tbody id="moveBody"></tbody></table>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-block">
+            <h3 class="block-title">자세히 계산</h3>
+            <div class="next-calc-grid">
+              <a class="next-calc-card" id="nextSeverance" href="severance-pay-calculator"><span>퇴직금·퇴직소득세 자세히 보기</span><span class="next-calc-arrow">→</span></a>
+              <a class="next-calc-card" id="nextUnemployment" href="unemployment-benefit-calculator"><span>실업급여 자세히 보기</span><span class="next-calc-arrow">→</span></a>
+              <a class="next-calc-card" id="nextSalary" href="salary-calculator"><span>새 연봉 실수령액 자세히 보기</span><span class="next-calc-arrow">→</span></a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot"></div>
+
+    <section class="info-section">
+      <h2>퇴사·이직 시뮬레이터 안내</h2>
+
+      <div class="info-block">
+        <h3><span class="info-icon">💡</span>퇴사·이직 시뮬레이터란?</h3>
+        <p>퇴사를 고민할 때 함께 따져봐야 하는 세 가지 — 그만두면 받는 돈, 재취업까지 버틸 수 있는 기간, 이직 후 달라지는 월급 — 를 한 화면에서 이어서 보여주는 도구입니다. 퇴직금 계산기·실업급여 계산기·연봉 실수령액 계산기의 계산을 그대로 가져와 묶었고, 항목별 세부 계산은 결과 아래 링크로 각 계산기에서 확인할 수 있습니다.</p>
+        <p><strong>모든 금액은 참고용 추정치입니다.</strong> 고용보험은 입사일부터 퇴사일까지 이 회사에서 계속 가입했다고 보고, 퇴사 직후 실업 신고를 한다고 가정합니다. 실제 금액은 상여금·수당 포함 여부, 이전 직장 가입기간 합산, 실업 인정 여부 등에 따라 달라질 수 있습니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>① 받는 돈 합계</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">받는 돈 = 퇴직금(세후) + 실업급여 + 조기재취업수당</span></span>
+          </div>
+          <p>퇴직금은 근속 1년 이상일 때 1일 평균임금(월급×3÷90)×30×재직일수÷365로 계산하고 퇴직소득세·지방소득세를 뺍니다. 실업급여는 1일액(평균임금의 60%, 하루 66,048~68,100원)에 실제 받는 일수를 곱합니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>② 실업급여 실제 수령 일수</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">수령 일수 = min(소정급여일수, 공백 개월×30 − 대기 7일)</span></span>
+          </div>
+          <p>공백기가 소정급여일수보다 길면 소정급여일수만큼만 받고, 짧으면 재취업 전날까지만 받습니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>③ 조기재취업수당</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part"><span class="frac-lhs">조기재취업수당 = 1일액 × 남은 일수 ÷ 2</span></span>
+          </div>
+          <p>재취업 전날 기준 남은 일수가 소정급여일수의 절반 이상이고, 아래 기준표의 제외 조건에 걸리지 않을 때만 더합니다.</p>
+        </div>
+        <div class="method-def">
+          <h4>④ 버틸 수 있는 기간</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">버틸 수 있는 기간 =</span>
+              <span class="frac"><span class="num">받는 돈 합계</span><span class="den">지금 월 실수령액</span></span>
+            </span>
+          </div>
+          <p>지금 받는 월 실수령액 수준으로 생활한다고 볼 때, 퇴사로 받는 돈이 몇 달 치 생활비가 되는지를 뜻합니다. 실수령액은 부양가족 본인 1명, 식대 비과세 월 20만원 기준입니다.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📊</span>조기재취업수당 지급 조건</h3>
+        <table class="criteria-table text-table">
+          <thead><tr><th>구분</th><th>내용</th></tr></thead>
+          <tbody>
+            <tr><td>남은 일수</td><td>재취업 전날 기준 구직급여 소정급여일수의 절반 이상 남아 있어야 함</td></tr>
+            <tr><td>근속</td><td>새 직장에서 12개월 이상 계속 고용</td></tr>
+            <tr><td>재취업 시점</td><td>실업 신고 후 14일 이내 재취업은 제외</td></tr>
+            <tr><td>재취업 임금</td><td>고용노동부 고시 월 임금액(고용24 안내 기준 574만원) 이상이면 제외</td></tr>
+            <tr><td>중복 수급</td><td>최근 2년 안에 조기재취업수당을 받았으면 제외</td></tr>
+            <tr><td>재고용</td><td>이전 직장 또는 관련 사업주에 다시 고용되면 제외</td></tr>
+          </tbody>
+        </table>
+        <p>이 시뮬레이터는 남은 일수·재취업 시점·재취업 임금 세 가지만 입력값으로 판단합니다. 근속·중복 수급·재고용 조건은 따로 확인해야 하며, 실제 지급 여부는 재취업 12개월 뒤 고용센터에 청구할 때 확정됩니다.</p>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
+        <details class="faq-item">
+          <summary>내가 실업급여를 받을 수 있는지 어떻게 알 수 있나요?</summary>
+          <p class="faq-a">권고사직·계약만료·폐업 같은 비자발적 이직이면서 이직 전 18개월 동안 고용보험 피보험단위기간이 180일 이상이면 대체로 받을 수 있습니다. 자발적 퇴사라도 임금체불, 통근 곤란 등 법에서 정한 정당한 사유가 인정되면 받을 수 있습니다. 확실하지 않다면 고용24나 가까운 고용센터에서 수급자격을 먼저 확인한 뒤 '받음/받지 않음'을 골라 두 경우를 비교해 보면 됩니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>공백기를 길게 잡으면 실업급여도 계속 늘어나나요?</summary>
+          <p class="faq-a">아닙니다. 실업급여는 가입기간과 나이에 따라 정해진 소정급여일수(120~270일)까지만 나오기 때문에, 공백기가 그보다 길어지면 받는 돈은 더 늘지 않고 월급을 못 받는 기간만 길어집니다. 결과의 '실제 수령 일수'에 '최대 일수 소진'이 표시되면 그 시점부터는 저축에서 생활비가 나간다는 뜻입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>빨리 재취업하면 오히려 손해 아닌가요?</summary>
+          <p class="faq-a">남은 실업급여의 절반을 조기재취업수당으로 받을 수 있어서, 조건을 채우면 손해가 줄어듭니다. 또 새 직장 월급은 실업급여 1일액보다 대개 많기 때문에 재취업 시점을 앞당길수록 전체 수입은 늘어나는 경우가 많습니다. 재취업 기간을 바꿔 가며 '받는 돈'과 '공백기 동안 못 받는 월급'을 함께 비교해 보세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>연봉이 오르는 만큼 실수령액도 오르나요?</summary>
+          <p class="faq-a">그만큼 오르지는 않습니다. 연봉이 오르면 4대보험료가 함께 늘고, 소득세는 누진세율이라 늘어난 부분에 더 높은 세율이 붙습니다. 그래서 '매달 달라지는 금액'은 연봉 차이를 12로 나눈 값보다 작게 나옵니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>퇴직금이 IRP 계좌로 들어온다는데 바로 쓸 수 있나요?</summary>
+          <p class="faq-a">2022년 4월 14일 이후 퇴직자는 원칙적으로 퇴직금을 개인형퇴직연금(IRP) 계좌로 받습니다(55세 이후 퇴직, 300만원 이하 등은 예외). IRP 계좌를 해지하면 인출할 수 있고, 이때 미뤄졌던 퇴직소득세를 떼고 지급되므로 이 시뮬레이터의 세후 퇴직금이 그 기준이 됩니다. 연금으로 나눠 받으면 세금이 줄어드는 대신 공백기 생활비로는 쓸 수 없습니다.</p>
+        </details>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">🔗</span>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://ei.work24.go.kr/ei/eih/eg/pb/pbPersonBnef/retrievePb0208Info.do" target="_blank" rel="noopener">고용24 — 조기재취업수당 안내</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B3%A0%EC%9A%A9%EB%B3%B4%ED%97%98%EB%B2%95" target="_blank" rel="noopener">국가법령정보센터 — 고용보험법 (구직급여·조기재취업수당)</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%EB%B3%B4%EC%9E%A5%EB%B2%95" target="_blank" rel="noopener">국가법령정보센터 — 근로자퇴직급여 보장법</a></li>
+          <li><a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6444&cntntsId=7880" target="_blank" rel="noopener">국세청 — 퇴직소득세 계산방법</a></li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📅</span>기준일</h3>
+        <p class="field-note">실업급여 1일 상한액 68,100원·하한액 66,048원 — 2026년 1월 1일 이후 이직자부터 적용<br>조기재취업수당 제외 임금액 월 574만원 — 고용24 안내 기준(2024년 고시액)<br>4대보험 요율·소득세 세율 — 연봉 실수령액 계산기와 동일한 2026년 기준(국민연금 4.75%, 2026년 1월 인상)<br>퇴직소득세 근속연수공제·환산급여공제 — 퇴직금 계산기와 동일한 현행 기준</p>
+      </div>
+    </section>
+
+    <div class="ad-slot"></div>
+  </main>
+</div>
+
+<footer>
+  <p>&copy; 계산기. All rights reserved.</p>
+  <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
+</footer>
+
+<script src="js/site.js?v=35"></script>
+<script src="js/url-state.js?v=35"></script>
+<script src="js/export.js?v=35"></script>
+<script src="js/job-change-sim.js?v=35"></script>
+</body>
+</html>

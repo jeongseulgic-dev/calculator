@@ -112,6 +112,7 @@ function recalc(){
 
   document.getElementById('nextSalary').href = `salary-calculator?mode=monthly&monthly=${Math.round(wage)}`;
   document.getElementById('nextUnemployment').href = `unemployment-benefit-calculator?wage=${Math.round(wage)}`;
+  document.getElementById('nextSimulator').href = `job-change-simulator?start=${document.getElementById('sp-start').value}&end=${document.getElementById('sp-end').value}&wage=${Math.round(wage)}`;
 
   UrlState.sync({
     start: document.getElementById('sp-start').value,

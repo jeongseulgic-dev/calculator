@@ -463,3 +463,27 @@ footer .footer-links a:hover{ color:#fff; text-decoration:underline; }
   }
   .receipt.open{ transform:translateX(0); }
 }
+
+/* ===== 시뮬레이터 (퇴사·이직 등) — 단계별 입력 + 타임라인 요약. 계산기 패널·영수증 안에만 쓰여 다크모드에서도 라이트 톤 고정 ===== */
+.sim-step{ display:flex; align-items:center; gap:8px; margin:20px 0 10px; padding-top:16px; border-top:1px dashed rgba(0,0,0,0.2); }
+.sim-step.first{ margin-top:4px; padding-top:0; border-top:none; }
+.sim-step-no{ width:22px; height:22px; border-radius:50%; background:var(--pink); color:#fff; font-family:'IBM Plex Mono',monospace; font-size:0.75rem; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+.sim-step-title{ font-size:0.88rem; font-weight:700; color:var(--ink); }
+.sim-step-desc{ font-size:0.72rem; color:var(--ink-soft); margin-left:auto; }
+.sim-pair{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.sim-pair.wide-left{ grid-template-columns:2fr 1fr; }
+.sim-pair .field{ min-width:0; }
+.sim-pair input{ width:100%; min-width:0; }
+.stat-table td .sim-ko, .sim-node-value .sim-ko{ font-family:'Noto Sans KR',sans-serif; letter-spacing:0; }
+.stat-table .sim-sub{ display:block; margin-top:2px; font-family:'Noto Sans KR',sans-serif; font-size:0.72rem; font-weight:400; letter-spacing:0; color:var(--ink-soft); }
+.sim-timeline{ display:flex; align-items:stretch; gap:6px; padding:14px 0 18px; border-bottom:1px dashed #e5decb; }
+.sim-node{ flex:1; min-width:0; background:#fffaf0; border:1px solid #e5decb; border-radius:6px; padding:10px 8px; text-align:center; }
+.sim-node-label{ font-size:0.75rem; font-weight:700; color:var(--ink); }
+.sim-node-date{ font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft); margin-top:2px; }
+.sim-node-value{ font-family:'IBM Plex Mono',monospace; font-size:1.02rem; font-weight:600; color:var(--pink); margin:6px 0 2px; word-break:keep-all; }
+.sim-node-sub{ font-size:0.7rem; color:var(--ink-soft); }
+.sim-arrow{ align-self:center; color:var(--ink-soft); font-size:0.9rem; flex-shrink:0; }
+@media (max-width:640px){
+  .sim-timeline{ flex-direction:column; }
+  .sim-arrow{ transform:rotate(90deg); }
+}

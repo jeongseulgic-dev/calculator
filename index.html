@@ -14,7 +14,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="대출·예적금·연봉 실수령액 등 금융, BMI·칼로리 등 건강, 만 나이·날짜 등 생활 계산기까지 29개를 제공합니다.">
+<meta name="description" content="대출·연봉 실수령액 등 금융, BMI 등 건강, 만 나이 등 생활 계산기 29개와 퇴사·이직 시뮬레이터를 제공합니다.">
 <meta name="google-site-verification" content="hLNWwuVbwf7yR2wieHWN-vonRznneQP1sQCTEjrmpzg" />
 <meta name="naver-site-verification" content="fa103d9c2207390e81473ecedbef46fd8fdb6d39" />
 <title>계산기 | 기본/공학용 계산기</title>
@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="계산기 | 기본/공학용 계산기">
-<meta property="og:description" content="대출·예적금·연봉 실수령액 등 금융, BMI·칼로리 등 건강, 만 나이·날짜 등 생활 계산기까지 29개를 제공합니다.">
+<meta property="og:description" content="대출·연봉 실수령액 등 금융, BMI 등 건강, 만 나이 등 생활 계산기 29개와 퇴사·이직 시뮬레이터를 제공합니다.">
 <meta property="og:url" content="https://kcalculator.net/">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -37,7 +37,7 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"계산기","url":"https://kcalculator.net/","inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"키보드로 계산할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 숫자(0~9)와 사칙연산(+, −, ×, ÷), Enter(=), Backspace(지우기), Esc(전체 지우기)를 키보드로 그대로 입력할 수 있습니다. PC에서 숫자 키패드로 빠르게 계산할 때 편리합니다."}},{"@type":"Question","name":"새로고침해도 계산 기록이 남아있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 계산 기록은 브라우저에 저장되어 새로고침하거나 나중에 다시 방문해도 최근 50건까지 그대로 남아있습니다. 기록 영역의 \"전체 지우기\" 버튼을 누르면 직접 삭제할 수 있습니다."}},{"@type":"Question","name":"계산 기록에 있는 값을 다시 계산기에 넣을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 기록에서 수식을 누르면 그 수식이 입력창에 그대로 다시 채워지고, 결과값을 누르면 그 값이 새 계산의 시작값으로 들어갑니다. 이전 계산을 이어서 하거나 값을 재사용할 때 유용합니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=34">
+<link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
 
@@ -57,6 +57,12 @@
 <div class="layout-wrapper">
   <aside class="sidebar" id="sidebarMenu">
     <nav>
+      <div class="menu-group">
+        <h2>시뮬레이터</h2>
+        <ul>
+          <li><a href="job-change-simulator">퇴사·이직 시뮬레이터</a></li>
+        </ul>
+      </div>
       <div class="menu-group">
         <h2>금융</h2>
         <ul>
@@ -243,6 +249,12 @@
   <h2>카테고리별 전체 계산기</h2>
   <div class="all-calcs-grid">
     <div class="all-calcs-group">
+      <h3>시뮬레이터</h3>
+      <ul>
+        <li><a href="job-change-simulator">퇴사·이직 시뮬레이터</a></li>
+      </ul>
+    </div>
+    <div class="all-calcs-group">
       <h3>금융</h3>
       <ul>
         <li><a href="loan-calculator">대출 이자 계산기</a></li>
@@ -294,8 +306,8 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=34"></script>
-<script src="js/expr-parser.js?v=34"></script>
-<script src="js/main-calc.js?v=34"></script>
+<script src="js/site.js?v=35"></script>
+<script src="js/expr-parser.js?v=35"></script>
+<script src="js/main-calc.js?v=35"></script>
 </body>
 </html>

@@ -80,6 +80,7 @@ function recalc(){
 
   document.getElementById('nextSalary').href = `salary-calculator?mode=monthly&monthly=${Math.round(wage)}`;
   document.getElementById('nextSeverance').href = `severance-pay-calculator?wage=${Math.round(wage)}`;
+  document.getElementById('nextSimulator').href = `job-change-simulator?wage=${Math.round(wage)}&age=${age}`;
 
   UrlState.sync({ wage, age, months, disabled: disabled ? 'yes' : 'no' }, URL_DEFAULTS);
 }
