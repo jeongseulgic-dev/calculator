@@ -271,8 +271,8 @@ input:checked + .slider::before{ transform:translateX(18px); }
 .shell > div{ min-width:0; }
 
 /* ===== 영수증 띠: 모든 서브 계산기의 결과 영역 공통 톤 ===== */
-.pages-heading{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
-.pages-heading h2{ font-size:1.02rem; font-weight:900; color:var(--heading); }
+.pages-heading{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; gap:12px; }
+.pages-heading h2{ font-size:1.02rem; font-weight:900; color:var(--heading); white-space:nowrap; flex-shrink:0; }
 .pages-heading span{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--ink-soft); }
 .pages-heading-actions{ display:flex; align-items:center; gap:10px; }
 
