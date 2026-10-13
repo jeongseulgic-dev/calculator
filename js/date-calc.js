@@ -15,16 +15,18 @@ function fmtDate(d){
   return `${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}. (${WEEKDAY[d.getDay()]})`;
 }
 
+// 월·년 단위 이동: 결과 달에 같은 날짜가 없으면 그 달 말일 (민법 제160조 제3항과 같은 방식)
+function addMonthsClamped(d, n){
+  const target = new Date(d.getFullYear(), d.getMonth() + n, 1);
+  const last = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+  return new Date(target.getFullYear(), target.getMonth(), Math.min(d.getDate(), last));
+}
+
 function calendarDiff(start, end){
-  let y = end.getFullYear() - start.getFullYear();
-  let m = end.getMonth() - start.getMonth();
-  let d = end.getDate() - start.getDate();
-  if (d < 0){
-    m -= 1;
-    d += new Date(end.getFullYear(), end.getMonth(), 0).getDate();
-  }
-  if (m < 0){ y -= 1; m += 12; }
-  return { y, m, d };
+  let months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+  if (addMonthsClamped(start, months) > end) months -= 1;
+  const d = Math.round((end - addMonthsClamped(start, months)) / 86400000);
+  return { y: Math.floor(months / 12), m: months % 12, d };
 }
 
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
@@ -92,6 +94,9 @@ function recalc(){
       <tr><th>기간 (년/개월/일)</th><td>${diff.y}년 ${diff.m}개월 ${diff.d}일</td></tr>
     `;
 
+    document.getElementById('nextBusiness').href = `business-day-calculator?start=${toInputValue(from)}&end=${toInputValue(to)}`;
+    document.getElementById('nextDday').href = `dday-calculator?target=${toInputValue(to)}`;
+
     UrlState.sync({
       mode, start: document.getElementById('d-start').value, end: document.getElementById('d-end').value
     }, URL_DEFAULTS);
@@ -108,10 +113,10 @@ function recalc(){
       return;
     }
     const signed = addOp === '+' ? amount : -amount;
-    const result = new Date(base);
-    if (addUnit === 'day') result.setDate(result.getDate() + signed);
-    else if (addUnit === 'month') result.setMonth(result.getMonth() + signed);
-    else if (addUnit === 'year') result.setFullYear(result.getFullYear() + signed);
+    let result;
+    if (addUnit === 'day') result = new Date(base.getFullYear(), base.getMonth(), base.getDate() + signed);
+    else result = addMonthsClamped(base, addUnit === 'month' ? signed : signed * 12);
+    const lastDayIncl = new Date(result.getFullYear(), result.getMonth(), result.getDate() - 1);
 
     const totalDaysDiff = Math.round((result - base) / 86400000);
     const unitLabel = addUnit === 'day' ? '일' : addUnit === 'month' ? '개월' : '년';
@@ -124,8 +129,14 @@ function recalc(){
       <tr><th>기준일</th><td>${fmtDate(base)}</td></tr>
       <tr><th>연산</th><td>${addOp === '+' ? '더하기' : '빼기'} ${amount}${unitLabel}</td></tr>
       <tr class="stat-highlight"><th>결과 날짜</th><td>${fmtDate(result)}</td></tr>
+      ${addOp === '+' && amount > 0 ? `<tr><th>기준일을 첫날로 셀 때 마지막 날</th><td>${fmtDate(lastDayIncl)}</td></tr>` : ''}
       <tr><th>기준일과의 차이</th><td>${totalDaysDiff >= 0 ? '+' : ''}${totalDaysDiff.toLocaleString('ko-KR')}일</td></tr>
     `;
+
+    document.getElementById('nextBusiness').href = result >= base
+      ? `business-day-calculator?start=${toInputValue(base)}&end=${toInputValue(result)}`
+      : `business-day-calculator?start=${toInputValue(result)}&end=${toInputValue(base)}`;
+    document.getElementById('nextDday').href = `dday-calculator?target=${toInputValue(result)}`;
 
     UrlState.sync({
       mode, base: document.getElementById('d-base').value, amount, op: addOp, unit: addUnit
