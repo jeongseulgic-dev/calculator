@@ -173,7 +173,8 @@ function recalc(){
   ].join('');
 
   if (document.getElementById('tlCash')){
-    const newDate = new Date(end.getFullYear(), end.getMonth() + gapMonths, end.getDate());
+    const newDate = new Date(end.getFullYear(), end.getMonth() + gapMonths, 1);
+    newDate.setDate(Math.min(end.getDate(), new Date(newDate.getFullYear(), newDate.getMonth() + 1, 0).getDate()));
     const tlDiff = reemployed ? monthlyNetPay(newSalary) - curNet : null;
     document.getElementById('tlEndDate').textContent = toInputValue(end);
     const ko = s => s.replace(/([가-힣]+)/g, '<span class="sim-ko">$1</span>');
