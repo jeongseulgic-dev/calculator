@@ -44,6 +44,21 @@ function toInputValue(d){
   return `${y}-${m}-${day}`;
 }
 
+function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+function minusMonthsClamped(d, n){
+  const y = d.getFullYear(), m = d.getMonth() - n;
+  const last = new Date(y, m + 1, 0).getDate();
+  return new Date(y, m, Math.min(d.getDate(), last));
+}
+// 세법상 근속연수: 입사일~퇴직일 사이 달력 기준 만 년수, 1년 미만 끝수는 올림 (소득세법 시행령 제105조)
+function taxServiceYears(start, retireDate){
+  let y = retireDate.getFullYear() - start.getFullYear();
+  if (new Date(start.getFullYear() + y, start.getMonth(), start.getDate()) > retireDate) y--;
+  const rem = new Date(start.getFullYear() + y, start.getMonth(), start.getDate()) < retireDate;
+  return Math.max(1, y + (rem ? 1 : 0));
+}
+function num(id){ const v = parseFloat(document.getElementById(id).value.replace(/,/g, '')); return Number.isFinite(v) ? v : 0; }
+
 function fail(msg){
   document.getElementById('miniScreen').textContent = '0원';
   document.getElementById('miniScreenSub').textContent = '';
@@ -53,25 +68,29 @@ function fail(msg){
 
 function recalc(){
   const start = parseIsoDate(document.getElementById('sp-start').value);
-  const end = parseIsoDate(document.getElementById('sp-end').value);
+  const lastDay = parseIsoDate(document.getElementById('sp-end').value);
   const wage = parseFloat(document.getElementById('sp-wage').value.replace(/,/g, ''));
+  const bonus = Math.max(0, num('sp-bonus'));
+  const leavePay = Math.max(0, num('sp-leave'));
 
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
   const statBody = document.getElementById('statBody');
   const meta = document.getElementById('page-meta');
 
-  if (!start || !end || !Number.isFinite(wage) || wage <= 0){
-    fail('입사일·퇴사일(YYYY-MM-DD)과 평균 월급(0보다 큼)을 입력해 주세요');
+  if (!start || !lastDay || !Number.isFinite(wage) || wage <= 0){
+    fail('입사일·마지막 근무일(YYYY-MM-DD)과 평균 월급(0보다 큼)을 입력해 주세요');
     return;
   }
 
-  if (end <= start){
-    fail('퇴사일은 입사일보다 뒤여야 합니다');
+  if (lastDay < start){
+    fail('마지막 근무일은 입사일과 같거나 뒤여야 합니다');
     return;
   }
 
-  const serviceDays = Math.round((end - start) / 86400000);
+  // 고용노동부 기준: 퇴직일 = 마지막 근무일 다음 날, 재직일수 = 퇴직일 − 입사일
+  const retireDate = addDays(lastDay, 1);
+  const serviceDays = Math.round((retireDate - start) / 86400000);
 
   if (serviceDays < 365){
     miniScreen.textContent = '0원';
@@ -81,10 +100,13 @@ function recalc(){
     return;
   }
 
-  const avgDaily = wage * 3 / 90;
+  // 평균임금 = 퇴직일 이전 3개월 임금총액(+상여금·연차수당 3/12) ÷ 그 3개월의 실제 일수
+  const periodDays = Math.round((retireDate - minusMonthsClamped(retireDate, 3)) / 86400000);
+  const wageTotal = wage * 3 + bonus * 3 / 12 + leavePay * 3 / 12;
+  const avgDaily = wageTotal / periodDays;
   const severance = avgDaily * 30 * (serviceDays / 365);
 
-  const taxYears = Math.max(1, Math.ceil(serviceDays / 365));
+  const taxYears = taxServiceYears(start, retireDate);
   const td = tenureDeduction(taxYears);
   const conv = Math.max(0, severance - td) * 12 / taxYears;
   const cd = convDeduction(conv);
@@ -101,6 +123,9 @@ function recalc(){
   statBody.innerHTML = `
     <tr><th>재직일수</th><td>${serviceDays.toLocaleString('ko-KR')}일</td></tr>
     <tr><th>근속연수(세금 계산용, 올림)</th><td>${taxYears}년</td></tr>
+    <tr><th>평균임금 산정기간</th><td>${periodDays}일</td></tr>
+    <tr><th>3개월 임금총액</th><td>${fmt(wageTotal)}원</td></tr>
+    <tr><th>1일 평균임금</th><td>${fmt(avgDaily)}원</td></tr>
     <tr class="stat-highlight"><th>법정 퇴직금</th><td>${fmt(severance)}원</td></tr>
     <tr><th>근속연수공제</th><td>${fmt(td)}원</td></tr>
     <tr><th>환산급여</th><td>${fmt(conv)}원</td></tr>
@@ -117,11 +142,11 @@ function recalc(){
   UrlState.sync({
     start: document.getElementById('sp-start').value,
     end: document.getElementById('sp-end').value,
-    wage
+    wage, bonus, leave: leavePay
   }, URL_DEFAULTS);
 }
 
-document.getElementById('sp-wage').addEventListener('input', function(){ formatInputComma(this); recalc(); });
+['sp-wage', 'sp-bonus', 'sp-leave'].forEach(id => document.getElementById(id).addEventListener('input', function(){ formatInputComma(this); recalc(); }));
 attachDateMask('sp-start', recalc);
 attachDateMask('sp-end', recalc);
 
@@ -134,12 +159,16 @@ document.getElementById('sp-wage').value = Number('3000000').toLocaleString('ko-
 const URL_DEFAULTS = {
   start: toInputValue(fiveYearsAgo),
   end: toInputValue(today),
-  wage: '3000000'
+  wage: '3000000',
+  bonus: '0',
+  leave: '0'
 };
 
 const urlParams = UrlState.read();
 if (urlParams.start) document.getElementById('sp-start').value = urlParams.start;
 if (urlParams.end) document.getElementById('sp-end').value = urlParams.end;
 if (urlParams.wage) document.getElementById('sp-wage').value = Number(urlParams.wage).toLocaleString('ko-KR');
+if (urlParams.bonus) document.getElementById('sp-bonus').value = Number(urlParams.bonus).toLocaleString('ko-KR');
+if (urlParams.leave) document.getElementById('sp-leave').value = Number(urlParams.leave).toLocaleString('ko-KR');
 
 recalc();

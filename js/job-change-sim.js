@@ -56,10 +56,18 @@ const CONV_DEDUCT = [
   { limit: 300000000, calc: g => 61700000 + (g - 100000000) * 0.45 },
   { limit: Infinity, calc: g => 151700000 + (g - 300000000) * 0.35 }
 ];
-function severanceNet(wage, serviceDays){
+function taxServiceYears(start, retireDate){
+  let y = retireDate.getFullYear() - start.getFullYear();
+  if (new Date(start.getFullYear() + y, start.getMonth(), start.getDate()) > retireDate) y--;
+  const rem = new Date(start.getFullYear() + y, start.getMonth(), start.getDate()) < retireDate;
+  return Math.max(1, y + (rem ? 1 : 0));
+}
+function severanceNet(wage, start, retireDate, serviceDays){
   if (serviceDays < 365) return { gross: 0, net: 0 };
-  const gross = wage * 3 / 90 * 30 * (serviceDays / 365);
-  const taxYears = Math.max(1, Math.ceil(serviceDays / 365));
+  const periodStart = new Date(retireDate.getFullYear(), retireDate.getMonth() - 3, Math.min(retireDate.getDate(), new Date(retireDate.getFullYear(), retireDate.getMonth() - 2, 0).getDate()));
+  const periodDays = Math.round((retireDate - periodStart) / 86400000);
+  const gross = wage * 3 / periodDays * 30 * (serviceDays / 365);
+  const taxYears = taxServiceYears(start, retireDate);
   const conv = Math.max(0, gross - TENURE_DEDUCT.find(r => taxYears <= r.years).calc(taxYears)) * 12 / taxYears;
   const cd = conv <= 0 ? 0 : CONV_DEDUCT.find(r => conv <= r.limit).calc(conv);
   const tax = Math.max(progressiveTax(Math.max(0, conv - cd)), 0) / 12 * taxYears * 1.1;
@@ -108,16 +116,18 @@ function recalc(){
   const receivesUb = toggleDefault('ub') === 'yes';
 
   if (!(wage > 0) || !start || !end || !(age > 0)){
-    setEmpty('월급·입사일·퇴사일·나이를 입력해 주세요');
+    setEmpty('월급·입사일·마지막 근무일·나이를 입력해 주세요');
     return;
   }
-  if (end <= start){
-    setEmpty('퇴사일은 입사일보다 뒤여야 합니다');
+  if (end < start){
+    setEmpty('마지막 근무일은 입사일과 같거나 뒤여야 합니다');
     return;
   }
 
-  const serviceDays = Math.round((end - start) / 86400000);
-  const sev = severanceNet(wage, serviceDays);
+  // 퇴직일 = 마지막 근무일 다음 날 (퇴직금 계산기와 동일)
+  const retireDate = new Date(end.getFullYear(), end.getMonth(), end.getDate() + 1);
+  const serviceDays = Math.round((retireDate - start) / 86400000);
+  const sev = severanceNet(wage, start, retireDate, serviceDays);
 
   const insuredMonths = serviceDays / 365 * 12;
   const eligible = receivesUb;

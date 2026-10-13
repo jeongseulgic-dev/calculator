@@ -14,14 +14,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="입사일·퇴사일·평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.">
+<meta name="description" content="입사일·마지막 근무일·월급과 상여금·연차수당을 넣으면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.">
 <title>퇴직금 계산기 (2026) | 계산기</title>
 <link rel="canonical" href="https://kcalculator.net/severance-pay-calculator">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="계산기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="퇴직금 계산기 (2026) | 계산기">
-<meta property="og:description" content="입사일·퇴사일·평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.">
+<meta property="og:description" content="입사일·마지막 근무일·월급과 상여금·연차수당을 넣으면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.">
 <meta property="og:url" content="https://kcalculator.net/severance-pay-calculator">
 <meta property="og:image" content="https://kcalculator.net/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -34,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"퇴직금 계산기","item":"https://kcalculator.net/severance-pay-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"퇴직금 계산기","description":"입사일·퇴사일·평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.","url":"https://kcalculator.net/severance-pay-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"3개월 평균 월급만 입력했는데 정확한 평균임금과 다르지 않나요?","acceptedAnswer":{"@type":"Answer","text":"실제 평균임금은 퇴직 전 3개월간 지급된 임금총액(상여금·연차수당 비례분 포함)을 그 기간의 실제 달력일수로 나눠 계산합니다. 이 계산기는 매월을 30일로 가정해 월급×3÷90으로 근사하고 상여금·연차수당은 반영하지 않으므로, 실제 값과 다소 다를 수 있습니다."}},{"@type":"Question","name":"근속연수를 왜 올림 처리하나요?","acceptedAnswer":{"@type":"Answer","text":"소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 이 올림은 세액공제 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다."}},{"@type":"Question","name":"1년 미만 근무해도 퇴직금을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"원칙적으로 받을 수 없습니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자만 법정 퇴직금 지급 대상입니다."}},{"@type":"Question","name":"왜 퇴직소득세는 근로소득세보다 세율이 낮게 느껴지나요?","acceptedAnswer":{"@type":"Answer","text":"퇴직금은 여러 해에 걸쳐 쌓인 소득을 한 번에 받는 것이라, 그대로 과세하면 그 해에만 세율이 크게 튀어오릅니다. 이를 막기 위해 근속연수공제로 먼저 덜어내고, 남은 금액을 근속연수로 나눠 1년치 소득으로 환산해 세율을 적용한 뒤 다시 근속연수를 곱하는 방식(환산급여 방식)으로 누진 부담을 완화합니다."}},{"@type":"Question","name":"상여금·연차수당도 평균임금에 포함되나요?","acceptedAnswer":{"@type":"Answer","text":"원칙적으로는 포함됩니다(연간 상여금·전년도 미사용 연차수당의 3개월 비례분). 이 계산기는 3개월 평균 월급만 입력받는 단순화된 근사치라 상여금·수당을 별도로 반영하지 않으므로, 실제 평균임금·퇴직금과 차이가 있을 수 있습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=36">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"퇴직금 계산기","item":"https://kcalculator.net/severance-pay-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"퇴직금 계산기","description":"입사일·마지막 근무일·월급과 상여금·연차수당을 넣으면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.","url":"https://kcalculator.net/severance-pay-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"퇴사일에는 마지막 근무일을 넣어야 하나요, 다음 날을 넣어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기에는 마지막으로 출근한 날을 넣으면 됩니다. 고용노동부는 마지막 근무일 다음 날을 퇴직일로 보고 재직일수와 평균임금 기간을 계산하는데, 계산기가 하루를 자동으로 더해 같은 방식으로 맞춥니다. 예를 들어 2025년 1월 1일 입사해 2025년 12월 31일까지 일했다면 재직일수는 365일로 퇴직금 지급 대상입니다."}},{"@type":"Question","name":"근속연수를 왜 올림 처리하나요?","acceptedAnswer":{"@type":"Answer","text":"소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 근속연수는 날짜 기준으로 세기 때문에 윤년이 끼어 있어도 딱 5년을 근무했다면 5년입니다. 이 올림은 세금 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다."}},{"@type":"Question","name":"1년 미만 근무해도 퇴직금을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"원칙적으로 받을 수 없습니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자만 법정 퇴직금 지급 대상입니다."}},{"@type":"Question","name":"상여금·연차수당은 어떻게 반영되나요?","acceptedAnswer":{"@type":"Answer","text":"퇴직 전 1년 동안 받은 상여금과 연차수당(전년도에 쓰지 못한 연차를 돈으로 받은 것)은 연간 금액의 3/12만큼을 3개월 임금총액에 더합니다. 예를 들어 연간 상여금이 400만원이면 100만원이 더해집니다. 퇴직하면서 정산받는 미사용 연차수당은 퇴직 전 3개월 임금에 포함하지 않는 것이 일반적이므로 넣지 않습니다."}},{"@type":"Question","name":"퇴직금은 언제, 어디로 받나요?","acceptedAnswer":{"@type":"Answer","text":"회사는 퇴직일로부터 14일 안에 퇴직금을 지급해야 하며, 당사자끼리 합의하면 기한을 늦출 수 있습니다. 2022년 4월 14일 이후 퇴직자는 원칙적으로 개인형퇴직연금(IRP) 계좌로 받고(55세 이후 퇴직, 300만원 이하 등은 예외), 이때는 퇴직소득세가 바로 떼이지 않고 IRP에서 꺼낼 때 과세됩니다. 퇴직금을 받지 못했다면 퇴직일로부터 3년 안에 청구해야 합니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=37">
 </head>
 <body>
 
@@ -111,7 +111,7 @@
   <main class="page-content">
     <div class="page-title">
       <h1>퇴직금 계산기</h1>
-      <p>입사일, 퇴사일, 퇴직 전 3개월 평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.</p>
+      <p>입사일, 마지막 근무일, 퇴직 전 3개월 평균 월급을 입력하면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다. 상여금·연차수당이 있으면 함께 넣어 평균임금에 반영할 수 있습니다.</p>
     </div>
 
     <div class="shell">
@@ -131,14 +131,26 @@
             <input type="text" id="sp-start" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
           </div>
           <div class="field">
-            <label for="sp-end">퇴사일</label>
+            <label for="sp-end">마지막 근무일</label>
             <input type="text" id="sp-end" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10">
+            <p class="field-note">퇴직일은 마지막 근무일 다음 날로 보고 재직일수를 계산합니다.</p>
           </div>
 
           <div class="field">
             <label for="sp-wage">퇴직 전 3개월 평균 월급 (세전, 원)</label>
             <input type="text" id="sp-wage" inputmode="numeric">
-            <p class="field-note">실제 평균임금은 3개월간 임금총액(상여금·연차수당 비례분 포함)을 그 기간의 실제 일수로 나눈 값입니다. 이 계산기는 월 30일로 가정해 근사합니다.</p>
+            <p class="field-note">기본급과 매달 받는 수당을 더한 금액입니다.</p>
+          </div>
+
+          <div class="field">
+            <label for="sp-bonus">연간 상여금 (퇴직 전 1년, 선택)</label>
+            <input type="text" id="sp-bonus" inputmode="numeric" placeholder="0">
+          </div>
+
+          <div class="field">
+            <label for="sp-leave">연차수당 (퇴직 전 1년, 선택)</label>
+            <input type="text" id="sp-leave" inputmode="numeric" placeholder="0">
+            <p class="field-note">상여금·연차수당은 연간 금액의 3/12만 평균임금에 더합니다.</p>
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -179,11 +191,21 @@
       <div class="info-block">
         <h3><span class="info-icon">💡</span>퇴직금이란?</h3>
         <p>퇴직금은 근로자가 퇴직할 때 사용자로부터 받는 법정 급여입니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자에게 지급 의무가 있습니다.</p>
-        <p>받은 퇴직금 전액을 그대로 가져가는 것이 아니라 퇴직소득세(+지방소득세)를 뗀 금액을 실제로 수령합니다. <strong>이 계산기는 3개월 평균 월급만으로 평균임금을 근사하고 법정 세율·공제만 반영한 참고용 추정치</strong>이며, 실제 금액은 상여금·수당 포함 여부와 회사 자체 규정(법정 기준 이상 지급하는 경우 등)에 따라 달라질 수 있습니다.</p>
+        <p>받은 퇴직금 전액을 그대로 가져가는 것이 아니라 퇴직소득세(+지방소득세)를 뗀 금액을 실제로 수령합니다. <strong>이 계산기는 입력한 월급·상여금·연차수당으로 평균임금을 구하고 법정 세율·공제만 반영한 참고용 추정치</strong>이며, 실제 금액은 3개월 사이 임금 변동, 휴업·육아휴직 등 평균임금 산정에서 빠지는 기간, 회사 자체 규정(법정 기준 이상 지급하는 경우 등)에 따라 달라질 수 있습니다.</p>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🧮</span>계산 방식</h3>
+        <div class="method-def">
+          <h4>1일 평균임금</h4>
+          <div class="formula-box formula-frac">
+            <span class="frac-part">
+              <span class="frac-lhs">1일 평균임금 =</span>
+              <span class="frac"><span class="num">월급 × 3 + (연간 상여금 + 연차수당) × 3/12</span><span class="den">퇴직일 이전 3개월의 실제 일수</span></span>
+            </span>
+          </div>
+          <p>퇴직일 이전 3개월의 일수는 달에 따라 89~92일입니다. 예를 들어 마지막 근무일이 10월 13일이면 퇴직일은 10월 14일이고, 7월 14일~10월 13일의 92일로 나눕니다.</p>
+        </div>
         <div class="method-def">
           <h4>법정 퇴직금</h4>
           <div class="formula-box formula-frac">
@@ -232,30 +254,31 @@
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
-          <summary>3개월 평균 월급만 입력했는데 정확한 평균임금과 다르지 않나요?</summary>
-          <p class="faq-a">실제 평균임금은 퇴직 전 3개월간 지급된 임금총액(상여금·연차수당 비례분 포함)을 그 기간의 실제 달력일수로 나눠 계산합니다. 이 계산기는 매월을 30일로 가정해 월급×3÷90으로 근사하고 상여금·연차수당은 반영하지 않으므로, 실제 값과 다소 다를 수 있습니다.</p>
+          <summary>퇴사일에는 마지막 근무일을 넣어야 하나요, 다음 날을 넣어야 하나요?</summary>
+          <p class="faq-a">이 계산기에는 마지막으로 출근한 날을 넣으면 됩니다. 고용노동부는 마지막 근무일 다음 날을 퇴직일로 보고 재직일수와 평균임금 기간을 계산하는데, 계산기가 하루를 자동으로 더해 같은 방식으로 맞춥니다. 예를 들어 2025년 1월 1일 입사해 2025년 12월 31일까지 일했다면 재직일수는 365일로 퇴직금 지급 대상입니다.</p>
         </details>
         <details class="faq-item">
           <summary>근속연수를 왜 올림 처리하나요?</summary>
-          <p class="faq-a">소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 이 올림은 세액공제 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다.</p>
+          <p class="faq-a">소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 근속연수는 날짜 기준으로 세기 때문에 윤년이 끼어 있어도 딱 5년을 근무했다면 5년입니다. 이 올림은 세금 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다.</p>
         </details>
         <details class="faq-item">
           <summary>1년 미만 근무해도 퇴직금을 받을 수 있나요?</summary>
           <p class="faq-a">원칙적으로 받을 수 없습니다. 근로자퇴직급여보장법에 따라 계속근로기간 1년 이상, 4주 평균 주 소정근로시간 15시간 이상인 근로자만 법정 퇴직금 지급 대상입니다.</p>
         </details>
         <details class="faq-item">
-          <summary>왜 퇴직소득세는 근로소득세보다 세율이 낮게 느껴지나요?</summary>
-          <p class="faq-a">퇴직금은 여러 해에 걸쳐 쌓인 소득을 한 번에 받는 것이라, 그대로 과세하면 그 해에만 세율이 크게 튀어오릅니다. 이를 막기 위해 근속연수공제로 먼저 덜어내고, 남은 금액을 근속연수로 나눠 1년치 소득으로 환산해 세율을 적용한 뒤 다시 근속연수를 곱하는 방식(환산급여 방식)으로 누진 부담을 완화합니다.</p>
+          <summary>상여금·연차수당은 어떻게 반영되나요?</summary>
+          <p class="faq-a">퇴직 전 1년 동안 받은 상여금과 연차수당(전년도에 쓰지 못한 연차를 돈으로 받은 것)은 연간 금액의 3/12만큼을 3개월 임금총액에 더합니다. 예를 들어 연간 상여금이 400만원이면 100만원이 더해집니다. 퇴직하면서 정산받는 미사용 연차수당은 퇴직 전 3개월 임금에 포함하지 않는 것이 일반적이므로 넣지 않습니다.</p>
         </details>
         <details class="faq-item">
-          <summary>상여금·연차수당도 평균임금에 포함되나요?</summary>
-          <p class="faq-a">원칙적으로는 포함됩니다(연간 상여금·전년도 미사용 연차수당의 3개월 비례분). 이 계산기는 3개월 평균 월급만 입력받는 단순화된 근사치라 상여금·수당을 별도로 반영하지 않으므로, 실제 평균임금·퇴직금과 차이가 있을 수 있습니다.</p>
+          <summary>퇴직금은 언제, 어디로 받나요?</summary>
+          <p class="faq-a">회사는 퇴직일로부터 14일 안에 퇴직금을 지급해야 하며, 당사자끼리 합의하면 기한을 늦출 수 있습니다. 2022년 4월 14일 이후 퇴직자는 원칙적으로 개인형퇴직연금(IRP) 계좌로 받고(55세 이후 퇴직, 300만원 이하 등은 예외), 이때는 퇴직소득세가 바로 떼이지 않고 IRP에서 꺼낼 때 과세됩니다. 퇴직금을 받지 못했다면 퇴직일로부터 3년 안에 청구해야 합니다.</p>
         </details>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
+          <li><a href="https://www.moel.go.kr/retirementpayCal.do" target="_blank" rel="noopener">고용노동부 — 퇴직금 계산기 (평균임금 산정 방법)</a></li>
           <li><a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6444&cntntsId=7880" target="_blank" rel="noopener">국세청 — 퇴직소득세 계산방법</a></li>
           <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%EB%B3%B4%EC%9E%A5%EB%B2%95" target="_blank" rel="noopener">국가법령정보센터 — 근로자퇴직급여 보장법</a></li>
         </ul>
@@ -276,9 +299,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=36"></script>
-<script src="js/url-state.js?v=36"></script>
-<script src="js/export.js?v=36"></script>
-<script src="js/severance-pay-calc.js?v=36"></script>
+<script src="js/site.js?v=37"></script>
+<script src="js/url-state.js?v=37"></script>
+<script src="js/export.js?v=37"></script>
+<script src="js/severance-pay-calc.js?v=37"></script>
 </body>
 </html>
