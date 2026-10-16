@@ -56,11 +56,20 @@ function recalc(){
   miniScreenSub.textContent = `목표: ${GOAL_LABEL[goal]}`;
   meta.textContent = `나이 ${age}세 · 키 ${height}cm · 몸무게 ${weight}kg · ${gender === 'male' ? '남성' : '여성'} · 목표 ${GOAL_LABEL[goal]}`;
 
+  // 목표 칼로리가 기초대사량보다 낮으면 무리한 감량이므로 경고 (공식 자체는 그대로 둠)
+  const belowBmr = targetCal < bmr;
+  const outOfRange = age < 19;   // Mifflin-St Jeor 공식은 19~78세 성인 자료로 만든 식
+
   statBody.innerHTML = `
     <tr><th>기초대사량 (BMR)</th><td>${fmt0(bmr)} kcal</td></tr>
     <tr><th>활동대사량 (TDEE)</th><td>${fmt0(tdee)} kcal</td></tr>
     <tr class="stat-highlight"><th>목표 칼로리 (${GOAL_LABEL[goal]})</th><td>${fmt0(targetCal)} kcal</td></tr>
+    ${belowBmr ? `<tr><th>주의</th><td>기초대사량보다 낮음</td></tr>` : ''}
+    ${outOfRange ? `<tr><th>참고</th><td>성인 기준 공식</td></tr>` : ''}
   `;
+
+  document.getElementById('nextBmi').href = `bmi-calculator?height=${height}&weight=${weight}&gender=${gender}`;
+  document.getElementById('nextBodyfat').href = `bodyfat-calculator?height=${height}&weight=${weight}&gender=${gender}`;
 
   macroBody.innerHTML = `
     <tr><th>탄수화물 (50%)</th><td>${fmt0(carbG)}g (${fmt0(carbCal)}kcal)</td></tr>
