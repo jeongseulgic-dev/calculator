@@ -1,11 +1,35 @@
 let region = 'regulated';
 let firstTime = 'no';
+let rateType = 'variable';
+
+// 2025.10.15 주택시장 안정화 대책(10.16 시행) 기준
+// regulated: 규제지역(서울 전역·경기 12곳) / metro: 수도권 비규제지역 / local: 지방
+const LTV = {
+  regulated: { no: 40, yes: 70 },
+  metro:     { no: 70, yes: 70 },
+  local:     { no: 70, yes: 80 }
+};
+const REGION_LABEL = { regulated: '규제지역', metro: '수도권 비규제지역', local: '지방' };
+// 스트레스 DSR: 수도권·규제지역 주담대 3.0%(3단계 비율), 지방 주담대 0.75%(2단계 비율 유지)
+const STRESS = {
+  capital: { base: 3.0, ratio: { variable: 1, mixed: 0.8, periodic: 0.4, fixed: 0 } },
+  local:   { base: 0.75, ratio: { variable: 1, mixed: 0.6, periodic: 0.3, fixed: 0 } }
+};
+const RATE_TYPE_LABEL = { variable: '변동금리', mixed: '혼합형', periodic: '주기형', fixed: '순수 고정금리' };
 
 function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
+// 화면 표시용 퍼센트: 소수점 둘째 자리 반올림, 뒤 0 생략 (0.225 → 0.23)
+function pct(n){ return String(Math.round(n * 100 + 1e-9) / 100); }
 
 function getLtvRate(region, firstTime){
-  if (firstTime === 'yes') return region === 'regulated' ? 70 : 80;
-  return region === 'regulated' ? 50 : 70;
+  return LTV[region][firstTime];
+}
+
+// 수도권·규제지역 주택구입목적 주담대 한도: 시가 15억 이하 6억, 25억 이하 4억, 25억 초과 2억
+function priceCap(price){
+  if (price <= 1500000000) return { amount: 600000000, label: '15억원 이하 주택' };
+  if (price <= 2500000000) return { amount: 400000000, label: '15억 초과 25억원 이하 주택' };
+  return { amount: 200000000, label: '25억원 초과 주택' };
 }
 
 function maxPrincipalEqualPI(monthlyPayment, monthlyRate, months){
@@ -45,6 +69,7 @@ document.querySelectorAll('.seg-toggle').forEach(group=>{
       btn.classList.add('active');
       if (group.dataset.target === 'region') region = btn.dataset.value;
       if (group.dataset.target === 'firstTime') firstTime = btn.dataset.value;
+      if (group.dataset.target === 'rateType') rateType = btn.dataset.value;
       recalc();
     });
   });
@@ -70,30 +95,35 @@ function recalc(){
     return;
   }
 
-  const regionLabel = region === 'regulated' ? '수도권·규제지역' : '비규제지역·지방';
+  const regionLabel = REGION_LABEL[region];
   const firstTimeLabel = firstTime === 'yes' ? '생애최초' : '생애최초 아님';
   meta.textContent = `주택가격 ${fmt(price)}원 · ${regionLabel} · ${firstTimeLabel}`;
 
   const ltvRate = getLtvRate(region, firstTime);
   const ltvAmount = price * ltvRate / 100;
-  const capApplies = region === 'regulated';
-  const capAmount = capApplies ? Math.min(ltvAmount, 600000000) : ltvAmount;
+  const capApplies = region !== 'local';   // 수도권 전체 + 규제지역
+  const cap = priceCap(price);
 
   const monthlyRate = rate / 100 / 12;
   const months = period * 12;
   const periodCapped = capApplies && period > 30;
   const effectiveMonths = periodCapped ? 360 : months;
+
+  // DSR은 실제 금리에 스트레스 금리를 더한 금리로 원리금을 계산해 한도를 구함
+  const stress = STRESS[capApplies ? 'capital' : 'local'];
+  const stressAdd = stress.base * stress.ratio[rateType];
+  const dsrRate = rate + stressAdd;
   const availableAnnualPI = Math.max(0, income * 0.40 - existing);
-  const dsrAmount = maxPrincipalEqualPI(availableAnnualPI / 12, monthlyRate, effectiveMonths);
+  const dsrAmount = maxPrincipalEqualPI(availableAnnualPI / 12, dsrRate / 100 / 12, effectiveMonths);
 
-  const finalAmount = Math.min(capAmount, dsrAmount);
-
-  let bottleneck;
-  if (finalAmount >= capAmount && finalAmount <= dsrAmount){
-    bottleneck = capApplies && ltvAmount > 600000000 ? '6억원 한도' : 'LTV 기준';
-  } else {
-    bottleneck = 'DSR(은행권 40%) 기준';
-  }
+  const limits = [
+    { name: 'LTV 기준', amount: ltvAmount },
+    ...(capApplies ? [{ name: '주택가격별 한도', amount: cap.amount }] : []),
+    { name: 'DSR 기준', amount: dsrAmount }
+  ];
+  const binding = limits.reduce((a, b) => b.amount < a.amount ? b : a);
+  const finalAmount = binding.amount;
+  const bottleneck = binding.name;
 
   const requiredCash = Math.max(0, price - finalAmount);
   const finalMonthly = monthlyPaymentEqualPI(finalAmount, monthlyRate, effectiveMonths);
@@ -102,13 +132,16 @@ function recalc(){
   miniScreenSub.textContent = `병목: ${bottleneck}`;
 
   statBody.innerHTML = `
-    <tr><th>LTV 기준</th><td>${ltvRate}% · ${fmt(ltvAmount)}원</td></tr>
-    <tr><th>대출 한도 제한</th><td>${capApplies ? [ltvAmount > 600000000 ? '6억원 한도 적용' : '6억원 이내 (해당 없음)', periodCapped ? `만기 30년 한도 적용 (입력 ${period}년 → 30년)` : null].filter(Boolean).join(' · ') : '해당 없음(비규제지역)'}</td></tr>
-    <tr><th>DSR(은행권 40%) 기준</th><td>${fmt(dsrAmount)}원</td></tr>
+    <tr><th>LTV 기준 (${ltvRate}%)</th><td>${fmt(ltvAmount)}원</td></tr>
+    <tr><th>주택가격별 한도</th><td>${capApplies ? `${fmt(cap.amount)}원` : '해당 없음 (지방)'}</td></tr>
+    ${periodCapped ? `<tr><th>대출 기간</th><td>30년 (수도권·규제지역 만기 한도)</td></tr>` : ''}
+    <tr><th>스트레스 금리</th><td>+${pct(stressAdd)}%</td></tr>
+    <tr><th>DSR 계산 금리</th><td>${pct(rate + stressAdd)}%</td></tr>
+    <tr><th>DSR 기준 (40%)</th><td>${fmt(dsrAmount)}원</td></tr>
     <tr class="stat-highlight"><th>최종 대출 가능액</th><td>${fmt(finalAmount)}원</td></tr>
     <tr><th>병목 사유</th><td>${bottleneck}</td></tr>
     <tr><th>필요 자기자금</th><td>${fmt(requiredCash)}원</td></tr>
-    <tr><th>참고: 월 상환액(원리금균등)</th><td>${fmt(finalMonthly)}원</td></tr>
+    <tr><th>예상 월 상환액</th><td>${fmt(finalMonthly)}원</td></tr>
   `;
 
   const roundedIncome = Math.round(income);
@@ -117,7 +150,7 @@ function recalc(){
   document.getElementById('nextSalary').href = `salary-calculator?mode=annual&salary=${roundedIncome}`;
 
   UrlState.sync({
-    price, region, firstTime, income, existing, rate: document.getElementById('m-rate').value, period
+    price, region, firstTime, rateType, income, existing, rate: document.getElementById('m-rate').value, period
   }, URL_DEFAULTS);
 }
 
@@ -125,6 +158,7 @@ const URL_DEFAULTS = {
   price: '1000000000',
   region: toggleDefault('region'),
   firstTime: toggleDefault('firstTime'),
+  rateType: toggleDefault('rateType'),
   income: '80000000',
   existing: '5000000',
   rate: document.getElementById('m-rate').defaultValue,
@@ -137,7 +171,9 @@ if (urlParams.income) document.getElementById('m-income').value = Number(urlPara
 if (urlParams.existing) document.getElementById('m-existing').value = Number(urlParams.existing).toLocaleString('ko-KR');
 if (urlParams.rate) document.getElementById('m-rate').value = urlParams.rate;
 if (urlParams.period) document.getElementById('m-period').value = urlParams.period;
-if (urlParams.region) clickToggle('region', urlParams.region);
+// 예전 공유 링크의 region=normal(비규제지역·지방)은 지방으로 연결
+if (urlParams.region) clickToggle('region', urlParams.region === 'normal' ? 'local' : urlParams.region);
+if (urlParams.rateType) clickToggle('rateType', urlParams.rateType);
 if (urlParams.firstTime) clickToggle('firstTime', urlParams.firstTime);
 
 recalc();
