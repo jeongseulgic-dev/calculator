@@ -61,6 +61,10 @@ calculator.net을 UX(기능 구성)만 참고하고 UI는 독자적으로 만들
   옛 JS/CSS 조합으로 깨진 화면을 보게 된다.
 - `.claude/skills/calculator-info-section/`: 계산기 서브페이지(입력+결과+설명+광고슬롯)
   전용 구조 스킬. 계산기 페이지를 만들거나 손볼 땐 이 스킬을 먼저 로드한다.
+- 페이지 내용을 바꿔 push하면 `py scripts/indexnow.py`를 실행해 sitemap `lastmod`를
+  갱신하고 IndexNow(Bing·Naver 등)에 바뀐 URL을 제출한다. Cloudflare 배포가 끝난
+  뒤에 실행하고, 갱신된 sitemap.xml은 다음 커밋에 포함한다. 루트의 32자리 hex `.txt`는
+  IndexNow 소유 확인 키 파일이라 지우지 않는다.
 
 ## 공통 컴포넌트 — 계산기 페이지든 정보 페이지든 동일 규칙
 
