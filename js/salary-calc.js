@@ -11,7 +11,14 @@ const RATE = {
 
 const MEAL_NONTAX_CAP = 200000; // 식대 비과세 한도 (월, 2023년~)
 let mode = 'annual';
-const URL_DEFAULTS = { mode: 'annual', salary: '40000000', monthly: '3000000', meal: String(MEAL_NONTAX_CAP), deps: '1' };
+const URL_DEFAULTS = { mode: 'annual', salary: '40000000', monthly: '3000000', meal: String(MEAL_NONTAX_CAP), deps: '1', kids: '0' };
+
+// 근로소득 간이세액표(소득세법 시행령 별표2, 2026.2.27 개정·3.1 시행): 8세 이상 20세 이하 자녀 수별 월 세액 차감액
+function childMonthlyCredit(kids){
+  if (kids <= 0) return 0;
+  if (kids === 1) return 20830;
+  return 45830 + (kids - 2) * 33330;
+}
 
 // 근로소득 백분위 구간별 연평균 근로소득(원) — 공공데이터포털 "국세청_근로소득 백분위(천분위)
 // 자료"(2024년 귀속, 데이터 등록 2026-02-24) 원자료에서 각 구간(상위 N%) 행의
@@ -79,7 +86,7 @@ function earnedIncomeTaxCreditLimit(annual){
   return Math.max(660000 - (annual - 70000000) * 0.5, 500000);
 }
 
-function calcSalary(annual, dependents, monthlyNontaxInput){
+function calcSalary(annual, dependents, monthlyNontaxInput, kids = 0){
   const monthlyGross = annual / 12;
   const monthlyNontax = Math.min(Math.max(monthlyNontaxInput || 0, 0), MEAL_NONTAX_CAP, monthlyGross);
   const monthlyTaxable = monthlyGross - monthlyNontax;
@@ -109,16 +116,17 @@ function calcSalary(annual, dependents, monthlyNontaxInput){
   earnedTaxCredit = Math.min(earnedTaxCredit, earnedIncomeTaxCreditLimit(annual));
 
   const annualIncomeTax = Math.max(calculatedTax - earnedTaxCredit, 0);
-  const annualLocalTax = annualIncomeTax * 0.1;
-  const monthlyIncomeTax = annualIncomeTax / 12;
-  const monthlyLocalTax = annualLocalTax / 12;
+  // 자녀 차감은 월 소득세에서 빼고, 음수가 되면 0원 (간이세액표 비고 3)
+  const childCredit = Math.min(annualIncomeTax / 12, childMonthlyCredit(kids));
+  const monthlyIncomeTax = annualIncomeTax / 12 - childCredit;
+  const monthlyLocalTax = monthlyIncomeTax * 0.1;
 
   const monthlyDeductionTotal = monthlyInsurance + monthlyIncomeTax + monthlyLocalTax;
   const monthlyNet = monthlyGross - monthlyDeductionTotal;
 
   return {
     monthlyGross, monthlyNontax, nationalPension, healthInsurance, longTermCare, employment,
-    monthlyInsurance, monthlyIncomeTax, monthlyLocalTax, monthlyDeductionTotal,
+    monthlyInsurance, monthlyIncomeTax, monthlyLocalTax, monthlyDeductionTotal, childCredit,
     monthlyNet, annualNet: monthlyNet * 12, bracketRate: taxBracketRate(taxBase)
   };
 }
@@ -129,6 +137,9 @@ function recalc(){
   const annual = mode === 'monthly' ? monthlyInput * 12 : annualInput;
   const monthlyNontax = Number(document.getElementById('sl-nontax').value.replace(/,/g, '')) || 0;
   const dependents = Math.max(parseInt(document.getElementById('sl-dependents').value) || 1, 1);
+  // 자녀는 부양가족(본인 포함) 안에 들어가므로 부양가족 수 − 1명을 넘을 수 없음
+  const kidsInput = Math.max(parseInt(document.getElementById('sl-kids').value) || 0, 0);
+  const kids = Math.min(kidsInput, dependents - 1);
 
   const miniScreen = document.getElementById('miniScreen');
   const miniScreenSub = document.getElementById('miniScreenSub');
@@ -145,13 +156,14 @@ function recalc(){
     return;
   }
 
-  const r = calcSalary(annual, dependents, monthlyNontax);
+  const r = calcSalary(annual, dependents, monthlyNontax, kids);
+  const kidsNote = kids > 0 ? ` · 8~20세 자녀 ${kids}명` : '';
 
   miniScreen.textContent = fmt0(r.monthlyNet) + '원';
   miniScreenSub.textContent = '월 실수령액';
   meta.textContent = mode === 'monthly'
-    ? `월급 ${fmt0(monthlyInput)}원(연봉 환산 ${fmt0(annual)}원) · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명`
-    : `연봉 ${fmt0(annual)}원 · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명`;
+    ? `월급 ${fmt0(monthlyInput)}원(연봉 환산 ${fmt0(annual)}원) · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명${kidsNote}`
+    : `연봉 ${fmt0(annual)}원 · 비과세 식대 ${fmt0(monthlyNontax)}원 · 부양가족 ${dependents}명${kidsNote}`;
 
   statBody.innerHTML = `
     <tr><th>월 급여 (세전)</th><td>${fmt0(r.monthlyGross)}원</td></tr>
@@ -161,6 +173,8 @@ function recalc(){
     <tr><th>장기요양보험(건강보험료의 13.14%)</th><td>-${fmt0(r.longTermCare)}원</td></tr>
     <tr><th>고용보험(0.9%)</th><td>-${fmt0(r.employment)}원</td></tr>
     <tr><th>소득세(${r.bracketRate}% 구간)</th><td>-${fmt0(r.monthlyIncomeTax)}원</td></tr>
+    ${kids > 0 ? `<tr><th>└ 자녀 세액공제(${kids}명) 반영</th><td>${fmt0(r.childCredit)}원 감면</td></tr>` : ''}
+    ${kidsInput > kids ? `<tr><th colspan="2" style="text-align:left; font-weight:400; color:var(--ink-soft);">자녀 수는 부양가족 수보다 1명 적게까지만 반영됩니다</th></tr>` : ''}
     <tr><th>지방소득세(10%)</th><td>-${fmt0(r.monthlyLocalTax)}원</td></tr>
     <tr><th>공제액 합계</th><td>-${fmt0(r.monthlyDeductionTotal)}원</td></tr>
     <tr><th>연 실수령액</th><td>${fmt0(r.annualNet)}원</td></tr>
@@ -177,7 +191,7 @@ function recalc(){
   document.getElementById('nextSeverance').href = `severance-pay-calculator?wage=${Math.round(r.monthlyGross)}`;
   document.getElementById('nextUnemployment').href = `unemployment-benefit-calculator?wage=${Math.round(r.monthlyGross)}`;
 
-  UrlState.sync({ mode, salary: annualInput, monthly: monthlyInput, meal: monthlyNontax, deps: dependents }, URL_DEFAULTS);
+  UrlState.sync({ mode, salary: annualInput, monthly: monthlyInput, meal: monthlyNontax, deps: dependents, kids }, URL_DEFAULTS);
 }
 
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
@@ -202,6 +216,7 @@ document.querySelectorAll('.calc-key[data-reset]').forEach(btn=>{
 });
 document.getElementById('sl-nontax').addEventListener('input', function(){ formatInputComma(this); recalc(); });
 document.getElementById('sl-dependents').addEventListener('input', recalc);
+document.getElementById('sl-kids').addEventListener('input', recalc);
 
 const urlParams = UrlState.read();
 document.getElementById('sl-salary').value = Number(urlParams.salary || URL_DEFAULTS.salary).toLocaleString('ko-KR');
@@ -209,5 +224,6 @@ document.getElementById('sl-salary-monthly').value = Number(urlParams.monthly ||
 document.getElementById('sl-nontax').value = Number(urlParams.meal != null ? urlParams.meal : URL_DEFAULTS.meal).toLocaleString('ko-KR');
 if (urlParams.mode) clickToggle('mode', urlParams.mode);
 if (urlParams.deps) document.getElementById('sl-dependents').value = urlParams.deps;
+if (urlParams.kids) document.getElementById('sl-kids').value = urlParams.kids;
 
 recalc();

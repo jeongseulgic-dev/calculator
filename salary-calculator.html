@@ -34,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"연봉계산기","item":"https://kcalculator.net/salary-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"연봉계산기","description":"연봉계산기에 연봉 또는 월급·식대 비과세액·부양가족 수를 입력하면 2026년 4대보험 요율을 반영해 실수령액을 계산합니다.","url":"https://kcalculator.net/salary-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"이 계산 결과가 실제 급여명세서와 정확히 같나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"식대 등 비과세액은 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요."}},{"@type":"Question","name":"부양가족 수는 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다."}},{"@type":"Question","name":"국민연금은 왜 상한선이 있나요?","acceptedAnswer":{"@type":"Answer","text":"국민연금 보험료는 실제 월급이 아니라 '기준소득월액'이라는 상한(2026년 기준 659만원)과 하한(41만원) 안에서만 매겨집니다. 연봉이 아무리 높아도 국민연금 보험료는 상한선 이상으로 늘지 않습니다."}},{"@type":"Question","name":"국민연금 요율이 작년보다 올랐나요?","acceptedAnswer":{"@type":"Answer","text":"네. 2026년 1월부터 국민연금 보험료율이 9%에서 9.5%로 올랐습니다(근로자 부담 4.5%→4.75%). 2033년까지 매년 0.5%p씩 단계적으로 인상돼 최종 13%까지 오를 예정이며, 직장가입자는 인상분의 절반을 회사와 나눠 부담합니다. 이 계산기는 2026년 현재 적용 중인 요율(근로자 부담 4.75%)로 계산합니다."}},{"@type":"Question","name":"세전 연봉에 성과급이나 상여금도 포함해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"포함하는 것이 정확합니다. 이 계산기는 연간 총급여를 기준으로 계산하므로, 매달 받는 급여 외에 정기 상여금·성과급까지 더한 세전 연봉을 입력하면 실제 월평균 실수령액에 더 가깝습니다."}},{"@type":"Question","name":"월급 입력 모드는 정확히 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"입력한 월급에 12를 곱해 연봉으로 환산한 뒤, 연봉 입력 모드와 완전히 같은 방식으로 계산합니다. 다만 이 환산은 매달 받는 금액이 일정하다고 가정하므로, 정기 상여금·성과급이 따로 있다면 월급×12만으로는 실제 연봉보다 적게 잡힙니다. 상여금이 있다면 연봉 입력 모드로 전환해 (월급×12 + 상여금 등)을 직접 계산해 넣는 것이 더 정확합니다."}},{"@type":"Question","name":"결과의 \"소득세(OO% 구간)\"는 소득 전체에 그 세율이 붙는다는 뜻인가요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 소득세는 누진세라 과세표준을 구간별로 나눠 각 구간에 해당 세율만 적용합니다. \"OO% 구간\"은 과세표준이 도달한 가장 높은 구간(한계세율)을 알려주는 것일 뿐, 소득 전체에 그 세율이 곱해지는 것이 아닙니다. 실제로는 낮은 구간에 낮은 세율이 먼저 적용되고, 초과분에만 높은 세율이 적용되는 방식이라 평균 세율은 표시된 구간 세율보다 항상 낮습니다."}},{"@type":"Question","name":"근로소득 백분위는 어떤 사람들을 기준으로 한 건가요?","acceptedAnswer":{"@type":"Answer","text":"근로소득을 신고한 전체 근로소득자(약 2,100만 명) 기준입니다. 단시간·단기간 근무자도 포함되어 있어 하위 구간에는 정규직이 아닌 근로자도 섞여 있으며, 사업소득(자영업)은 포함하지 않습니다. 또한 표의 수치는 구간의 정확한 경계값이 아니라 그 구간 전체의 평균 근로소득이라, 실제 순위와는 다소 차이가 있을 수 있는 근사치입니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=45">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"연봉계산기","item":"https://kcalculator.net/salary-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"연봉계산기","description":"연봉계산기에 연봉 또는 월급·식대 비과세액·부양가족 수를 입력하면 2026년 4대보험 요율을 반영해 실수령액을 계산합니다.","url":"https://kcalculator.net/salary-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"이 계산 결과가 실제 급여명세서와 정확히 같나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 국세청의 공식 세율·공제 구조를 바탕으로 한 근사치입니다. 실제 원천징수세액은 국세청이 배포하는 근로소득 간이세액표를 기준으로 정해지며, 회사가 80/100/120% 중 어떤 비율을 선택했는지, 식대 외의 비과세 수당(자가운전보조금, 육아수당 등), 신용카드 사용액 등 개인별 소득공제 항목에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"식대 등 비과세액은 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"식사를 별도로 제공받지 않는 근로자가 매달 받는 식대는 월 20만원까지 소득세뿐 아니라 4대보험료 산정 기준(보수월액)에서도 빠집니다. 이 금액을 반영하지 않으면 실수령액이 실제보다 적게 계산되므로, 이 계산기는 기본값을 월 20만원(2023년 이후 비과세 한도)으로 두고 이 범위 안에서만 비과세로 처리합니다. 식대가 없거나 20만원보다 적다면 실제 받는 금액으로 수정해 입력하세요."}},{"@type":"Question","name":"부양가족 수는 왜 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다. 그중 8세 이상 20세 이하 자녀가 있으면 아래 칸에 자녀 수를 넣으세요. 월 소득세가 자녀 1명당 2만원 안팎 더 줄어듭니다."}},{"@type":"Question","name":"국민연금은 왜 상한선이 있나요?","acceptedAnswer":{"@type":"Answer","text":"국민연금 보험료는 실제 월급이 아니라 '기준소득월액'이라는 상한(2026년 기준 659만원)과 하한(41만원) 안에서만 매겨집니다. 연봉이 아무리 높아도 국민연금 보험료는 상한선 이상으로 늘지 않습니다."}},{"@type":"Question","name":"국민연금 요율이 작년보다 올랐나요?","acceptedAnswer":{"@type":"Answer","text":"네. 2026년 1월부터 국민연금 보험료율이 9%에서 9.5%로 올랐습니다(근로자 부담 4.5%→4.75%). 2033년까지 매년 0.5%p씩 단계적으로 인상돼 최종 13%까지 오를 예정이며, 직장가입자는 인상분의 절반을 회사와 나눠 부담합니다. 이 계산기는 2026년 현재 적용 중인 요율(근로자 부담 4.75%)로 계산합니다."}},{"@type":"Question","name":"세전 연봉에 성과급이나 상여금도 포함해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"포함하는 것이 정확합니다. 이 계산기는 연간 총급여를 기준으로 계산하므로, 매달 받는 급여 외에 정기 상여금·성과급까지 더한 세전 연봉을 입력하면 실제 월평균 실수령액에 더 가깝습니다."}},{"@type":"Question","name":"월급 입력 모드는 정확히 어떻게 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"입력한 월급에 12를 곱해 연봉으로 환산한 뒤, 연봉 입력 모드와 완전히 같은 방식으로 계산합니다. 다만 이 환산은 매달 받는 금액이 일정하다고 가정하므로, 정기 상여금·성과급이 따로 있다면 월급×12만으로는 실제 연봉보다 적게 잡힙니다. 상여금이 있다면 연봉 입력 모드로 전환해 (월급×12 + 상여금 등)을 직접 계산해 넣는 것이 더 정확합니다."}},{"@type":"Question","name":"결과의 \"소득세(OO% 구간)\"는 소득 전체에 그 세율이 붙는다는 뜻인가요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 소득세는 누진세라 과세표준을 구간별로 나눠 각 구간에 해당 세율만 적용합니다. \"OO% 구간\"은 과세표준이 도달한 가장 높은 구간(한계세율)을 알려주는 것일 뿐, 소득 전체에 그 세율이 곱해지는 것이 아닙니다. 실제로는 낮은 구간에 낮은 세율이 먼저 적용되고, 초과분에만 높은 세율이 적용되는 방식이라 평균 세율은 표시된 구간 세율보다 항상 낮습니다."}},{"@type":"Question","name":"근로소득 백분위는 어떤 사람들을 기준으로 한 건가요?","acceptedAnswer":{"@type":"Answer","text":"근로소득을 신고한 전체 근로소득자(약 2,100만 명) 기준입니다. 단시간·단기간 근무자도 포함되어 있어 하위 구간에는 정규직이 아닌 근로자도 섞여 있으며, 사업소득(자영업)은 포함하지 않습니다. 또한 표의 수치는 구간의 정확한 경계값이 아니라 그 구간 전체의 평균 근로소득이라, 실제 순위와는 다소 차이가 있을 수 있는 근사치입니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=46">
 </head>
 <body>
 
@@ -162,6 +162,12 @@
           <div class="field">
             <label for="sl-dependents">부양가족 수 (본인 포함)</label>
             <input type="number" id="sl-dependents" min="1" value="1">
+            <p class="field-note">본인과 기본공제를 받는 가족 수입니다. 맞벌이 배우자처럼 소득이 있는 가족은 빼고 셉니다(아래 '인적공제' 참고).</p>
+          </div>
+
+          <div class="field">
+            <label for="sl-kids">그중 8세 이상 20세 이하 자녀 수</label>
+            <input type="number" id="sl-kids" min="0" value="0">
           </div>
 
           <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
@@ -227,7 +233,7 @@
             <span class="frac-part"><span class="frac-lhs">고용보험 = 과세 대상 급여 × 0.9%</span></span>
           </div>
         </div>
-        <p>소득세는 (연봉 − 비과세 식대)에서 근로소득공제·인적공제 등을 뺀 과세표준에 소득세율(6~45%)을 적용한 뒤, 근로소득세액공제를 차감해 12개월로 나눈 근사값입니다. 지방소득세는 소득세의 10%입니다.</p>
+        <p>소득세는 (연봉 − 비과세 식대)에서 근로소득공제·인적공제 등을 뺀 과세표준에 소득세율(6~45%)을 적용한 뒤, 근로소득세액공제를 차감해 12개월로 나눈 근사값입니다. 8세 이상 20세 이하 자녀가 있으면 근로소득 간이세액표 기준에 따라 여기서 자녀 수별 금액을 한 번 더 뺍니다. 지방소득세는 소득세의 10%입니다.</p>
       </div>
 
       <div class="info-block">
@@ -259,6 +265,36 @@
             <ul><li><span>기준</span><span>과세표준(누진세율)</span></li></ul>
           </div>
         </div>
+      </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">👪</span>인적공제와 부양가족 수 세는 법</h3>
+        <p>인적공제는 본인과 함께 사는 가족 수만큼 소득에서 1인당 연 150만원을 빼 주는 기본공제입니다. 이 계산기의 "부양가족 수"에는 본인과 아래 요건을 모두 갖춘 가족을 더해 넣으면 됩니다.</p>
+        <table class="criteria-table text-table">
+          <thead><tr><th>가족</th><th>나이 요건</th></tr></thead>
+          <tbody>
+            <tr><td>본인</td><td>없음</td></tr>
+            <tr><td>배우자</td><td>없음</td></tr>
+            <tr><td>부모·조부모</td><td>60세 이상</td></tr>
+            <tr><td>자녀·손자녀</td><td>20세 이하</td></tr>
+            <tr><td>형제자매</td><td>20세 이하 또는 60세 이상</td></tr>
+            <tr><td>장애인 가족</td><td>나이 제한 없음</td></tr>
+          </tbody>
+        </table>
+        <p>본인을 뺀 가족은 모두 연간 소득금액이 100만원 이하여야 합니다(근로소득만 있으면 총급여 500만원 이하). 그래서 맞벌이 배우자처럼 소득 요건을 넘는 가족은 넣지 않습니다. 같은 가족을 두 사람이 함께 넣을 수도 없어서, 형제가 부모님을 나눠 공제하거나 맞벌이 부부가 같은 자녀를 둘 다 넣으면 안 됩니다.</p>
+        <div class="method-def">
+          <h4>8세 이상 20세 이하 자녀 (월급에서 떼는 세금 기준)</h4>
+          <p>회사가 매달 떼는 소득세는 국세청 근로소득 간이세액표를 따릅니다. 이 표는 부양가족 중 8세 이상 20세 이하 자녀가 있으면 월 세액에서 아래 금액을 더 빼 주고, 이 계산기도 같은 금액을 반영합니다.</p>
+          <table class="criteria-table text-table">
+            <thead><tr><th>자녀 수</th><th>월 소득세 차감액</th></tr></thead>
+            <tbody>
+              <tr><td>1명</td><td>20,830원</td></tr>
+              <tr><td>2명</td><td>45,830원</td></tr>
+              <tr><td>3명 이상</td><td>45,830원에 3명째부터 1명당 33,330원씩 추가</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>70세 이상 경로우대(1인당 100만원), 장애인(1인당 200만원), 부녀자(50만원), 한부모(100만원) 같은 추가공제는 이 계산기에 반영하지 않았습니다. 해당 가족이 있으면 실제 세금은 이 결과보다 조금 적고, 연말정산 때 정확히 반영됩니다.</p>
       </div>
 
       <div class="info-block">
@@ -317,7 +353,7 @@
         </details>
         <details class="faq-item">
           <summary>부양가족 수는 왜 입력하나요?</summary>
-          <p class="faq-a">부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다.</p>
+          <p class="faq-a">부양가족 1인당 연 150만원의 인적공제가 적용되어 과세표준이 낮아지고, 그만큼 소득세가 줄어듭니다. 본인도 부양가족 수에 포함되므로 혼자인 경우에도 최소 1을 입력합니다. 그중 8세 이상 20세 이하 자녀가 있으면 아래 칸에 자녀 수를 넣으세요. 월 소득세가 자녀 1명당 2만원 안팎 더 줄어듭니다.</p>
         </details>
         <details class="faq-item">
           <summary>국민연금은 왜 상한선이 있나요?</summary>
@@ -350,13 +386,15 @@
         <ul class="source-list">
           <li><a href="https://www.4insure.or.kr/pbiz/feii/inscIntroView.do" target="_blank" rel="noopener">4대사회보험 정보연계센터 – 국민연금·건강보험·장기요양보험·고용보험 요율 안내 ↗</a></li>
           <li><a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2227&amp;cntntsId=7667" target="_blank" rel="noopener">국세청 – 종합소득세 세율 ↗</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EB%93%9D%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EB%A0%B9" target="_blank" rel="noopener">국가법령정보센터 – 소득세법 시행령 [별표 2] 근로소득 간이세액표 ↗</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EB%93%9D%EC%84%B8%EB%B2%95" target="_blank" rel="noopener">국가법령정보센터 – 소득세법 제50조(기본공제)·제51조(추가공제) ↗</a></li>
           <li><a href="https://www.data.go.kr/data/15082063/fileData.do" target="_blank" rel="noopener">공공데이터포털 – 국세청 근로소득 백분위(천분위) 자료 ↗</a></li>
         </ul>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">📅</span>기준일</h3>
-        <p class="field-note">4대보험 요율·소득세율 — 2026년 기준<br>국민연금 보험료율 — 2026.1 9%→9.5% 인상 반영(2033년까지 매년 0.5%p 인상 예정), 기준소득월액 상한 2026.7 637만→659만원 조정 반영<br>근로소득 백분위 — 2024년 귀속 자료(2025년 신고분, 2026-02-24 등록, 현재 최신)</p>
+        <p class="field-note">4대보험 요율·소득세율 — 2026년 기준<br>국민연금 보험료율 — 2026.1 9%→9.5% 인상 반영(2033년까지 매년 0.5%p 인상 예정), 기준소득월액 상한 2026.7 637만→659만원 조정 반영<br>8~20세 자녀 월 소득세 차감액 — 근로소득 간이세액표 2026.2.27 개정, 2026.3.1 시행분(종전 1명 12,500원·2명 29,160원)<br>근로소득 백분위 — 2024년 귀속 자료(2025년 신고분, 2026-02-24 등록, 현재 최신)</p>
       </div>
     </section>
 
@@ -369,9 +407,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=45"></script>
-<script src="js/url-state.js?v=45"></script>
-<script src="js/export.js?v=45"></script>
-<script src="js/salary-calc.js?v=45"></script>
+<script src="js/site.js?v=46"></script>
+<script src="js/url-state.js?v=46"></script>
+<script src="js/export.js?v=46"></script>
+<script src="js/salary-calc.js?v=46"></script>
 </body>
 </html>
