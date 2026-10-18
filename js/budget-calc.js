@@ -1,6 +1,9 @@
 let mode = 'compare';
 
 function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
+function pct(n){ return String(Math.round(n * 10) / 10); }
+function sub(t){ return `<span class="sim-sub">${t}</span>`; }
+function man(n){ return (Math.round(n / 10000)).toLocaleString('ko-KR') + '만원'; }
 
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -42,6 +45,7 @@ function recalc(){
       <tr class="stat-highlight"><th>선택 소비 (30%)</th><td>${fmt(want)}원</td></tr>
       <tr class="stat-highlight"><th>저축·투자 (20%)</th><td>${fmt(save)}원</td></tr>
     `;
+    document.getElementById('nextSavings').href = `savings-calculator?savType=savings&amount=${Math.round(save)}`;
     UrlState.sync({ mode, income }, URL_DEFAULTS);
   }
 
@@ -55,21 +59,27 @@ function recalc(){
       return;
     }
     const total = need + want + save;
-    const needPct = need / income * 100;
-    const wantPct = want / income * 100;
-    const savePct = save / income * 100;
     const unassigned = income - total;
+    const items = [
+      { name: '고정·필수 지출', amount: need, target: 0.5 },
+      { name: '선택 소비', amount: want, target: 0.3 },
+      { name: '저축·투자', amount: save, target: 0.2 }
+    ].map(it => ({ ...it, pct: it.amount / income * 100, gap: it.amount - income * it.target }));
+
+    // 권장 배분과 가장 크게 차이 나는 항목 (1만원 미만 차이는 맞는 것으로 봄)
+    const biggest = items.reduce((a, b) => Math.abs(b.gap) > Math.abs(a.gap) ? b : a);
+    const matched = Math.abs(biggest.gap) < 10000;
 
     miniScreen.textContent = fmt(save) + '원';
-    miniScreenSub.textContent = `저축 비율 ${savePct.toFixed(1)}%`;
+    miniScreenSub.textContent = `저축 비율 ${pct(items[2].pct)}%`;
     meta.textContent = `월 소득 ${fmt(income)}원`;
     statBody.innerHTML = `
       <tr><th>월 소득</th><td>${fmt(income)}원</td></tr>
-      <tr><th>고정·필수 지출</th><td>${fmt(need)}원 (${needPct.toFixed(1)}%, 권장 50%)</td></tr>
-      <tr><th>선택 소비</th><td>${fmt(want)}원 (${wantPct.toFixed(1)}%, 권장 30%)</td></tr>
-      <tr class="stat-highlight"><th>저축·투자</th><td>${fmt(save)}원 (${savePct.toFixed(1)}%, 권장 20%)</td></tr>
-      <tr><th>미배정 금액</th><td>${fmt(unassigned)}원</td></tr>
+      ${items.map((it, i) => `<tr${i === 2 ? ' class="stat-highlight"' : ''}><th>${it.name}${sub(`권장 ${it.target * 100}% · ${man(income * it.target)}`)}</th><td>${fmt(it.amount)}원${sub(`소득의 ${pct(it.pct)}%`)}</td></tr>`).join('')}
+      <tr><th>${unassigned < 0 ? '소득 초과 지출' : '미배정 금액'}</th><td>${fmt(Math.abs(unassigned))}원</td></tr>
+      <tr><th>권장과 가장 큰 차이${sub(matched ? '세 항목 모두' : biggest.name)}</th><td>${matched ? '거의 같음' : `${biggest.gap > 0 ? '+' : '−'}${fmt(Math.abs(biggest.gap))}원`}${matched ? '' : sub(biggest.gap > 0 ? '권장보다 많음' : '권장보다 적음')}</td></tr>
     `;
+    document.getElementById('nextSavings').href = `savings-calculator?savType=savings&amount=${Math.round(save)}`;
     UrlState.sync({ mode, income2: income, need, want, save }, URL_DEFAULTS);
   }
 }
