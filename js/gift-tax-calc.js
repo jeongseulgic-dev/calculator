@@ -26,11 +26,12 @@ const RELATION_LABEL = {
 
 const MARRIAGE_DEDUCTION_CAP = 100000000;
 const GENSKIP_MINOR_AMOUNT_THRESHOLD = 2000000000;
+const MIN_TAXABLE_BASE = 500000;   // 과세표준 50만원 미만이면 증여세를 부과하지 않음 (상증법 제55조 제2항)
 
 function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
 
 function calcTax(base){
-  if (base <= 0) return { rate: 0, deduction: 0, tax: 0 };
+  if (base < MIN_TAXABLE_BASE) return { rate: 0, deduction: 0, tax: 0 };
   const b = BRACKETS.find(b => base <= b.limit);
   const tax = Math.max(0, base * b.rate - b.deduction);
   return { rate: b.rate, deduction: b.deduction, tax };
@@ -116,6 +117,7 @@ function recalc(){
     <tr><th>이전 10년 합산 증여재산가액</th><td>${fmt(prior)}원</td></tr>
     <tr><th>증여재산공제</th><td>${fmt(totalDeduction)}원${marriage ? ' (혼인·출산공제 포함)' : ''}</td></tr>
     <tr class="stat-highlight"><th>합산 과세표준</th><td>${fmt(combinedBase)}원</td></tr>
+    ${combinedBase > 0 && combinedBase < MIN_TAXABLE_BASE ? `<tr><th colspan="2" style="text-align:left; font-weight:400; color:var(--ink-soft);">과세표준이 50만원 미만이라 증여세가 부과되지 않습니다</th></tr>` : ''}
     <tr><th>적용 세율 / 누진공제액</th><td>${(rate * 100).toFixed(0)}% / ${fmt(progDeduction)}원</td></tr>
     <tr><th>합산 산출세액</th><td>${fmt(combinedTax)}원</td></tr>
     <tr><th>기납부세액공제(근사)</th><td>-${fmt(priorTax)}원</td></tr>
