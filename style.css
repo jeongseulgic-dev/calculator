@@ -331,7 +331,7 @@ input:checked + .slider::before{ transform:translateX(18px); }
 .ledger-tab.active{ background:var(--header-bg); color:#fff; }
 .ledger-table-wrap{ overflow-x:auto; max-height:300px; overflow-y:auto; border-top:1px dashed #d8d2bd; }
 table.ledger-table{ width:100%; border-collapse:collapse; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; }
-table.ledger-table th, table.ledger-table td{ padding:7px 6px; text-align:right; border-bottom:1px dotted #e5decb; }
+table.ledger-table th, table.ledger-table td{ padding:7px 6px; text-align:right; border-bottom:1px dotted #e5decb; white-space:nowrap; }
 table.ledger-table th{ position:sticky; top:0; background:#f2ede0; text-align:center; font-weight:700; }
 table.ledger-table td:first-child, table.ledger-table th:first-child{ text-align:center; }
 table.ledger-table tr.extra-row td{ background:rgba(194,54,98,0.08); font-weight:700; }

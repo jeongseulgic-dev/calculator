@@ -43,7 +43,7 @@ document.querySelectorAll('.seg-toggle').forEach(group=>{
   });
 });
 
-['p-period','p-rate','p-grace','p-extra-month'].forEach(id=>{
+['p-period','p-rate','p-grace','p-extra-month','p-fee-rate'].forEach(id=>{
   document.getElementById(id).addEventListener('input', scheduleRecalc);
 });
 document.getElementById('p-extra-amount').addEventListener('input', function(){ formatInputComma(this); scheduleRecalc(); });
@@ -135,6 +135,7 @@ function recalcAll(){
   const extraAmount = parseFloat(document.getElementById('p-extra-amount').value.replace(/,/g,'')) || 0;
   const extra = { month: extraMonth, amount: extraAmount, type: extraType };
   const hasExtra = extraMonth > 0 && extraMonth < totalMonths && extraAmount > 0;
+  const feeRate = Math.max(0, parseFloat(document.getElementById('p-fee-rate').value) || 0) / 100;
 
   const grid = document.getElementById('compareGrid');
   const meta = document.getElementById('page-meta');
@@ -151,6 +152,7 @@ function recalcAll(){
     document.getElementById('ledgerTabs').innerHTML = '';
     document.getElementById('loadMoreBtn').style.display = 'none';
     document.getElementById('csvDownloadBtn').style.display = 'none';
+    document.getElementById('extraBlock').classList.add('hidden');
     return;
   }
 
@@ -192,6 +194,7 @@ function recalcAll(){
     `;
   }).join('');
 
+  renderExtraEffect(P, totalMonths, monthlyRate, graceMonths, hasExtra, extraMonth, extraAmount, feeRate);
   renderChart();
   renderTabs(bestKey);
   visibleRows = 12;
@@ -201,8 +204,38 @@ function recalcAll(){
   UrlState.sync({
     amount: P, period: periodVal, periodUnit: periodType, rate: document.getElementById('p-rate').value,
     grace: graceVal, graceUnit: graceType,
-    extraMonth: extraMonth || '', extraAmount: extraAmount || '', extraType
+    extraMonth: extraMonth || '', extraAmount: extraAmount || '', extraType,
+    feeRate: document.getElementById('p-fee-rate').value
   }, URL_DEFAULTS);
+}
+
+// 중도상환수수료: 상환금액 × 수수료율 × (남은 부과기간 ÷ 대출기간), 대출기간은 3년(36개월) 한도
+function prepaymentFee(amount, feeRate, extraMonth, totalMonths){
+  const base = Math.min(totalMonths, 36);
+  const remaining = Math.max(0, base - extraMonth);
+  return amount * feeRate * remaining / base;
+}
+
+function renderExtraEffect(P, totalMonths, monthlyRate, graceMonths, hasExtra, extraMonth, extraAmount, feeRate){
+  const block = document.getElementById('extraBlock');
+  if (!hasExtra){ block.classList.add('hidden'); return; }
+  block.classList.remove('hidden');
+
+  const fee = prepaymentFee(extraAmount, feeRate, extraMonth, totalMonths);
+  const sub = t => `<span class="sim-sub">${t}</span>`;
+  const rows = [
+    `<tr><th>중도상환 금액${sub(`${extraMonth}회차`)}</th><td>${fmt(extraAmount)}원</td></tr>`,
+    feeRate > 0
+      ? `<tr><th>중도상환수수료(추정)${sub(extraMonth >= 36 ? '3년 경과로 면제' : `수수료율 ${feeRate * 100}%`)}</th><td>${fmt(fee)}원</td></tr>`
+      : `<tr><th colspan="2" style="text-align:left; font-weight:400; color:var(--ink-soft);">수수료율을 넣으면 수수료를 뺀 실제 이득까지 계산합니다</th></tr>`
+  ];
+  METHODS.forEach(m=>{
+    const without = computeSchedule(P, totalMonths, monthlyRate, graceMonths, m.key, null).totalInterest;
+    const saved = without - scheduleCache[m.key].totalInterest;
+    const net = saved - fee;
+    rows.push(`<tr><th>${m.label}${sub('이자 절감')}</th><td>${fmt(saved)}원${feeRate > 0 ? sub(`수수료 빼면 ${net >= 0 ? '+' : '−'}${fmt(Math.abs(net))}원`) : ''}</td></tr>`);
+  });
+  document.getElementById('extraBody').innerHTML = rows.join('');
 }
 
 function renderChart(){
@@ -309,5 +342,6 @@ if (urlParams.extraAmount) document.getElementById('p-extra-amount').value = Num
 if (urlParams.periodUnit) clickToggle('periodType', urlParams.periodUnit);
 if (urlParams.graceUnit) clickToggle('graceType', urlParams.graceUnit);
 if (urlParams.extraType) clickToggle('extraType', urlParams.extraType);
+if (urlParams.feeRate) document.getElementById('p-fee-rate').value = urlParams.feeRate;
 
 recalcAll();
