@@ -46,6 +46,16 @@ function formatDuration(totalMin){
   return m ? `${h}시간 ${m}분` : `${h}시간`;
 }
 
+// 야간근로(22:00~06:00)에 걸친 분 수. 시작 시각부터 경과시간만큼 1분씩 본다.
+function nightMinutes(start, diff){
+  let n = 0;
+  for (let t = start; t < start + diff; t++){
+    const m = ((t % 1440) + 1440) % 1440;
+    if (m >= 1320 || m < 360) n++;
+  }
+  return n;
+}
+
 function dayLabel(offset){
   if (offset === 0) return '당일';
   if (offset > 0) return `${offset}일 후`;
@@ -109,6 +119,10 @@ function recalc(){
     let crosses = false;
     if (diff < 0){ diff += 1440; crosses = true; }
     const net = Math.max(0, diff - breakMin);
+    // 근로기준법 제54조: 근로시간 4시간이면 30분, 8시간이면 1시간 이상 휴게
+    const legalBreak = net >= 480 ? 60 : net >= 240 ? 30 : 0;
+    const overtime = Math.max(0, net - 480);        // 1일 8시간 초과분 (근로기준법 제50조·제56조)
+    const night = nightMinutes(start, diff);         // 22:00~06:00 (근로기준법 제56조 제3항)
 
     miniScreen.textContent = formatDuration(net);
     miniScreenSub.textContent = '휴게시간 제외 실제 시간';
@@ -120,9 +134,15 @@ function recalc(){
       <tr class="stat-highlight"><th>전체 경과시간</th><td>${formatDuration(diff)}</td></tr>
       <tr><th>휴게시간</th><td>${formatDuration(breakMin)}</td></tr>
       <tr class="stat-highlight"><th>휴게시간 제외 실제 시간</th><td>${formatDuration(net)}</td></tr>
+      ${legalBreak && breakMin < legalBreak ? `<tr><th colspan="2" style="text-align:left; font-weight:400; color:var(--ink-soft);">근로시간이 ${net >= 480 ? '8시간' : '4시간'} 이상이면 휴게시간은 ${legalBreak}분 이상이어야 합니다(근로기준법 제54조)</th></tr>` : ''}
+      ${overtime ? `<tr><th>8시간 초과 근무<span class="sim-sub">연장근로</span></th><td>${formatDuration(overtime)}</td></tr>` : ''}
+      ${night ? `<tr><th>밤 10시~아침 6시 근무<span class="sim-sub">야간근로, 휴게 포함</span></th><td>${formatDuration(night)}</td></tr>` : ''}
     `;
 
-    document.getElementById('nextHourlyWage').href = `hourly-wage-calculator?daily=${(net / 60).toFixed(2)}&days=1`;
+    // 이 근무를 주 5일 한다고 보고 시급 계산기로 넘김: 하루 8시간까지는 소정근로, 넘는 부분은 주 연장근로
+    const daily = Math.min(net, 480) / 60;
+    const weeklyOt = overtime / 60 * 5;
+    document.getElementById('nextHourlyWage').href = `hourly-wage-calculator?daily=${Number(daily.toFixed(2))}&days=5${weeklyOt ? `&ot=${Number(weeklyOt.toFixed(2))}` : ''}`;
 
     UrlState.sync({ mode, start: document.getElementById('t-start').value, end: document.getElementById('t-end').value, brk: breakMin }, URL_DEFAULTS);
   }
