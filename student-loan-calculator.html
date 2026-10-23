@@ -34,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"학자금대출 계산기","item":"https://kcalculator.net/student-loan-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"학자금대출 계산기","description":"대출 원금·금리·소득을 입력하면 일반상환과 취업후상환(ICL) 학자금대출의 상환액을 방식별로 비교합니다.","url":"https://kcalculator.net/student-loan-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"일반상환과 취업후상환 중 어느 쪽이 유리한가요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 특정 방식을 추천하지 않습니다. 일반상환은 졸업 후 소득과 무관하게 정해진 스케줄대로 상환하고, 취업후상환은 소득이 없으면 상환 부담도 없다는 차이가 있습니다. 본인 상황에 맞는 방식은 한국장학재단 상담을 통해 결정하는 것이 정확합니다."}},{"@type":"Question","name":"소득이 상환기준소득 이하면 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"취업후상환 대출은 의무상환이 유예됩니다. 다만 유예 중에도 대출잔액에 이자는 계속 발생합니다."}},{"@type":"Question","name":"총급여와 상환기준소득 기준이 왜 다르게 표시되나요?","acceptedAnswer":{"@type":"Answer","text":"공식 상환기준소득은 세법상 \"연간소득금액\"(근로소득공제 등을 뺀 금액) 기준입니다. 한국장학재단은 이를 일반적으로 더 친숙한 \"총급여\" 기준으로 환산한 값도 함께 고시하며, 이 계산기는 그 총급여 환산 기준을 사용합니다."}},{"@type":"Question","name":"재학 중에도 상환해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"취업후상환 대출은 재학 중이라도 근로소득 등 연간소득금액이 상환기준소득을 넘으면 의무상환이 개시될 수 있습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=52">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"학자금대출 계산기","item":"https://kcalculator.net/student-loan-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"학자금대출 계산기","description":"대출 원금·금리·소득을 입력하면 일반상환과 취업후상환(ICL) 학자금대출의 상환액을 방식별로 비교합니다.","url":"https://kcalculator.net/student-loan-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"일반상환과 취업후상환 중 어느 쪽이 유리한가요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기는 특정 방식을 추천하지 않습니다. 일반상환은 졸업 후 소득과 무관하게 정해진 스케줄대로 상환하고, 취업후상환은 소득이 없으면 상환 부담도 없다는 차이가 있습니다. 본인 상황에 맞는 방식은 한국장학재단 상담을 통해 결정하는 것이 정확합니다."}},{"@type":"Question","name":"소득이 상환기준소득 이하면 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"취업후상환 대출은 의무상환이 유예됩니다. 다만 유예 중에도 대출잔액에 이자는 계속 발생합니다."}},{"@type":"Question","name":"연봉이 총급여 환산 기준(2,851만원)보다 조금 높으면 얼마나 내나요?","acceptedAnswer":{"@type":"Answer","text":"상환기준소득은 총급여가 아니라 총급여에서 근로소득공제를 뺀 \"연간소득금액\"과 비교합니다. 근로소득공제가 초과분의 약 15%를 더 빼 주기 때문에, 총급여 차이에 상환율을 바로 곱하면 실제보다 많게 나옵니다. 예를 들어 2025년 귀속 기준으로 총급여 4,000만원인 학부 대출자는 소득금액 2,875만원에서 1,898만원을 뺀 977만원의 20%인 약 195만원이 의무상환액이고, 초과분이 작아 이 값이 36만원보다 적으면 최소 36만원을 냅니다."}},{"@type":"Question","name":"재학 중에도 상환해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"취업후상환 대출은 재학 중이라도 근로소득 등 연간소득금액이 상환기준소득을 넘으면 의무상환이 개시될 수 있습니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=53">
 </head>
 <body>
 
@@ -161,9 +161,9 @@
           <input type="text" id="i-salary" inputmode="numeric" placeholder="예: 40,000,000">
         </div>
         <div class="field mode-field hidden" data-mode="icl">
-          <label for="i-threshold">상환기준소득 (원)</label>
-          <input type="text" id="i-threshold" inputmode="numeric" value="28,510,000">
-          <p class="field-note">2025년 귀속 공식 고시치(총급여 환산 기준) 2,851만원이 기본값입니다. 매년 바뀌니 최신 기준은 국세청 취업 후 학자금 상환(ICL) 홈페이지에서 확인하고 필요하면 직접 값을 바꾸세요.</p>
+          <label for="i-threshold">상환기준소득 (연간소득금액, 원)</label>
+          <input type="text" id="i-threshold" inputmode="numeric" value="18,980,000">
+          <p class="field-note">2025년 귀속 고시치 1,898만원(총급여로 약 2,851만원)이 기본값입니다. 총급여에서 근로소득공제를 뺀 소득금액과 비교합니다.</p>
         </div>
         <div class="field mode-field hidden" data-mode="icl">
           <label>과정</label>
@@ -231,7 +231,7 @@
         <h3><span class="info-icon">💡</span>학자금대출 계산기란?</h3>
         <p>한국장학재단 학자금대출은 상환 구조가 완전히 다른 두 가지로 나뉩니다. <b>일반상환</b>은 거치기간 동안 이자만 내다가 상환기간에 원리금을 분할 납부하는, 일반 대출과 비슷한 방식입니다. <b>취업후상환(ICL)</b>은 재학·무소득 기간엔 상환 의무가 없다가, 취업 후 소득이 상환기준소득을 넘으면 국세청이 소득에 비례해 자동으로 상환액을 걷어가는 방식입니다.</p>
         <p>상환기준소득·상환율·금리는 매년 조정되며, 이 계산기는 한국장학재단이 최근 공식 고시한 기준(2025년 귀속 상환기준소득, 2026년 2학기 금리)을 기본값으로 제공하는 참고용 도구입니다. 실제 상환 금액은 국세청 취업 후 학자금 상환(ICL) 홈페이지 또는 한국장학재단에서 반드시 확인하세요.</p>
-        <p>취업후상환 입력값은 세법상 정확한 "연간소득금액"이 아니라 한국장학재단이 함께 고시하는 "총급여 환산 기준"을 사용한 근사치입니다. 실제 소득공제 내역에 따라 결과가 달라질 수 있습니다.</p>
+        <p>취업후상환은 연봉(총급여)을 입력하면 근로소득공제를 빼 세법상 "연간소득금액"으로 바꾼 뒤 공식 상환기준소득과 비교합니다. 근로소득 외에 사업·임대 등 다른 소득이 있거나, 비과세 급여가 많으면 실제 의무상환액은 달라질 수 있는 참고용 결과입니다.</p>
       </div>
 
       <div class="info-block">
@@ -243,7 +243,9 @@
         <div class="method-def">
           <h4>취업후상환(ICL)</h4>
           <div class="formula-box formula-frac">
-            <span class="frac-part"><span class="frac-lhs">의무상환액 = (연간소득 − 상환기준소득) × 상환율</span></span>
+            <span class="frac-part"><span class="frac-lhs">의무상환액 = (연간소득금액 − 상환기준소득) × 상환율</span></span>
+            <span class="frac-sep"></span>
+            <span class="frac-part"><span class="frac-lhs">연간소득금액 = 총급여 − 근로소득공제</span></span>
           </div>
           <p>소득이 상환기준소득을 넘으면 초과분에 상환율(학부 20%, 대학원 25%)을 곱해 의무상환액을 계산합니다. 이 값이 연 36만원보다 작아도 최소 연 36만원은 부과됩니다. 소득이 기준 이하면 상환이 유예됩니다.</p>
         </div>
@@ -260,10 +262,11 @@
         </table>
         <p class="field-note">개인별 정확한 최장거치기간은 잔여재학년수·학제에 따라 달라집니다(한국장학재단 확인 필요).</p>
         <table class="criteria-table" style="margin-top:14px;">
-          <thead><tr><th>취업후상환 상환기준소득 (귀속연도별)</th><th>총급여 환산 기준</th></tr></thead>
+          <thead><tr><th>귀속연도</th><th>상환기준소득 (연간소득금액)</th><th>총급여로 환산하면</th></tr></thead>
           <tbody>
-            <tr><td>2024년 귀속</td><td>2,679만원</td></tr>
-            <tr><td>2025년 귀속</td><td>2,851만원</td></tr>
+            <tr><td>2024년</td><td>1,752만원</td><td>2,679만원</td></tr>
+            <tr><td>2025년</td><td>1,898만원</td><td>2,851만원</td></tr>
+            <tr><td>2026년</td><td>2,056만원</td><td>3,037만원</td></tr>
           </tbody>
         </table>
       </div>
@@ -279,8 +282,8 @@
           <p class="faq-a">취업후상환 대출은 의무상환이 유예됩니다. 다만 유예 중에도 대출잔액에 이자는 계속 발생합니다.</p>
         </details>
         <details class="faq-item">
-          <summary>총급여와 상환기준소득 기준이 왜 다르게 표시되나요?</summary>
-          <p class="faq-a">공식 상환기준소득은 세법상 "연간소득금액"(근로소득공제 등을 뺀 금액) 기준입니다. 한국장학재단은 이를 일반적으로 더 친숙한 "총급여" 기준으로 환산한 값도 함께 고시하며, 이 계산기는 그 총급여 환산 기준을 사용합니다.</p>
+          <summary>연봉이 총급여 환산 기준(2,851만원)보다 조금 높으면 얼마나 내나요?</summary>
+          <p class="faq-a">상환기준소득은 총급여가 아니라 총급여에서 근로소득공제를 뺀 "연간소득금액"과 비교합니다. 근로소득공제가 초과분의 약 15%를 더 빼 주기 때문에, 총급여 차이에 상환율을 바로 곱하면 실제보다 많게 나옵니다. 예를 들어 2025년 귀속 기준으로 총급여 4,000만원인 학부 대출자는 소득금액 2,875만원에서 1,898만원을 뺀 977만원의 20%인 약 195만원이 의무상환액이고, 초과분이 작아 이 값이 36만원보다 적으면 최소 36만원을 냅니다.</p>
         </details>
         <details class="faq-item">
           <summary>재학 중에도 상환해야 하나요?</summary>
@@ -298,6 +301,11 @@
           <li><a href="https://www.icl.go.kr" target="_blank" rel="noopener">국세청 — 취업 후 학자금 상환(ICL) 홈페이지</a></li>
         </ul>
       </div>
+
+      <div class="info-block">
+        <h3><span class="info-icon">📅</span>기준일</h3>
+        <p class="field-note">학자금대출 금리 — 2026년 2학기 연 1.7%(일반상환 고정, 취업후상환 변동)<br>상환기준소득 기본값 — 2025년 귀속 1,898만원(2026년에 상환하는 소득분), 한국장학재단 의무적상환 안내 기준<br>2026년 귀속 2,056만원(총급여 약 3,037만원)은 2026학년도 학자금대출 안내 기준이며, 2026년 소득분은 2027년에 상환</p>
+      </div>
     </section>
 
     <div class="ad-slot"></div>
@@ -310,9 +318,9 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" defer></script>
-<script src="js/site.js?v=52" defer></script>
-<script src="js/url-state.js?v=52" defer></script>
-<script src="js/export.js?v=52" defer></script>
-<script src="js/student-loan-calc.js?v=52" defer></script>
+<script src="js/site.js?v=53" defer></script>
+<script src="js/url-state.js?v=53" defer></script>
+<script src="js/export.js?v=53" defer></script>
+<script src="js/student-loan-calc.js?v=53" defer></script>
 </body>
 </html>

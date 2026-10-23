@@ -93,6 +93,18 @@ function computeSchedule(P, totalMonths, monthlyRate, graceMonths, type){
   return { schedule, totalInterest };
 }
 
+// 근로소득공제 (소득세법 제47조, 한도 2,000만원): 총급여 → 근로소득금액
+function earnedIncomeDeduction(a){
+  let d;
+  if (a <= 5000000) d = a * 0.7;
+  else if (a <= 15000000) d = 3500000 + (a - 5000000) * 0.4;
+  else if (a <= 45000000) d = 7500000 + (a - 15000000) * 0.15;
+  else if (a <= 100000000) d = 12000000 + (a - 45000000) * 0.05;
+  else d = 14750000 + (a - 100000000) * 0.02;
+  return Math.min(d, 20000000);
+}
+const MIN_DUTY = 360000;   // 최소부담 의무상환액 연 36만원 (한국장학재단 의무적상환 안내)
+
 function recalcAll(){
   if (mode === 'general') recalcGeneral();
   else recalcIcl();
@@ -280,32 +292,37 @@ function recalcIcl(){
   }
 
   const degreeLabel = degree === 25 ? '대학원' : '학부';
-  meta.textContent = `총급여 ${fmt(salary)}원 · 상환기준 ${fmt(threshold)}원 · ${degreeLabel}`;
+  meta.textContent = `총급여 ${fmt(salary)}원 · 상환기준소득 ${fmt(threshold)}원 · ${degreeLabel}`;
 
-  const excess = Math.max(0, salary - threshold);
+  // 의무상환액 = (연간소득금액 − 상환기준소득) × 상환율. 연간소득금액 = 총급여 − 근로소득공제
+  const deduction = earnedIncomeDeduction(salary);
+  const income = Math.max(0, salary - deduction);
+  const excess = Math.max(0, income - threshold);
 
   if (excess <= 0){
     miniScreen.textContent = '유예';
-    miniScreenSub.textContent = '총급여가 상환기준소득 이하';
+    miniScreenSub.textContent = '소득금액이 상환기준소득 이하';
     statBody.innerHTML = `
       <tr><th>총급여</th><td>${fmt(salary)}원</td></tr>
+      <tr><th>근로소득금액<span class="sim-sub">총급여 − 근로소득공제 ${fmt(deduction)}원</span></th><td>${fmt(income)}원</td></tr>
       <tr><th>상환기준소득</th><td>${fmt(threshold)}원</td></tr>
       <tr class="stat-highlight"><th>의무상환액</th><td>상환 유예 대상</td></tr>
     `;
   } else {
-    const dutyAmount = Math.max(excess * rate, 360000);
-    const monthlyAvg = dutyAmount / 12;
+    const raw = excess * rate;
+    const dutyAmount = Math.max(raw, MIN_DUTY);
     miniScreen.textContent = fmt(dutyAmount) + '원';
-    miniScreenSub.textContent = `월평균 약 ${fmt(monthlyAvg)}원`;
+    miniScreenSub.textContent = `월평균 약 ${fmt(dutyAmount / 12)}원`;
     statBody.innerHTML = `
       <tr><th>총급여</th><td>${fmt(salary)}원</td></tr>
-      <tr><th>상환기준 초과소득</th><td>${fmt(excess)}원</td></tr>
+      <tr><th>근로소득금액<span class="sim-sub">총급여 − 근로소득공제 ${fmt(deduction)}원</span></th><td>${fmt(income)}원</td></tr>
+      <tr><th>상환기준 초과소득<span class="sim-sub">상환기준소득 ${fmt(threshold)}원 초과분</span></th><td>${fmt(excess)}원</td></tr>
       <tr><th>적용 상환율</th><td>${degree}% (${degreeLabel})</td></tr>
-      <tr class="stat-highlight"><th>의무상환액 (연)</th><td>${fmt(dutyAmount)}원</td></tr>
+      <tr class="stat-highlight"><th>의무상환액 (연)${raw < MIN_DUTY ? '<span class="sim-sub">최소 의무상환액 36만원 적용</span>' : ''}</th><td>${fmt(dutyAmount)}원</td></tr>
     `;
   }
 
-  UrlState.sync({ mode, salary, threshold, degree }, URL_DEFAULTS);
+  UrlState.sync({ mode, salary, thr: threshold, degree }, URL_DEFAULTS);
 }
 
 const URL_DEFAULTS = {
@@ -315,7 +332,7 @@ const URL_DEFAULTS = {
   repay: document.getElementById('g-repay').defaultValue,
   rate: document.getElementById('g-rate').defaultValue,
   salary: '',
-  threshold: '28510000',
+  thr: '18980000',
   degree: toggleDefault('degree')
 };
 
@@ -325,7 +342,8 @@ if (urlParams.grace) document.getElementById('g-grace').value = urlParams.grace;
 if (urlParams.repay) document.getElementById('g-repay').value = urlParams.repay;
 if (urlParams.rate) document.getElementById('g-rate').value = urlParams.rate;
 if (urlParams.salary) document.getElementById('i-salary').value = Number(urlParams.salary).toLocaleString('ko-KR');
-if (urlParams.threshold) document.getElementById('i-threshold').value = Number(urlParams.threshold).toLocaleString('ko-KR');
+// 예전 링크의 threshold(총급여 환산 기준)는 계산 기준이 달라 무시하고 기본값을 쓴다
+if (urlParams.thr) document.getElementById('i-threshold').value = Number(urlParams.thr).toLocaleString('ko-KR');
 if (urlParams.degree) clickToggle('degree', urlParams.degree);
 if (urlParams.mode) clickToggle('mode', urlParams.mode);
 
