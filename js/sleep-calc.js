@@ -1,6 +1,7 @@
 let mode = 'wake';
 const CYCLES = [4, 5, 6];
 const BEST_CYCLES = 5;
+const ADULT_MIN_SLEEP = 420;   // CDC 성인(18~60세) 권장 7시간 이상
 
 document.querySelectorAll('.seg-toggle[data-target="mode"] .seg-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -73,7 +74,7 @@ function recalc(){
     <div class="method-card">
       ${o.n === BEST_CYCLES ? '<div class="stamp">권장<br>수면</div>' : ''}
       <h3>${o.n}주기</h3>
-      <div class="sub">총 수면시간 ${formatDuration(o.sleepMin)}</div>
+      <div class="sub">총 수면시간 ${formatDuration(o.sleepMin)}${o.sleepMin < ADULT_MIN_SLEEP ? ' · 성인 권장(7시간)보다 짧음' : ''}</div>
       <div class="method-row total"><span>${mode === 'wake' ? '취침 시각' : '기상 시각'}</span><span class="val">${formatMinutesToClock(o.targetMin)}</span></div>
     </div>
   `).join('');
@@ -90,6 +91,14 @@ function recalc(){
 document.getElementById('s-wake').addEventListener('input', recalc);
 document.getElementById('s-sleep').addEventListener('input', recalc);
 document.getElementById('s-latency').addEventListener('input', recalc);
+
+// "지금 자면": 취침 시간 기준으로 바꾸고 현재 시각을 넣는다
+document.getElementById('s-now').addEventListener('click', ()=>{
+  const now = new Date();
+  document.getElementById('s-sleep').value = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  clickToggle('mode', 'sleep');
+  recalc();
+});
 
 const URL_DEFAULTS = {
   mode: toggleDefault('mode'),
