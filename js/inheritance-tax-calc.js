@@ -81,11 +81,12 @@ function recalc(){
   const groupDeduction = spouseSole ? personalTotal : Math.max(personalTotal, LUMP_SUM_DEDUCTION);
   const groupLabel = spouseSole ? '기초공제 (배우자 단독상속, 일괄공제 불가)' : usedLumpSum ? '일괄공제' : '기초공제 + 자녀공제';
 
-  // 배우자공제: 배우자가 법정상속분(민법 §1009, 배우자 1.5 : 자녀 각 1)만큼 상속받았다고 가정. 한도 계산 기준은 채무 차감 후 금액
+  // 배우자공제: 배우자가 법정상속분(민법 §1009, 배우자 1.5 : 자녀 각 1)만큼 상속받았다고 가정.
+  // 한도 계산 기준은 상속재산에서 공과금·채무만 뺀 금액이고 장례비는 빼지 않는다(상증법 시행령 §17①)
   let spouseDeduction = 0;
   if (hasSpouse){
     const spouseShareRatio = 1.5 / (1.5 + children);
-    const spouseEstimate = taxableEstate * spouseShareRatio;
+    const spouseEstimate = Math.max(0, estate - debts) * spouseShareRatio;
     spouseDeduction = Math.min(SPOUSE_MAX_DEDUCTION, Math.max(SPOUSE_MIN_DEDUCTION, spouseEstimate));
   }
 
