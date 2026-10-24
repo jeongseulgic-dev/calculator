@@ -13,12 +13,7 @@ const MEAL_NONTAX_CAP = 200000; // 식대 비과세 한도 (월, 2023년~)
 let mode = 'annual';
 const URL_DEFAULTS = { mode: 'annual', salary: '40000000', monthly: '3000000', meal: String(MEAL_NONTAX_CAP), deps: '1', kids: '0' };
 
-// 근로소득 간이세액표(소득세법 시행령 별표2, 2026.2.27 개정·3.1 시행): 8세 이상 20세 이하 자녀 수별 월 세액 차감액
-function childMonthlyCredit(kids){
-  if (kids <= 0) return 0;
-  if (kids === 1) return 20830;
-  return 45830 + (kids - 2) * 33330;
-}
+// 월 소득세는 js/wage-tax-table.js의 근로소득 간이세액표(wageTaxMonthly)로 구한다.
 
 // 근로소득 백분위 구간별 연평균 근로소득(원) — 공공데이터포털 "국세청_근로소득 백분위(천분위)
 // 자료"(2024년 귀속, 데이터 등록 2026-02-24) 원자료에서 각 구간(상위 N%) 행의
@@ -58,17 +53,6 @@ function earnedIncomeDeduction(annual){
   return 14750000 + (annual - 100000000) * 0.02;
 }
 
-function progressiveTax(base){
-  if (base <= 14000000) return base * 0.06;
-  if (base <= 50000000) return base * 0.15 - 1260000;
-  if (base <= 88000000) return base * 0.24 - 5760000;
-  if (base <= 150000000) return base * 0.35 - 15440000;
-  if (base <= 300000000) return base * 0.38 - 19940000;
-  if (base <= 500000000) return base * 0.40 - 25940000;
-  if (base <= 1000000000) return base * 0.42 - 35940000;
-  return base * 0.45 - 65940000;
-}
-
 function taxBracketRate(base){
   if (base <= 14000000) return 6;
   if (base <= 50000000) return 15;
@@ -80,46 +64,45 @@ function taxBracketRate(base){
   return 45;
 }
 
-function earnedIncomeTaxCreditLimit(annual){
-  if (annual <= 33000000) return 740000;
-  if (annual <= 70000000) return Math.max(740000 - (annual - 33000000) * 0.008, 660000);
-  return Math.max(660000 - (annual - 70000000) * 0.5, 500000);
+// 간이세액표 비고 1의 '특별소득공제 및 특별세액공제 중 일부'(공제대상가족 수별 공식) — 결과의 'OO% 구간' 표시에만 쓴다
+function tableSpecialDeduction(annual, family){
+  const [base, r1, r2, r3] = family <= 1 ? [3100000, 0.04, 0.015, 0.005] : family === 2 ? [3600000, 0.04, 0.02, 0.01] : [5000000, 0.07, 0.05, 0.03];
+  let d;
+  if (annual <= 30000000) d = base + annual * r1;
+  else if (annual <= 45000000) d = base + annual * r1 - (annual - 30000000) * 0.05;
+  else if (annual <= 70000000) d = base + annual * r2;
+  else if (annual <= 120000000) d = base + annual * r3;
+  else d = 0;
+  if (family >= 3 && annual > 40000000 && annual <= 120000000) d += (annual - 40000000) * 0.04;
+  return d;
 }
 
+const floor10 = n => Math.floor(n / 10) * 10;
+
 function calcSalary(annual, dependents, monthlyNontaxInput, kids = 0){
-  const monthlyGross = annual / 12;
+  const monthlyGross = Math.floor(annual / 12); // 월급(원 미만 버림)
   const monthlyNontax = Math.min(Math.max(monthlyNontaxInput || 0, 0), MEAL_NONTAX_CAP, monthlyGross);
   const monthlyTaxable = monthlyGross - monthlyNontax;
   const annualTaxable = annual - monthlyNontax * 12;
 
-  const npBase = Math.min(Math.max(monthlyTaxable, RATE.npFloor), RATE.npCeil);
-  const nationalPension = Math.round(npBase * RATE.nationalPension);
-  const healthInsurance = Math.round(monthlyTaxable * RATE.healthInsurance);
-  const longTermCare = Math.round(healthInsurance * RATE.longTermCare);
-  const employment = Math.round(monthlyTaxable * RATE.employment);
+  // 4대보험 근로자 부담분: 10원 미만 버림. 국민연금은 기준소득월액(천원 미만 버림, 상·하한) 기준
+  const wage = Math.floor(monthlyTaxable); // 보수월액(원 미만 버림)
+  const npBase = Math.min(Math.max(Math.floor(wage / 1000) * 1000, RATE.npFloor), RATE.npCeil);
+  const nationalPension = floor10(npBase * RATE.nationalPension);
+  const healthInsurance = floor10(wage * RATE.healthInsurance);
+  const longTermCare = floor10(healthInsurance * RATE.longTermCare);
+  const employment = floor10(wage * RATE.employment);
   const monthlyInsurance = nationalPension + healthInsurance + longTermCare + employment;
 
-  const earnedDeduction = earnedIncomeDeduction(annualTaxable);
-  const earnedIncome = Math.max(annualTaxable - earnedDeduction, 0);
+  // 월 소득세: 근로소득 간이세액표(월급여액 = 비과세 제외, 공제대상가족 수, 8~20세 자녀 차감)
+  const taxBeforeChild = wageTaxMonthly(wage, dependents);
+  const monthlyIncomeTax = wageTaxMonthly(wage, dependents, kids);
+  const childCredit = taxBeforeChild - monthlyIncomeTax;
+  const monthlyLocalTax = floor10(monthlyIncomeTax * 0.1);
 
-  const personalDeduction = dependents * 1500000;
-  const pensionDeduction = nationalPension * 12;
-  const specialDeduction = (healthInsurance + longTermCare + employment) * 12;
-  const totalDeduction = personalDeduction + pensionDeduction + specialDeduction;
-
-  const taxBase = Math.max(earnedIncome - totalDeduction, 0);
-  const calculatedTax = Math.max(progressiveTax(taxBase), 0);
-
-  let earnedTaxCredit = calculatedTax <= 1300000
-    ? calculatedTax * 0.55
-    : 715000 + (calculatedTax - 1300000) * 0.3;
-  earnedTaxCredit = Math.min(earnedTaxCredit, earnedIncomeTaxCreditLimit(annual));
-
-  const annualIncomeTax = Math.max(calculatedTax - earnedTaxCredit, 0);
-  // 자녀 차감은 월 소득세에서 빼고, 음수가 되면 0원 (간이세액표 비고 3)
-  const childCredit = Math.min(annualIncomeTax / 12, childMonthlyCredit(kids));
-  const monthlyIncomeTax = annualIncomeTax / 12 - childCredit;
-  const monthlyLocalTax = monthlyIncomeTax * 0.1;
+  // 'OO% 구간' 표시용 과세표준 추정(간이세액표 비고 1의 공제 구성을 따름)
+  const earnedIncome = Math.max(annualTaxable - earnedIncomeDeduction(annualTaxable), 0);
+  const taxBase = Math.max(earnedIncome - dependents * 1500000 - nationalPension * 12 - tableSpecialDeduction(annualTaxable, dependents), 0);
 
   const monthlyDeductionTotal = monthlyInsurance + monthlyIncomeTax + monthlyLocalTax;
   const monthlyNet = monthlyGross - monthlyDeductionTotal;

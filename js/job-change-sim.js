@@ -2,13 +2,6 @@
 const RATE = { nationalPension: 0.0475, healthInsurance: 0.03595, longTermCare: 0.1314, employment: 0.009, npFloor: 410000, npCeil: 6590000 };
 const MEAL_NONTAX_CAP = 200000;
 
-function earnedIncomeDeduction(a){
-  if (a <= 5000000) return a * 0.7;
-  if (a <= 15000000) return 3500000 + (a - 5000000) * 0.4;
-  if (a <= 45000000) return 7500000 + (a - 15000000) * 0.15;
-  if (a <= 100000000) return 12000000 + (a - 45000000) * 0.05;
-  return 14750000 + (a - 100000000) * 0.02;
-}
 function progressiveTax(b){
   if (b <= 14000000) return b * 0.06;
   if (b <= 50000000) return b * 0.15 - 1260000;
@@ -19,27 +12,18 @@ function progressiveTax(b){
   if (b <= 1000000000) return b * 0.42 - 35940000;
   return b * 0.45 - 65940000;
 }
-function earnedIncomeTaxCreditLimit(a){
-  if (a <= 33000000) return 740000;
-  if (a <= 70000000) return Math.max(740000 - (a - 33000000) * 0.008, 660000);
-  return Math.max(660000 - (a - 70000000) * 0.5, 500000);
-}
+const floor10 = n => Math.floor(n / 10) * 10;
+// 본인 1명·자녀 없음 기준. 소득세는 근로소득 간이세액표(js/wage-tax-table.js)
 function monthlyNetPay(annual){
-  const monthlyGross = annual / 12;
+  const monthlyGross = Math.floor(annual / 12);
   const nontax = Math.min(MEAL_NONTAX_CAP, monthlyGross);
-  const taxable = monthlyGross - nontax;
-  const np = Math.round(Math.min(Math.max(taxable, RATE.npFloor), RATE.npCeil) * RATE.nationalPension);
-  const hi = Math.round(taxable * RATE.healthInsurance);
-  const ltc = Math.round(hi * RATE.longTermCare);
-  const emp = Math.round(taxable * RATE.employment);
-  const annualTaxable = annual - nontax * 12;
-  const earnedIncome = Math.max(annualTaxable - earnedIncomeDeduction(annualTaxable), 0);
-  const base = Math.max(earnedIncome - (1500000 + np * 12 + (hi + ltc + emp) * 12), 0);
-  const calcTax = Math.max(progressiveTax(base), 0);
-  let credit = calcTax <= 1300000 ? calcTax * 0.55 : 715000 + (calcTax - 1300000) * 0.3;
-  credit = Math.min(credit, earnedIncomeTaxCreditLimit(annual));
-  const incomeTax = Math.max(calcTax - credit, 0);
-  return monthlyGross - (np + hi + ltc + emp) - incomeTax * 1.1 / 12;
+  const taxable = Math.floor(monthlyGross - nontax);
+  const np = floor10(Math.min(Math.max(Math.floor(taxable / 1000) * 1000, RATE.npFloor), RATE.npCeil) * RATE.nationalPension);
+  const hi = floor10(taxable * RATE.healthInsurance);
+  const ltc = floor10(hi * RATE.longTermCare);
+  const emp = floor10(taxable * RATE.employment);
+  const incomeTax = wageTaxMonthly(taxable, 1);
+  return monthlyGross - (np + hi + ltc + emp) - incomeTax - floor10(incomeTax * 0.1);
 }
 
 // ===== 퇴직금 (severance-pay-calc.js와 동일) =====
