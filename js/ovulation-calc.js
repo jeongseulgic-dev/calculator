@@ -22,10 +22,12 @@ function recalc(){
 
   const lmp = parseIsoDate(lmpVal);
 
-  if (!lmp || !cycle || cycle <= 0){
+  // 배란일 = 다음 생리 − 14일이라 주기가 15일보다 짧으면 배란일이 마지막 생리 시작일 이전으로 나온다
+  if (!lmp || !cycle || cycle < 15 || cycle > 60){
+    const msg = lmp && cycle ? '생리주기는 15~60일 사이로 입력해 주세요' : '마지막 생리 시작일과 생리주기를 확인해 주세요';
     miniScreen.textContent = '--';
     miniScreenSub.textContent = '';
-    statBody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">마지막 생리 시작일과 생리주기를 확인해 주세요</td></tr>';
+    statBody.innerHTML = `<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">${msg}</td></tr>`;
     previewBody.innerHTML = '';
     meta.textContent = '--';
     return;
@@ -43,7 +45,7 @@ function recalc(){
     <tr class="stat-highlight"><th>배란 예상일</th><td>${fmtDate(ovulation)}</td></tr>
     <tr><th>가임기</th><td>${fmtDate(fertileStart)} ~ ${fmtDate(fertileEnd)}</td></tr>
     <tr><th>다음 생리 예정일</th><td>${fmtDate(nextPeriod)}</td></tr>
-    <tr><th>생리주기</th><td>${cycle}일</td></tr>
+    <tr><th>생리주기</th><td>${cycle}일${cycle < 21 || cycle > 35 ? ' (일반적 범위 21~35일 밖)' : ''}</td></tr>
   `;
 
   let previewRows = '';
