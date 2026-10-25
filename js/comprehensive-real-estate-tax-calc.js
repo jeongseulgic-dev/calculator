@@ -22,9 +22,12 @@ const DEDUCTION_ONE_HOUSE = 1200000000;
 const DEDUCTION_OTHERS = 900000000;
 const FAIR_MARKET_RATIO = 0.6;
 const CREDIT_CAP = 0.8;
-// 공제할 재산세액(종부세법 시행령 §4의3①): 종부세 과세표준 × 재산세 공정시장가액비율 60% × 재산세 표준세율.
+// 공제할 재산세액(종부세법 시행령 §4의3①): 종부세 과세표준 × 재산세 공정시장가액비율 × 재산세 표준세율.
+// 재산세 비율은 지방세법 시행령 §109①2: 주택 60%, 2026년 1세대1주택은 시가표준액 6억 초과 45%
+// (종부세 대상 1주택은 공시가격 12억 초과라 항상 45%).
 // 종부세 과세표준은 공시가격 중 공제액을 넘는 윗부분이라 재산세 최고 표준세율 0.4%가 적용되는 구간으로 본다.
 const PROPERTY_TAX_RATIO = 0.6;
+const PROPERTY_TAX_RATIO_ONE_HOUSE = 0.45;
 const PROPERTY_TAX_TOP_RATE = 0.004;
 const RURAL_TAX_RATE = 0.2;
 
@@ -94,7 +97,7 @@ function recalc(){
   const taxBase = Math.max(0, priceSum - deduction) * FAIR_MARKET_RATIO;
   const brackets = houses === 'three' ? BRACKETS_3 : BRACKETS_2;
   const { rate, deduction: progDeduction, tax } = calcTax(taxBase, brackets);
-  const propertyTaxCredit = Math.min(tax, taxBase * PROPERTY_TAX_RATIO * PROPERTY_TAX_TOP_RATE);
+  const propertyTaxCredit = Math.min(tax, taxBase * (isOne ? PROPERTY_TAX_RATIO_ONE_HOUSE : PROPERTY_TAX_RATIO) * PROPERTY_TAX_TOP_RATE);
   const afterPropertyTax = tax - propertyTaxCredit;
 
   let creditRate = 0, credit = 0;
@@ -119,7 +122,7 @@ function recalc(){
     <tr class="stat-highlight"><th>과세표준(공정시장가액비율 60%)</th><td>${fmt(taxBase)}원</td></tr>
     <tr><th>적용 세율 / 누진공제액</th><td>${(rate * 100).toFixed(1)}% / ${fmt(progDeduction)}원</td></tr>
     <tr><th>세율 적용 세액</th><td>${fmt(tax)}원</td></tr>
-    <tr><th>공제할 재산세액</th><td>${propertyTaxCredit > 0 ? '-' : ''}${fmt(propertyTaxCredit)}원</td></tr>
+    <tr><th>공제할 재산세액(재산세 비율 ${isOne ? 45 : 60}%)</th><td>${propertyTaxCredit > 0 ? '-' : ''}${fmt(propertyTaxCredit)}원</td></tr>
     ${isOne ? `<tr><th>고령자·장기보유 세액공제</th><td>${(creditRate * 100).toFixed(0)}% (-${fmt(credit)}원)</td></tr>` : ''}
     <tr><th>종합부동산세</th><td>${fmt(afterCredit)}원</td></tr>
     <tr><th>농어촌특별세(종부세의 20%)</th><td>${fmt(ruralTax)}원</td></tr>
