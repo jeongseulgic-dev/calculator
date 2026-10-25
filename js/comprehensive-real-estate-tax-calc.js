@@ -22,6 +22,11 @@ const DEDUCTION_ONE_HOUSE = 1200000000;
 const DEDUCTION_OTHERS = 900000000;
 const FAIR_MARKET_RATIO = 0.6;
 const CREDIT_CAP = 0.8;
+// 공제할 재산세액(종부세법 시행령 §4의3①): 종부세 과세표준 × 재산세 공정시장가액비율 60% × 재산세 표준세율.
+// 종부세 과세표준은 공시가격 중 공제액을 넘는 윗부분이라 재산세 최고 표준세율 0.4%가 적용되는 구간으로 본다.
+const PROPERTY_TAX_RATIO = 0.6;
+const PROPERTY_TAX_TOP_RATE = 0.004;
+const RURAL_TAX_RATE = 0.2;
 
 function fmt(n){ return Math.round(n).toLocaleString('ko-KR'); }
 
@@ -89,18 +94,22 @@ function recalc(){
   const taxBase = Math.max(0, priceSum - deduction) * FAIR_MARKET_RATIO;
   const brackets = houses === 'three' ? BRACKETS_3 : BRACKETS_2;
   const { rate, deduction: progDeduction, tax } = calcTax(taxBase, brackets);
+  const propertyTaxCredit = Math.min(tax, taxBase * PROPERTY_TAX_RATIO * PROPERTY_TAX_TOP_RATE);
+  const afterPropertyTax = tax - propertyTaxCredit;
 
   let creditRate = 0, credit = 0;
   if (isOne){
     creditRate = Math.min(CREDIT_CAP, ageCreditRate(age) + holdCreditRate(years));
-    credit = tax * creditRate;
+    credit = afterPropertyTax * creditRate;
   }
-  const afterCredit = tax - credit;
+  const afterCredit = afterPropertyTax - credit;
+  const ruralTax = afterCredit * RURAL_TAX_RATE;
+  const total = afterCredit + ruralTax;
 
   const houseLabel = houses === 'one' ? '1주택(1세대1주택)' : houses === 'two' ? '2주택' : '3주택 이상';
 
-  miniScreen.textContent = fmt(afterCredit) + '원';
-  miniScreenSub.textContent = '종합부동산세액(재산세 공제 전, 추정)';
+  miniScreen.textContent = fmt(total) + '원';
+  miniScreenSub.textContent = '종부세 + 농어촌특별세(세부담상한 적용 전, 추정)';
   meta.textContent = `공시가격 합계 ${fmt(priceSum)}원 · ${houseLabel}`;
 
   statBody.innerHTML = `
@@ -109,9 +118,12 @@ function recalc(){
     <tr><th>기본공제</th><td>${fmt(deduction)}원</td></tr>
     <tr class="stat-highlight"><th>과세표준(공정시장가액비율 60%)</th><td>${fmt(taxBase)}원</td></tr>
     <tr><th>적용 세율 / 누진공제액</th><td>${(rate * 100).toFixed(1)}% / ${fmt(progDeduction)}원</td></tr>
-    <tr><th>산출세액</th><td>${fmt(tax)}원</td></tr>
+    <tr><th>세율 적용 세액</th><td>${fmt(tax)}원</td></tr>
+    <tr><th>공제할 재산세액</th><td>${propertyTaxCredit > 0 ? '-' : ''}${fmt(propertyTaxCredit)}원</td></tr>
     ${isOne ? `<tr><th>고령자·장기보유 세액공제</th><td>${(creditRate * 100).toFixed(0)}% (-${fmt(credit)}원)</td></tr>` : ''}
-    <tr class="stat-highlight"><th>종합부동산세액(재산세 공제 전, 추정)</th><td>${fmt(afterCredit)}원</td></tr>
+    <tr><th>종합부동산세</th><td>${fmt(afterCredit)}원</td></tr>
+    <tr><th>농어촌특별세(종부세의 20%)</th><td>${fmt(ruralTax)}원</td></tr>
+    <tr class="stat-highlight"><th>합계(세부담상한 적용 전, 추정)</th><td>${fmt(total)}원</td></tr>
   `;
 
   UrlState.sync({ price: priceSum, houses, age, years }, URL_DEFAULTS);
