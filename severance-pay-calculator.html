@@ -35,7 +35,7 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"퇴직금 계산기","item":"https://kcalculator.net/severance-pay-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"퇴직금 계산기","description":"입사일·마지막 근무일·월급과 상여금·연차수당을 넣으면 법정 퇴직금과 퇴직소득세를 뗀 실수령액을 계산합니다.","url":"https://kcalculator.net/severance-pay-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"퇴사일에는 마지막 근무일을 넣어야 하나요, 다음 날을 넣어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"이 계산기에는 마지막으로 출근한 날을 넣으면 됩니다. 고용노동부는 마지막 근무일 다음 날을 퇴직일로 보고 재직일수와 평균임금 기간을 계산하는데, 계산기가 하루를 자동으로 더해 같은 방식으로 맞춥니다. 예를 들어 2025년 1월 1일 입사해 2025년 12월 31일까지 일했다면 재직일수는 365일로 퇴직금 지급 대상입니다."}},{"@type":"Question","name":"근속연수를 왜 올림 처리하나요?","acceptedAnswer":{"@type":"Answer","text":"소득세법 시행령에 따라 퇴직소득세 계산 시 근속연수의 1년 미만 끝수는 1년으로 올림합니다. 예를 들어 5년 1개월을 근무했다면 세금 계산에서는 6년으로 취급합니다. 근속연수는 날짜 기준으로 세기 때문에 윤년이 끼어 있어도 딱 5년을 근무했다면 5년입니다. 이 올림은 세금 계산에만 적용되고, 퇴직금 원금 계산에는 실제 재직일수를 그대로 씁니다."}},{"@type":"Question","name":"1년 미만 근무해도 퇴직금을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"원칙적으로 받을 수 없습니다. 법정 퇴직금은 계속근로기간이 1년 이상이어야 생기므로 1년에서 하루라도 모자라면 회사에 지급 의무가 없습니다. 다만 근로계약서나 취업규칙에 1년 미만 근무자에게도 지급한다는 규정이 있으면 그 규정에 따라 받을 수 있습니다."}},{"@type":"Question","name":"상여금·연차수당은 어떻게 반영되나요?","acceptedAnswer":{"@type":"Answer","text":"퇴직 전 1년 동안 받은 상여금과 연차수당(전년도에 쓰지 못한 연차를 돈으로 받은 것)은 연간 금액의 3/12만큼을 3개월 임금총액에 더합니다. 예를 들어 연간 상여금이 400만원이면 100만원이 더해집니다. 퇴직하면서 정산받는 미사용 연차수당은 퇴직 전 3개월 임금에 포함하지 않는 것이 일반적이므로 넣지 않습니다."}},{"@type":"Question","name":"퇴직금은 언제, 어디로 받나요?","acceptedAnswer":{"@type":"Answer","text":"회사는 퇴직일로부터 14일 안에 퇴직금을 지급해야 하며, 당사자끼리 합의하면 기한을 늦출 수 있습니다. 2022년 4월 14일 이후 퇴직자는 원칙적으로 개인형퇴직연금(IRP) 계좌로 받고(55세 이후 퇴직, 300만원 이하 등은 예외), 이때는 퇴직소득세가 바로 떼이지 않고 IRP에서 꺼낼 때 과세됩니다. 퇴직금을 받지 못했다면 퇴직일로부터 3년 안에 청구해야 합니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=59">
+<link rel="stylesheet" href="style.css?v=60">
 </head>
 <body>
 
@@ -153,7 +153,7 @@
             <p class="field-note">상여금·연차수당은 연간 금액의 3/12만 평균임금에 더합니다.</p>
           </div>
 
-          <div class="live-indicator"><span class="live-dot"></span> 입력 즉시 자동 계산</div>
+          <div class="live-indicator">입력 즉시 자동 계산</div>
         </aside>
       </div>
 
@@ -299,9 +299,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=59"></script>
-<script src="js/url-state.js?v=59"></script>
-<script src="js/export.js?v=59"></script>
-<script src="js/severance-pay-calc.js?v=59"></script>
+<script src="js/site.js?v=60"></script>
+<script src="js/url-state.js?v=60"></script>
+<script src="js/export.js?v=60"></script>
+<script src="js/severance-pay-calc.js?v=60"></script>
 </body>
 </html>
