@@ -290,6 +290,8 @@ input:checked + .slider::before{ transform:translateX(18px); }
 .method-card{ background:var(--card-tint); border:1px solid #ecd9b8; border-radius:7px; padding:15px 13px; position:relative; }
 .method-card h3{ font-size:0.9rem; font-weight:700; margin-bottom:2px; }
 .method-card .sub{ font-size:0.72rem; color:var(--ink-soft); margin-bottom:11px; }
+/* 도장(.stamp)이 있는 카드는 설명 줄이 도장 밑으로 들어가지 않게 오른쪽을 비워 둔다 */
+.method-card:has(> .stamp) .sub{ padding-right:52px; }
 .method-row{ display:flex; justify-content:space-between; font-size:0.8rem; padding:5px 0; border-bottom:1px dotted #e5decb; }
 .method-row:last-child{ border-bottom:none; }
 .method-row .val{ font-family:'IBM Plex Mono', monospace; font-weight:600; }
