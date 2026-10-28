@@ -34,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"시간 계산기","item":"https://kcalculator.net/time-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"시간 계산기","description":"시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.","url":"https://kcalculator.net/time-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"자정을 넘는 경우도 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 시각 더하기·빼기 모드는 결과가 자정을 넘으면 \"며칠 후/전\"으로 표시하고, 경과시간 모드는 종료 시각이 시작 시각보다 이르면 자동으로 다음날로 넘어간 것으로 계산합니다."}},{"@type":"Question","name":"야간 근무시간(예: 22:00~06:00)도 정확히 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 경과시간 모드에 시작 22:00, 종료 06:00을 입력하면 자정을 넘는 것으로 자동 인식해 8시간으로 계산합니다."}},{"@type":"Question","name":"휴게시간은 왜 따로 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"근로기준법 제54조에 따라 근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간을 근무 도중 줘야 합니다. 이 휴게시간은 무급이라 실제 임금 산정 기준이 되는 근무시간에서는 제외해야 해서 별도 입력란을 뒀습니다."}},{"@type":"Question","name":"이 결과를 시급 계산에 바로 쓸 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 결과 아래 \"다음 계산\" 버튼을 누르면 이 근무를 주 5일 한다고 보고 시급·주휴수당 계산기로 넘어갑니다. 하루 8시간까지는 1일 소정근로시간으로, 8시간을 넘는 부분은 주 연장근로시간(하루 초과분 × 5일)으로 채워집니다."}},{"@type":"Question","name":"분 단위까지 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"네, 분 단위까지 정확하게 계산합니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=60">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"시간 계산기","item":"https://kcalculator.net/time-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"시간 계산기","description":"시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.","url":"https://kcalculator.net/time-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"자정을 넘는 경우도 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 시각 더하기·빼기 모드는 결과가 자정을 넘으면 \"며칠 후/전\"으로 표시하고 경과시간 모드는 종료 시각이 시작 시각보다 이르면 자동으로 다음날로 넘어간 것으로 계산합니다."}},{"@type":"Question","name":"야간 근무시간(예: 22:00~06:00)도 정확히 계산되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 경과시간 모드에 시작 22:00, 종료 06:00을 입력하면 자정을 넘는 것으로 자동 인식해 8시간으로 계산합니다."}},{"@type":"Question","name":"휴게시간은 왜 따로 입력하나요?","acceptedAnswer":{"@type":"Answer","text":"근로기준법 제54조에 따라 근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간을 근무 도중 줘야 합니다. 이 휴게시간은 무급이라 실제 임금 산정 기준이 되는 근무시간에서는 제외해야 해서 별도 입력란을 뒀습니다."}},{"@type":"Question","name":"이 결과를 시급 계산에 바로 쓸 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 결과 아래 \"다음 계산\" 버튼을 누르면 이 근무를 주 5일 한다고 보고 시급·주휴수당 계산기로 넘어갑니다. 하루 8시간까지는 1일 소정근로시간으로, 8시간을 넘는 부분은 주 연장근로시간(하루 초과분 × 5일)으로 채워집니다."}},{"@type":"Question","name":"분 단위까지 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"네, 분 단위까지 정확하게 계산합니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=61">
 </head>
 <body>
 
@@ -111,7 +111,7 @@
   <main class="page-content">
     <div class="page-title">
       <h1>시간 계산기</h1>
-      <p>시각에 시간을 더하거나 빼고, 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.</p>
+      <p>시각에 시간을 더하거나 빼고 두 시각 사이 경과시간(휴게시간 제외 근무시간)을 계산합니다.</p>
     </div>
 
     <div class="shell">
@@ -202,7 +202,7 @@
 
       <div class="info-block">
         <h3><span class="info-icon">💡</span>시간 계산기 두 가지 방식</h3>
-        <p>이 계산기는 시:분 단위의 두 가지 계산을 지원합니다. "시각 더하기·빼기"는 기준 시각에서 일정 시간이 지나거나 전인 시각을 구하고, "두 시각 사이 경과시간"은 시작·종료 시각 사이의 총 시간과 휴게시간을 뺀 실제 시간을 구합니다.</p>
+        <p>이 계산기는 시:분 단위의 두 가지 계산을 지원합니다. "시각 더하기·빼기"는 기준 시각에서 일정 시간이 지나거나 전인 시각을 구하고 "두 시각 사이 경과시간"은 시작·종료 시각 사이의 총 시간과 휴게시간을 뺀 실제 시간을 구합니다.</p>
         <p>날짜(일) 단위 계산이 필요하면 날짜 계산기를, 특정 날짜까지 며칠 남았는지는 디데이 계산기를, 주말을 뺀 영업일수는 영업일 계산기를 이용하세요.</p>
       </div>
 
@@ -243,14 +243,14 @@
             <tr><td>야간근로</td><td>밤 10시~다음 날 아침 6시</td><td>통상임금의 50% 이상</td></tr>
           </tbody>
         </table>
-        <p>연장·야간근로 가산수당은 상시 5명 이상 사업장에 적용됩니다(근로기준법 제56조). 결과의 야간근로 시간은 휴게시간이 언제였는지 알 수 없어 휴게시간을 포함한 값이므로, 휴게를 밤 10시 이후에 했다면 그만큼 빼서 보세요.</p>
+        <p>연장·야간근로 가산수당은 상시 5명 이상 사업장에 적용됩니다(근로기준법 제56조). 결과의 야간근로 시간은 휴게시간이 언제였는지 알 수 없어 휴게시간을 포함한 값이므로 휴게를 밤 10시 이후에 했다면 그만큼 빼서 보세요.</p>
 </div>
 
       <div class="info-block">
         <h3><span class="info-icon">❓</span>자주 묻는 질문</h3>
         <details class="faq-item">
           <summary>자정을 넘는 경우도 계산되나요?</summary>
-          <p class="faq-a">네. 시각 더하기·빼기 모드는 결과가 자정을 넘으면 "며칠 후/전"으로 표시하고, 경과시간 모드는 종료 시각이 시작 시각보다 이르면 자동으로 다음날로 넘어간 것으로 계산합니다.</p>
+          <p class="faq-a">네. 시각 더하기·빼기 모드는 결과가 자정을 넘으면 "며칠 후/전"으로 표시하고 경과시간 모드는 종료 시각이 시작 시각보다 이르면 자동으로 다음날로 넘어간 것으로 계산합니다.</p>
         </details>
         <details class="faq-item">
           <summary>야간 근무시간(예: 22:00~06:00)도 정확히 계산되나요?</summary>
@@ -287,9 +287,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=60"></script>
-<script src="js/url-state.js?v=60"></script>
-<script src="js/export.js?v=60"></script>
-<script src="js/time-calc.js?v=60"></script>
+<script src="js/site.js?v=61"></script>
+<script src="js/url-state.js?v=61"></script>
+<script src="js/export.js?v=61"></script>
+<script src="js/time-calc.js?v=61"></script>
 </body>
 </html>
