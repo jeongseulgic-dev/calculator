@@ -34,8 +34,8 @@
 <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"DSR·DTI 계산기","item":"https://kcalculator.net/dsr-dti-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"DSR·DTI 계산기","description":"연소득과 보유 부채를 입력하면 총부채원리금상환비율(DSR)과 총부채상환비율(DTI)을 계산하고, 신규 대출 한도도 역산합니다.","url":"https://kcalculator.net/dsr-dti-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"DSR과 DTI 중 어느 쪽이 대출 한도 기준이 되나요?","acceptedAnswer":{"@type":"Answer","text":"대출 종류와 금융기관에 따라 다릅니다. 최근에는 DSR이 더 널리 쓰이는 편이지만 내 대출에 어떤 지표가 적용되는지는 대출 상품 안내나 금융기관 답변으로 알 수 있습니다."}},{"@type":"Question","name":"스트레스 DSR은 왜 반영하지 않나요?","acceptedAnswer":{"@type":"Answer","text":"스트레스 DSR은 신규 대출을 심사할 때 은행이 적용하는 개념이라, \"지금 보유한 부채로 DSR·DTI가 얼마인지\" 확인하는 이 계산기의 목적과는 다릅니다. 신규 대출의 실제 한도는 스트레스 DSR까지 반영해 금융기관에서 다시 계산됩니다."}},{"@type":"Question","name":"규제 비율을 넘으면 대출이 아예 안 나오나요?","acceptedAnswer":{"@type":"Answer","text":"규제 비율을 넘는 만큼 대출 한도가 줄어들거나 승인이 거절될 수 있습니다. 정확한 운영 기준은 금융기관마다 다릅니다."}},{"@type":"Question","name":"신규 대출 한도 역산 결과에는 스트레스 DSR이 반영되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 이 역산도 현재 금리를 그대로 사용하며 스트레스 DSR(미래 금리 상승 가산금리)은 반영하지 않습니다. 실제 은행에서 받는 신규 대출 한도는 이 결과보다 낮게 나올 수 있습니다."}}]}]</script>
-<link rel="stylesheet" href="style.css?v=62">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"계산기","item":"https://kcalculator.net/"},{"@type":"ListItem","position":2,"name":"DSR·DTI 계산기","item":"https://kcalculator.net/dsr-dti-calculator"}]},{"@context":"https://schema.org","@type":"WebApplication","name":"DSR·DTI 계산기","description":"연소득과 보유 부채를 입력하면 총부채원리금상환비율(DSR)과 총부채상환비율(DTI)을 계산하고, 신규 대출 한도도 역산합니다.","url":"https://kcalculator.net/dsr-dti-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"inLanguage":"ko"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"DSR과 DTI 중 어느 쪽이 대출 한도 기준이 되나요?","acceptedAnswer":{"@type":"Answer","text":"대출 종류와 금융기관에 따라 다릅니다. 최근에는 DSR이 더 널리 쓰이는 편이지만 내 대출에 어떤 지표가 적용되는지는 대출 상품 안내나 금융기관 답변으로 알 수 있습니다."}},{"@type":"Question","name":"지금 내 DSR에도 스트레스 금리가 붙나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 스트레스 금리는 새로 대출을 받을 때 그 대출의 한도를 계산하는 데 쓰입니다. 그래서 위쪽 DSR·DTI 결과는 입력한 실제 상환액 그대로 계산하고 스트레스 금리는 아래 신규 대출 한도 역산에만 적용합니다."}},{"@type":"Question","name":"규제 비율을 넘으면 대출이 아예 안 나오나요?","acceptedAnswer":{"@type":"Answer","text":"규제 비율을 넘는 만큼 대출 한도가 줄어들거나 승인이 거절될 수 있습니다. 정확한 운영 기준은 금융기관마다 다릅니다."}},{"@type":"Question","name":"신규 대출 한도 역산 결과에는 스트레스 DSR이 반영되나요?","acceptedAnswer":{"@type":"Answer","text":"'스트레스 금리'에서 지역과 금리 유형을 고르면 반영됩니다. 예를 들어 수도권 변동금리 주담대는 실제 금리에 3%p를 더한 금리로 한도를 계산해 같은 여유분이라도 빌릴 수 있는 원금이 크게 줄어듭니다. 기본값은 '적용 안 함'이라 신용대출 등 다른 대출을 가늠할 때도 쓸 수 있습니다."}}]}]</script>
+<link rel="stylesheet" href="style.css?v=63">
 </head>
 <body>
 
@@ -160,7 +160,21 @@
         <div class="field">
           <label for="d-new-period">신규 대출 기간 (년)</label>
           <input type="number" id="d-new-period" value="30">
-          <p class="field-note">선택한 규제 비율까지 남은 여유분으로 신규 주택담보대출을 받는다고 가정하고 최대 원금을 역산합니다.</p>
+          <p class="field-note">선택한 규제 비율까지 남은 여유분으로 신규 대출을 받는다고 가정하고 최대 원금을 역산합니다.</p>
+        </div>
+
+        <div class="field">
+          <label for="d-stress">스트레스 금리 (신규 주담대, 선택)</label>
+          <select id="d-stress">
+            <option value="0" selected>적용 안 함</option>
+            <option value="3">수도권·규제지역 변동금리 +3%p</option>
+            <option value="2.4">수도권·규제지역 혼합형 +2.4%p</option>
+            <option value="1.2">수도권·규제지역 주기형 +1.2%p</option>
+            <option value="0.75">지방 변동금리 +0.75%p</option>
+            <option value="0.45">지방 혼합형 +0.45%p</option>
+            <option value="0.225">지방 주기형 +0.23%p</option>
+          </select>
+          <p class="field-note">은행 주택담보대출은 실제 금리에 이 가산금리를 더해 DSR 한도를 계산합니다(순수 고정금리는 가산 없음). 2026년 10월 기준이며 주택담보대출 계산기와 같은 값입니다.</p>
         </div>
 
         <div class="live-indicator">입력 즉시 자동 계산</div>
@@ -206,7 +220,7 @@
       <div class="info-block">
         <h3><span class="info-icon">💡</span>DSR·DTI란?</h3>
         <p>이 DSR계산기·DTI계산기는 연소득 대비 대출 상환 부담을 나타내는 두 지표를 함께 계산합니다. DSR(총부채원리금상환비율)과 DTI(총부채상환비율)는 모두 은행이 대출 한도를 정할 때 기준으로 쓰는 지표로, 차이는 기타대출(신용대출·카드론 등)을 반영하는 방식에 있습니다. DSR은 원금까지 전부 반영하고 DTI는 이자만 반영합니다. 그래서 같은 조건이면 DSR이 DTI보다 더 엄격하게(낮게) 나오는 경우가 많습니다.</p>
-        <p>실제 대출 심사 시 금융기관·상품마다 세부 산정 방식이 다를 수 있고 신규 대출을 검토 중이라면 스트레스 DSR 등 추가 규제가 적용돼 이 계산기 결과보다 한도가 낮게 나올 수 있습니다. 정확한 심사 기준은 금융기관에 문의하세요.</p>
+        <p>실제 대출 심사에서는 금융기관·상품마다 세부 산정 방식이 다를 수 있어 이 계산기 결과는 참고용입니다. 신용대출 원금을 만기와 관계없이 일정 기간으로 나눠 반영하는 식의 업권별 산정 규칙은 반영하지 않았고 입력한 연간 원금·이자를 그대로 씁니다.</p>
       </div>
 
       <div class="info-block">
@@ -233,7 +247,7 @@
         </div>
         <div class="method-def">
           <h4>신규 대출 한도 역산</h4>
-          <p>선택한 규제 비율(40%/50%)까지 DSR·DTI 각각의 여유 연간 원리금을 구하고 둘 중 더 적은 쪽을 기준으로 신규 대출 금리·기간을 적용해 원리금균등·원금균등 상환 공식을 거꾸로 풀어 최대 원금을 계산합니다.</p>
+          <p>선택한 DSR 규제 비율(40%/50%)까지 남은 연간 원리금을 구하고 신규 대출 금리(스트레스 금리를 고르면 그만큼 더한 금리)와 기간을 넣어 원리금균등·원금균등 상환 공식을 거꾸로 풀어 최대 원금을 계산합니다. 새 대출이 규제지역 주택담보대출이라면 DTI 40%까지 남은 여유분으로도 같은 계산을 해서 둘 중 낮은 쪽을 따로 보여줍니다.</p>
           <p>두 방식의 한도가 차이 나는 이유는 상환액이 몰리는 시점이 다르기 때문입니다. 원리금균등은 매달 내는 돈이 똑같아 여유 월 상환액을 그대로 원금으로 환산하지만 원금균등은 이자가 초반에 크게 붙어 첫 달 상환액이 가장 많습니다. 이 계산기는 그 첫 달 부담이 여유 월 상환액을 넘지 않는 선에서 최대 원금을 구하기 때문에, 같은 조건이면 원금균등 쪽 한도가 항상 더 낮게 나옵니다.</p>
           <p>이 역산은 대출 종류를 구분하지 않는 일반적인 계산입니다. 주택 구입 목적이라면 LTV까지 함께 반영하는 계산이 더 정확합니다.</p>
         </div>
@@ -242,13 +256,14 @@
       <div class="info-block">
         <h3><span class="info-icon">📊</span>기준표</h3>
         <table class="criteria-table">
-          <thead><tr><th>업권</th><th>DSR·DTI 규제 비율</th></tr></thead>
+          <thead><tr><th>구분</th><th>규제 비율</th></tr></thead>
           <tbody>
-            <tr><td>은행(1금융권)</td><td>40%</td></tr>
-            <tr><td>2금융권(캐피탈·저축은행 등)</td><td>50%</td></tr>
+            <tr><td>DSR — 은행(1금융권)</td><td>40%</td></tr>
+            <tr><td>DSR — 2금융권(캐피탈·저축은행 등)</td><td>50%</td></tr>
+            <tr><td>DTI — 규제지역 주택담보대출</td><td>40%</td></tr>
           </tbody>
         </table>
-        <p class="field-note">2025년 7월부터 신규 대출 심사에는 "스트레스 DSR 3단계"가 추가로 적용됩니다. 변동금리 대출에 미래 금리 상승을 가정한 가산금리를 얹어 대출 한도를 더 보수적으로 계산하는 제도이며 이 계산기의 결과에는 반영되어 있지 않습니다.</p>
+        <p class="field-note">DSR 비율은 은행·2금융권 등 업권에 따라, DTI 비율은 지역에 따라 정해집니다. DTI는 2025년 10·15 대책으로 규제지역(서울 전역·경기 12곳) 주택담보대출에 40%가 적용되며 비규제지역 기준은 지역·상품마다 달라 이 계산기에 넣지 않았습니다. 2025년 7월부터는 "스트레스 DSR 3단계"로 변동금리 대출에 미래 금리 상승을 가정한 가산금리를 얹어 DSR을 계산합니다.</p>
       </div>
 
       <div class="info-block">
@@ -258,8 +273,8 @@
           <p class="faq-a">대출 종류와 금융기관에 따라 다릅니다. 최근에는 DSR이 더 널리 쓰이는 편이지만 내 대출에 어떤 지표가 적용되는지는 대출 상품 안내나 금융기관 답변으로 알 수 있습니다.</p>
         </details>
         <details class="faq-item">
-          <summary>스트레스 DSR은 왜 반영하지 않나요?</summary>
-          <p class="faq-a">스트레스 DSR은 신규 대출을 심사할 때 은행이 적용하는 개념이라, "지금 보유한 부채로 DSR·DTI가 얼마인지" 확인하는 이 계산기의 목적과는 다릅니다. 신규 대출의 실제 한도는 스트레스 DSR까지 반영해 금융기관에서 다시 계산됩니다.</p>
+          <summary>지금 내 DSR에도 스트레스 금리가 붙나요?</summary>
+          <p class="faq-a">아니요. 스트레스 금리는 새로 대출을 받을 때 그 대출의 한도를 계산하는 데 쓰입니다. 그래서 위쪽 DSR·DTI 결과는 입력한 실제 상환액 그대로 계산하고 스트레스 금리는 아래 신규 대출 한도 역산에만 적용합니다.</p>
         </details>
         <details class="faq-item">
           <summary>규제 비율을 넘으면 대출이 아예 안 나오나요?</summary>
@@ -267,13 +282,15 @@
         </details>
         <details class="faq-item">
           <summary>신규 대출 한도 역산 결과에는 스트레스 DSR이 반영되나요?</summary>
-          <p class="faq-a">아니요. 이 역산도 현재 금리를 그대로 사용하며 스트레스 DSR(미래 금리 상승 가산금리)은 반영하지 않습니다. 실제 은행에서 받는 신규 대출 한도는 이 결과보다 낮게 나올 수 있습니다.</p>
+          <p class="faq-a">'스트레스 금리'에서 지역과 금리 유형을 고르면 반영됩니다. 예를 들어 수도권 변동금리 주담대는 실제 금리에 3%p를 더한 금리로 한도를 계산해 같은 여유분이라도 빌릴 수 있는 원금이 크게 줄어듭니다. 기본값은 '적용 안 함'이라 신용대출 등 다른 대출을 가늠할 때도 쓸 수 있습니다.</p>
         </details>
       </div>
 
       <div class="info-block">
         <h3><span class="info-icon">🔗</span>출처</h3>
         <ul class="source-list">
+          <li><a href="https://www.korea.kr/briefing/policyBriefingView.do?newsId=156722073" target="_blank" rel="noopener">정책브리핑 — 주택시장 안정화 대책(2025.10.15, 규제지역 LTV·DTI·스트레스 금리)</a></li>
+          <li><a href="https://portal.kfb.or.kr/compare/stress_loan.php" target="_blank" rel="noopener">은행연합회 소비자포털 — 스트레스금리 공시</a></li>
           <li><a href="https://www.fsc.go.kr/no010101/84617" target="_blank" rel="noopener">금융위원회 — 3단계 스트레스 DSR 시행방안 확정·발표</a></li>
           <li><a href="https://www.fsc.go.kr/no010101/82526" target="_blank" rel="noopener">금융위원회 — 하반기 스트레스 DSR 운용방향</a></li>
         </ul>
@@ -289,9 +306,9 @@
   <p class="footer-links"><a href="about">소개</a> · <a href="contact">문의</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a></p>
 </footer>
 
-<script src="js/site.js?v=62"></script>
-<script src="js/url-state.js?v=62"></script>
-<script src="js/export.js?v=62"></script>
-<script src="js/dsr-dti-calc.js?v=62"></script>
+<script src="js/site.js?v=63"></script>
+<script src="js/url-state.js?v=63"></script>
+<script src="js/export.js?v=63"></script>
+<script src="js/dsr-dti-calc.js?v=63"></script>
 </body>
 </html>

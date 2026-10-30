@@ -33,18 +33,24 @@ function recalc(){
     return;
   }
 
-  const weeklyReg = dailyHours * daysPerWeek;
+  // 5인 이상 사업장은 1일 8시간·주 40시간(근로기준법 §50)을 넘는 시간을 연장근로로 본다. 5인 미만은 §50이 적용되지 않는다
+  const scheduled = dailyHours * daysPerWeek;
+  const weeklyReg = over5 ? Math.min(Math.min(dailyHours, 8) * daysPerWeek, 40) : scheduled;
+  const autoOt = scheduled - weeklyReg;
+  const totalOt = otHours + autoOt;
   const eligible = weeklyReg >= 15;
   const holidayHours = eligible ? Math.min(1, weeklyReg / 40) * 8 : 0;
   const holidayPay = holidayHours * wage;
   const basePay = wage * weeklyReg;
   const otRate = over5 ? 1.5 : 1.0;
-  const otPay = otHours * wage * otRate;
+  const otPay = totalOt * wage * otRate;
   const weeklyTotal = basePay + holidayPay + otPay;
 
-  const monthlyHours = Math.round((weeklyReg + holidayHours) * 365 / 7 / 12);
+  // 월 기준시간(최저임금법 시행령 §5①3) — 정부 고시처럼 정수로 반올림(주 40시간이면 208.57 → 209시간)
+  const monthlyExact = (weeklyReg + holidayHours) * 365 / 7 / 12;
+  const monthlyHours = Math.round(monthlyExact);
   const monthlyBase = monthlyHours * wage;
-  const monthlyOtHours = Math.round(otHours * 365 / 7 / 12);
+  const monthlyOtHours = Math.round(totalOt * 365 / 7 / 12);
   const monthlyOt = monthlyOtHours * wage * otRate;
   const monthlyTotal = monthlyBase + monthlyOt;
 
@@ -57,9 +63,10 @@ function recalc(){
     <tr><th>주휴수당 지급 대상</th><td>${eligible ? '대상 (15시간 이상)' : '미대상 (15시간 미만)'}</td></tr>
     <tr><th>기본급(주)</th><td>${fmt(basePay)}원</td></tr>
     <tr><th>주휴수당</th><td>${fmt(holidayPay)}원</td></tr>
-    <tr><th>연장근로수당(주)</th><td>${fmt(otPay)}원 ${otHours > 0 ? `(${over5 ? '50%' : '가산 없음'} 적용)` : ''}</td></tr>
+    <tr><th>연장근로수당(주)</th><td>${fmt(otPay)}원 ${totalOt > 0 ? `(${+totalOt.toFixed(2)}시간, ${over5 ? '50%' : '가산 없음'} 적용)` : ''}</td></tr>
+    ${autoOt > 0 ? `<tr><td colspan="2" style="text-align:center; color:var(--ink-soft);">1일 8시간·주 40시간을 넘는 ${+autoOt.toFixed(2)}시간은 연장근로로 계산했습니다(근로기준법 제50조·제56조)</td></tr>` : ''}
     <tr class="stat-highlight"><th>주급 합계</th><td>${fmt(weeklyTotal)}원</td></tr>
-    <tr><th>월 환산 소정근로시간</th><td>${monthlyHours}시간</td></tr>
+    <tr><th>월 환산 소정근로시간</th><td>${monthlyHours}시간${Math.abs(monthlyExact - monthlyHours) >= 0.005 ? ` (${monthlyExact.toFixed(2)}시간 반올림)` : ''}</td></tr>
     <tr><th>월급(기본+주휴수당)</th><td>${fmt(monthlyBase)}원</td></tr>
     <tr><th>월 연장근로수당(환산)</th><td>${fmt(monthlyOt)}원</td></tr>
     <tr class="stat-highlight"><th>월급 합계(세전, 추정)</th><td>${fmt(monthlyTotal)}원</td></tr>
